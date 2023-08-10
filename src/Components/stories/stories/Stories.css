@@ -1,0 +1,38 @@
+ .mySwiper [class^="swiper-button-"]{
+    width: 2px;
+    height: 2px;
+    color: #024d47;
+    font-weight: bolder !important;
+    font-size: 100%;
+    padding: 12px;
+    /* background: #d8b105; */
+    /* opacity: 50%; */
+    border-radius: 50%;
+} 
+
+.swiper-button-next{
+    width: 2px;
+    height: 2px;
+    top: 38px;
+    right: -6px;
+
+}
+.swiper-button-prev{
+    font-weight: bolder !important;
+    width: 5px;
+    height: 5px;
+    top: 38px;
+    left: -4px;
+}
+.swiper .swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+.swiper .swiper-button-next::after {
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+.swiper-wrapper{
+    padding: 0px 15px;
+}
