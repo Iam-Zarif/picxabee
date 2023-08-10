@@ -30,7 +30,7 @@ const Suggestions = () => {
                 <h2 className="font-semibold text-sm">{profile.username}</h2>
                 <h3 className="text-xs text-gray-400">{profile.role}</h3>
             </div>
-            <button className="text-red-400 text-sm">Follow</button>
+            <button className="text-[#024d47] text-sm font-semibold">Follow</button>
         </div>
     ))}
 </div>
