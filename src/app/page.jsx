@@ -1,6 +1,6 @@
-import Feed from '@/Components/Feed'
-import Modal from '@/Components/Modal'
-import Nav from '@/Components/Nav'
+import Feed from '@/components/Feed'
+import Modal from '@/components/Modal'
+import Nav from '@/components/Nav'
 
 export default function Home() {
   return(
@@ -14,8 +14,6 @@ export default function Home() {
       {/* Modal  */}
       <Modal />
     </div>
-
-    
     
   )
 }
