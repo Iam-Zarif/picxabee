@@ -13,7 +13,7 @@ const Feed = () => {
             {/* Stories  */}
             <Stories></Stories>
             {/* Postbox  */}
-            <PostBox />
+            {/* <PostBox /> */}
             <Posts />
         </section>
         <section>
