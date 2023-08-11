@@ -90,7 +90,7 @@ const Navbar = () => {
     </div>
     <span className='lg:hidden  inline-block'>Pic</span>
     {/* responsive dropdown */}
-    <a className=" logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5"> <span className='text-5xl'>P</span>icxa<span className='bee  '>bee</span></a>
+    <a className=" logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5"> <span className='text-5xl'>P</span>icxabee</a>
     
   </div>
   
