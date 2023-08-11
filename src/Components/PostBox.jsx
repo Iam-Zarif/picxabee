@@ -34,11 +34,9 @@ const PostBox = () => {
 
             <div className="w-full">
               <textarea
-                rows={4}
-                cols={70}
-                
+                rows={4}                
                 placeholder="Whats On Your Mind , Name?"
-                className="border-none resize-none outline-none bg-transparent text-sm"
+                className="border-none resize-none outline-none bg-transparent text-sm "
               ></textarea>
             </div>
           </div>
