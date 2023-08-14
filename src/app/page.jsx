@@ -1,9 +1,11 @@
 export default function Home() {
-  return(
-    
-    <div className='bg-gray-50 h-screen overflow-y-scroll scrollbar-hide'>
-     Get ready for project
+  return (
+
+    <div>
+      <div className="border p-5 m-5">
+        Get ready for project
+      </div>
     </div>
-    
+
   )
 }

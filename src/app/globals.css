@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .navBtn {
-    @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out;
-  }
-}
-
-.logo{
-  font-family: Comic Sans MS;
-  color: #024d47;
-  font-weight: bold;
-}
-.bee{
-  font-family: sans-serif;
-  color: #d8b105;
- 
+.my-container {
+  @apply w-full 2xl:max-w-screen-2xl mx-auto
 }
