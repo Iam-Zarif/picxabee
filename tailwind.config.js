@@ -2,9 +2,8 @@
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/Components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    // './public/**/*.{js,ts,jsx,tsx,mdx,json}'
   ],
   theme: {
     extend: {
@@ -15,5 +14,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui"), require('tailwind-scrollbar'), require('tailwind-scrollbar-hide')],
+  plugins: [require("daisyui")],
 }
