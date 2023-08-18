@@ -4,10 +4,9 @@ import SinglePost from './SinglePost';
 
 const Posts = async () => {
 	const posts = await getPosts();
-	console.log(posts);
 	return (
 		<>
-			<div className='py-28'>
+			<div className='pb-28 pt-12'>
 				{posts.map((post) => (
 					<SinglePost key={post._id} post={post}></SinglePost>
 				))}
