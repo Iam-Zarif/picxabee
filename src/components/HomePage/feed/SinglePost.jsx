@@ -1,14 +1,18 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 import SingleComment from './SingleComment';
 import { BsThreeDots } from 'react-icons/bs';
 import { PiShareFat } from 'react-icons/pi';
-import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineComment, AiFillHeart } from 'react-icons/ai';
 import { BsSave } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
+import CommentSection from './CommentSection';
 
 
 const SinglePost = ({ post }) => {
+const [react, setReact] = useState(false)
+const [open, setOpen] = useState(false);
 	const { _id, author, comments, reactedBy } = post;
 	return (
 		<div
@@ -26,7 +30,10 @@ const SinglePost = ({ post }) => {
 					/>
 					<p className="capitalize">{author?.username}</p>
 				</div>
-				<BsThreeDots />
+				<BsThreeDots
+					size={28}
+					className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+				/>
 			</div>
 			<Image
 				src={author.photo}
@@ -37,11 +44,34 @@ const SinglePost = ({ post }) => {
 			/>
 			<div className="flex justify-between px-5 py-3 ">
 				<div className="flex gap-3">
-					<AiOutlineHeart size={28} />
-					<AiOutlineComment size={28} />
-					<PiShareFat size={26} />
+					{react ? (
+						<AiOutlineHeart
+							onClick={() => setReact(!react)}
+							size={28}
+							className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						/>
+					) : (
+						<AiFillHeart
+							onClick={() => setReact(!react)}
+							size={28}
+							className="hover:scale-125 duration-300 hover:text-red-400 hover:cursor-pointer text-red-500"
+						/>
+					)}
+
+					<AiOutlineComment
+						onClick={() => setOpen(!open)}
+						size={28}
+						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+					/>
+					<PiShareFat
+						size={26}
+						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+					/>
 				</div>
-				<BsSave size={28} />
+				<BsSave
+					size={26}
+					className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+				/>
 			</div>
 			<div className="px-5 pb-5 ">
 				<div>
@@ -53,7 +83,7 @@ const SinglePost = ({ post }) => {
 									{reactedBy[0]}
 								</Link>{' '}
 								and
-								<span className="font-bold">others</span>
+								<span className="font-bold"> others</span>
 							</>
 						) : (
 							<Link href={`/user/${reactedBy[0]}`}>{reactedBy[0]}</Link>
@@ -61,10 +91,11 @@ const SinglePost = ({ post }) => {
 					</p>
 				</div>
 				<h1 className="min-h-64">{post.post}</h1>
-				<p className="text-neutral-400 text-base">Add a comment...</p>
+				{/* <p className="text-neutral-400 text-base">Add a comment...</p> */}
+				<CommentSection open={open}></CommentSection>
 
 				<div>
-					{comments.slice(1, 5).map((comment, i) => (
+					{comments.map((comment, i) => (
 						<SingleComment key={i} comment={comment}></SingleComment>
 					))}
 				</div>
