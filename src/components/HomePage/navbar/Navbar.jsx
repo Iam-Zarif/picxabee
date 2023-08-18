@@ -108,8 +108,7 @@ const Navbar = () => {
 					>
 						<div>
 							<div
-								className="lg:text-lg
- flex flex-col gap-5 w-4/5 mx-auto mt-12   rounded-xl "
+								className="lg:text-lg flex flex-col gap-5 w-4/5 mx-auto mt-12   rounded-xl "
 							>
 								<p className=" ">
 									<AiOutlineUser className="inline" /> User Full Name
@@ -147,12 +146,12 @@ const Navbar = () => {
 			</li>
 		</>
 	);
-	console.log(filteredData);
+
 	return (
 		<div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0">
-			<Container>
-				<div className="fixed  mr-auto  left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
-					<div className="flex lg:flex lg:gap-64 items-center content-center z-10 w-[100px] mx-auto">
+			{/* <Container> */}
+				<div className="fixed  mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+					<div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
 						<div className="navbar-start">
 							{/* responsive dropdown */}
 							<div className="dropdown"></div>
@@ -204,7 +203,7 @@ const Navbar = () => {
 						</ul>
 					</div>
 				</div>
-			</Container>
+			{/* </Container> */}
 			<ul className="border shadow-lg shadow-slate-300 py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
 				<div className="fixed  bg-slate-200 bottom-0  py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
 					{navItems}
@@ -221,9 +220,8 @@ const Navbar = () => {
 					<Image src={logo} alt="" className="w-12" />
 				</div>
 				<div
-					className={`logo text-xl lg:hidden ${
-						searchActive ? 'hidden' : 'visible'
-					}`}
+					className={`logo text-xl lg:hidden ${searchActive ? 'hidden' : 'visible'
+						}`}
 				>
 					<span className="text-2xl pl-5">P</span>icxa
 					<span className="">bee</span>

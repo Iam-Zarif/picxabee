@@ -10,11 +10,10 @@ import Link from 'next/link';
 
 const SinglePost = ({ post }) => {
 	const { _id, author, comments, reactedBy } = post;
-	console.log(post);
 	return (
 		<div
 			data-aos="fade-up"
-			className="w-full lg:w-4/12 mx-auto px-8 lg:px-0 border-2 rounded-sm mb-3"
+			className="w-full mx-auto px-8 lg:px-0 border-2 rounded-sm mb-3"
 		>
 			<div className="w-full flex items-center justify-between  p-2">
 				<div className="flex items-center">
@@ -31,12 +30,12 @@ const SinglePost = ({ post }) => {
 			</div>
 			<Image
 				src={author.photo}
-				width={535}
+				width={770}
 				height={400}
 				alt="Picture of the author"
-				className="object-cover border"
+				className="object-contain border"
 			/>
-			<div className="flex justify-between px-5 py-3">
+			<div className="flex justify-between px-5 py-3 ">
 				<div className="flex gap-3">
 					<AiOutlineHeart size={28} />
 					<AiOutlineComment size={28} />

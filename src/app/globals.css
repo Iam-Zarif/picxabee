@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .my-container {
-  @apply w-full 2xl:max-w-screen-2xl mx-auto
+  @apply w-full 2xl:max-w-screen-xl mx-auto
 }
