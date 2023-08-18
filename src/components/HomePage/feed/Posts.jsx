@@ -7,7 +7,7 @@ const Posts = async () => {
 	console.log(posts);
 	return (
 		<>
-			<div className='py-28'>
+			<div className='py-28 px-5 lg:px-0'>
 				{posts.map((post) => (
 					<SinglePost key={post._id} post={post}></SinglePost>
 				))}
