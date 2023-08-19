@@ -14,6 +14,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
+	
 	try {
 		const post = await request.json();
 		const database = await DBConnect();
