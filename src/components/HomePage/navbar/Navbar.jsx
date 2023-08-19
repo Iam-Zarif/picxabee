@@ -154,7 +154,6 @@ const Navbar = () => {
 					<div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
 						<div className="navbar-start">
 							{/* responsive dropdown */}
-							<div className="dropdown"></div>
 
 							{/* responsive dropdown */}
 							<a className=" logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">

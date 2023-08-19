@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Story from "./Story";
 import { HiPlusSmall } from "react-icons/hi2";
-import getUsers from "@/utils/getUsers";
+import usePosts from "@/Hooks/Posts";
 
 const Stories = async () => {
 
-    const stories = await getUsers()
+    // const stories = await getUsers()
     // console.log('from Zstories', stories);
 
     return (
@@ -25,7 +25,7 @@ const Stories = async () => {
                 </label>
             </div>
 
-            {
+            {/* {
                 stories.map((story) => <Story
                     key={story._id}
                     image={story.image}
@@ -33,7 +33,7 @@ const Stories = async () => {
                     id={story._id}
                     story={story}
                 />)
-            }
+            } */}
         </div>
     );
 };

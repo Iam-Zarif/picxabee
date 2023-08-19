@@ -14,6 +14,7 @@ const SinglePost = ({ post }) => {
 const [react, setReact] = useState(false)
 const [open, setOpen] = useState(false);
 	const { _id, author, comments, reactedBy } = post;
+	console.log(post);
 	return (
 		<div
 			data-aos="fade-up"
