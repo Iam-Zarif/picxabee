@@ -1,13 +1,12 @@
 "use client"
-import React, { useState } from 'react';
-import SingleComment from './SingleComment';
-import { BsThreeDots } from 'react-icons/bs';
-import { PiShareFat } from 'react-icons/pi';
-import { AiOutlineHeart, AiOutlineComment, AiFillHeart } from 'react-icons/ai';
-import { BsSave } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
+import { BsSave, BsThreeDots } from 'react-icons/bs';
+import { PiShareFat } from 'react-icons/pi';
 import CommentSection from './CommentSection';
+import SingleComment from './SingleComment';
 
 
 const SinglePost = ({ post }) => {
@@ -23,7 +22,7 @@ const [open, setOpen] = useState(false);
 			<div className="w-full flex items-center justify-between  p-2">
 				<div className="flex items-center">
 					<Image
-						src={author.photo}
+						src={author?.photo}
 						width={50}
 						height={50}
 						alt="Picture of the author"
@@ -37,7 +36,7 @@ const [open, setOpen] = useState(false);
 				/>
 			</div>
 			<Image
-				src={author.photo}
+				src={author?.photo}
 				width={770}
 				height={400}
 				alt="Picture of the author"
@@ -78,7 +77,7 @@ const [open, setOpen] = useState(false);
 				<div>
 					<p>
 						Liked by{' '}
-						{reactedBy.length > 1 ? (
+						{reactedBy?.length > 1 ? (
 							<>
 								<Link className="font-bold" href={`/user/${reactedBy[0]}`}>
 									{reactedBy[0]}
@@ -91,7 +90,7 @@ const [open, setOpen] = useState(false);
 						)}
 					</p>
 				</div>
-				<h1 className="min-h-64">{post.post}</h1>
+				<h1 className="min-h-64">{post?.post}</h1>
 				{/* <p className="text-neutral-400 text-base">Add a comment...</p> */}
 				<CommentSection open={open}></CommentSection>
 
