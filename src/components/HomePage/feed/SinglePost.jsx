@@ -99,9 +99,9 @@ const SinglePost = ({ post }) => {
 								{reactedBy.length > 1 ? (
 									<>
 										<Link className="font-bold" href={`/user/${reactedBy[0]}`}>
-											{reactedBy[0]}
+											{reactedBy[0]} 
 										</Link>
-										and <span className="font-bold">others</span>
+										 and  <span className="font-bold"> others</span>
 									</>
 								) : (
 									<Link href={`/user/${reactedBy[0]}`}>{reactedBy[0]}</Link>
