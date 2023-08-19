@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
-import { Inter } from 'next/font/google'
-import './globals.css'
+import Authprovider from '@/components/AuthProvider/Authprovider';
+import { Inter } from 'next/font/google';
+import './globals.css';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -16,7 +17,7 @@ export default function RootLayout({ children }) {
 			</head>
 			<body className={`${inter.className} `}>
 				<main className="my-container">
-					{children}
+				<Authprovider>{children}</Authprovider>
 				</main>
 				<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 				<script>AOS.init();</script>
