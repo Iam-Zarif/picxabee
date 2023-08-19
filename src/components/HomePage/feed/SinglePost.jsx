@@ -1,29 +1,26 @@
-"use client"
-import React, { useState } from 'react';
-import SingleComment from './SingleComment';
-import { BsThreeDots } from 'react-icons/bs';
-import { PiShareFat } from 'react-icons/pi';
-import { AiOutlineHeart, AiOutlineComment, AiFillHeart } from 'react-icons/ai';
-import { BsSave } from 'react-icons/bs';
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
+import { BsSave, BsThreeDots } from 'react-icons/bs';
+import { PiShareFat } from 'react-icons/pi';
 import CommentSection from './CommentSection';
 import EditOption from './EditOption';
-
-
+import SingleComment from './SingleComment';
 
 const SinglePost = ({ post }) => {
-const [react, setReact] = useState(false)
-const [open, setOpen] = useState(false);
-const [isOpen, setIsOpen] = useState(false);
+	const [react, setReact] = useState(false);
+	const [open, setOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-		function closeModal() {
-			setIsOpen(false);
-		}
+	function closeModal() {
+		setIsOpen(false);
+	}
 
-		function openModal() {
-			setIsOpen(true);
-		}
+	function openModal() {
+		setIsOpen(true);
+	}
 
 	const { _id, author, comments, reactedBy } = post;
 	console.log(post);
@@ -113,7 +110,7 @@ const [isOpen, setIsOpen] = useState(false);
 						)}
 					</p>
 				</div>
-				<h1 className="min-h-64">{post.post}</h1>
+				<h1 className="min-h-64">{post?.post}</h1>
 				{/* <p className="text-neutral-400 text-base">Add a comment...</p> */}
 				<CommentSection open={open}></CommentSection>
 
