@@ -26,20 +26,7 @@ import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 const Navbar = () => {
 	//
-	const [searchQuery, setSearchQuery] = useState('');
-	const [filteredData, setFilteredData] = useState([]);
-
-	const handleSearch = (query) => {
-		if (query) {
-			const filteredItems = data.filter((item) =>
-				item.college_name.toLowerCase().includes(query.toLowerCase())
-			);
-			setFilteredData(filteredItems);
-			setSearchQuery(query);
-		} else {
-			setSearchQuery('');
-		}
-	};
+	
 	//
 	useEffect(() => {
 		const handleClickOutside = (event) => {
@@ -167,8 +154,7 @@ const Navbar = () => {
 
 						<div className="navbar-center relative mx-auto">
 							<input
-								value={searchQuery}
-								onChange={(e) => handleSearch(e?.target?.value)}
+								
 								type="text"
 								name="search"
 								id="search"
