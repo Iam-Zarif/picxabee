@@ -21,7 +21,7 @@ const Posts = async () => {
 
 	return (
 		<>
-			<div className='pb-28 pt-12'>
+			<div className='pb-28 pt-12 mx-auto w-full h-screen'>
 				{posts.map((post) => (
 					<SinglePost key={post._id} post={post}></SinglePost>
 				))}

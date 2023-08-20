@@ -1,5 +1,4 @@
-import React from 'react';
-
+//nishat
 const Comment = () => {
     return (
         <div>
