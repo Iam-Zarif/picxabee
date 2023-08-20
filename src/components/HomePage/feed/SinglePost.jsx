@@ -27,9 +27,9 @@ const SinglePost = ({ post }) => {
 	return (
 		<div
 			data-aos="fade-up"
-			className="w-full mx-auto px-8 lg:px-0 border-2 rounded-sm mb-3"
+			className="lg:px-0 border-2 rounded-md mb-3"
 		>
-			<div className="w-full flex items-center justify-between  p-2">
+			<div className="w-full flex items-center justify-between p-2">
 				<div className="flex items-center">
 					<Image
 						src={author?.photo}
