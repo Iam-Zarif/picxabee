@@ -203,7 +203,7 @@ const Navbar = () => {
 					</div>
 				</div>
 			{/* </Container> */}
-			<ul className="border shadow-lg shadow-slate-300 py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
+			<ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
 				<div className="fixed  bg-slate-200 bottom-0  py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
 					{navItems}
 				</div>
