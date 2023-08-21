@@ -1,0 +1,18 @@
+
+const ChatChats = () => {
+  return (
+    <div>
+        <div className='userChat text-white cursor-pointer md:text-base text-sm m-2'>
+            <div className="hover:bg-gray-400 rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
+                <img className="w-14 h-14 object-cover rounded-full" src="https://images.pexels.com/photos/3819585/pexels-photo-3819585.jpeg" alt="" />
+                <div className='userChatInfo  flex-1'>
+                    <p className='font-bold'>Jan</p>
+                    <span className='md:text-sm text-xs'>Hei there!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default ChatChats
