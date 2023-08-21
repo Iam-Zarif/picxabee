@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-sync-scripts */
+
 import Authprovider from '@/components/AuthProvider/Authprovider';
 import { Inter } from 'next/font/google';
 import './globals.css';
