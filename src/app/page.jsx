@@ -16,7 +16,7 @@ export default function Home() {
         <div className="col-span-2 px-10 mt-24">
           <Stories />
           <CreatePost></CreatePost>
-          <Posts></Posts>
+          {/* <Posts></Posts> */}
         </div>
       </div>
     </div>

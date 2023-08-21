@@ -12,6 +12,7 @@
     "@heroicons/react": "^2.0.18",
     "aos": "^3.0.0-beta.6",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "heroicons": "^2.0.18",
