@@ -5,3 +5,15 @@
 .my-container {
   @apply w-full 2xl:max-w-screen-xl mx-auto
 }
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.fade-in-out {
+  animation: fadeInOut 2s ease-in-out infinite;
+}
