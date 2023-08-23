@@ -15,5 +15,5 @@
 }
 
 .fade-in-out {
-  animation: fadeInOut 1.5s ease-in-out infinite;
+  animation: fadeInOut 2s ease-in-out infinite;
 }
