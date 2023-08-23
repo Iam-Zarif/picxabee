@@ -6,7 +6,6 @@ import axios from "axios";
 import { useState } from "react";
 
 const CreatePost = () => {
-  // const [img , setImage] = useState("");
 
   const {
     register,
@@ -16,57 +15,92 @@ const CreatePost = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data.image[0]);
+
+    console.log(data);
+    console.log(data.text);
+    console.log(data.image.length);
+
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=f3218173624c8aebe56d3c415677e482`;
     const { text } = data;
-    axios.post(url, formData).then((imageData) => {
-      console.log(imageData);
-      if (imageData.data.success) {
-        const imageUrl = imageData.data.data.url;
-        console.log(imageUrl);
-        const newPost = {
-          post: text,
-          image: imageUrl,
-        };
 
-        fetch("http://localhost:3000/api/posts", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
+    if (data.image.length == 0) {
+      fetch("http://localhost:3000/api/posts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          author: {
+            email:"",
+            name: "",
+            profile_picture: ""
           },
-          body: JSON.stringify(newPost),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.insertedId) {
-              reset();
+          caption: text,
+          postImage: '',
+          comments: [
+            {
+            author: {
+              name: "",
+              profile_picture: ""
+            },
             }
-          });
-      } else {
-        const newPost = {
-          post: text,
-        };
+          ]
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          reset()
+          // if (data.insertedId) {
+          //   reset();
+          // }
+        });
+    }
 
-        fetch("http://localhost:3000/api/posts", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newPost),
+    if (data.image.length == 1) {
+
+      axios.post(url, formData)
+        .then(imageData => {
+
+          if (imageData.status === 200) {
+
+            console.log(imageData.data.data.url);
+            fetch("http://localhost:3000/api/posts", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                author: {
+                  email:"",
+                  name: "",
+                  profile_picture: ""
+                },
+                caption: text || "",
+                postImage: imageData.data.data.url,
+                comments: [
+                  {
+                  author: {
+                    name: "",
+                    profile_picture: ""
+                  },
+                  }
+                ]
+              }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                reset()
+                // console.log(data);
+                // if (data.insertedId) {
+                //   reset();
+                // }
+              });
+          }
         })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.insertedId) {
-              reset();
-            }
-          });
-      }
-    });
+    }
   };
 
   return (
@@ -89,7 +123,7 @@ const CreatePost = () => {
                 cols="100"
                 name="text"
                 placeholder="Enter your text here..."
-                {...register("text", { required: true })}
+                {...register("text")}
               ></textarea>
 
               <div className="flex justify-center gap-x-5 my-8">
