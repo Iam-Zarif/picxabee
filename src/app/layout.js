@@ -3,6 +3,8 @@
 import Authprovider from '@/components/AuthProvider/Authprovider';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import Providers from '@/Providers';
+import  Toaster  from '@/components/Toaster';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -18,7 +20,8 @@ export default function RootLayout({ children }) {
 			</head>
 			<body className={`${inter.className} `}>
 				<main className="my-container">
-				<Authprovider>{children}</Authprovider>
+				<Providers><Authprovider>{children}</Authprovider></Providers>
+				<Toaster />
 				</main>
 				<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 				<script>AOS.init();</script>
