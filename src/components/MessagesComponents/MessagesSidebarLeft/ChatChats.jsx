@@ -9,7 +9,6 @@ const ChatChats = () => {
   const { user } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   
-  console.log(user);
 
   const [chats, setChats] = useState();
   useEffect(() => {
