@@ -1,31 +1,41 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-
 import { GoHome } from "react-icons/go";
+import { GrSend } from "react-icons/gr";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import logo from "../../../../public/swarm.png";
+import fakeUserData from "./fakeUsers.json";
 
 import {
-	AiOutlineArrowRight,
-	AiOutlinePlusCircle,
-	AiOutlineProfile,
-	AiOutlineQuestionCircle,
-	AiOutlineUser,
+  AiOutlineArrowRight,
+  AiOutlineHeart,
+  AiOutlinePlusCircle,
+  AiOutlineProfile,
+  AiOutlineQuestionCircle,
+  AiOutlineUser,
 } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import { HiOutlineChatAlt2, HiOutlinePaperAirplane, HiOutlineUserGroup } from "react-icons/hi";
+import { HiOutlineUserGroup } from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
 
 //import styles 👇
-import { useRouter } from "next/navigation";
 import "react-modern-drawer/dist/index.css";
 const Navbar = () => {
-	const route = useRouter();
   //
-
+  useEffect(() => {
+    fetch("./fakeUsers.json") // Replace with the actual path
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  
   //
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -39,80 +49,152 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+  const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const navbarRef = useRef(null);
+  const searchButtonRef = useRef(null);
+  const searchInputRef = useRef(null);
   const [searchActive, setSearchActive] = useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setSearchResults([]);
+      return;
+    }
+
+    // Filter the data based on the search query
+    const filteredResults = fakeUserData.filter((user) =>
+      user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setSearchResults(filteredResults);
+  }, [searchQuery]);
+  //   const handleSearch = () => {
+  // 	if (searchQuery.trim() === '') {
+  // 	  setSearchResults([]);
+  // 	   // Clear results if the search query is empty
+  // 	  return;
+  // 	}
+
+  // 	// Filter the user data based on the search query
+  // 	const filteredUsers = users.filter((user) =>
+  // 	  user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  // 	);
+
+  // 	setSearchResults(filteredUsers);
+  //   };
+
+  const handleSearch = () => {
+    if (searchQuery.trim() === "") {
+      setSearchResults([]);
+      // Clear results if the search query is empty
+      return;
+    }
+
+    // Filter the user data based on the search query
+    const filteredUsers = users.filter((user) =>
+      user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setSearchResults(filteredUsers);
+
+    // Open the modal here
+	const modal = document.getElementById('my_modal_4');
+	if (modal) {
+	  modal.showModal();
+	  console.log('Modal is being shown.');
+	}
+  };
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      // Enter key was pressed, trigger the search button click event
+      searchButtonRef.current.click();
+    }
+  };
   const navItems = (
     <>
       <li>
-        <a className="flex items-center hover:scale-125 transform transition-transform ">
-          <GoHome className="text-2xl lg:text-2xl md:text-teal-50 text-gray-700" />
+        <a className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
+          <GoHome className="text-2xl lg:text-2xl " />
         </a>
       </li>
       <li>
         <a className="hover:bg-transparent hover:scale-125 transform transition-transform ">
-          <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform md:text-teal-50 text-gray-700 " />
+          <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
         </a>
       </li>
       <li>
         <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
-          <AiOutlinePlusCircle className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform md:text-teal-50 text-gray-700" />
-        </a>
-      </li>
-      <li>
-        <a onClick={()=> route.push("/messages")} className="hover:bg-transparent  hover:scale-125 transform transition-transform">
-          <HiOutlineChatAlt2 className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform md:text-teal-50 text-gray-700" />
+          <AiOutlinePlusCircle className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
         </a>
       </li>
       <li className="hidden lg:block">
         <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform">
-          <span className="mr-2 indicator-item badge bg-lime-500 text-white font-bold px-3">5</span>
-          <HiOutlinePaperAirplane className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform  md:text-teal-50 text-gray-700" />
+          <span className="indicator-item badge bg-lime-500 text-white font-bold px-3">
+            5
+          </span>
+          <GrSend className=" text-xl lg:text-2xl hover:scale-125 transform transition-transform  " />
         </a>
       </li>
 
       <li>
+        <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
+          <AiOutlineHeart className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
+        </a>
+      </li>
+      <li>
         <a className="hover:bg-transparent  ">
           <AiOutlineUser
-            className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform md:text-teal-50 text-gray-700"
+            className="text-2xl lg:text-2xl hover:scale-125 hover:translate-x-1 transform transition-transform"
             onClick={toggleDrawer}
           >
             Show
           </AiOutlineUser>
 
-          <Drawer open={isOpen} onClose={toggleDrawer} direction="right" className="bla bla bla ">
+          <Drawer
+            open={isOpen}
+            onClose={toggleDrawer}
+            direction="right"
+            className="bla bla bla "
+          >
             <div>
               <div className="lg:text-lg flex flex-col gap-5 w-4/5 mx-auto mt-12   rounded-xl ">
-                <p className="text-gray-700">
+                <p className=" ">
                   <AiOutlineUser className="inline" /> User Full Name
                 </p>
                 <div className="divider"></div>
-                <p className="text-gray-700 flex items-center group   hover:ml-2 transition-all">
-                  <AiOutlineProfile size={28} className="inline mr-2 rounded-full " />
+                <p className="  flex items-center group   hover:ml-2 transition-all">
+                  <AiOutlineProfile
+                    size={28}
+                    className="inline mr-2 rounded-full "
+                  />
                   Profile
                   {/* profile er vitore change password */}
                   <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
-                <p className="text-gray-700 flex items-center group  hover:ml-2 transition-all">
+                <p className=" flex items-center group  hover:ml-2 transition-all">
                   <IoSettingsOutline size={28} className="inline mr-2" />
                   Settings
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
-                <p className="text-gray-700 flex items-center group  hover:ml-2 transition-all">
+                <p className=" flex items-center group  hover:ml-2 transition-all">
                   <AiOutlineQuestionCircle size={28} className="inline mr-2" />
                   Give Feedback
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
-                <p className="text-gray-700 flex items-center group  hover:ml-2 transition-all">
+                <p className=" flex items-center group  hover:ml-2 transition-all">
                   <LuLogOut size={28} className="inline mr-2" />
                   Log Out
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
-                <div className=" text-gray-700 divider"></div>
+                <div className="divider"></div>
               </div>
             </div>
           </Drawer>
@@ -130,29 +212,41 @@ const Navbar = () => {
             {/* responsive dropdown */}
 
             {/* responsive dropdown */}
-            <a className="logo text-white normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">
+            <a className=" logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">
               {" "}
               <span className="text-5xl">P</span>icxa
               <span className="  ">bee</span>
-			  {/* Logo is here 👇👇 */}
-              {/* <img src="https://i.ibb.co/rk3dFCY/large-Ls-Kk-SEt-Ih-transformed.png" className="" alt="" /> */}  
             </a>
           </div>
 
           {/* search box */}
 
-          <div className="navbar-center relative mx-auto">
+          <div className="navbar-center flex relative mx-auto">
+            {/* <input
+							onKeyPress={handleKeyPress}
+								 onChange={(e) => {
+									setSearchActive(e.target.value.length > 0);
+								}}
+								type="text"
+								name="search"
+								id="search"
+								placeholder="Search"
+								className="mx-10 hidden  lg:pl-12 pl-2 w-[200px] lg:w-full  lg:block  lg:ml-0 rounded-2xl  pr-2 py-2 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
+							/> */}
             <input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} // Update this line
+              onKeyPress={handleKeyPress}
               type="text"
               name="search"
               id="search"
               placeholder="Search"
-              className="mx-10 hidden  lg:pl-12 pl-2 w-[200px] lg:w-full  lg:block  lg:ml-0 rounded-2xl  pr-2 py-2 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
+              className="mx-10 hidden lg:pl-12 pl-2 w-[200px] lg:w-full  lg:block  lg:ml-0 rounded-2xl  pr-2 py-2 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
             />
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              fill="none" //rgb(240 253 250)
+              fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
@@ -164,8 +258,21 @@ const Navbar = () => {
                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
               />
             </svg>
+            {/* {searchActive && (
+  <button
+    className="btn"
+    onClick={handleSearch} 
+  >
+    Search
+  </button>
+)} */}
+
+            <button className="btn" onClick={handleSearch}>
+              Search
+            </button>
+
+            
           </div>
-          <div className="flex  mr-8"></div>
         </div>
 
         {/* search box */}
@@ -192,24 +299,35 @@ const Navbar = () => {
         <div>
           <Image src={logo} alt="" className="w-12" />
         </div>
-        <div className={`logo text-xl lg:hidden text-gray-700 ${searchActive ? "hidden" : "visible"}`}>
+        <div
+          className={`logo text-xl lg:hidden ${
+            searchActive ? "hidden" : "visible"
+          }`}
+        >
           <span className="text-2xl pl-5">P</span>icxa
           <span className="">bee</span>
         </div>
 
         {/* Search and Send Icons */}
-        <div data-aos="fade-left" className="indicator relative flex gap-6 lg:gap-8">
+        <div
+          data-aos="fade-left"
+          className="indicator relative flex gap-6 lg:gap-8"
+        >
           <BsSearch
             size={24}
-            className={`cursor-pointer text-gray-700 ${searchActive ? "hidden" : "visible"}`}
+            className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
             onClick={() => setSearchActive(true)}
           />
-          <HiOutlinePaperAirplane
+          <GrSend
             size={28}
-            className={`cursor-pointer rotate-45 text-gray-700 ${searchActive ? "hidden" : "visible"}`}
+            className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
           />
-          <span className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}>
-            <span className="mr-3 indicator-item badge bg-lime-500 text-sm text-white font-bold p-3">5</span>
+          <span
+            className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
+          >
+            <span className="mr-2 indicator-item badge bg-lime-500 text-white font-bold px-3 py-3">
+              5
+            </span>
           </span>
         </div>
 
@@ -224,6 +342,21 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      {/* You can open the modal using ID.showModal() method */}
+      <dialog id="my_modal_4" className="modal">
+        <form method="dialog" className="modal-box w-11/12 max-w-5xl">
+			<p className="text-lime-500 text-2xl font-semibold"> The Users</p>
+         
+            {searchResults.map((user) => (
+              <p key={user.id}>{user.name}</p>
+            ))}
+         
+          <div className="modal-action">
+            {/* if there is a button, it will close the modal */}
+            <button className="btn bg-white">Close</button>
+          </div>
+        </form>
+      </dialog>
     </div>
   );
 };
