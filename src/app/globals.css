@@ -3,10 +3,38 @@
 @tailwind utilities;
 
 .my-container {
-  @apply w-full 2xl:max-w-screen-xl mx-auto
+  @apply w-full 2xl:max-w-screen-xl mx-auto;
 }
+
+.chatui {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.container {
+  border: 1px solid white;
+  border-radius: 1rem;
+  width: 85%;
+  height: 90%;
+  display: flex;
+  overflow: hidden;
+}
+.sidebar {
+  background-color: #3c3b3b;
+  flex: 1;
+}
+
+.rightside {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
 @keyframes fadeInOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
   }
   50% {

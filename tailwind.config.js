@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        calc: 'calc(100% - 70px)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -14,7 +17,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require('tailwind-scrollbar')],
   daisyui: {
     themes: ["light"],
   },
