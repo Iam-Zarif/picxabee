@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
 			<body className={`${inter.className} `}>
 				<main className="my-container">
 				<Providers><Authprovider>{children}</Authprovider></Providers>
-				<Toaster />
+				{/* <Toaster /> */}
 				</main>
 				<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 				<script>AOS.init();</script>
