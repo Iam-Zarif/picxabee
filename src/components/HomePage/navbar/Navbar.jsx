@@ -1,23 +1,24 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import fakeUserData from "./fakeUsers.json";
 import { GoHome } from "react-icons/go";
-import { LuLogOut } from "react-icons/lu";
-import logo from "../../../../public/swarm.png";
 import { GrSend } from "react-icons/gr";
 import { IoSettingsOutline } from "react-icons/io5";
+import { LuLogOut } from "react-icons/lu";
+import logo from "../../../../public/swarm.png";
+import fakeUserData from "./fakeUsers.json";
 
-import { HiOutlineUserGroup } from "react-icons/hi";
-import { BsSearch } from "react-icons/bs";
 import {
-  AiOutlinePlusCircle,
-  AiOutlineHeart,
   AiOutlineArrowRight,
+  AiOutlineHeart,
+  AiOutlinePlusCircle,
   AiOutlineProfile,
   AiOutlineQuestionCircle,
   AiOutlineUser,
 } from "react-icons/ai";
-import Container from "./Container";
+import { BsSearch } from "react-icons/bs";
+import { HiOutlineUserGroup } from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
@@ -349,12 +350,16 @@ const Navbar = () => {
 			<p className="text-lime-500 text-2xl font-semibold"> The Users</p>
          
             {searchResults.map((user) => (
-              <p key={user.id}>{user.name}</p>
+              <div key={user.id}>
+                <Image src={user.photo} width="51" height ="60"></Image>
+                <p>{user.name}</p>
+              </div>
+              
             ))}
          
           <div className="modal-action">
             {/* if there is a button, it will close the modal */}
-            <button className="btn bg-white">Close</button>
+            <button className="btn bg-white"> Close</button>
           </div>
         </form>
       </dialog>
