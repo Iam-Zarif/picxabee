@@ -4,7 +4,7 @@ import LoadingSpninner from '../LoadingSpninner/LoadingSpninner';
 const SpinProvider = ({children}) => {
 
    const session = useSession();
-
+  
    if(session.status === 'loading') {
    return (<LoadingSpninner>
     {children}
@@ -16,3 +16,4 @@ const SpinProvider = ({children}) => {
 }
 
 export default SpinProvider;
+

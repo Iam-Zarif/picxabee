@@ -1,3 +1,4 @@
+
 import CreatePost from "@/components/HomePage/createPost/CreatePost";
 import Posts from "@/components/HomePage/feed/Posts";
 // import Posts from "@/components/HomePage/feed/Posts";
@@ -8,6 +9,7 @@ import SuggestionSection from "@/components/HomePage/suggestions/Suggestions";
 // import Suggestions from "@/components/RightSideBar/Suggestions";
 
 export default function Home() {
+ 
   return (
 
     <div>
@@ -18,14 +20,14 @@ export default function Home() {
 
       <div className="grid lg:grid-cols-3">
         <div className="col-span-2 px-10 mt-24">
-          {/* <Stories /> */}
+          <Stories />
           {/* <CreatePost></CreatePost> */}
-          <Posts></Posts>
+          <Posts/>
         </div>
       </div>
       <div>
-        {/* <MiniProfile />
-        <Suggestions /> */}
+        {/* {/* <MiniProfile /> */}
+        {/* <Suggestions />  */}
         {/* <SuggestionSection /> */}
       </div>
     </div>
