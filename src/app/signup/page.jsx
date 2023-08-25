@@ -1,5 +1,6 @@
 import React from 'react';
 import SignUpForm from './SignUpForm';
+import Image from 'next/image'
 
 const SignUpPage = () => {
     return (
@@ -16,7 +17,7 @@ const SignUpPage = () => {
           <aside
             class="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6"
           >
-            <img
+            <Image
               alt="Pattern"
               src="https://i.ibb.co/0yrDWr4/PICXABEE.png"
               class="absolute inset-0 h-full w-full object-cover"

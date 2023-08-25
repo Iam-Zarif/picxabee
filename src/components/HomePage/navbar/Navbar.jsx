@@ -25,11 +25,8 @@ import Drawer from "react-modern-drawer";
 import { useRouter } from "next/navigation";
 import "react-modern-drawer/dist/index.css";
 const Navbar = () => {
-<<<<<<< HEAD
   const route = useRouter();
-=======
   
->>>>>>> b5cf28f8d52f417ae541bfaff3a92fa82130f96a
   //
   useEffect(() => {
     fetch("./fakeUsers.json") // Replace with the actual path
