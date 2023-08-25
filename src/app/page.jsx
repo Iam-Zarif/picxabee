@@ -16,7 +16,7 @@ export default function Home() {
       {/* <div className="border p-5 m-5">
         Get ready for project
       </div> */}
-      {/* <Navbar></Navbar> */}
+      <Navbar></Navbar>
 
       <div className="grid lg:grid-cols-3">
         <div className="col-span-2 px-10 mt-24">
