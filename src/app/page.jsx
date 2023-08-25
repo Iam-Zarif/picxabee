@@ -20,13 +20,13 @@ export default function Home() {
 
       <div className="grid lg:grid-cols-3">
         <div className="col-span-2 px-10 mt-24">
-          {/* <Stories /> */}
-          {/* <CreatePost></CreatePost> */}
-          {/* <Posts/> */}
+          <Stories />
+          <CreatePost></CreatePost>
+          <Posts/>
         </div>
       </div>
       <div>
-        {/* {/* <MiniProfile /> */}
+        {/* <MiniProfile />
         {/* <Suggestions />  */}
         {/* <SuggestionSection /> */}
       </div>
