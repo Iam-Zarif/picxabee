@@ -30,7 +30,7 @@ useEffect(()=>{
 		};
 		console.log(comment);
 
-		fetch('http://localhost:3000/api/posts', {
+		fetch('https://picxabee.vercel.app/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',

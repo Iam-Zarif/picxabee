@@ -2,7 +2,7 @@ import SinglePost from './SinglePost';
 
 async function getData() {
 	
-	const res = await fetch('http://localhost:3000/api/posts', {
+	const res = await fetch('https://picxabee.vercel.app/api/posts', {
 		// cache: 'no-store',
 		next:{
 			revalidate :5
