@@ -26,7 +26,7 @@ const CreatePost = () => {
     const { text } = data;
 
     if (data.image.length == 0) {
-      fetch("http://localhost:3000/api/posts", {
+      fetch("https://picxabee.vercel.app/api/posts", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -66,7 +66,7 @@ const CreatePost = () => {
           if (imageData.status === 200) {
 
             console.log(imageData.data.data.url);
-            fetch("http://localhost:3000/api/posts", {
+            fetch("https://picxabee.vercel.app/api/posts", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
