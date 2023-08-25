@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineSend } from 'react-icons/ai';
@@ -32,7 +30,7 @@ useEffect(()=>{
 		};
 		console.log(comment);
 
-		fetch('https://picxabee.vercel.app/api/posts', {
+		fetch('http://localhost:3000/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',

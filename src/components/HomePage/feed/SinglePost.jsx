@@ -40,7 +40,7 @@ const SinglePost = ({ post }) => {
 		};
 		console.log(reaction);
 
-		fetch('https://picxabee.vercel.app/api/posts', {
+		fetch('http://localhost:3000/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',

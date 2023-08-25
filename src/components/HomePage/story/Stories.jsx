@@ -1,40 +1,96 @@
-import Image from "next/image";
-import Story from "./Story";
-import { HiPlusSmall } from "react-icons/hi2";
-import usePosts from "@/Hooks/Posts";
+"use client"
+import styles from './stories.module.css'
 
-const Stories = async () => {
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-    // const stories = await getUsers()
-    // console.log('from Zstories', stories);
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+
+// import required modules
+import { Navigation } from 'swiper/modules';
+import Image from 'next/image';
+
+import useSWR from 'swr'
+import { useState } from 'react';
+import Modal from './storyModal/StoryModal';
+import { HiPlusSmall } from 'react-icons/hi2';
+import AddStoryModal from './addStoryModal/AddStoryModal';
+
+const Stories = () => {
+
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+    const { data, error, isLoading } = useSWR('http://localhost:3000/api/stories', fetcher)
+
+    const [isopen, setIsopen] = useState(false);
+    const [index, setIndex] = useState(-1);
+    const [modal, setModal] = useState(false);
+    const [imgUrl, setImgUrl] = useState('')
+
+
+    const toggleModal = (i) => {
+        setIsopen(!isopen);
+        setIndex(i)
+    };
+
+    const addStoryToggleModal = () => {
+        setModal(!modal);
+        setImgUrl('')
+    }
 
     return (
-        <div className="flex items-center space-x-2 px-2 py-6 lg:p-6 lg:mt-8 lg:bg-white lg:border rounded-sm overflow-x-scroll scrollbar-hide lg:scrollbar lg:scrollbar-thumb-gray-900 lg:scrollbar-track-gray-100">
+        <>
+            <Modal isopen={isopen} toggleModal={toggleModal} index={index} data={data} setIndex={setIndex} />
+            <AddStoryModal modal={modal} setModal={setModal} addStoryToggleModal={addStoryToggleModal} imgUrl={imgUrl} setImgUrl={setImgUrl} />
 
-            <div className="relative">
-                <Image
-                    src="https://i.ibb.co/G5MNXHQ/jahid.png"
-                    width={52}
-                    height={52}
-                    alt="Profile Name"
-                    className="rounded-full h-[52px] w-[52px] cursor-pointer"
-                />
-                <h5 className='text-xs w-14 truncate text-center'>Add</h5>
-                <label htmlFor='my-modal-3' >
-                    <HiPlusSmall className="absolute right-0 bottom-[25%] -translate-x-1/4 bg-red-500 rounded-full border-2 border-white text-white cursor-pointer" />
-                </label>
+            <div className='flex'>
+                <div onClick={addStoryToggleModal} className="w-24 h-full mr-5 cursor-pointer overflow-hidden">
+                    <div className='relative'>
+                        <Image
+                            src="https://i.ibb.co/G5MNXHQ/jahid.png"
+                            width={80}
+                            height={80}
+                            className='w-20 h-20 rounded-full mt-1'
+                            alt='story'
+                        />
+                        <label >
+                            <HiPlusSmall className="absolute right-0 bottom-1 rounded-b-md w-full rounded-full  text-white text-3xl font-bold cursor-pointer" />
+                        </label>
+                    </div>
+                    <h5 className='text-center'>Add</h5>
+                </div>
+
+                <Swiper
+                    cssMode={true}
+                    slidesPerView={7}
+                    spaceBetween={5}
+                    navigation={true}
+                    slidesPerGroupSkip={4}
+                    modules={[Navigation]}
+                    className="mySwiper text-center main-slider"
+                >
+                    {
+                        data && data.map((story, i) => <SwiperSlide
+                            key={i}
+                            onClick={() => toggleModal(i)}
+                            className='cursor-pointer'
+                        >
+                            <Image
+                                src={story.image}
+                                width={80}
+                                height={80}
+                                className='w-20 h-20 rounded-full border-2 border-black'
+                                alt='story'
+                            />
+                            <h3>{story.username}</h3>
+                        </SwiperSlide>)
+                    }
+                </Swiper>
             </div>
-
-            {/* {
-                stories.map((story) => <Story
-                    key={story._id}
-                    image={story.image}
-                    user={story.user}
-                    id={story._id}
-                    story={story}
-                />)
-            } */}
-        </div>
+        </>
     );
 };
 
