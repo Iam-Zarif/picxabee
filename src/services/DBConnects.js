@@ -1,16 +1,16 @@
-import { MongoClient } from "mongodb";
+// import { MongoClient } from "mongodb";
 
-const DBConnect = async () => {
+// const DBConnect = async () => {
   
-  try {
-    const uri = process.env.MONGODB_URI;
-    const client = new MongoClient(uri);
-    const database = client.db("picxabee");
-    return database;
+//   try {
+//     const uri = process.env.MONGODB_URI;
+//     const client = new MongoClient(uri);
+//     const database = client.db("picxabee");
+//     return database;
   
-  } catch (err) {
-    console.log(err.name,err.message);
-  }
-};
+//   } catch (err) {
+//     console.log(err.name,err.message);
+//   }
+// };
 
-export default DBConnect;
+// export default DBConnect;
