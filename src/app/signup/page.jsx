@@ -1,6 +1,6 @@
 import React from 'react';
-import SignUpForm from './SignUpForm';
 import Image from 'next/image'
+import SignUpForm from './SignupForm';
 
 const SignUpPage = () => {
     return (
