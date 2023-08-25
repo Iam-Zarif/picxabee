@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { GoHome } from "react-icons/go";
-import { GrSend } from "react-icons/gr";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import logo from "../../../../public/swarm.png";
@@ -9,21 +8,22 @@ import fakeUserData from "./fakeUsers.json";
 
 import {
   AiOutlineArrowRight,
-  AiOutlineHeart,
   AiOutlinePlusCircle,
   AiOutlineProfile,
   AiOutlineQuestionCircle,
-  AiOutlineUser,
+  AiOutlineUser
 } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import { HiOutlineUserGroup } from "react-icons/hi";
+import { HiOutlineChatAlt2, HiOutlinePaperAirplane, HiOutlineUserGroup } from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
 
 //import styles 👇
+import { useRouter } from "next/navigation";
 import "react-modern-drawer/dist/index.css";
 const Navbar = () => {
+  const route = useRouter();
   //
   useEffect(() => {
     fetch("./fakeUsers.json") // Replace with the actual path
@@ -135,18 +135,19 @@ const Navbar = () => {
           <AiOutlinePlusCircle className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
         </a>
       </li>
-      <li className="hidden lg:block">
+
+
+      <li>
+        <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
+          <HiOutlineChatAlt2 onClick={()=> route.push("/messages")} className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
+        </a>
+      </li>
+            <li className="hidden lg:block">
         <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform">
           <span className="indicator-item badge bg-lime-500 text-white font-bold px-3">
             5
           </span>
-          <GrSend className=" text-xl lg:text-2xl hover:scale-125 transform transition-transform  " />
-        </a>
-      </li>
-
-      <li>
-        <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
-          <AiOutlineHeart className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
+          <HiOutlinePaperAirplane className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
         </a>
       </li>
       <li>
@@ -318,9 +319,9 @@ const Navbar = () => {
             className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
             onClick={() => setSearchActive(true)}
           />
-          <GrSend
+          <HiOutlinePaperAirplane
             size={28}
-            className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
+            className={`cursor-pointer rotate-45 ${searchActive ? "hidden" : "visible"}`}
           />
           <span
             className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
