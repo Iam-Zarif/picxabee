@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { RotatingLines } from 'react-loader-spinner';
 import Image from 'next/image';
-import photo from "../../../public/Tuhin/UserPost/swarm.png"
+import photo from "../../../public/Tuhin/UserPost/swarm.png";
 const LoadingSpninner = () => {
   return (
     <div className='flex w-full h-screen items-center '>
