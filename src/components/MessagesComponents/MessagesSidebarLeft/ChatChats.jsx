@@ -24,16 +24,15 @@ const ChatChats = () => {
     dispatch({type:"CHANGE_USER", payload: u})
   }
 
-  console.log(chats);
   return (
     <div>
-      {chats && (Object?.entries(chats)?.map(chat => (
+      {chats && (Object?.entries(chats)?.sort((a,b)=> b[1].date - a[1].date).map(chat => (
           <div key={chat[0]} className='userChat text-white cursor-pointer md:text-base text-sm m-2' onClick={()=> handleSelect(chat[1].userInfo)}>
           <div className="hover:bg-gray-400 rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
               <img className="w-14 h-14 object-cover rounded-full" src={chat[1].userInfo.photoURL} alt="" />
               <div className='userChatInfo  flex-1'>
                   <p className='font-bold'>{chat[1].userInfo.displayName}</p>
-                  <span className='md:text-sm text-xs'>{chat[1].userInfo.lastMessage?.text}</span>
+                  <span className='md:text-sm text-xs'>{chat[1].lastMessage?.text}</span>
               </div>
           </div>
       </div>
