@@ -14,23 +14,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-<<<<<<< HEAD
-	return (
-		<html lang="en">
-			<head>
-				<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-			</head>
-			<body className={`${inter.className} `}>
-				<main className="my-container">
-				<Providers><Authprovider>{children}</Authprovider></Providers>
-				{/* <Toaster /> */}
-				</main>
-				<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-				<script>AOS.init();</script>
-			</body>
-		</html>
-	);
-=======
+
   return (
     <html lang="en">
       <head>
@@ -50,5 +34,5 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
->>>>>>> 63a4cd3006e4dbd492e5264c0f69e8f780c66f8b
+
 }
