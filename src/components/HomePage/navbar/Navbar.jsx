@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { GoHome } from "react-icons/go";
@@ -23,7 +25,11 @@ import Drawer from "react-modern-drawer";
 import { useRouter } from "next/navigation";
 import "react-modern-drawer/dist/index.css";
 const Navbar = () => {
+<<<<<<< HEAD
   const route = useRouter();
+=======
+  
+>>>>>>> b5cf28f8d52f417ae541bfaff3a92fa82130f96a
   //
   useEffect(() => {
     fetch("./fakeUsers.json") // Replace with the actual path
@@ -346,15 +352,23 @@ const Navbar = () => {
       {/* You can open the modal using ID.showModal() method */}
       <dialog id="my_modal_4" className="modal">
         <form method="dialog" className="modal-box w-11/12 max-w-5xl">
-			<p className="text-lime-500 text-2xl font-semibold"> The Users</p>
+			<p className="text-lime-500 text-2xl font-semibold"> You searched for it</p>
          
             {searchResults.map((user) => (
-              <p key={user.id}>{user.name}</p>
+              <div key={user.id} className="grid grid-cols-3 ">
+                <Image className="mx-auto rounded-full w-12 h-12 mt-5" src={user.photo} width="51" height ="60"></Image>
+                <div>
+                <p className="text-amber-700">{user.name}</p>
+                <p>{user.position}</p>
+                </div>
+<button className="btn border-0 ">Follow</button>
+              </div>
+              
             ))}
          
           <div className="modal-action">
             {/* if there is a button, it will close the modal */}
-            <button className="btn bg-white">Close</button>
+            <button className="btn  bg-white"> Close</button>
           </div>
         </form>
       </dialog>

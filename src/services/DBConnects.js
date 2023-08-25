@@ -1,6 +1,4 @@
 import { MongoClient } from "mongodb";
-let isConnected = false;
-
 const DBConnect = async () => {
   
   try {
