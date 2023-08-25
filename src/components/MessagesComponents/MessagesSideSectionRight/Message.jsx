@@ -11,7 +11,7 @@ const Message = ({messages}) => {
   console.log(messages)
   return (
     <div className="">
-      {/* <div className="chat chat-start">
+      <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
             <img src="https://images.pexels.com/photos/4064423/pexels-photo-4064423.jpeg" />
@@ -50,7 +50,7 @@ const Message = ({messages}) => {
             <p className="chat-bubble mr-1 text-white  font-medium md:text-sm text-xs">I hate you!</p>
         </div>
         <div className="chat-footer opacity-90">Seen at 12:46</div>
-      </div> */}
+      </div>
     </div>
   );
 };
