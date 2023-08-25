@@ -16,6 +16,8 @@ const SinglePost = ({ post }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	let count = 3;
 
+	
+
 	const { _id } = post;
 	console.log(_id);
 
