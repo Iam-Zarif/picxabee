@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.my-container{
+  @apply w-[1450px] mx-auto;
+}
+
 .logo{
   font-family: Comic Sans MS;
   color: #024d47;
