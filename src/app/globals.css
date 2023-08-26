@@ -2,71 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-.my-container {
-  @apply w-full 2xl:max-w-screen-xl mx-auto;
+.logo{
+  font-family: Comic Sans MS;
+  color: #024d47;
+  font-weight: bold;
 }
-
-.chatui {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-.container {
-  border: 1px solid white;
-  border-radius: 1rem;
-  width: 85%;
-  height: 90%;
-  display: flex;
-  overflow: hidden;
-}
-.sidebar {
-  background-color: #3c3b3b;
-  flex: 1;
-}
-
-.rightside {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-}
-
-@keyframes fadeInOut {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.fade-in-out {
-  animation: fadeInOut 2s ease-in-out infinite;
-}
-
-
-.main-slider {
-  /* padding: 0 10px !important; */
+.bee{
+  font-family: sans-serif;
   
- }
  
+  color: #d8b105;
  
- .main-slider .swiper-button-next,
- .main-slider .swiper-button-prev {
-   @apply absolute bottom-0 bg-black text-white w-6 h-6 rounded-full hidden sm:flex items-center justify-center ;
- }
- 
- .main-slider .swiper-button-next{
-   /* margin-right: -2px; */
- }
- .main-slider .swiper-button-prev{
-   margin-left: -10px;
- }
- 
- 
- .main-slider .swiper-button-next::after,
- .main-slider .swiper-button-prev::after {
-   @apply text-xs font-bold;
- }
+}
+
+
+/* ... your existing styles ... */
+
+/* Position Navbar at the bottom on small screens */
+@media (max-width: 767px) {
+  .myNav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+     /* Adjust the z-index as needed */
+  }
+
+  .lg\:navbar {
+    justify-content: space-between; /* Adjust alignment as needed */
+    padding-top: 0.5rem; /* Add padding to the top for better visibility */
+    padding-bottom: 0.5rem; /* Add padding to the bottom for spacing */
+  }
+}
+
+/* ... more of your existing styles ... */
+
+/* styles.css */
+
