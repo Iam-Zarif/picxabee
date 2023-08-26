@@ -7,9 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      height: {
-        calc: 'calc(100% - 70px)',
-      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -17,21 +14,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui"), require('tailwind-scrollbar')],
+  plugins: [require("daisyui")],
   daisyui: {
     themes: ["light"],
   },
-
-  experimental: {
-    runtime: 'edge'
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        dns: false,
-      };
-    }
-    return config;
-  },
-};
+}
