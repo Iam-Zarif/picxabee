@@ -4,12 +4,12 @@ import Suggestions from "@/components/HomePage/RighSidebar/Suggestions";
 
 export default function Home() {
   return (
-    <div className="my-container grid grid-cols-3">
-      <div className="col-span-2 mt-20">
+    <div className="my-container grid grid-cols-3 py-28">
+      <div className="col-span-2">
         <Feed />
       </div>
   
-     <div className="mt-20">
+     <div className="">
      <MiniProfile />
       <Suggestions />
      </div>
