@@ -14,7 +14,6 @@ useEffect(()=>{
 
 	const onSubmit = (data) => {
 		if (data.comment.trim() !== '') {
-			// Perform your submit logic here
 			reset();
 		}
 		console.log(data);
@@ -51,6 +50,7 @@ useEffect(()=>{
 				console.error('Fetch error:', error);
 			});
 	};
+	
 	return (
 		<div className={`${open ? '' : 'hidden'}`}>
 			<form className="flex relative" onSubmit={handleSubmit(onSubmit)}>

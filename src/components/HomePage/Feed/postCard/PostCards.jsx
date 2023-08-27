@@ -2,17 +2,17 @@
 import SinglePost from './SinglePost';
 import useSWR from 'swr';
 
-// async function getData() {
-// 	const res = await fetch('http://localhost:3000/api/posts', {
-// 		cache: 'no-cache',
-// 	});
-// 	if (!res.ok) {
-// 		throw new Error('Failed to fetch data');
-// 	}
-// 	return res.json();
-// }
+async function getData() {
+	const res = await fetch('http://localhost:3000/api/posts', {
+		cache: 'no-store',
+	});
+	if (!res.ok) {
+		throw new Error('Failed to fetch data');
+	}
+	return res.json();
+}
 
-const Posts =   () => {
+const PostCards = () => {
 
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const { data: posts, error, isLoading } = useSWR('/api/posts', fetcher);
@@ -33,4 +33,4 @@ const Posts =   () => {
 	);
 };
 
-export default Posts;
+export default PostCards;

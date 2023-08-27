@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
-export const GET = async (request) => {
+export const GET = async () => {
   try {
     await connect();
     const posts = await Post.find();
@@ -83,12 +83,12 @@ export async function PATCH(request) {
 
     if (!updatedPost) {
       revalidateTag(Post);
-      return new NextResponse.json({ message: "Post not found" }, { status: 404 });
+      return new NextResponse(JSON.stringify({ message: "Post not found" }, { status: 404 }));
     }
 
-    return new NextResponse.json({ message: "Operation successful", updatedPost }, { status: 200 });
+    return new NextResponse(JSON.stringify({ message: "Operation successful", updatedPost }, { status: 200 }));
   } catch (error) {
     console.error(error);
-    return new NextResponse.json({ message: "Internal server error" }, { status: 500 });
+    return new NextResponse(JSON.stringify({ message: "Internal server error" }, { status: 500 }));
   }
 }
