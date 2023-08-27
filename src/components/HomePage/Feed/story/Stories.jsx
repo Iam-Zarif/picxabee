@@ -23,7 +23,6 @@ import StoryLoading from './StoryLoading';
 const Stories = () => {
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-
     const { data, error, isLoading } = useSWR('/api/stories', fetcher)
 
     const [isopen, setIsopen] = useState(false);
