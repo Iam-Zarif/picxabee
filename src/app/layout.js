@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-sync-scripts */
 
-
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -19,7 +18,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       </head>
       <body className={`${inter.className} mx-5`}>
-        <Navbar/>
+        <Navbar />
         {children}
 
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

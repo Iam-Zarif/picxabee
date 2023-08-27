@@ -9,7 +9,6 @@ const ViewStoryModal = ({...props}) => {
     const { data, isopen, toggleModal, index, setIndex } = props
 
     const showStory = data && data.filter((_, i) => i === index)
-    // const showPrevStory = data && data.filter((_, i) => i === index)
 
     const beforeStoryHandler = () => {
         setIndex(index - 1)
