@@ -14,6 +14,16 @@ const commentSchema = new Schema(
 	{ timestamps: true }
 );
 
+const likeSchema = new Schema(
+	{
+		author: {
+			email: String,
+			name: String,
+			profile_picture: String,
+		},
+	},
+	{ timestamps: true }
+);
 const postSchema = new Schema(
 	{
 		author: {
@@ -23,7 +33,7 @@ const postSchema = new Schema(
 		},
 		content: String,
 		image: String,
-		likes: [{ email: String, name: String, profile_picture: String }], // Array of user IDs who liked the post
+		likes: [likeSchema], // Array of user IDs who liked the post
 		comments: [commentSchema],
 	},
 	{ timestamps: true }
