@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-sync-scripts */
-
+"use client";
 import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Providers from "./providers";
+import ThemeButton from "@/components/ThemeButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,13 +19,22 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       </head>
-      <body className={`${inter.className} mx-5`}>
-        <Navbar />
-        {children}
+      <Providers>
+        <body className={`${inter.className} mx-5`}>
+          <header>
+          
+            <Navbar />
+          </header>
 
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>AOS.init();</script>
-      </body>
+          <main>
+            
+            {children}
+          </main>
+
+          <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+          <script>AOS.init();</script>
+        </body>
+      </Providers>
     </html>
   );
 }
