@@ -66,3 +66,6 @@
 .main-slider .swiper-button-prev::after {
   @apply text-xs font-bold;
 }
+
+/* Light Mode */
+

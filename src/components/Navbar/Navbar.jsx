@@ -25,6 +25,7 @@ import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
+import ThemeButton from "../ThemeButton";
 const Navbar = () => {
   const route = useRouter();
   
@@ -182,6 +183,7 @@ const Navbar = () => {
                   <AiOutlineUser className="inline" /> User Full Name
                 </p>
                 <div className="divider"></div>
+                <ThemeButton/>
                 <p className="  flex items-center group   hover:ml-2 transition-all">
                   <AiOutlineProfile
                     size={28}
@@ -216,14 +218,12 @@ const Navbar = () => {
   );
 
   return (
-    <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0">
+    <div className="shadow-md shadow-slate-200 mt-3 lg:mt-0">
       {/* <Container> */}
       <div className="fixed  mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start">
-            {/* responsive dropdown */}
-
-            {/* responsive dropdown */}
+           
             <a className=" logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">
               {" "}
               <span className="text-5xl">P</span>icxa
