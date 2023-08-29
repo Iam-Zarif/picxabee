@@ -20,20 +20,19 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       </head>
       <Providers>
-        <body className={`${inter.className} mx-5`}>
-          <header>
-          
-            <Navbar />
-          </header>
+      <body className={`${inter.className} mx-5`}>
+        <header>
+          <Navbar />
+        </header>
 
-          <main>
-            
-            {children}
-          </main>
+        <main className="">
+          {children}
+         
+        </main>
 
-          <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-          <script>AOS.init();</script>
-        </body>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+      </body>
       </Providers>
     </html>
   );
