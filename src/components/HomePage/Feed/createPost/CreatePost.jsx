@@ -1,16 +1,38 @@
 "use client";
 
-import Image from "next/image";
 import "./CreatePost.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { IoIosAttach } from "react-icons/io";
 import { BsImageFill, BsEmojiSmile } from "react-icons/bs";
+import { useEffect, useRef, useState } from "react";
 
 const CreatePost = () => {
-
   const router = useRouter();
+  const textareaRef = useRef(null);
+  const handleOutsideClick = (event) => {
+    if (textareaRef.current && !textareaRef.current.contains(event.target)) {
+      // Clicked outside the textarea, collapse it to 2 rows
+      setExpanded(false);
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener for clicks outside the textarea
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleClick = () => {
+    // Toggle the expanded state when clicked
+    setExpanded(!expanded);
+  };
 
   // console.log(image);
 
@@ -119,44 +141,41 @@ const CreatePost = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="px-5">
             <textarea
-              name="text"
-              {...register("text")}
-              id=""
+              ref={textareaRef}
+              id="text"
               cols="30"
-              rows="8"
+              rows={expanded ? 8 : 2}
+              onClick={handleClick}
               className="w-full resize-none p-3 text-md rounded-md focus:outline-none focus:shadow-lg"
               placeholder="What's Your Mind"
             ></textarea>
-            
-            <div className="flex justify-between px-10 py-5">
+
+<div className="flex justify-between mt-6 items-center">
               <div className="flex gap-x-2">
                 <label class="custom-file-upload">
                   {/* <input type="image" /> */}
-                  <BsImageFill size={22} />
+                  <BsImageFill size={28} />
                 </label>
                 <label class="custom-file-upload">
                   <input type="file" id="image-input" accept="image/*" {...register("image")} />
-                  <IoIosAttach size={22} />
+                  <IoIosAttach size={28} />
                 </label>
+                
               </div>
-              <div>
-                <BsEmojiSmile size={22} />
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center">
-            <div></div>
-            <div>
-              <div className="form-control w-full max-w-xs flex ">
-                <select className="select select-bordered rounded-none">
+              <div className="flex items-center gap-x-4">
+              <div className="flex justify-end mt-5">
+              <select className="select  select-bordered rounded-none">
                   <option selected>Public</option>
                   <option>Private</option>
                 </select>
+            <button className="btn btn-info rounded-none font-semibold lg:ml-5">Create Post</button>
+            <div className="form-control w-full max-w-xs flex ">
+                
+              </div>
+          </div>
+                <BsEmojiSmile size={22} className="mt-5"/>
               </div>
             </div>
-          </div>
-          <div className="flex justify-end mt-5">
-            <button className="btn btn-info rounded-none font-semibold">Create Post</button>
           </div>
         </form>
       </section>
