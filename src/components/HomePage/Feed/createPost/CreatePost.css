@@ -1,6 +1,4 @@
-
-  
-  .wonderful-textarea {
+.wonderful-textarea {
     width: 100%;
     padding: 10px;
     border: none;
@@ -44,4 +42,28 @@
 
 .upload-button:hover {
     background-color: #0056b3;
+}
+
+input[type="file"] {
+  display: none;
+}
+input[type="image"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 2px 2px;
+  cursor: pointer;
+}
+.textarea-container {
+  overflow: hidden;
+  max-height: 100px; /* Set to a value larger than the 2-row textarea */
+
+  /* Add transition for a smooth animation */
+  transition: max-height 0.5s ease-in-out;
+}
+
+.textarea-container.expanded {
+  max-height: 400px; /* Set to a value larger than the 8-row textarea */
 }

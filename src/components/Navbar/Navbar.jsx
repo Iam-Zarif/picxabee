@@ -7,7 +7,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
-
+import "./Navbar.module.css"
 import {
   AiOutlineArrowRight,
   AiOutlinePlusCircle,
@@ -26,6 +26,7 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
 import ThemeButton from "../ThemeButton";
+import Link from "next/link";
 const Navbar = () => {
   const route = useRouter();
   
@@ -134,36 +135,36 @@ const Navbar = () => {
     <>
       <li>
         <a className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
-          <GoHome className="text-2xl lg:text-2xl " />
+          <Link href ={"/"}><GoHome className="dark:text-white text-2xl lg:text-2xl " /></Link>
         </a>
       </li>
       <li>
         <a className="hover:bg-transparent hover:scale-125 transform transition-transform ">
-          <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
+          <HiOutlineUserGroup className="dark:text-white text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
         </a>
       </li>
       <li>
-        <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
+        <a className="dark:text-white hover:bg-transparent  hover:scale-125 transform transition-transform">
           <AiOutlinePlusCircle className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
         </a>
       </li>
 
 
       <li>
-        <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
+        <a className="dark:text-white hover:bg-transparent  hover:scale-125 transform transition-transform">
           <HiOutlineChatAlt2 onClick={()=> route.push("/messages")} className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
         </a>
       </li>
-            <li className="hidden lg:block">
+            <li className="dark:text-white hidden lg:block">
         <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform">
           <span className="indicator-item badge bg-lime-500 text-white font-bold px-3">
             5
           </span>
-          <HiOutlinePaperAirplane className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
+          <HiOutlinePaperAirplane className="dark:text-white rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
         </a>
       </li>
       <li>
-        <a className="hover:bg-transparent  ">
+        <a className="hover:bg-transparent  dark:text-white">
           <AiOutlineUser
             className="text-2xl lg:text-2xl hover:scale-125 hover:translate-x-1 transform transition-transform"
             onClick={toggleDrawer}
@@ -175,14 +176,16 @@ const Navbar = () => {
             open={isOpen}
             onClose={toggleDrawer}
             direction="right"
-            className="bla bla bla "
+            className="dark:bg-neutral-600 dark:text-white"
           >
-            <div>
+            <div >
               <div className="lg:text-lg flex flex-col gap-5 w-4/5 mx-auto mt-12   rounded-xl ">
                 <p className=" ">
                   <AiOutlineUser className="inline" /> User Full Name
                 </p>
-                <div className="divider"></div>
+                <div className="divider">
+
+                </div>
                 <ThemeButton/>
                 <p className="  flex items-center group   hover:ml-2 transition-all">
                   <AiOutlineProfile
@@ -218,13 +221,15 @@ const Navbar = () => {
   );
 
   return (
-    <div className="shadow-md shadow-slate-200 mt-3 lg:mt-0">
+    <div className="navu shadow-md shadow-slate-200 mt-3 lg:mt-0">
       {/* <Container> */}
       <div className="fixed  mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start">
-           
-            <a className=" logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">
+            {/* responsive dropdown */}
+
+            {/* responsive dropdown */}
+            <a className="dark:text-white logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">
               {" "}
               <span className="text-5xl">P</span>icxa
               <span className="  ">bee</span>
@@ -251,7 +256,7 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 absolute lg:left-5 hidden lg:block top-3 text-gray-500 z-10"
+              className="w-6 h-6 absolute lg:left-5 dark:text-white hidden lg:block top-3 text-gray-500 z-10"
             >
               <path
                 strokeLinecap="round"
@@ -268,7 +273,7 @@ const Navbar = () => {
   </button>
 )} */}
 
-            <button className="btn" onClick={handleSearch}>
+            <button className="btn dark:text-white" onClick={handleSearch}>
               Search
             </button>
 
