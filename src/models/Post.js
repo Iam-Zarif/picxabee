@@ -33,7 +33,7 @@ const postSchema = new Schema(
 		},
 		content: String,
 		image: String,
-		likes: [likeSchema], // Array of user IDs who liked the post
+		reactions: [likeSchema], // Array of user IDs who liked the post
 		comments: [commentSchema],
 	},
 	{ timestamps: true }
