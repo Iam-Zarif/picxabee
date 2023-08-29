@@ -1,0 +1,23 @@
+[
+  { "id": 2, "name": "Bob", "photo": "https://i.ibb.co/SBM7y22/photo-1438761681033-6461ffad8d80.jpg", "position": "Engineer" },
+  { "id": 1, "name": "Alice", "photo": "https://i.ibb.co/qYmkjMy/istockphoto-1372291493-612x612.jpg", "position": "Manager" },
+  { "id": 3, "name": "Charlie", "photo": "https://i.ibb.co/X54N0XW/images-4.jpg ", "position": "Designer" },
+  { "id": 4, "name": "David", "photo": "https://i.ibb.co/wcCCg55/images-3.jpg  ", "position": "Sales Representative" },
+  { "id": 5, "name": "Eva", "photo": "https://i.ibb.co/BgYn3CP/Henry-A-Kissinger-U-S-Secretary-of-State-1973-1977.jpg  ", "position": "Marketing Specialist" },
+  { "id": 6, "name": "Frank", "photo": "https://i.ibb.co/nmgggMP/images-2.jpg  ", "position": "Accountant" },
+  { "id": 7, "name": "Grace", "photo": "https://i.ibb.co/j8pZwPY/photo-1542596768-5d1d21f1cf98.jpg  ", "position": "HR Manager" },
+  { "id": 8, "name": "Henry", "photo": "https://i.ibb.co/v4Hrn7f/photo-1504199367641-aba8151af406.jpg  ", "position": "Software Developer" },
+  { "id": 9, "name": "Ivy", "photo": "https://i.ibb.co/WVwTQ0j/depositphotos-88370500-stock-photo-mechanic-wearing-overalls.webp  ", "position": "Project Manager" },
+  { "id": 10, "name": "Jack", "photo": "https://i.ibb.co/qjb7pCC/photo-1625689871790-1c6e2161a0e3.jpg  ", "position": "Product Manager" },
+  { "id": 11, "name": "Katie", "photo": "https://i.ibb.co/zxbrPr3/images.jpg  ", "position": "Customer Support" },
+  { "id": 12, "name": "Leo", "photo": "https://i.ibb.co/SBM7y22/photo-1438761681033-6461ffad8d80.jpg  ", "position": "Research Scientist" },
+  { "id": 13, "name": "Hridoy", "photo": "https://i.ibb.co/Zf3tcSR/admin.jpg", "position": "Data Analyst" },
+  { "id": 14, "name": "Zarif", "photo": "https://i.ibb.co/s1PxWNG/fatin.png  ", "position": "Marketing Manager" },
+  { "id": 15, "name": "Jahid", "photo": "https://i.ibb.co/WxdKP74/jahid.png  ", "position": "Finance Director" },
+  { "id": 16, "name": "Nishat", "photo": "https://i.ibb.co/pR9gMHp/nishat.png  ", "position": "Operations Manager" },
+  { "id": 17, "name": "Rezon", "photo": "https://i.ibb.co/Cvv8Tdm/rezwan.png  ", "position": "Graphic Designer" },
+  { "id": 18, "name": "Tuhin", "photo": "https://i.ibb.co/bJNR8bw/Tuhin.png", "position": "Legal Counsel" },
+  { "id": 19, "name": "Sam", "photo": "https://i.ibb.co/j8pZwPY/photo-1542596768-5d1d21f1cf98.jpg", "position": "IT Administrator" },
+  { "id": 20, "name": "Tom", "photo": "https://i.ibb.co/j8pZwPY/photo-1542596768-5d1d21f1cf98.jpg", "position": "Quality Assurance"  }
+]
+
