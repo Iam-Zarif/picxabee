@@ -23,10 +23,7 @@ const SinglePost = ({ post }) => {
 		setIsOpen(true);
 	}
 
-	const handleRemoveReaction = ()=>{
-
-
-	}
+	const handleRemoveReaction = () => {};
 
 	const handleReaction = () => {
 		setReact(!react);
@@ -40,7 +37,7 @@ const SinglePost = ({ post }) => {
 		};
 		console.log(reaction);
 
-		fetch('https://feed-silk.vercel.app/api/posts', {
+		fetch('https://picxabee.vercel.app/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
