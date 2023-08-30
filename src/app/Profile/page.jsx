@@ -1,8 +1,7 @@
-'use client'
 import React from 'react';
-import cover from "/public/catCover.png";
+import cover from "/public/catCover.PNG";
 import dp from "/public/admin.jpg";
-import fb from "/public/fb.png";
+import fb from "/public/fb.PNG";
 import Image from 'next/image';
 import { TbSend } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
