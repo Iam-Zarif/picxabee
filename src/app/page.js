@@ -15,7 +15,7 @@ export default function Home() {
         <Feed />
       </div>
 
-      <div className="">
+      <div >
         <MiniProfile />
         <Suggestions />
       </div>
