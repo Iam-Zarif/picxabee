@@ -18,7 +18,7 @@ import { useState } from 'react';
 import { HiPlusSmall } from 'react-icons/hi2';
 import AddStoryModal from './addStoryModal/AddStoryModal';
 import ViewStoryModal from './viewStoryModal/ViewStoryModal';
-import StoryLoading from './StoryLoading';
+import StoryLoader from '@/components/loader/StoryLoader';
 
 const Stories = () => {
 
@@ -52,7 +52,7 @@ const Stories = () => {
             <ViewStoryModal isopen={isopen} toggleModal={toggleModal} index={index} data={data} setIndex={setIndex} />
             <AddStoryModal modal={modal} setModal={setModal} addStoryToggleModal={addStoryToggleModal} imgUrl={imgUrl} setImgUrl={setImgUrl} />
 
-            <div className='m-3 lg:m-0 grid grid-cols-4 xl:grid-cols-8 2xl:grid-cols-9'>
+            <div className='m-3 lg:m-0 grid grid-cols-4 xl:grid-cols-7'>
                 <div onClick={addStoryToggleModal} className="cursor-pointer w-fit">
                     <div className='relative'>
                         <Image
@@ -69,8 +69,8 @@ const Stories = () => {
                     <h5 className='text-center'>ADD</h5>
                 </div>
 
-                <div className='col-span-3 xl:col-span-7 2xl:col-span-8'>
-                    { isLoading ? <StoryLoading /> :
+                <div className='col-span-3 xl:col-span-6 '>
+                    {isLoading ? <StoryLoader /> :
                         (<Swiper
                             cssMode={true}
                             // breakpoints={{
@@ -83,7 +83,7 @@ const Stories = () => {
                             //         spaceBetween: 30
                             //     }
                             // }}
-                            slidesPerView={8}
+                            slidesPerView={6}
                             spaceBetween={30}
                             navigation={true}
                             slidesPerGroupSkip={4}
