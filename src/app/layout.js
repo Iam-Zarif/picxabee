@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} mx-5`}>
         <Providers>
           <Navbar />
-          {children}
+          <div className="py-28">
+            {children}
+          </div>
         </Providers>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>AOS.init();</script>
