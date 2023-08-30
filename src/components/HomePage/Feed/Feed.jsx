@@ -1,14 +1,14 @@
 import React from "react";
 import CreatePost from "./createPost/CreatePost";
 import Stories from "./story/Stories";
-import Posts from "./postCard/Posts";
+import PostCards from "./postCard/PostCards";
 
 const Feed = () => {
   return (
    <>
     <Stories />
      <CreatePost/>
-     <Posts />
+     <PostCards />
    </>
   );
 };

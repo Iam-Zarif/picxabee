@@ -14,13 +14,13 @@ const commentSchema = new Schema(
 	{ timestamps: true }
 );
 
-const likeSchema = new Schema(
+const reactionSchema = new Schema(
 	{
 		author: {
 			email: String,
 			name: String,
 			profile_picture: String,
-		},
+		}
 	},
 	{ timestamps: true }
 );
@@ -33,7 +33,7 @@ const postSchema = new Schema(
 		},
 		content: String,
 		image: String,
-		reactions: [likeSchema], // Array of user IDs who liked the post
+		reactions: [reactionSchema], // Array of user IDs who liked the post
 		comments: [commentSchema],
 	},
 	{ timestamps: true }

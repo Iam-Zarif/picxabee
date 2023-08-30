@@ -12,8 +12,9 @@ const SinglePost = ({ post }) => {
 	const [react, setReact] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const { _id } = post;
+	const { _id: id } = post;
 
+	// const comments = comments[]
 	function closeModal() {
 		setIsOpen(false);
 	}
@@ -22,19 +23,21 @@ const SinglePost = ({ post }) => {
 		setIsOpen(true);
 	}
 
-	const handleReact = () => {
+	const handleRemoveReaction = () => {};
+
+	const handleReaction = () => {
 		setReact(!react);
 		const reaction = {
-			_id,
+			id,
 			author: {
 				name: '',
 				profile_picture: '',
 			},
-			reaction: 1 
+			reaction: 1,
 		};
-		// console.log(reaction);
-		
-		fetch('http://localhost:3000/api/posts', {
+		console.log(reaction);
+
+		fetch('https://picxabee.vercel.app/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
@@ -45,7 +48,6 @@ const SinglePost = ({ post }) => {
 				if (!res.ok) {
 					throw new Error('Network response was not ok');
 				}
-
 				return res.json();
 			})
 			.then((data) => {
@@ -76,31 +78,24 @@ const SinglePost = ({ post }) => {
 					/>
 				</button>
 				<EditOption
+					id={id}
 					closeModal={closeModal}
 					openModal={openModal}
 					isOpen={isOpen}
 				></EditOption>
 			</div>
 			<h1 className="min-h-64 px-5 py-3">{post?.content}</h1>
-			<Image
-				src={post?.image}
-				width={815}
-				height={400}
-				alt="Posted Image"
-				className="object-contain border"
-			/>
-			<div className="flex justify-between px-5 py-3 ">
-				{post.comments.length > 0 && (
-					<div>
-						{post?.comments?.map((comment, i) => (
-							<SingleComment
-								key={i}
-								comment={comment}
-								id={post._id}
-							></SingleComment>
-						))}
-					</div>
-				)}
+
+			{post?.image && (
+				<Image
+					src={post?.image}
+					width={815}
+					height={400}
+					alt="Posted Image"
+					className="object-contain border w-full"
+				/>
+			)}
+			<div className="flex justify-end px-5 py-3 ">
 				<div className="flex gap-3">
 					<BsSave
 						size={26}
@@ -117,23 +112,47 @@ const SinglePost = ({ post }) => {
 					/>
 					{react ? (
 						<AiFillHeart
-							// onClick={handleReact}
-							// onClick={() => setReact(!react)}
+							onClick={() => handleRemoveReaction('tasnim@gmail.com')}
 							size={28}
 							className="hover:scale-125 duration-300 hover:text-red-400 hover:cursor-pointer text-red-500"
 						/>
 					) : (
 						<AiOutlineHeart
-							// onClick={() => setReact(!react)}
-							onClick={handleReact}
+							onClick={handleReaction}
 							size={28}
 							className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 						/>
 					)}
 					<p className="font-semibold text-lg">
-						{post?.likes && post?.likes.length}
+						{post?.reactions && post?.reactions.length}
 					</p>
 				</div>
+			</div>
+			{/* <div>
+				{post.comments.length > 1 && (
+					<div>
+						{post?.comments?.reverse().map((comment, i) => (
+							<SingleComment
+								key={i}
+								comment={comment}
+								id={post._id}
+							></SingleComment>
+						))}
+					</div>
+				)}
+			</div> */}
+			<div>
+				{post?.comments?.map(
+					(comment, i) =>
+						// Check if the index is greater than or equal to 1
+						i >= 1 && (
+							<SingleComment
+								key={i}
+								comment={comment}
+								id={post._id}
+							></SingleComment>
+						)
+				)}
 			</div>
 			<div className="px-5 pb-5 ">
 				<div>

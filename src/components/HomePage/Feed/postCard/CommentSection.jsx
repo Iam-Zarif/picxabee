@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineSend } from 'react-icons/ai';
 
 const CommentSection = ({ id, open }) => {
-const [reload, setReload] = useState(0)
 	// console.log(id);
 	const { register, handleSubmit, setValue, watch, reset } = useForm();
 	const watchComment = watch('comment', '');
-
-useEffect(()=>{
-
-}, [reload])
 
 	const onSubmit = (data) => {
 		if (data.comment.trim() !== '') {
@@ -21,15 +15,13 @@ useEffect(()=>{
 			id,
 			author: {
 				name: '',
-				profile_picture:
-					'',
+				profile_picture: '',
 			},
-
 			comment: data.comment,
 		};
 		console.log(comment);
 
-		fetch('http://localhost:3000/api/posts', {
+		fetch('https://picxabee.vercel.app/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
@@ -40,17 +32,17 @@ useEffect(()=>{
 				if (!res.ok) {
 					throw new Error('Network response was not ok');
 				}
+
 				return res.json();
 			})
 			.then((data) => {
-				setReload(!reload)
 				console.log('Received data:', data);
 			})
 			.catch((error) => {
 				console.error('Fetch error:', error);
 			});
 	};
-	
+
 	return (
 		<div className={`${open ? '' : 'hidden'}`}>
 			<form className="flex relative" onSubmit={handleSubmit(onSubmit)}>
