@@ -1,5 +1,4 @@
 "use client"
-
 import useSWR from 'swr'
 
 const useFetchData = (api) => {
