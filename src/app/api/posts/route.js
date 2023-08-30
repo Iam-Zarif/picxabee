@@ -27,68 +27,91 @@ export async function POST(request) {
   }
 }
 
-export async function PATCH(request) {
-  try {
-    const { id, comment, reaction } = await request.json();
 
-    await connect();
 
-    const objectId = new mongoose.Types.ObjectId(id);
-    const filter = { _id: objectId };
+//nishat
+export const DELETE = async (request) => {
+	// const { id } = await request.json();
+	try {
+		const id = request.nextUrl.searchParams.get('id');
+		await connect();
+		await Post.findByIdAndDelete(id);
+		return NextResponse.json({ message: 'Post deleted' }, { status: 200 });
+	} catch (error) {
+		JSON.stringify({ message: 'Internal server error' }, { status: 500 });
+	}
+};
 
-    let updatedPost;
+export const PATCH = async (request) => {
+	try {
+		const { id, comment, reaction } = await request.json();
+		await connect();
 
-    if (comment) {
-      updatedPost = await Post.findByIdAndUpdate(
-        filter,
-        {
-          $push: {
-            comments: {
-              author: {
-                email: "tasnim@gmail.com",
-                name: "Nishat",
-                profile_picture:
-                  "https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg",
-              },
-              comment,
-            },
-          },
-        },
-        {
-          new: true,
-        }
-      );
-    } else if (reaction) {
-      updatedPost = await Post.findByIdAndUpdate(
-        filter,
-        {
-          $push: {
-            reactions: {
-              author: {
-                email: "",
-                name: "",
-                profile_picture: "",
-              },
-              reaction,
-            },
-          },
-        },
-        {
-          new: true,
-        }
-      );
-    } else {
-      return new NextResponse.json({ message: "Invalid request" }, { status: 400 });
-    }
+		let updatedPost;
 
-    if (!updatedPost) {
-      revalidateTag(Post);
-      return new NextResponse(JSON.stringify({ message: "Post not found" }, { status: 404 }));
-    }
+		if (comment) {
+			updatedPost = await Post.findByIdAndUpdate(
+				id,
+				{
+					$push: {
+						comments: {
+							author: {
+								email: 'tasnim@gmail.com',
+								name: 'Nishat',
+								profile_picture:
+									'https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg',
+							},
+							comment,
+						},
+					},
+				},
+				{
+					new: true,
+				}
+			);
+		} else if (reaction) {
+			updatedPost = await Post.findByIdAndUpdate(
+				id,
+				{
+					$push: {
+						reactions: {
+							author: {
+								email: 'tasnim@gmail.com',
+								name: 'Nishat',
+								profile_picture:
+									'https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg',
+							},
+						},
+					},
+				},
+				{
+					new: true,
+				}
+			);
+		} else {
+			return new NextResponse.json(
+				{ message: 'Invalid request' },
+				{ status: 400 }
+			);
+		}
 
-    return new NextResponse(JSON.stringify({ message: "Operation successful", updatedPost }, { status: 200 }));
-  } catch (error) {
-    console.error(error);
-    return new NextResponse(JSON.stringify({ message: "Internal server error" }, { status: 500 }));
-  }
-}
+		if (!updatedPost) {
+			revalidateTag(Post);
+			return new NextResponse(
+				JSON.stringify({ message: 'Post not found' }, { status: 404 })
+			);
+		}
+
+		return new NextResponse(
+			JSON.stringify(
+				{ message: 'Operation successful', updatedPost },
+				{ status: 200 }
+			)
+		);
+	} catch (error) {
+		console.error(error);
+		return new NextResponse(
+			JSON.stringify({ message: 'Internal server error' }, { status: 500 })
+		);
+	}
+};

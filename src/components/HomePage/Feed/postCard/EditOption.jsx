@@ -1,8 +1,31 @@
-'use client'
+'use client';
 import { Dialog, Transition } from '@headlessui/react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Fragment, useState } from 'react';
 
-export default function MyModal({ openModal, closeModal, isOpen }) {
+export default function MyModal({ id, openModal, closeModal, isOpen }) {
+	const router = useRouter();
+	console.log(id);
+
+	const removePost = async (id) => {
+		console.log(id);
+
+		const confirmed = confirm('Are you sure?');
+
+		if (confirmed) {
+			const res = await fetch(
+				`https://picxabee.vercel.app/api/posts?id=${id}`,
+				{
+					method: 'DELETE',
+				}
+			);
+
+			if (res.ok) {
+				router.refresh();
+			}
+		}
+	};
 	return (
 		<>
 			<Transition appear show={isOpen} as={Fragment}>
@@ -31,18 +54,25 @@ export default function MyModal({ openModal, closeModal, isOpen }) {
 								leaveTo="opacity-0 scale-95"
 							>
 								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all">
-									<ul className="text-center font-semibold space-y-2">
+									<ul className="text-center font-semibold space-y-5">
 										<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300 text-red-500">
 											Unfollow
 										</li>
 										<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300">
 											Add to favorites
 										</li>
-										<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300">
+
+										<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300 pb-3">
 											Copy link
 										</li>
 										<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300">
-											Cancel
+											<Link
+												className=""
+												onClick={() => removePost(id)}
+												href={`/`}
+											>
+												Delete
+											</Link>
 										</li>
 									</ul>
 								</Dialog.Panel>
