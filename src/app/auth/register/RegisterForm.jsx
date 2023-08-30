@@ -10,6 +10,7 @@ const RegisterForm = () => {
     const { createUser, updateUser, user, setLoading } = useAuth()
     const { register, handleSubmit, watch, reset, setValue, formState: { errors } } = useForm();
 
+
     const onSubmit = async (data) => {
 
         const { name, email, password, photo } = data
