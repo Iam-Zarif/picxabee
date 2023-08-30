@@ -2,9 +2,9 @@
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 
-export default function MyModal({ id, openModal, closeModal, isOpen }) {
+export default function MyModal({ id, closeModal, isOpen }) {
 	const router = useRouter();
 	console.log(id);
 
