@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-sync-scripts */
 
 import Navbar from "@/components/Navbar/Navbar";
-import "./globals.css";
-import { Inter } from "next/font/google";
+import { ChatContextProvider } from "@/context/ChatContext";
 import Providers from "@/provider";
+import Authprovider2 from "@/provider/AuthProvider2";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +22,12 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className} mx-5`}>
         <Providers>
-          <Navbar />
-          <div className="py-28">
-            {children}
-          </div>
+          <Authprovider2>
+            <ChatContextProvider>
+              <Navbar />
+              <div className="py-28">{children}</div>
+            </ChatContextProvider>
+          </Authprovider2>
         </Providers>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>AOS.init();</script>
