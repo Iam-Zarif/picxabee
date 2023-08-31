@@ -47,8 +47,6 @@ const ProfilePage = () => {
                 <div className='profile-info'>
                     <div className="post-col grid lg:grid-cols-12">
                         <div className='col-span-5'>
-
-
                         </div>
                         <div className='col-span-7'>
                             <PostCards />
