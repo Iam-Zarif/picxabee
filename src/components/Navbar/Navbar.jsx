@@ -25,6 +25,7 @@ import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Navbar = () => {
   const route = useRouter();
   
@@ -218,17 +219,17 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0">
       {/* <Container> */}
-      <div className="fixed  mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+      <div className="fixed z-50   mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-slate-100   lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
-          <div className="navbar-start">
+          <div className="navbar-start group">
             {/* responsive dropdown */}
 
             {/* responsive dropdown */}
-            <a className=" logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">
+            <Link href={"/"} className="group-hover:animate-pulse  logo normal-case text-xl lg:text-3xl hidden lg:block lg:mb-5">
               {" "}
               <span className="text-5xl">P</span>icxa
               <span className="  ">bee</span>
-            </a>
+            </Link>
           </div>
 
           {/* search box */}
@@ -268,7 +269,7 @@ const Navbar = () => {
   </button>
 )} */}
 
-            <button className="btn" onClick={handleSearch}>
+            <button className="btn hidden lg:block" onClick={handleSearch}>
               Search
             </button>
 
@@ -286,7 +287,7 @@ const Navbar = () => {
       </div>
       {/* </Container> */}
       <ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
-        <div className="fixed  bg-slate-200 bottom-0  py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
+        <div className="fixed   bg-slate-200 bottom-0  py-4  px-5  w-11/12 flex gap-14 items-center justify-center content-center">
           {navItems}
         </div>
         {/* <AiOutlineUser className='text-xl lg:text-2xl' /> */}
