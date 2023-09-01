@@ -12,7 +12,7 @@ const UserRow = ({ user, index }) => {
 		<>
 			<tr className="text-base text-center">
 				<th> {index + 1}</th>
-				<td>{user.name}</td>
+				<td>{user?.name}</td>
 				<td>User</td>
 				<td>{formattedDateTime}</td>
 				<td>
