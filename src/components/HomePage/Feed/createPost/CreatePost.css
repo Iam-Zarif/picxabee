@@ -1,0 +1,58 @@
+.wonderful-textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    resize: vertical;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+    overflow: visible;
+  }
+  
+  .wonderful-textarea:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .image-upload-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 2px dashed #aaa;
+    background-color: #fff;
+    padding: 20px;
+}
+
+#image-input {
+    display: none;
+}
+
+.upload-button {
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+    background-color: #0056b3;
+}
+
+input[type="file"] {
+  display: none;
+}
+input[type="image"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 2px 2px;
+  cursor: pointer;
+}

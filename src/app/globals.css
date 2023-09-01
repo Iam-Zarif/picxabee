@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.my-container {
+  @apply w-full 2xl:w-[1450px] mx-auto;
+}
+
+.logo {
+  font-family: Comic Sans MS;
+  color: #024d47;
+  font-weight: bold;
+}
+
+.bee {
+  font-family: sans-serif;
+
+  color: #d8b105;
+}
+
+/* ... your existing styles ... */
+
+/* Position Navbar at the bottom on small screens */
+@media (max-width: 767px) {
+  .myNav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Adjust the z-index as needed */
+  }
+
+  .lg\:navbar {
+    justify-content: space-between;
+    /* Adjust alignment as needed */
+    padding-top: 0.5rem;
+    /* Add padding to the top for better visibility */
+    padding-bottom: 0.5rem;
+    /* Add padding to the bottom for spacing */
+  }
+}
+
+/* ... more of your existing styles ... */
+
+/* styles.css */
+
+/* Global CSS FOR STORY */
+
+.main-slider .swiper-button-next,
+.main-slider .swiper-button-prev {
+  @apply absolute bottom-0 bg-black text-white w-6 h-6 rounded-full hidden sm:flex items-center justify-center;
+}
+
+.main-slider .swiper-button-next {
+  margin-right: -10px;
+}
+
+.main-slider .swiper-button-prev {
+  margin-left: -10px;
+}
+
+.main-slider .swiper-button-next::after,
+.main-slider .swiper-button-prev::after {
+  @apply text-xs font-bold;
+}
+
+/* .my-container {
+  @apply w-full 2xl:max-w-screen-xl mx-auto;
+} */
+
+.chatui {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.container {
+  border: 1px solid white;
+  border-radius: 1rem;
+  width: 85%;
+  height: 90%;
+  display: flex;
+  overflow: hidden;
+}
+.massage-sidebar {
+  background-color: #3c3b3b;
+  flex: 1;
+}
+
+.rightside {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.fade-in-out {
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+
+/* Dashboard  */
+
+.name{
+    font-family:Segoe Print;
+}
+.sidebar{
+    background: rgb(28,27,57);
+background: linear-gradient(90deg, rgba(28,27,57,0.3617822128851541) 0%, rgba(6,26,79,0.36458333333333337) 35%, rgba(128,149,153,0.20211834733893552) 100%);
+}
+
+
+
+.link-item {
+    
+    transition-duration: 1000ms;
+  }
+  
+  .show .link-item {
+    
+    opacity: 1;
+  }
+  .menu-icon {
+    transition: transform 0.3s ease; /* Adjust the duration (0.3s) for the animation speed */
+  }
+
+  .layout{
+    background: rgb(40,74,235);
+background: linear-gradient(90deg,
+ rgba(40,74,235,0.6979166666666667) 4%,
+  rgba(4,131,238,0.5130427170868348) 47%,
+   rgba(169,63,217,0.8015581232492998) 100%);
+  }
+
+  .placeholder-white::placeholder {
+    color: white;
+  }
+
+  /* Dashboard  */
