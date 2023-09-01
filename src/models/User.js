@@ -12,7 +12,6 @@ try {
   const userSchema = new Schema({
     name: {
       type: String,
-      unique: true,
       required: true,
     },
     email: {
@@ -33,6 +32,9 @@ try {
       type: Number,
     },
     profile_picture: {
+      type: String,
+    },
+    role: {
       type: String,
     },
   }, {

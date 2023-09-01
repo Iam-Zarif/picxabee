@@ -8,7 +8,7 @@ const TrandingTopicList = () => {
     const { data, isLoading } = useFetchData('/api/trendstopic')
 
     return (
-        <div className='rounded-md'>
+        <div className='rounded-md pr-8'>
             <h3 className='font-semibold text-2xl'>Trending Topics</h3>
 
             <div className='flex flex-wrap gap-3 my-3'>
@@ -16,7 +16,7 @@ const TrandingTopicList = () => {
                 {
                     isLoading ? <HashtagLoader /> : data && data.map((hastag, idx) => <h5
                         key={idx}
-                        className='bg-primary-color rounded-md px-2 bg-opacity-10 cursor-pointer'
+                        className='bg-[#3abff8] rounded-md px-2 bg-opacity-10 cursor-pointer'
                     >
                         <Link href={`/trendstopic/${hastag?.hashtag?.slice(1)}`}>{hastag?.hashtag}</Link>
                     </h5>)

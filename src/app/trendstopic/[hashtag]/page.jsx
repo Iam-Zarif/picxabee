@@ -16,7 +16,7 @@ const HashTagTopicPage = ({ params }) => {
             </span>
 
             <div className="col-span-2">
-                <h1 className='text-2xl font-semibold rounded-md mb-5'>You are looking for <span className='text-primary-color'>#{params.hashtag}</span></h1> <hr className='my-5'/>
+                <h1 className='text-2xl font-semibold rounded-md mb-5'>You are looking for <span className='text-[#3abff8]'>#{params.hashtag}</span></h1> <hr className='my-5'/>
                 {
                     isLoading ? <PostCardLoader /> : data && data.map(post => <SinglePost key={post._id} post={post}></SinglePost>)
                 }
