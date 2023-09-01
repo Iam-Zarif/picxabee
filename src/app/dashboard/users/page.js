@@ -1,7 +1,6 @@
 'use client';
 import useSWR from 'swr';
 
-import 'react-loading-skeleton/dist/skeleton.css'
 import Loading from '../activities/loading';
 import UserRow from '@/components/Dashboard/Users/UserRow';
 
