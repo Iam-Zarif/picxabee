@@ -1,3 +1,5 @@
+"use client"
+import React from 'react';
 
 const UserRow = ({ user, index }) => {
 	console.log(user);
