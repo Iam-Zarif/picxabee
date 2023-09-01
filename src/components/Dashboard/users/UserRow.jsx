@@ -1,23 +1,22 @@
-"use client"
 import React from 'react';
 
 const UserRow = ({ user, index }) => {
-	console.log(user);
+	// console.log(user);
 
-	const date1 = new Date(user?.createdAt);
+	const date1 = new Date(user.createdAt);
 	// const options = { dateStyle: 'long', timeStyle: 'medium' };
 	const options = { year: 'numeric', month: 'long', day: 'numeric' };
-	const formattedDateTime = date1.toLocaleString(undefined, options);
 
+	const formattedDateTime = date1.toLocaleString(undefined, options);
 	return (
-		<div>
+		<>
 			<tr className="text-base text-center">
 				<th> {index + 1}</th>
-				<td>{user?.name}</td>
+				<td>{user.name}</td>
 				<td>User</td>
 				<td>{formattedDateTime}</td>
 				<td>
-					<button className="btn btn-sm bg-green-900 hover:bg-primary text-xs capitalize">
+					<button className="btn btn-sm bg-green-400 hover:bg-primary text-xs capitalize">
 						Active
 					</button>
 				</td>
@@ -35,7 +34,7 @@ const UserRow = ({ user, index }) => {
 					</details>
 				</td>
 			</tr>
-		</div>
+		</>
 	);
 };
 
