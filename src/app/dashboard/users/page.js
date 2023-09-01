@@ -2,7 +2,7 @@
 import useSWR from 'swr';
 
 import Loading from '../activities/loading';
-import UserRow from '@/components/Dashboard/Users/UserRow';
+import UserRow from '@/components/Dashboard/users/UserRow';
 
 const Users = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
