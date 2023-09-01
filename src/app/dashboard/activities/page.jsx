@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Loading from './loading';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PolarRadiusAxis } from 'recharts';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
-import { RadialBarChart, RadialBar} from 'recharts';
+// import { RadialBarChart, RadialBar} from 'recharts';
 import { BarChart, Bar, Cell,  } from 'recharts';
 
 import {

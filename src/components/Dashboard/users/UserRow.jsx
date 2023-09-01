@@ -3,7 +3,7 @@ import React from 'react';
 const UserRow = ({ user, index }) => {
 	// console.log(user);
 
-	const date1 = new Date(user.createdAt);
+	const date1 = new Date(user?.createdAt);
 	// const options = { dateStyle: 'long', timeStyle: 'medium' };
 	const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
