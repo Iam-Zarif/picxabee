@@ -136,7 +136,7 @@ const CreatePost = () => {
 
   return (
     <>
-      <section className="relative bg-[#D2D2D2] p-4 bg-opacity-75 shadow-sm w-[90%] mx-auto mt-10">
+      <section className="relative bg-[#D2D2D2] p-4 bg-opacity-75 shadow-sm w-full rounded-md mx-auto mt-10">
         <div className="">
           <h1 className="text-center font-semibold text-lg py-2">Create a Post</h1>
         </div>
@@ -168,11 +168,11 @@ const CreatePost = () => {
               </div>
               <div className="flex items-center gap-x-4">
               <div className="flex justify-end mt-5">
-              <select className="select  select-bordered rounded-none">
+              <select className="select  select-bordered rounded-md">
                   <option selected>Public</option>
                   <option>Private</option>
                 </select>
-            <button className="btn btn-info rounded-none font-semibold lg:ml-5">Create Post</button>
+            <button className="btn btn-info  font-semibold lg:ml-5 rounded-md">Create Post</button>
             <div className="form-control w-full max-w-xs flex ">
                 
               </div>
