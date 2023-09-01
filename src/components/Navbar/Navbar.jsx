@@ -28,7 +28,7 @@ import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
-import SearchSection from "./Search";
+import SearchSection from "./search";
 import Link from "next/link";
 
 ;
