@@ -14,7 +14,6 @@ const Users = () => {
 		<Loading/>
 	</div>);
 	return (
-		
 		<div className="w-10/12 mb-60 ml-auto mr-28 glass px-7 pt-8 mt-20 rounded-2xl z-0">
 			<div className="border mb-6 w-3/12 text-2xl z-0	 p-2 rounded-md ">
 				<h1 className="">Total User: {users?.length}</h1>
