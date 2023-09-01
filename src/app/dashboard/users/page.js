@@ -1,5 +1,5 @@
 'use client';
-import UserRow from '@/components/Dashboard/Users/UserRow';
+import UserRow from '@/components/Dashboard/users/UserRow';
 import useSWR from 'swr';
 import { DotLoader } from 'react-spinners'
 
