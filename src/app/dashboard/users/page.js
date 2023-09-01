@@ -1,11 +1,9 @@
 'use client';
 import UserRow from '@/components/Dashboard/Users/UserRow';
-import React from 'react';
 import useSWR from 'swr';
 import { DotLoader } from 'react-spinners'
-// import 'react-loading-skeleton/dist/skeleton.css'
 
-const Users = (props) => {
+const Users = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const { data: users, error, isLoading } = useSWR('/api/users', fetcher);
 	// console.log(users);
