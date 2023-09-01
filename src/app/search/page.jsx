@@ -24,6 +24,7 @@ const SearchPage = async ({ searchParams }) => {
       ) : (
         <div className="flex flex-col w-2/5 gap-8">
           <p className="text-3xl font-semibold">People</p>
+          
           {filteredResults.map((user, index) => (
             <div key={index} className="glass justify-evenly rounded-xl flex items-center px-5 py-2 gap-5">
               <Image src={photo} height={50} width={50} className="rounded-full"></Image>
