@@ -2,10 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './loading';
 import {
-	Radar,
-	RadarChart,
-	PolarGrid,
-	PolarAngleAxis,
+	AreaChart,
 	Area,
 	XAxis,
 	YAxis,
@@ -13,12 +10,12 @@ import {
 	Tooltip,
 	ResponsiveContainer,
 	PolarRadiusAxis,
-	ComposedChart,
-	Line,
-	Legend,
-	Bar,
 } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
+import { RadialBarChart, RadialBar } from 'recharts';
+import { BarChart, Bar, Cell } from 'recharts';
 
+import { ComposedChart, Line, Legend } from 'recharts';
 
 const Activities = () => {
 	//
