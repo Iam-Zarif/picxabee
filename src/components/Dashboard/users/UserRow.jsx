@@ -6,7 +6,6 @@ const UserRow = ({ user, index }) => {
 	const date1 = new Date(user.createdAt);
 	// const options = { dateStyle: 'long', timeStyle: 'medium' };
 	const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
 	const formattedDateTime = date1.toLocaleString(undefined, options);
 	return (
 		<>
