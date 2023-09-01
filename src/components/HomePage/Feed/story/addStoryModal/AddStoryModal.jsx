@@ -50,7 +50,7 @@ const AddStoryModal = ({ ...props }) => {
 
     const onSubmit = async data => {
 
-        fetch('http://localhost:3000/api/stories', {
+        fetch('picxabee.vercel.app/api/stories', {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

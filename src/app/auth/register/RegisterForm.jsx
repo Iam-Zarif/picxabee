@@ -68,7 +68,7 @@ const RegisterForm = () => {
             .then(() => {
               console.log("upload images");
 
-              fetch("http://localhost:3000/api/users", {
+              fetch("picxabee.vercel.app/api/users", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
