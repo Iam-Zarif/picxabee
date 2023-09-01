@@ -44,9 +44,6 @@
     background-color: #0056b3;
 }
 
-input[type="file"] {
-  display: none;
-}
 input[type="image"] {
   display: none;
 }
