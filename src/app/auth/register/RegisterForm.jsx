@@ -107,7 +107,7 @@ const RegisterForm = () => {
           }
         }
       );
-    } catch (err) {
+    } catch (error) {
       //   console.log("Signup Failed", err.code);
       toast.dismiss(toastId);
       toast.error(error.message || "User not signed in");
