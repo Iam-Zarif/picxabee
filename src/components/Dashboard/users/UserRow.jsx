@@ -1,12 +1,11 @@
-import React from 'react';
 
 const UserRow = ({ user, index }) => {
-	// console.log(user);
+	console.log(user);
 
-	// const date1 = new Date(user?.createdAt);
+	const date1 = new Date(user?.createdAt);
 	// const options = { dateStyle: 'long', timeStyle: 'medium' };
-	// const options = { year: 'numeric', month: 'long', day: 'numeric' };
-	// const formattedDateTime = date1.toLocaleString(undefined, options);
+	const options = { year: 'numeric', month: 'long', day: 'numeric' };
+	const formattedDateTime = date1.toLocaleString(undefined, options);
 
 	return (
 		<div>
@@ -14,7 +13,7 @@ const UserRow = ({ user, index }) => {
 				<th> {index + 1}</th>
 				<td>{user?.name}</td>
 				<td>User</td>
-				{/* <td>{formattedDateTime}</td> */}
+				<td>{formattedDateTime}</td>
 				<td>
 					<button className="btn btn-sm bg-green-900 hover:bg-primary text-xs capitalize">
 						Active
