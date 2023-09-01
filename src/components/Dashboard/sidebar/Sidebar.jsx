@@ -65,7 +65,7 @@ const toggleLinks = () => {
             }`}
         >
           <li className={`link-item ${showLinks ? 'show' : ''}`}>
-            <Link href={"/dashboard"}>
+            <Link href="/dashboard">
               <div className='flex gap-4 tooltip' data-tip="Dashboard">
                 <MdSpaceDashboard size={26} />
                 {showLinks && <span>Dashboard</span>}
@@ -73,7 +73,7 @@ const toggleLinks = () => {
             </Link>
           </li>
           <li className={`link-item ${showLinks ? 'show' : ''}`}>
-            <Link href={"/dashboard/users"}>
+            <Link href="/dashboard/users">
               <div className='flex gap-4 tooltip' data-tip="Users">
                 <FaUsersGear size={26} />
                 {showLinks && <span>Users</span>}
@@ -81,7 +81,7 @@ const toggleLinks = () => {
             </Link>
           </li>
           <li className={`link-item ${showLinks ? 'show' : ''}`}>
-            <Link href={"/dashboard/activities"}>
+            <Link href="/dashboard/activities">
               <div className='flex gap-4 tooltip' data-tip="Activities">
                 <BsPersonWorkspace size={26} />
                 {showLinks && <span>Activities</span>}
@@ -89,7 +89,7 @@ const toggleLinks = () => {
             </Link>
           </li>
           <li className={`link-item ${showLinks ? 'show' : ''}`}>
-            <Link href={"/dashboard/feedback"}>
+            <Link href="/dashboard/feedback">
               <div className='flex gap-4 tooltip' data-tip="Feedback">
                 <MdFeedback size={26} />
                 {showLinks && <span>Feedback</span>}
@@ -99,7 +99,7 @@ const toggleLinks = () => {
           
         </ul>
         <div className='absolute bottom-4 '>
-        <Link href={"/"} className="group">
+        <Link href="/" className="group">
       <div className="text-center group-hover:animate-pulse group-hover:scale-105 transform transition-transform duration-300">
         <Image
           className="mx-auto"

@@ -1,7 +1,8 @@
 "use client"
 import Image from 'next/image';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useSWR from 'swr';
+import Loading from '../activities/loading';
 
 const FeedbackPage = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -9,25 +10,38 @@ const FeedbackPage = () => {
 		refreshInterval: 1000,
 	});
 	console.log(feedbacks);
-	// const { createdAt } = feedbacks;
-	// console.log(createdAt);
+	
 
-	// const inputDate = new Date(feedbacks?.createdAt);
-	// const options = { dateStyle: 'long', timeStyle: 'medium' };
-	// const formattedDateTime = inputDate.toLocaleString(undefined, options);
+	
 
 	// console.log(formattedDateTime);
+	const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    // Simulate an asynchronous operation (e.g., fetching data)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Simulated 2-second delay
+  }, []);
+	const formatDate = (createdAt) => {
+		const inputDate = new Date(createdAt);
+		const options = { dateStyle: 'long', timeStyle: 'medium' };
+		const formattedDateTime = inputDate.toLocaleString(undefined, options);
+		return formattedDateTime;
+	};
 
 	return (
 		<div className="w-10/12 mb-60 ml-auto mr-20 pt-8 mt-20 z-0">
-			<div>
+			{
+				isLoading ? <><Loading/></>
+				:
+				<><div>
 				{feedbacks?.map((feedback) => (
 					<div
 						key={feedback._id}
 						className="collapse collapse-arrow join-item border border-base-300"
 					>
 						<input type="radio" name="my-accordion-4" checked="checked" />
-						<div className="collapse-title text-xl font-medium">
+						<div className="glass collapse-title text-xl font-medium">
 							<div className="flex items-center">
 								<Image
 									src={feedback?.author?.profile_picture}
@@ -40,7 +54,9 @@ const FeedbackPage = () => {
 									<p className="font-semibold capitalize">
 										{feedback?.author?.name}
 									</p>
-									{/* <p className="font-light">{formattedDateTime}</p> */}
+									<p className="font-light text-sm">
+										{formatDate(feedback?.createdAt)}
+									</p>
 								</div>
 							</div>
 						</div>
@@ -49,7 +65,10 @@ const FeedbackPage = () => {
 						</div>
 					</div>
 				))}
-			</div>
+			</div></>
+			}
+			
+			
 		</div>
 	);
 };
