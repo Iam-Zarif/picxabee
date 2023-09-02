@@ -5,62 +5,25 @@ import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { startTransition, useContext } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
 const RegisterForm = () => {
-  const { createUser, profileUpdate } = useContext(AuthContext);
-  const navigate = useRouter();
+  const { createUser } = useContext(AuthContext);
 
-  // const { createUser, updateUser, user, setLoading } = useAuth()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const search = useSearchParams();
-  const from = search.get("redirectUrl") || "/";
-  const { replace, refresh } = useRouter();
-
   const onSubmit = async (data) => {
-    // const { name, email, password, photo } = data;
+
     const { name, email, password, photoURL } = data;
-    console.log(data);
-    const toastId = toast.loading("Loading...");
-    // setLoading(true);
 
     try {
-      //   await createUser(email, password)    // >>>>>>>>>>>> JAHID VAI CODE
-      //     .then(async () => {
-      //       reset();
-      //       await updateUser(name, "https://i.ibb.co/7b2bX9K/m-h-blog-img-1.jpg")
-      //         .then(async () => {
-      //           console.log("upload images");
-      //           await fetch("http://localhost:3000/api/users", {
-      //             method: "POST",
-      //             body: JSON.stringify({
-      //               name,
-      //               email,
-      //               bio: "",
-      //               followers: 0,
-      //               following: 0,
-      //               posts: 0,
-      //               profile_picture: "https://i.ibb.co/7b2bX9K/m-h-blog-img-1.jpg",
-      //             }),
-      //           })
-      //             .then(() => console.log("User Creat on MongoDB"))
-      //             .catch((err) => console.log(err));
 
-      //           alert("Successfully Signin");
-      //           setLoading(false);
-      //           navigate.push("/");
-      //         })
-      //         .catch((err) => console.log(err));
-      //     })
-      //     .catch((err) => alert(err.code));
       const res = await createUser(email, password);
       const storageRef = ref(storage, name);
 
@@ -93,22 +56,27 @@ const RegisterForm = () => {
               photoURL: downloadURL,
             });
 
-            startTransition(() => {
-              refresh();
-              replace(from);
-              toast.dismiss(toastId);
-              toast.success("User signed in successfully");
-            });
+            await fetch("http://localhost:3000/api/users", {
+              method: "POST",
+              body: JSON.stringify({
+                name,
+                email,
+                bio: "",
+                followers: 0,
+                following: 0,
+                posts: 0,
+                profile_picture: photoURL,
+                role: 'user'
+              }),
+            })
+
           } catch (error) {
-            toast.dismiss(toastId);
-            toast.error("Error updating user profile");
+            console.log(error);
           }
         }
       );
     } catch (error) {
-      //   console.log("Signup Failed", err.code);
-      toast.dismiss(toastId);
-      toast.error(error.message || "User not signed in");
+      console.log("Signup Failed", error);
     }
   };
 
@@ -120,9 +88,8 @@ const RegisterForm = () => {
         name="name"
         placeholder="Name"
         {...register("name", { required: true })}
-        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-          errors.name ? "border-red focus:border-red focus:outline-red" : ""
-        }`}
+        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.name ? "border-red focus:border-red focus:outline-red" : ""
+          }`}
       />
       {errors.name?.type === "required" && <span className="text-red font-semibold">Name is required</span>}
 
@@ -136,9 +103,8 @@ const RegisterForm = () => {
           pattern:
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         })}
-        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-          errors.email ? "border-red focus:border-red focus:outline-red" : ""
-        }`}
+        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.email ? "border-red focus:border-red focus:outline-red" : ""
+          }`}
       />
       {errors.email?.type === "required" && <span className="text-red font-semibold">Email is required</span>}
       {errors.email?.type === "pattern" && (
@@ -151,9 +117,8 @@ const RegisterForm = () => {
         name="password"
         placeholder="Password"
         {...register("password", { required: true, pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/ })}
-        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-          errors.password ? "border-red focus:border-red focus:outline-red" : ""
-        }`}
+        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.password ? "border-red focus:border-red focus:outline-red" : ""
+          }`}
       />
       {errors.password?.type === "required" && <span className="text-red font-semibold">Password is required</span>}
       {errors.password?.type === "pattern" && (
@@ -164,9 +129,8 @@ const RegisterForm = () => {
         name="photoURL"
         placeholder="photo url"
         {...register("photoURL")}
-        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-          errors.url ? "border-red focus:border-red focus:outline-red" : ""
-        }`}
+        className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.url ? "border-red focus:border-red focus:outline-red" : ""
+          }`}
       />
       {errors.photoURL?.type === "required" && <span className="text-red font-semibold">PhotoURL is required</span>}
 
@@ -186,7 +150,7 @@ const RegisterForm = () => {
           .
         </p>
       </div>
-    
+
     </form>
   );
 };
