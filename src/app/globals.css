@@ -68,19 +68,23 @@
 } */
 
 .chatui {
+  background-color: red;
+  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  padding: 0;
 }
 .container {
+  
   border: 1px solid white;
-  border-radius: 1rem;
-  width: 85%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   display: flex;
   overflow: hidden;
+
 }
 .massage-sidebar {
   background-color: #3c3b3b;
