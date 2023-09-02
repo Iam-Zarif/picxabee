@@ -6,7 +6,7 @@ const SigninPage = () => {
 
     return (
         <>
-            <div className='my-container h-[76vh] flex flex-col justify-center items-center '>
+            <div className='my-container h-[100vh] flex flex-col justify-center items-center '>
                 <div className="grid grid-cols-3 w-full">
                     <div></div>
                     <div className="w-3/4">

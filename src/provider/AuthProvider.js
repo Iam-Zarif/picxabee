@@ -65,7 +65,6 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     logout,
   };
-  
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
