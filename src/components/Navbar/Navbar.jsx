@@ -28,8 +28,9 @@ import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
-import SearchSection from "./search";
+import SearchSection from "./SearchSection";
 import Link from "next/link";
+import ThemeButton from "./ThemeButton";
 
 ;
 const Navbar = () => {
@@ -147,6 +148,7 @@ const Navbar = () => {
                   <AiOutlineUser className="inline" /> User Full Name
                 </p>
                 <div className="divider"></div>
+                <ThemeButton/>
                <Link href ={"/Profile"}>
                <p className="  flex items-center group   hover:ml-2 transition-all">
                   <AiOutlineProfile size={28} className="inline mr-2 rounded-full " />
@@ -182,7 +184,7 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
       {/* <Container> */}
-      <div className="fixed z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+      <div className="fixed   z-50 mr-auto left-0 shadow-md shadow-slate-300  w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start group">
             {/* responsive dropdown */}
@@ -199,7 +201,7 @@ const Navbar = () => {
 
           <div className="hidden lg:block navbar-center   mx-auto relative">
             <SearchSection />
-            <BsSearch className="absolute left-14 top-3" size={22}/>
+            <BsSearch className="absolute left-14 top-4" size={20}/>
           </div>
         </div>
 

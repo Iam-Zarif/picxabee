@@ -106,3 +106,40 @@
 .fade-in-out {
   animation: fadeInOut 2s ease-in-out infinite;
 }
+
+
+
+.link-item {
+    
+  transition-duration: 1000ms;
+}
+
+.show .link-item {
+  
+  opacity: 1;
+}
+.menu-icon {
+  transition: transform 0.3s ease; /* Adjust the duration (0.3s) for the animation speed */
+}
+
+.layout{
+  background: rgb(40,74,235);
+background: linear-gradient(90deg,
+rgba(40,74,235,0.6979166666666667) 4%,
+rgba(4,131,238,0.5130427170868348) 47%,
+ rgba(169,63,217,0.8015581232492998) 100%);
+}
+
+.placeholder-white::placeholder {
+  color: white;
+}
+
+.name{
+  font-family:Segoe Print;
+}
+/* body{
+  background-color: #00DBDE;
+  background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+  
+
+} */

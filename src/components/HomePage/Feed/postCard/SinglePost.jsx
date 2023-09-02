@@ -14,7 +14,10 @@ const SinglePost = ({ post }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { _id: id } = post;
 
-	// const comments = comments[]
+	const date1 = new Date(post?.createdAt);
+	const options = {  timeStyle: 'short', dateStyle: 'medium'};
+	const formattedDateTime = date1.toLocaleString(undefined, options);
+	
 	function closeModal() {
 		setIsOpen(false);
 	}
@@ -37,7 +40,7 @@ const SinglePost = ({ post }) => {
 		};
 		console.log(reaction);
 
-		fetch('https://picxabee.vercel.app/api/posts', {
+		fetch('https://feed-silk.vercel.app/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
@@ -69,7 +72,10 @@ const SinglePost = ({ post }) => {
 						alt="Picture of the author"
 						className="rounded-full h-12 w-12 object-cover border p-1 mr-3"
 					/>
-					<p className="font-bold capitalize">{post?.author?.name}</p>
+					<div>
+						<p className="font-bold capitalize">{post?.author?.name}</p>
+						<p className="font-normal text-sm ">{formattedDateTime}</p>
+					</div>
 				</div>
 				<button onClick={openModal}>
 					<BsThreeDots
@@ -84,15 +90,15 @@ const SinglePost = ({ post }) => {
 					isOpen={isOpen}
 				></EditOption>
 			</div>
-			<h1 className="min-h-64 px-5 py-3">{post?.content}</h1>
-
+			{post?.content && <h1 className="px-5 py-3">{post?.content}</h1>}
+			{/* <h1 className="min-h-64 px-5 py-3">{post?.content}</h1> */}
 			{post?.image && (
 				<Image
 					src={post?.image}
-					width={815}
-					height={400}
+					width={600}
+					height={500}
 					alt="Posted Image"
-					className="object-contain border w-full"
+					className="object-contain border-none w-full h-[500px]" //object-contain
 				/>
 			)}
 			<div className="flex justify-end px-5 py-3 ">
