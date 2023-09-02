@@ -1,14 +1,8 @@
 'use client';
 import useSWR from 'swr';
 
-<<<<<<< HEAD
-
-import Loading from '../activities/loading';
-import UserRow from '@/components/Dashboard/Users/UserRow';
-=======
 import Loading from '../activities/loading';
 import UserRow from '@/components/Dashboard/users/UserRow';
->>>>>>> 42b05337efbee1e48180e09f796026944e6bf6c1
 
 const Users = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -20,10 +14,7 @@ const Users = () => {
 		<Loading/>
 	</div>);
 	return (
-<<<<<<< HEAD
 		
-=======
->>>>>>> 42b05337efbee1e48180e09f796026944e6bf6c1
 		<div className="w-10/12 mb-60 ml-auto mr-28 glass px-7 pt-8 mt-20 rounded-2xl z-0">
 			<div className="border mb-6 w-3/12 text-2xl z-0	 p-2 rounded-md ">
 				<h1 className="">Total User: {users?.length}</h1>
