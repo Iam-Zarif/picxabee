@@ -7,8 +7,9 @@ const Messages = () => {
   return (
     <div className="chatui">
         <div className="container">
-            <Sidebar/>
+            <Sidebar />
             <div className="rightside">
+
                 <MessagesSideSectionRightNavbar />
                 <Chat />
             </div>

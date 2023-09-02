@@ -4,7 +4,6 @@ import { db, storage } from "@/firebase/firebase.config";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { startTransition, useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -18,6 +17,9 @@ const RegisterForm = () => {
   const {
     register,
     handleSubmit,
+    watch,
+    reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -28,7 +30,7 @@ const RegisterForm = () => {
   const onSubmit = async (data) => {
     // const { name, email, password, photo } = data;
     const { name, email, password, photoURL } = data;
-    console.log(data);
+    console.log(data)
     const toastId = toast.loading("Loading...");
     // setLoading(true);
 
@@ -105,7 +107,7 @@ const RegisterForm = () => {
           }
         }
       );
-    } catch (error) {
+    } catch (err) {
       //   console.log("Signup Failed", err.code);
       toast.dismiss(toastId);
       toast.error(error.message || "User not signed in");
@@ -159,34 +161,22 @@ const RegisterForm = () => {
       {errors.password?.type === "pattern" && (
         <span className="text-red font-semibold">Password will be 1 number, 1 Capital and 1 special character </span>
       )}
+
+      {/* ImageURL Input */}
       <input
-        type="url"
-        name="photoURL"
-        placeholder="photo url"
-        {...register("photoURL")}
+        type="file"
+        // onChange={upoloadImage}
+        name="photo"
+        placeholder="Photo Url"
+        {...register("photo")}
         className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-          errors.url ? "border-red focus:border-red focus:outline-red" : ""
+          errors.password ? "border-red focus:border-red focus:outline-red" : ""
         }`}
       />
-      {errors.photoURL?.type === "required" && <span className="text-red font-semibold">PhotoURL is required</span>}
+      {errors.photo?.type === "required" && <span className="text-red font-semibold">Photo is required</span>}
 
-      <div class="col-span-6 mt-5 sm:flex sm:items-center sm:gap-4">
-        <button
-          type="submit"
-          class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-        >
-          Create an account
-        </button>
-
-        <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-          Already have an account?
-          <Link href="/auth/signin" class="text-gray-700 underline">
-            Log in
-          </Link>
-          .
-        </p>
-      </div>
-    
+      {/* Submit */}
+      <input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer mt-3" />
     </form>
   );
 };
