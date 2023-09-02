@@ -154,7 +154,7 @@ const CreatePost = () => {
               {...register("text")}
             ></textarea>
 
-<div className="flex justify-between mt-6 items-center">
+            <div className="flex justify-between mt-6 items-center">
               <div className="flex gap-x-2">
                 <label class="custom-file-upload">
                   {/* <input type="image" /> */}
@@ -164,20 +164,19 @@ const CreatePost = () => {
                   <input type="file" id="image-input" accept="image/*" {...register("image")} />
                   <IoIosAttach size={28} />
                 </label>
-                
               </div>
               <div className="flex items-center gap-x-4">
-              <div className="flex justify-end mt-5">
-              <select className="select  select-bordered rounded-none">
-                  <option selected>Public</option>
-                  <option>Private</option>
-                </select>
-            <button className="btn btn-info rounded-none font-semibold lg:ml-5">Create Post</button>
-            <div className="form-control w-full max-w-xs flex ">
-                
-              </div>
-          </div>
-                <BsEmojiSmile size={22} className="mt-5"/>
+                <div className="flex justify-end mt-5">
+                  <select className="select  select-bordered rounded-none">
+                    <option selected>Public</option>
+                    <option>Private</option>
+                  </select>
+                  <button className="btn btn-info rounded-none font-semibold lg:ml-5">
+                    Create Post
+                  </button>
+                  <div className="form-control w-full max-w-xs flex "></div>
+                </div>
+                <BsEmojiSmile size={22} className="mt-5" />
               </div>
             </div>
           </div>
