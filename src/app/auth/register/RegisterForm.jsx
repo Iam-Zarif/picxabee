@@ -56,7 +56,7 @@ const RegisterForm = () => {
               photoURL: downloadURL,
             });
 
-            await fetch("http://localhost:3000/api/users", {
+            await fetch("/api/users", {
               method: "POST",
               body: JSON.stringify({
                 name,
