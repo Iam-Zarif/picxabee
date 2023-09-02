@@ -21,8 +21,8 @@ const SearchSection = () => {
 
   return (
     <div >
-      <div className=" flex items-center">
- <div>
+      <div className="relative flex items-center">
+ <div className="">
  <input
     value={searchText}
     onChange={(e) => setSearchText(e.target.value)}
@@ -30,11 +30,11 @@ const SearchSection = () => {
     name="search"
     id="search"
     placeholder="Search"
-    className="mx-10 pl-12 w-[200px] lg:w-full rounded-2xl pr-2 py-3 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
+    className="mx-10 pl-12 w-[200px] lg:w-fit rounded-2xl pr-2 py-3 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
   />
   
  </div>
-      <button className="btn  outline" onClick={()=>handleSearch(noSpaceText.toLowerCase())}>
+      <button className="text-sm  absolute right-12 glass rounded-xl p-2 bg-slate-600 text-white font-bold" onClick={()=>handleSearch(noSpaceText.toLowerCase())}>
         Search
       </button>
 </div>

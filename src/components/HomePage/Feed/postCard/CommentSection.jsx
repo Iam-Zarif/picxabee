@@ -21,7 +21,7 @@ const CommentSection = ({ id, open }) => {
 		};
 		console.log(comment);
 
-		fetch('https://picxabee.vercel.app/api/posts', {
+		fetch('https://feed-silk.vercel.app/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',

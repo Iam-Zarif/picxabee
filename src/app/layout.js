@@ -6,6 +6,7 @@ import Providers from "@/provider";
 import Authprovider2 from "@/provider/AuthProvider2";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ThemeProviders from "./ThemeProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +25,12 @@ export default function RootLayout({ children }) {
         <Providers>
           <Authprovider2>
             <ChatContextProvider>
-              <Navbar />
-              <div className="py-28">{children}</div>
+             <ThemeProviders>
+             <div className="">
+             <Navbar />
+              <div className="py-28 dark:bg-slate-400 dark:text-white">{children}</div>
+             </div>
+             </ThemeProviders>
             </ChatContextProvider>
           </Authprovider2>
         </Providers>
