@@ -4,7 +4,7 @@ import ChatSearch from "./ChatSearch";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
+    <div className="massage-sidebar">
         <ChatNavbar/>
         <ChatSearch />
         <ChatChats />

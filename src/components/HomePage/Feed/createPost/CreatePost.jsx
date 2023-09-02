@@ -82,7 +82,6 @@ const CreatePost = () => {
         if (res.ok) {
           alert("Post Create Successful");
           router.refresh();
-          reset();
         } else {
           throw new Error("Failed to create post");
         }
@@ -122,7 +121,6 @@ const CreatePost = () => {
             if (res.ok) {
               alert("Success");
               router.refresh();
-              reset();
             } else {
               throw new Error("Failed to fetch");
             }
@@ -150,8 +148,6 @@ const CreatePost = () => {
               onClick={handleClick}
               className="w-full resize-none p-3 text-md rounded-md focus:outline-none focus:shadow-lg"
               placeholder="What's Your Mind"
-              name="text"
-              {...register("text")}
             ></textarea>
 
             <div className="flex justify-between mt-6 items-center">
