@@ -8,7 +8,7 @@ import fatin from "../../../public/fatin.PNG"
 import hridoy from "../../../public/rezwan.PNG"
 import jahid from "../../../public/jahid.PNG"
 import rezon from "../../../public/rezwan.PNG"
-import tuhin from "../../../public/tuhin.PNG"
+import tuhin from "../../../public/Tuhin.PNG"
 
 
 
