@@ -5,10 +5,13 @@ import useSWR from 'swr';
 import Loading from './activities/loading';
 import nishat from "../../../public/nishat.PNG"
 import fatin from "../../../public/fatin.PNG"
-import hridoy from '../../../public/fatin.PNG';
+import hridoy from "../../../public/rezwan.PNG"
 import jahid from "../../../public/jahid.PNG"
 import rezon from "../../../public/rezwan.PNG"
 import tuhin from "../../../public/Tuhin.PNG"
+
+
+
 import Image from 'next/image';
 
 const DashboardPage = () => {
