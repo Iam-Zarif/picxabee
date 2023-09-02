@@ -1,7 +1,6 @@
 'use client';
 import SinglePost from './SinglePost';
 import useSWR from 'swr';
-
 // async function getData() {
 // 	const res = await fetch('https://feed-silk.vercel.app/api/posts', {
 // 		cache: 'no-store',
