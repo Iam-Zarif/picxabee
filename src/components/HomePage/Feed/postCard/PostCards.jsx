@@ -3,7 +3,7 @@ import SinglePost from './SinglePost';
 import useSWR from 'swr';
 
 // async function getData() {
-// 	const res = await fetch('https://picxabee.vercel.app/api/posts', {
+// 	const res = await fetch('https://feed-silk.vercel.app/api/posts', {
 // 		cache: 'no-store',
 // 	});
 // 	if (!res.ok) {
@@ -30,7 +30,7 @@ const PostCards = () => {
 
 	return (
 		<>
-			<div className="pb-28 pt-12 mx-auto w-full h-screen">
+			<div className="pb-28 pt-12 mx-auto w-full">
 				{posts &&
 					posts
 						?.reverse()

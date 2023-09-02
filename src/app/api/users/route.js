@@ -2,6 +2,7 @@ import User from "@/models/User"
 import connect from "@/utils/db"
 import { NextResponse } from "next/server"
 
+
 export const GET = async () => {
 
     try {
@@ -17,7 +18,6 @@ export const GET = async () => {
 export const POST = async (request) => {
 
     const body = await request.json()
-
     const newUser = new User(body)
 
     try {
