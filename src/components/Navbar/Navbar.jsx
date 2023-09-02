@@ -25,7 +25,11 @@ import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
+import SearchSection from "./SearchSection";
 import Link from "next/link";
+import ThemeButton from "./ThemeButton";
+
+;
 const Navbar = () => {
   const route = useRouter();
   
@@ -183,15 +187,14 @@ const Navbar = () => {
                   <AiOutlineUser className="inline" /> User Full Name
                 </p>
                 <div className="divider"></div>
-                <p className="  flex items-center group   hover:ml-2 transition-all">
-                  <AiOutlineProfile
-                    size={28}
-                    className="inline mr-2 rounded-full "
-                  />
+                <ThemeButton/>
+               <Link href ={"/Profile"}>
+               <p className="  flex items-center group   hover:ml-2 transition-all">
+                  <AiOutlineProfile size={28} className="inline mr-2 rounded-full " />
                   Profile
                   {/* profile er vitore change password */}
                   <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
-                </p>
+                </p></Link>
                 <p className=" flex items-center group  hover:ml-2 transition-all">
                   <IoSettingsOutline size={28} className="inline mr-2" />
                   Settings
@@ -219,7 +222,7 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0">
       {/* <Container> */}
-      <div className="fixed z-50   mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-slate-100   lg:pb-0  items-center ">
+      <div className="fixed   z-50 mr-auto left-0 shadow-md shadow-slate-300  w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start group">
             {/* responsive dropdown */}
@@ -234,46 +237,9 @@ const Navbar = () => {
 
           {/* search box */}
 
-          <div className="navbar-center flex relative mx-auto">
-            <input
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)} // Update this line
-              onKeyPress={handleKeyPress}
-              type="text"
-              name="search"
-              id="search"
-              placeholder="Search"
-              className="mx-10 hidden lg:pl-12 pl-2 w-[200px] lg:w-full  lg:block  lg:ml-0 rounded-2xl  pr-2 py-2 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
-            />
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 absolute lg:left-5 hidden lg:block top-3 text-gray-500 z-10"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-            {/* {searchActive && (
-  <button
-    className="btn"
-    onClick={handleSearch} 
-  >
-    Search
-  </button>
-)} */}
-
-            <button className="btn hidden lg:block" onClick={handleSearch}>
-              Search
-            </button>
-
-            
+          <div className="hidden lg:block navbar-center   mx-auto relative">
+            <SearchSection />
+            <BsSearch className="absolute left-14 top-4" size={20}/>
           </div>
         </div>
 
