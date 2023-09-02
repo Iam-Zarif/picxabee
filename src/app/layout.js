@@ -6,6 +6,7 @@ import Providers from "@/provider";
 import Authprovider2 from "@/provider/AuthProvider2";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ThemeProviders from "./ThemeProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,23 +18,26 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-		<html lang="en">
-			<head>
-				<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-			</head>
-			<body className={`${inter.className}`}> 
-				<Providers>
-					<Authprovider2>
-						<ChatContextProvider>
-							{/* <Navbar /> */}
-							{/* <div className="py-28">{children}</div> */}
-							<div>{children}</div>
-						</ChatContextProvider>
-					</Authprovider2>
-				</Providers>
-				<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-				<script>AOS.init();</script>
-			</body>
-		</html>
-	);
+    <html lang="en">
+      <head>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+      </head>
+      <body className={`${inter.className} mx-5`}>
+        <Providers>
+          <Authprovider2>
+            <ChatContextProvider>
+             <ThemeProviders>
+             <div className="">
+             {/* <Navbar /> */}
+              <div className=" dark:bg-slate-400 dark:text-white">{children}</div>
+             </div>
+             </ThemeProviders>
+            </ChatContextProvider>
+          </Authprovider2>
+        </Providers>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>AOS.init();</script>
+      </body>
+    </html>
+  );
 }
