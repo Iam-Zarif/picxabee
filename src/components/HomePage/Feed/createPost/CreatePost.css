@@ -14,3 +14,10 @@
     outline: none;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   }
+
+  input[type="file"]{
+    display: none;
+  }
+  label{
+    cursor: pointer;
+}
