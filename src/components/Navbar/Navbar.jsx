@@ -144,8 +144,8 @@ const Navbar = () => {
           </AiOutlineUser>
 
           <Drawer open={isOpen} onClose={toggleDrawer} direction="right" className="bla bla bla ">
-            <div>
-              <div className="lg:text-lg flex flex-col gap-5 w-4/5 mx-auto mt-12   rounded-xl ">
+            <div className="dark:bg-zinc-700 min-h-screen">
+              <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
                 <p className=" ">
                   <AiOutlineUser className="inline" /> User Full Name
                 </p>
@@ -193,7 +193,7 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
       {/* <Container> */}
-      <div className="fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+      <div className=" fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start group">
             {/* responsive dropdown */}
