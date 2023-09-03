@@ -15,7 +15,7 @@ export default function MyModal({ id, openModal, closeModal, isOpen }) {
 
 		if (confirmed) {
 			const res = await fetch(
-				`https://feed-silk.vercel.app/api/posts?id=${id}`,
+				`/api/posts?id=${id}`,
 				{
 					method: 'DELETE',
 				}
