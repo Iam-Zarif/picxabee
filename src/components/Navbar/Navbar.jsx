@@ -31,6 +31,7 @@ import { useRouter } from "next/navigation";
 import SearchSection from "./SearchSection";
 import Link from "next/link";
 import ThemeButton from "./ThemeButton";
+import { TbLayoutDashboard } from "react-icons/tb";
 
 ;
 const Navbar = () => {
@@ -172,6 +173,13 @@ const Navbar = () => {
                   Log Out
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
+               <Link href="/dashboard">
+               <p className=" flex items-center group  hover:ml-2 transition-all">
+                  <TbLayoutDashboard size={28} className="inline mr-2" />
+                  Dashboard
+                  <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                </p>
+               </Link>
                 <div className="divider"></div>
               </div>
             </div>
