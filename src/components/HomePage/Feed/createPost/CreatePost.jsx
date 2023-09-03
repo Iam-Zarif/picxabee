@@ -88,7 +88,7 @@ const CreatePost = () => {
       privacy,
     };
 
-    const url = "http://localhost:3000/api/posts";
+    const url = "/api/posts";
 
     if (loading) {
       return;
@@ -116,7 +116,7 @@ const CreatePost = () => {
   return (
     <>
       {user && (
-        <section className="relative bg-[#D2D2D2] p-4 bg-opacity-75 shadow-sm w-[90%] mx-auto mt-10">
+        <section className="relative bg-[#D2D2D2] p-4 bg-opacity-75 shadow-sm  mx-auto mt-10 rounded-md">
           <div className="">
             <h1 className="text-center font-semibold text-lg py-2">Create a Post</h1>
           </div>
@@ -181,7 +181,7 @@ const CreatePost = () => {
                       </select>
                     </div>
 
-                    <button className="btn btn-info rounded-none font-semibold lg:ml-5">
+                    <button className="btn btn-info rounded-none font-semibold lg:ml-5" disabled={loading}>
                       Create Post
                     </button>
                     <div className="form-control w-full max-w-xs flex "></div>
