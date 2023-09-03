@@ -21,7 +21,7 @@ const CommentSection = ({ id, open }) => {
 		};
 		console.log(comment);
 
-		fetch('https://feed-silk.vercel.app/api/posts', {
+		fetch('/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
