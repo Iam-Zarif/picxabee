@@ -49,7 +49,7 @@ export const PATCH = async (request) => {
 
 
 	try {
-		const { id, newComment, comment,  reaction } = await request.json();
+		const { newComment } = await request.json();
 		console.log(newComment);
 		// const {comment} = await request.json();
 		console.log(comment);
