@@ -44,12 +44,9 @@
     background-color: #0056b3;
 }
 
-input[type="file"] {
+/* input[type="image"] {
   display: none;
-}
-input[type="image"] {
-  display: none;
-}
+} */
 
 .custom-file-upload {
   display: inline-block;
