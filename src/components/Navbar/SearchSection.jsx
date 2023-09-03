@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-
-
+import { BsSearch } from "react-icons/bs";
+import "../Navbar/Navbar.module.css"
 const SearchSection = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
