@@ -185,4 +185,14 @@ background: linear-gradient(90deg,
     color: white;
   }
 
+  button{
+    background-color: #5c469c7e;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #5c469c95;
+  }
   /* Dashboard  */
+  /* body{
+    background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,0.23853291316526615) 0%, rgba(241,7,118,0.20211834733893552) 100%);
+  } */
