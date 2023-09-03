@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
              <ThemeProviders>
              <div className="">
              {/* <Navbar /> */}
-              <div className=" dark:bg-slate-400 dark:text-white">{children}</div>
+              <div className="dark:text-white dark:bg-zinc-800">{children}</div>
              </div>
              </ThemeProviders>
             </ChatContextProvider>
