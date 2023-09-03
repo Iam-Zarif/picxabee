@@ -172,7 +172,7 @@ const CreatePost = () => {
 
                     <div className="form-control w-full ">
                       <select
-                        className="select select-bordered rounded-none"
+                        className="select select-bordered rounded-md"
                         value={privacy}
                         onChange={(e) => setPrivacy(e.target.value)}
                       >
@@ -181,7 +181,7 @@ const CreatePost = () => {
                       </select>
                     </div>
 
-                    <button className="btn btn-info rounded-none font-semibold lg:ml-5" disabled={loading}>
+                    <button className="btn btn-info rounded-md font-semibold lg:ml-5 capitalize" disabled={loading}>
                       Create Post
                     </button>
                     <div className="form-control w-full max-w-xs flex "></div>

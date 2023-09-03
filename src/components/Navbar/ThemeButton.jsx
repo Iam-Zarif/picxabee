@@ -1,6 +1,7 @@
 "use client"
 import { useTheme } from 'next-themes'
 import React from 'react'
+import { HiLightBulb, HiOutlineLightBulb } from 'react-icons/hi2';
 
 const ThemeButton = () => {
     const {theme, setTheme} = useTheme();
@@ -16,7 +17,7 @@ const ThemeButton = () => {
         transition-all
       `}
     >
-      {theme === "dark" ? "Light Theme" : "Dark Theme"}
+      {theme === "dark" ? <div className='flex items-center gap-2'><HiOutlineLightBulb /><span>Light Theme</span></div> : <div className='flex items-center gap-2'><HiLightBulb/><span>Dark Theme</span></div>}
     </button>
   )
 }

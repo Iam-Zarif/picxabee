@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar/Navbar";
 
 export default function NavLayout({children}) {
 	return (
-		<section>
+		<section className="">
 			{/* Include shared UI here e.g. a header or sidebar */}
 			<Navbar></Navbar>
 			<div className="py-28 mx-5 dark:text-white">{children}</div>

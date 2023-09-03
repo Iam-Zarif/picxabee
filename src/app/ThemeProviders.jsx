@@ -3,7 +3,7 @@ import React from 'react'
 import { ThemeProvider } from 'next-themes'
 const ThemeProviders = ({children}) => {
   return (
-    <ThemeProvider>{children}</ThemeProvider>
+    <ThemeProvider attribute='class'>{children}</ThemeProvider>
   )
 }
 
