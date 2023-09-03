@@ -8,7 +8,7 @@ module.exports = {
   darkMode: "class",
   theme: {
     // colors: {
-    //   "primary-color": '#349999',
+    //   "primary-color": '#2E4F6B',
     //   "secondary-color": '#A7C5C5',
     //   "white": "#fff",
     //   "black": "#111",

@@ -34,7 +34,7 @@ const SearchSection = () => {
   />
   
  </div>
-      <button className="text-sm  absolute right-12 glass rounded-xl p-2 bg-slate-600 text-white font-bold" onClick={()=>handleSearch(noSpaceText.toLowerCase())}>
+      <button className="text-sm  absolute right-10  search-primary hover px-4 py-3 hover:text-white font-bold rounded-xl border h-full " onClick={()=>handleSearch(noSpaceText.toLowerCase())}>
         Search
       </button>
 </div>
