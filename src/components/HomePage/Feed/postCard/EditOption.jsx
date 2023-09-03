@@ -6,10 +6,9 @@ import { Fragment, useState } from 'react';
 
 export default function MyModal({ id, openModal, closeModal, isOpen }) {
 	const router = useRouter();
-	console.log(id);
+	// console.log(id);
 
 	const removePost = async (id) => {
-		console.log(id);
 
 		const confirmed = confirm('Are you sure?');
 

@@ -1,33 +1,36 @@
-import Post from "@/models/Post";
-import connect from "@/utils/db";
-import mongoose from "mongoose";
-import { revalidateTag } from "next/cache";
-import { NextResponse } from "next/server";
+import useAuth from '@/hooks/useAuth';
+import Post from '@/models/Post';
+import connect from '@/utils/db';
+import mongoose from 'mongoose';
+import { revalidateTag } from 'next/cache';
+import { NextResponse } from 'next/server';
+
+
+
+
 
 export const GET = async () => {
-  try {
-    await connect();
-    const posts = await Post.find();
+	try {
+		await connect();
+		const posts = await Post.find();
 
-    return new NextResponse(JSON.stringify(posts), { status: 200 });
-  } catch (err) {
-    return new NextResponse("Database Error", { status: 500 });
-  }
+		return new NextResponse(JSON.stringify(posts), { status: 200 });
+	} catch (err) {
+		return new NextResponse('Database Error', { status: 500 });
+	}
 };
 
 export async function POST(request) {
-  try {
-    const post = await request.json();
-    await connect();
-    await Post.create(post);
-    return NextResponse.json({ message: "Post Created" }, { status: 201 });
-  } catch (error) {
-    console.log(error.name, error.message);
-    return NextResponse.json({ error: error.message });
-  }
+	try {
+		const post = await request.json();
+		await connect();
+		await Post.create(post);
+		return NextResponse.json({ message: 'Post Created' }, { status: 201 });
+	} catch (error) {
+		console.log(error.name, error.message);
+		return NextResponse.json({ error: error.message });
+	}
 }
-
-
 
 //nishat
 export const DELETE = async (request) => {
@@ -43,8 +46,13 @@ export const DELETE = async (request) => {
 };
 
 export const PATCH = async (request) => {
+
+
 	try {
-		const { id, comment, reaction } = await request.json();
+		const { id, newComment, comment,  reaction } = await request.json();
+		console.log(newComment);
+		// const {comment} = await request.json();
+		console.log(comment);
 		await connect();
 
 		let updatedPost;
@@ -54,15 +62,16 @@ export const PATCH = async (request) => {
 				id,
 				{
 					$push: {
-						comments: {
-							author: {
-								email: 'tasnim@gmail.com',
-								name: 'Nishat',
-								profile_picture:
-									'https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg',
-							},
-							comment,
-						},
+						comments: newComment
+						// {
+						// 	author: {
+						// 		email: 'tasnim@gmail.com',
+						// 		name: 'Nishat',
+						// 		profile_picture:
+						// 			'https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg',
+						// 	},
+						// 	comment,
+						// },
 					},
 				},
 				{

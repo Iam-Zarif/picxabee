@@ -15,7 +15,7 @@ const SinglePost = ({ post }) => {
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const {user} = useAuth(AuthContext)
-	console.log(user)
+	// console.log(user)
 
 	const { _id: id } = post;
 
