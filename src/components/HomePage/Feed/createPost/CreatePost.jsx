@@ -12,7 +12,7 @@ import useAuth from "@/hooks/useAuth";
 const CreatePost = () => {
   const router = useRouter();
   const { user } = useAuth();
-  console.log(user?.photoURL);
+  
   const [imageURL, setImageURL] = useState("");
   const [privacy, setPrivacy] = useState("public");
   const [loading, setLoading] = useState(false);
