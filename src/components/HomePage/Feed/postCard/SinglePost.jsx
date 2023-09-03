@@ -7,11 +7,16 @@ import { PiShareFat } from 'react-icons/pi';
 import CommentSection from './CommentSection';
 import EditOption from './EditOption';
 import SingleComment from './SingleComment';
+import useAuth from '@/hooks/useAuth';
+import AuthContext from '@/context/AuthContext';
 
 const SinglePost = ({ post }) => {
 	const [react, setReact] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	const {user} = useAuth(AuthContext)
+	console.log(user)
+
 	const { _id: id } = post;
 
 	const date1 = new Date(post?.createdAt);
