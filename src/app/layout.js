@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       </head>
-      <body className={`${inter.className} mx-5`}>
+      <body className={`${inter.className}`}>
         <Providers>
           <Authprovider2>
             <ChatContextProvider>
