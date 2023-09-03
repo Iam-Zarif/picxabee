@@ -202,7 +202,7 @@ const Navbar = () => {
             <div  className=" logo normal-case text-xl group-hover:animate-pulse lg:text-3xl hidden lg:block lg:mb-5">
               {" "}
               <Link href={"/"}><span className="text-5xl">P</span>icxa
-              <span className="  ">bee</span></Link>
+              <span className="bee  ">bee</span></Link>
             </div>
           </div>
 
