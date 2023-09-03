@@ -104,9 +104,10 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <a className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
+        <Link href="/">
+        <p className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
           <GoHome className="text-2xl lg:text-2xl " />
-        </a>
+        </p></Link>
       </li>
       <li>
         <a className="hover:bg-transparent hover:scale-125 transform transition-transform ">
@@ -150,7 +151,7 @@ const Navbar = () => {
                 </p>
                 <div className="divider"></div>
                 <ThemeButton/>
-               <Link href ={"/Profile"}>
+               <Link href ="/Profile">
                <p className="  flex items-center group   hover:ml-2 transition-all">
                   <AiOutlineProfile size={28} className="inline mr-2 rounded-full " />
                   Profile
