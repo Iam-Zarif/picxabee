@@ -1,16 +1,15 @@
 "use client";
-import Image from "next/image";
-import avatar from "/public/jahid.PNG";
+
+// import avatar from "/public/jahid.PNG";
 import Link from "next/link";
-// import AuthContext from "@/context/AuthContext";
-// import { useContext } from "react";
 import useAuth from "@/hooks/useAuth";
+import Image from "next/image";
 
 const MiniProfile = () => {
 
-    // const { user, logout } = useContext(AuthContext);
-    const { createUser, updateUser, user, setLoading, logout } = useAuth()
-    console.log("user asee 14", user)
+
+    const { user, logout } = useAuth()
+    console.log("user asee ", user)
 
     const handleLogOut = () => {
         logout();
@@ -18,28 +17,18 @@ const MiniProfile = () => {
     };
     return (
         <div className="flex items-center justify-between ml-10">
-      <div>
 
-      <Link href="/Profile"> <Image height={16} width={16} className="h-16 w-16 rounded-full p-[2px]" src={avatar} alt="" /></Link>
-      {/* {
-                user && (
-                    <>  <Link href="/Profile"> <Image height={16} width={16} className="h-16 w-16 rounded-full p-[2px]" src={user?.photoURL} alt="" /></Link></>
-                )
-            } */}
+            {user ?
 
-            {/* {
-                !user && (
-                    <>  <Link href="/Profile"> <Image height={16} width={16} className=" rounded-full p-[2px]" src={avatar} alt="" /></Link></>
-                )
-            } */}
-      </div>
+                <Link href="/Profile"><Image src={user?.photoURL || "https://i.ibb.co/K5Xd8XR/bee1.png"} alt="Profile Pic" height={70} width={70} className="rounded-full p-[2px]" /></Link>
+                : <><Image src={user?.photoURL || "https://i.ibb.co/K5Xd8XR/bee1.png"} alt="Profile Pic" height={70} width={70} className="rounded-full p-[2px]" /></>
+            }
 
-            {/* {  user ? <>  <Link href="/Profile"> <Image className="w-16 h-16 rounded-full p-[2px]" src={user?.photoURL} alt="" /></Link></> : <>  <Link href="/Profile"> <Image className="w-16 h-16 rounded-full p-[2px]" src={avatar} alt="" /></Link></>
-          
-         } */}
+            {/* <Link href="/Profile"> <Image height={16} width={16} className="h-16 w-16 rounded-full p-[2px]" src={"https://i.ibb.co/K5Xd8XR/bee1.png"} alt="profile pic" /></Link> */}
+
 
             <div className="flex-1 mx-4">
-              {!user ? <h2 className="font-bold">Jahid Howladar</h2> : <h2 className="font-bold">{user?.displayName}</h2>}
+                {!user ? <h2 className="font-bold">Jahid Howladar</h2> : <h2 className="font-bold">{user?.displayName}</h2>}
                 <h2 className="text-sm text-gray-400">DevDynamos</h2>
             </div>
             {

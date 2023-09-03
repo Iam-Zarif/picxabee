@@ -35,6 +35,7 @@ const postSchema = new Schema(
 		image: String,
 		reactions: [reactionSchema], // Array of user IDs who liked the post
 		comments: [commentSchema],
+		privacy: String
 	},
 	{ timestamps: true }
 );
