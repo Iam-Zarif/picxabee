@@ -1,8 +1,11 @@
+import useAuth from '@/hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { AiOutlineSend } from 'react-icons/ai';
 
 const CommentSection = ({ id, open }) => {
-	// console.log(id);
+	const { user } = useAuth();
+	console.log(user?.email);
+
 	const { register, handleSubmit, setValue, watch, reset } = useForm();
 	const watchComment = watch('comment', '');
 
@@ -11,22 +14,24 @@ const CommentSection = ({ id, open }) => {
 			reset();
 		}
 		console.log(data);
-		const comment = {
+		const newComment = {
 			id,
 			author: {
-				name: '',
-				profile_picture: '',
+				email: user?.email,
+				name: user?.displayName,
+				profile_picture: user?.photoURL,
 			},
+			
 			comment: data.comment,
 		};
-		console.log(comment);
+		console.log(newComment);
 
-		fetch('https://feed-silk.vercel.app/api/posts', {
+		fetch('/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
 			},
-			body: JSON.stringify(comment),
+			body: JSON.stringify(newComment),
 		})
 			.then((res) => {
 				if (!res.ok) {

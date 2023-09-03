@@ -24,6 +24,8 @@ const RegisterForm = () => {
 		try {
 			const res = await createUser(email, password);
 			const storageRef = ref(storage, name);
+			
+			// rezon vai bolche j photoURL ta imgbb er Url holeo hbe 
 
 			const response = await fetch(photoURL);
 			const blob = await response.blob();

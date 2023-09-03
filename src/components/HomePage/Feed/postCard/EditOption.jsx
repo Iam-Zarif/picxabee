@@ -6,16 +6,15 @@ import { Fragment, useState } from 'react';
 
 export default function MyModal({ id, openModal, closeModal, isOpen }) {
 	const router = useRouter();
-	console.log(id);
+	// console.log(id);
 
 	const removePost = async (id) => {
-		console.log(id);
 
 		const confirmed = confirm('Are you sure?');
 
 		if (confirmed) {
 			const res = await fetch(
-				`https://feed-silk.vercel.app/api/posts?id=${id}`,
+				`/api/posts?id=${id}`,
 				{
 					method: 'DELETE',
 				}
