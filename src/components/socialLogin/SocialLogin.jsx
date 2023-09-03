@@ -18,8 +18,8 @@ const SocialLogin = () => {
 
     return (
         <div className="flex gap-3">
-            <button onClick={handlerGoogleSignin} className="bg-red bg-opacity-80 w-1/2 text-white p-3 rounded-md">Google</button>
-            <button className="bg-blue w-1/2 text-white p-3 rounded-md">Something</button>
+            <button onClick={handlerGoogleSignin} className="bg-red-500 bg-opacity-80 w-1/2 text-white p-3 rounded-md">Google</button>
+            <button className="bg-blue-500 w-1/2 text-white p-3 rounded-md">Something</button>
         </div>
     );
 };
