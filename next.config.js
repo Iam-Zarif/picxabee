@@ -3,7 +3,8 @@ const nextConfig = {
     images: {
 		domains: [
 			'i.ibb.co',
-			'www.example.com'	
+			'www.example.com',
+			'firebasestorage.googleapis.com'	
 	], // Add your domains here
 	},
 }
