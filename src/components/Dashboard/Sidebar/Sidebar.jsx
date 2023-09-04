@@ -54,7 +54,7 @@ const toggleLinks = () => {
   size={30}
   onClick={toggleLinks}
   style={{
-    transform: rotate(${isRotated ? 180 : 0}deg), // Rotate based on isRotated state
+    transform: `rotate(${isRotated ? 180 : 0}deg)`, // Rotate based on isRotated state
   }}
 />
         <ul 
