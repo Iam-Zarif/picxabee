@@ -38,13 +38,11 @@ const DashboardPage = () => {
 		refreshInterval: 1000,
 	});
 
-	const feedbackFetcher = (...args) => fetch(...args).then((res) => res.json());
-	const {
-		data: feedbacks,
-	} = useSWR('/api/posts', postFetcher, {
-		refreshInterval: 1000,
-	});
-	console.log(posts)
+	 const feedbackFetcher = (...args) => fetch(...args).then((res) => res.json());
+		const { data: feedbacks } = useSWR('/api/posts', feedbackFetcher, {
+			refreshInterval: 1000,
+		});
+console.log(posts)
 	return (
 		// <div className="flex gap-5 w-10/12 ">
 		<>

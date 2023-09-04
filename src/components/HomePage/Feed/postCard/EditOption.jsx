@@ -3,22 +3,21 @@ import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Fragment, useState } from 'react';
+import EditPost from './EditPost';
 
-export default function MyModal({ id, openModal, closeModal, isOpen }) {
+export default function MyModal({ id, closeModal, isOpen, post }) {
 	const router = useRouter();
-	// console.log(id);
+	console.log(id);
 
 	const removePost = async (id) => {
+		console.log(id);
 
 		const confirmed = confirm('Are you sure?');
 
 		if (confirmed) {
-			const res = await fetch(
-				`/api/posts?id=${id}`,
-				{
-					method: 'DELETE',
-				}
-			);
+			const res = await fetch(`http://localhost:3000/api/posts?id=${id}`, {
+				method: 'DELETE',
+			});
 
 			if (res.ok) {
 				router.refresh();
@@ -54,6 +53,9 @@ export default function MyModal({ id, openModal, closeModal, isOpen }) {
 							>
 								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all">
 									<ul className="text-center font-semibold space-y-5">
+										<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300">
+											Edit Post
+										</li>
 										<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300 text-red-500">
 											Unfollow
 										</li>
@@ -74,6 +76,7 @@ export default function MyModal({ id, openModal, closeModal, isOpen }) {
 											</Link>
 										</li>
 									</ul>
+									<EditPost post={post}></EditPost>
 								</Dialog.Panel>
 							</Transition.Child>
 						</div>
