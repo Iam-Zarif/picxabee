@@ -295,7 +295,7 @@ const Navbar = () => {
       {/* errors will return when field validation fails  */}
     
       
-      <input type="submit"  className="block text-red-600 mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red-600 hover:text-white font-bold"/>
+      <input type="submit"  className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"/>
     <div className="modal-action">
       {/* if there is a button in form, it will close the modal */}
       
