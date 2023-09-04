@@ -1,6 +1,5 @@
 import Post from '@/models/Post';
 import connect from '@/utils/db';
-import mongoose from 'mongoose';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
