@@ -310,10 +310,10 @@ const Navbar = () => {
   <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="dark:bg-blue modal-box bg-white glass w-full">
     <h1 className="text-center text-xl font-bold">users Feedback</h1>
  <div className="flex flex-col gap-3 lg:mt-8 mt-4"> 
- <input  {...register("name",{required:true})} placeholder="Enter you name" className="input border-none shadow-sm shadow-black"/>
+ <input  {...register("name",{required:true})} placeholder={user.displayName} readOnly className=" input border-none shadow-sm shadow-black"/>
  {errors.name && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Name is required</span>}
       {/* include validation with required or other standard HTML validation rules */}
-      <input {...register("email", { required: true })} placeholder="Enter you Email" className="input border-none shadow-sm shadow-black"/>
+      <input {...register("email", { required: true })} placeholder={user.email} readOnly className="input border-none shadow-sm shadow-black"/>
       {errors.email && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Email is required</span>}
 
       <textarea {...register("textarea", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"/>
