@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { BsSearch } from "react-icons/bs";
-import "../Navbar/Navbar.module.css"
+
+
 const SearchSection = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
@@ -34,9 +34,13 @@ const SearchSection = () => {
   />
   
  </div>
-      <button className="text-sm  absolute right-10  search-primary hover px-4 py-3 hover:text-white font-bold rounded-xl border h-full " onClick={()=>handleSearch(noSpaceText.toLowerCase())}>
-        Search
-      </button>
+ <button
+  className="text-sm absolute right-10 search-primary px-4 hover:text-white py-3 font-bold rounded-xl border h-full transition-transform duration-300 transform scale-100 hover:scale-105"
+  onClick={() => handleSearch(noSpaceText.toLowerCase())}
+>
+  Search
+</button>
+
 </div>
     </div>
   );
