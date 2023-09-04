@@ -39,11 +39,13 @@ import NavFeedback from "./NavFeedback";
 ;
 const Navbar = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = (data) => {console.log(data)
+  router.push("/")
+  };
 
   console.log(watch("example"));
   // const {user} = useContext(AuthProvider)
-  const route = useRouter();
+  const router = useRouter();
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -282,7 +284,7 @@ const Navbar = () => {
       {/* You can open the modal using ID.showModal() method */}
       <div className="flex gap-5">
       <dialog id="my_modal_1" className="modal ">
-  <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="modal-box bg-slate-100  glass">
+  <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="modal-box bg-white glass">
  <div className="flex flex-col gap-3"> 
  <input  {...register("example",{required:true})} className="input border-none shadow-sm shadow-black"/>
  {errors.example && <span className="text-orange-300 flex gap-2 items-center"><BsExclamationCircle/> This field is required</span>}
@@ -293,7 +295,7 @@ const Navbar = () => {
       {/* errors will return when field validation fails  */}
     
       
-      <input type="submit" className="block text-red-600 mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red-600 hover:text-white font-bold"/>
+      <input type="submit"  className="block text-red-600 mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red-600 hover:text-white font-bold"/>
     <div className="modal-action">
       {/* if there is a button in form, it will close the modal */}
       
