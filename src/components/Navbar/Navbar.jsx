@@ -56,7 +56,7 @@ const Navbar = () => {
   console.log(user);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = (data) => {console.log(data)
-  router.push("/")
+   
   };
 
   console.log(watch("example"));
@@ -310,11 +310,11 @@ const Navbar = () => {
   <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="dark:bg-blue modal-box bg-white glass w-full">
     <h1 className="text-center text-xl font-bold">users Feedback</h1>
  <div className="flex flex-col gap-3 lg:mt-8 mt-4"> 
- <input  {...register("name",{required:true})} placeholder={user.displayName} readOnly className=" input border-none shadow-sm shadow-black"/>
- {errors.name && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Name is required</span>}
+ <input  {...register("name",{required:true})} value={user?.displayName} readOnly className=" input border-none shadow-sm shadow-black"/>
+ 
       {/* include validation with required or other standard HTML validation rules */}
-      <input {...register("email", { required: true })} placeholder={user.email} readOnly className="input border-none shadow-sm shadow-black"/>
-      {errors.email && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Email is required</span>}
+      <input {...register("email", { required: true })} value={user?.email} readOnly className="input border-none shadow-sm shadow-black"/>
+    
 
       <textarea {...register("textarea", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"/>
       {errors.textarea && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Give your feedback</span>}
