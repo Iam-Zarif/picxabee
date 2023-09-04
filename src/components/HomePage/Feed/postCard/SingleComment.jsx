@@ -2,8 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 
 const SingleComment = ({ comment, id }) => {
-	// console.log(comment)
+	console.log(comment?._id)
 	// console.log(id)
+	const deleteComment = () =>{
+		
+	}
 	return (
 	
 			<div className="flex gap-2 pb-2">
