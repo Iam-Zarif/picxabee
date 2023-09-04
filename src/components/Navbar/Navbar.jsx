@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 // Do not touch my Navbar. declared by the author - Zarif
-
+import { useForm } from "react-hook-form";
 import React, {  useEffect, useRef, useState } from "react";
 import { GoHome } from "react-icons/go";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -19,7 +19,7 @@ import {
   AiOutlineQuestionCircle,
   AiOutlineUser,
 } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
+import { BsExclamationCircle, BsSearch } from "react-icons/bs";
 import { HiOutlineChatAlt2, HiOutlinePaperAirplane, HiOutlineUserGroup } from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
@@ -38,12 +38,12 @@ import NavFeedback from "./NavFeedback";
 
 ;
 const Navbar = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data);
+
+  console.log(watch("example"));
   // const {user} = useContext(AuthProvider)
   const route = useRouter();
-
-  
-
-  // Responsive navigation
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -169,8 +169,14 @@ const Navbar = () => {
                 </p>
                 <NavFeedback/>
                 {/*  */}
-{/* Open the modal using ID.showModal() method */}
 
+<Link href="/dashboard">
+               <p className=" flex items-center group  hover:ml-2 transition-all">
+                  <TbLayoutDashboard size={28} className="inline mr-2" />
+                  Dashboard
+                  <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                </p>
+               </Link>
 
                 {/*  */}
                 <p className=" flex items-center group  hover:ml-2 transition-all">
@@ -178,13 +184,7 @@ const Navbar = () => {
                   Log Out
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
-               <Link href="/dashboard">
-               <p className=" flex items-center group  hover:ml-2 transition-all">
-                  <TbLayoutDashboard size={28} className="inline mr-2" />
-                  Dashboard
-                  <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                </p>
-               </Link>
+               
                 <div className="divider"></div>
               </div>
             </div>
@@ -197,7 +197,7 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
       {/* <Container> */}
-      <div className=" fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+      <div className="my-container fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start group">
             {/* responsive dropdown */}
@@ -212,14 +212,15 @@ const Navbar = () => {
 
         
 
-          <div className="hidden lg:block navbar-center   mx-auto relative">
-            <SearchSection />
-            <BsSearch className="absolute left-14 top-4" size={20}/>
-          </div>
+         
         </div>
 
         {/* search box */}
         <div className="navbar-end hidden lg:flex mx-auto ">
+        <div className="hidden lg:block mr-12   mx-auto relative">
+            <SearchSection />
+            <BsSearch className="absolute left-14 top-4" size={20}/>
+          </div>
           <ul className="menu menu-horizontal px-1 ">
             {navItems}
             {/* <AiOutlineUser  className='text-xl  lg:text-2xl'/> */}
@@ -281,15 +282,21 @@ const Navbar = () => {
       {/* You can open the modal using ID.showModal() method */}
       <div className="flex gap-5">
       <dialog id="my_modal_1" className="modal ">
-  <form method="dialog" className="modal-box   glass">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p>
+  <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="modal-box bg-slate-100  glass">
+ <div className="flex flex-col gap-3"> 
+ <input  {...register("example",{required:true})} className="input border-none shadow-sm shadow-black"/>
+ {errors.example && <span className="text-orange-300 flex gap-2 items-center"><BsExclamationCircle/> This field is required</span>}
+      {/* include validation with required or other standard HTML validation rules */}
+      <input {...register("exampleRequired", { required: true })} className="input border-none shadow-sm shadow-black"/>
+      {errors.exampleRequired && <span className="text-orange-300 flex gap-2 items-center"><BsExclamationCircle/> This field is required</span>}
+ </div>
+      {/* errors will return when field validation fails  */}
+    
+      
+      <input type="submit" className="block text-red-600 mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red-600 hover:text-white font-bold"/>
     <div className="modal-action">
       {/* if there is a button in form, it will close the modal */}
-      <button className="btn-primary px-4 flex items-center gap-1 py-2 transform hover:scale-110 transition-transform duration-300 ease-in-out">
-  Close<RxCross2/>
-</button>
-
+      
     </div>
   </form>
 </dialog>
