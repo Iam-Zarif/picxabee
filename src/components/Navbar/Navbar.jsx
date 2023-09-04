@@ -37,12 +37,20 @@ import SearchSection from "./SearchSection";
 import NavFeedback from "./NavFeedback";
 import AuthContext from "@/context/AuthContext";
 import { FaUserAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 ;
 const Navbar = () => {
   const { user,logout} = useContext(AuthContext);
   const handleLogOut =()=>{
-    logout().then(data =>console.log(data)).catch(err =>console.log(err));
+    logout().then(data =>{console.log(data)
+      Swal.fire({
+        icon: 'error',
+        title: 'Caution',
+        text: 'You logged Out!',
+        footer: '<p></p><u><a href="/auth/signin" >Login</u></a> for having access</p>'
+      })
+    }).catch(err =>{console.log(err)});  
   }
   
   console.log(user);
