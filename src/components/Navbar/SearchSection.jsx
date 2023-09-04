@@ -30,12 +30,12 @@ const SearchSection = () => {
     name="search"
     id="search"
     placeholder="Search"
-    className="mx-10 pl-12 w-[200px] lg:w-fit rounded-2xl pr-2 py-3 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
+    className="mx-10 pl-12 w-[200px] lg:w-fit mr-auto   rounded-2xl pr-2 py-3 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
   />
   
  </div>
  <button
-  className="text-sm absolute right-10 search-primary px-4 hover:text-white py-3 font-bold rounded-xl border h-full transition-transform duration-300 transform scale-100 hover:scale-105"
+  className="text-sm absolute right-0 search-primary px-4 ml-auto hover:text-white py-3 font-bold rounded-xl border h-full transition-transform duration-300 transform scale-100 hover:scale-105"
   onClick={() => handleSearch(noSpaceText.toLowerCase())}
 >
   Search
