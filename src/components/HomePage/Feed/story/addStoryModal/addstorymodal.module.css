@@ -42,10 +42,23 @@ body.active-modal {
     object-fit: cover;
 }
 
-
 .closeModal {
     position: fixed;
     top: 28px;
     right: 28px;
+    color: white;
+}
+
+.addStoryforMobile {
+    position: fixed;
+    bottom: 28px;
+    left: 10%;
+    color: white;
+}
+
+.submitStoryforMobile {
+    position: fixed;
+    bottom: 28px;
+    right: 10%;
     color: white;
 }
