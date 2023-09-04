@@ -4,27 +4,53 @@ import { db, storage } from '@/firebase/firebase.config';
 import { updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import Link from 'next/link';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
 const RegisterForm = () => {
+
 	const { createUser } = useContext(AuthContext);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		setValue
 	} = useForm();
 
+	const uploadImage = async (event) => {
+		const formData = new FormData();
+		if (!event.target.files[0]) return;
+		formData.append("image", event.target.files[0]);
+
+		try {
+			const res = await fetch(
+				`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_STOREIMG}`,
+				{
+					method: "POST",
+					body: formData,
+				}
+			);
+			if (!res.ok) throw new Error("Failed to upload image");
+
+			const data = await res.json();
+			console.log(data);
+			setValue("photoURL", data.data.url);
+
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	const onSubmit = async (data) => {
+
 		const { name, email, password, photoURL } = data;
 
 		try {
 			const res = await createUser(email, password);
 			const storageRef = ref(storage, name);
-			
+
 			// rezon vai bolche j photoURL ta imgbb er Url holeo hbe 
 
 			const response = await fetch(photoURL);
@@ -87,9 +113,8 @@ const RegisterForm = () => {
 				name="name"
 				placeholder="Name"
 				{...register('name', { required: true })}
-				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-					errors.name ? 'border-red focus:border-red focus:outline-red' : ''
-				}`}
+				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.name ? 'border-red focus:border-red focus:outline-red' : ''
+					}`}
 			/>
 			{errors.name?.type === 'required' && (
 				<span className="text-red font-semibold">Name is required</span>
@@ -105,9 +130,8 @@ const RegisterForm = () => {
 					pattern:
 						/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 				})}
-				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-					errors.email ? 'border-red focus:border-red focus:outline-red' : ''
-				}`}
+				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.email ? 'border-red focus:border-red focus:outline-red' : ''
+					}`}
 			/>
 			{errors.email?.type === 'required' && (
 				<span className="text-red font-semibold">Email is required</span>
@@ -125,11 +149,10 @@ const RegisterForm = () => {
 				placeholder="Password"
 				{...register('password', {
 					required: true,
-					// pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
+					pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
 				})}
-				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-					errors.password ? 'border-red focus:border-red focus:outline-red' : ''
-				}`}
+				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.password ? 'border-red focus:border-red focus:outline-red' : ''
+					}`}
 			/>
 			{errors.password?.type === 'required' && (
 				<span className="text-red font-semibold">Password is required</span>
@@ -139,35 +162,9 @@ const RegisterForm = () => {
 					Password will be 1 number, 1 Capital and 1 special character{' '}
 				</span>
 			)}
-			<input
-				type="url"
-				name="photoURL"
-				placeholder="photo url"
-				{...register('photoURL')}
-				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${
-					errors.url ? 'border-red focus:border-red focus:outline-red' : ''
-				}`}
-			/>
-			{errors.photoURL?.type === 'required' && (
-				<span className="text-red font-semibold">PhotoURL is required</span>
-			)}
+			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
-			<div class="col-span-6 mt-5 sm:flex sm:items-center sm:gap-4">
-				<button
-					type="submit"
-					class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-				>
-					Create an account
-				</button>
-
-				<p class="mt-4 text-sm text-gray-500 sm:mt-0">
-					Already have an account?
-					<Link href="/auth/signin" class="text-gray-700 underline">
-						Log in
-					</Link>
-					.
-				</p>
-			</div>
+			<input type="submit" className="bg-black w-full text-white rounded-md p-3 cursor-pointer mt-3" />
 		</form>
 	);
 };
