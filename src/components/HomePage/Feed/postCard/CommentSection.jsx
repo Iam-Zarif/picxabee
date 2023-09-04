@@ -21,13 +21,14 @@ const CommentSection = ({ id, open }) => {
 				name: user?.displayName,
 				profile_picture: user?.photoURL,
 			},
-			
+
 			comment: data.comment,
 		};
 		console.log(newComment);
 
-		fetch('/api/posts', {
+		fetch('http://localhost:3000/api/posts/comments', {
 			method: 'PATCH',
+			// cache: "no-cache",
 			headers: {
 				'content-type': 'application/json',
 			},

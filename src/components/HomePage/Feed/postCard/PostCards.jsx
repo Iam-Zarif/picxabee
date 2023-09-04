@@ -16,8 +16,7 @@ const PostCards = () => {
 	if (error) return <div>failed to load</div>;
 	if (isLoading) return <div>loading...</div>;
 
-	// const posts = await getData();
-	// console.log(posts);
+	console.log(posts);
 
 	return (
 		<>
