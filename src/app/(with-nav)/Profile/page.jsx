@@ -22,7 +22,7 @@ const ProfilePage = () => {
     return (
         <>
 
-            <div className='profile-container '>
+            <div className='profile-container my-container'>
                 <Image src={cover} alt='Profile Cover' className='cover-img mx-auto rounded-[14px] mb-4 w-[1550px] ' />
                 <div className="profile-details bg-white rounded-[4px] flex justify-between">
                     <div className="pd-left mx-auto">
