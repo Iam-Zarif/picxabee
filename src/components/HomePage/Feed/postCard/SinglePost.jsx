@@ -14,19 +14,19 @@ const SinglePost = ({ post }) => {
 	const [react, setReact] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const {user} = useAuth(AuthContext)
-	// console.log(user)
-
+	const { user } = useAuth(AuthContext);
+	console.log(user);
 	const { _id: id } = post;
-
+	// if (post.author.email === user.email) {
+	// 	setReact(true);
+	// }
 	const date1 = new Date(post?.createdAt);
-	const options = {  timeStyle: 'short', dateStyle: 'medium'};
+	const options = { timeStyle: 'short', dateStyle: 'medium' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
-	
+
 	function closeModal() {
 		setIsOpen(false);
 	}
-
 	function openModal() {
 		setIsOpen(true);
 	}
@@ -34,23 +34,23 @@ const SinglePost = ({ post }) => {
 	const handleRemoveReaction = () => {};
 
 	const handleReaction = () => {
-		setReact(!react);
-		const reaction = {
+		const NewReaction = {
 			id,
 			author: {
-				name: '',
-				profile_picture: '',
+				email: user?.email,
+				name: user?.displayName,
+				profile_picture: user?.photoURL,
 			},
 			reaction: 1,
 		};
-		console.log(reaction);
+		console.log(NewReaction);
 
 		fetch('/api/posts', {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
 			},
-			body: JSON.stringify(reaction),
+			body: JSON.stringify(NewReaction),
 		})
 			.then((res) => {
 				if (!res.ok) {
