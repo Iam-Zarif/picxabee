@@ -39,9 +39,7 @@ const DashboardPage = () => {
 	});
 
 	 const feedbackFetcher = (...args) => fetch(...args).then((res) => res.json());
-		const {
-			data: feedbacks,
-		} = useSWR('/api/posts', postFetcher, {
+		const { data: feedbacks } = useSWR('/api/posts', feedbackFetcher, {
 			refreshInterval: 1000,
 		});
 console.log(posts)
