@@ -1,4 +1,3 @@
-import useAuth from '@/hooks/useAuth';
 import Post from '@/models/Post';
 import connect from '@/utils/db';
 import mongoose from 'mongoose';
