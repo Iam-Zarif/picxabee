@@ -26,7 +26,7 @@ const ViewStoryModal = ({...props}) => {
                     <div>
 
                         {/* Left First Story */}
-                        <div className={`${styles.modalContentLeftFirst} ${((index === 1) || (index === 0)) && 'hidden'}`}>
+                        <div className={`${styles.modalContentLeftFirst} ${((index === 1) || (index === 0)) ? 'hidden' : 'hidden 2xl:block'}`}>
 
                             <Image
                                 src={index === 1 || index === 0 ? '' : data[index - 2].image}
@@ -38,7 +38,7 @@ const ViewStoryModal = ({...props}) => {
                         </div>
 
                         {/* Left Second Story */}
-                        <div className={`${styles.modalContentLeftSecond} ${index === 0 && 'hidden'}`}>
+                        <div className={`${styles.modalContentLeftSecond} ${index === 0 ? 'hidden' : 'hidden xl:block'}`}>
 
                             <Image
                                 src={index === 0 ? '' : data[index - 1].image}
@@ -60,12 +60,12 @@ const ViewStoryModal = ({...props}) => {
                                 sizes="(min-width: 768px) 100vw"
                             />
 
-                            <button className={`absolute top-1/2 bottom-1/2 -left-8 text-white -translate-x-1/2 -translate-y-1/2 ${index === 0 ? 'opacity-0' : 'opacity-100'}`} disabled={index === 0 ? true : false}><HiArrowSmallLeft onClick={beforeStoryHandler} className="text-4xl bg-white rounded-full text-black p-1" /></button>
-                            <button className={`absolute top-1/2 bottom-1/2 -right-[68px] text-white -translate-x-1/2 -translate-y-1/2 ${(data.length - 1) === index ? 'opacity-0' : 'opacity-100'}`} disabled={(data.length - 1) === index ? true : false}><HiArrowSmallRight onClick={afterStoryHandler} className="text-4xl  bg-white rounded-full text-black p-1" /></button>
+                            <button className={`absolute top-1/2 bottom-1/2 left-7 xl:-left-8 text-white -translate-x-1/2 -translate-y-1/2 ${index === 0 ? 'opacity-0' : 'opacity-100'}`} disabled={index === 0 ? true : false}><HiArrowSmallLeft onClick={beforeStoryHandler} className="text-4xl bg-white rounded-full text-black p-1" /></button>
+                            <button className={`absolute top-1/2 bottom-1/2 -right-2 xl:-right-[68px] text-white -translate-x-1/2 -translate-y-1/2 ${(data.length - 1) === index ? 'opacity-0' : 'opacity-100'}`} disabled={(data.length - 1) === index ? true : false}><HiArrowSmallRight onClick={afterStoryHandler} className="text-4xl  bg-white rounded-full text-black p-1" /></button>
                         </div>
 
                         {/* Right First Story */}
-                        <div className={`${styles.modalContentRightFirst} ${index === data.length - 1 && 'hidden'}`}>
+                        <div className={`${styles.modalContentRightFirst} ${index === data.length - 1 ? 'hidden' : 'hidden xl:block'}`}>
 
                             <Image
                                 src={index === data.length - 1 ? '' : data[index + 1].image}
@@ -77,7 +77,7 @@ const ViewStoryModal = ({...props}) => {
                         </div>
 
                         {/* Right Second Story */}
-                        <div className={`${styles.modalContentRightSecond} ${((index === data.length - 1) || (index === data.length - 2)) && 'hidden'}`}>
+                        <div className={`${styles.modalContentRightSecond} ${((index === data.length - 1) || (index === data.length - 2)) ? 'hidden' : 'hidden 2xl:block'}`}>
 
                             <Image
                                 src={((index === data.length - 2) || (data.length - 1) === index) ? '' : data[index + 2].image}

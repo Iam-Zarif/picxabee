@@ -76,10 +76,10 @@ const AddStoryModal = ({ ...props }) => {
                 <div className={`${styles.modal}`}>
                     <div className={`${styles.overlay}`}></div>
 
-                    <div className="relative">
+                    <div className="relative hidden xl:block">
                         <div className="bg-white w-[15%] h-[100vh] flex flex-col justify-between item-center py-12 px-3">
 
-                            <h1 className="text-2xl font-semibold text-center">Connect-U</h1>
+                            <h1 className="text-2xl font-semibold text-center">PicxaBee</h1>
 
                             <div>
                                 <h1 className="text-center text-2xl font-semibold mb-5">Add Story</h1>
@@ -110,12 +110,22 @@ const AddStoryModal = ({ ...props }) => {
                                         sizes="(min-width: 768px) 100vw"
                                     />)
                                 }
+
                             </div>
                         </div>
 
                         <button className={`${styles.closeModal}`} onClick={addStoryToggleModal}>
                             <HiXMark className="text-4xl text-white" />
                         </button>
+
+                        <div className={`${styles.addStoryforMobile} xl:hidden`}>
+                            <div className=" flex items-center justify-between">
+
+                                {/* <input type="file" /> */}
+                                <input onChange={uploadImage} type="file" className="mx-auto w-[90%] my-3" /> <hr />
+                                <button type="submit" className={`bg-white text-white rounded-md mt-5 px-2 ${styles.submitStoryforMobile} ${imgUrl.length == 0 ? 'bg-opacity-50' : 'bg-opacity-100'}`} disabled={imgUrl.length > 0 ? false : true}>Submit</button>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
