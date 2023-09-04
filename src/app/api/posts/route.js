@@ -3,10 +3,6 @@ import connect from '@/utils/db';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
-
-
-
-
 export const GET = async () => {
 	try {
 		await connect();
@@ -43,58 +39,48 @@ export const DELETE = async (request) => {
 	}
 };
 
+
 export const PATCH = async (request) => {
-
-
 	try {
-		const { id, newComment, comment,  reaction } = await request.json();
-		console.log(newComment);
-		// const {comment} = await request.json();
-		console.log(comment);
+		const newReaction = await request.json();
+		console.log(newReaction)
+		const { id: postId, author } = newReaction;
+		const { email: userEmail} = author;
+	console.log(userEmail)
+
+
 		await connect();
 
 		let updatedPost;
 
-		if (comment) {
-			updatedPost = await Post.findByIdAndUpdate(
-				id,
-				{
-					$push: {
-						comments: newComment
-						// {
-						// 	author: {
-						// 		email: 'tasnim@gmail.com',
-						// 		name: 'Nishat',
-						// 		profile_picture:
-						// 			'https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg',
-						// 	},
-						// 	comment,
-						// },
-					},
-				},
-				{
-					new: true,
-				}
-			);
-		} else if (reaction) {
-			updatedPost = await Post.findByIdAndUpdate(
-				id,
-				{
-					$push: {
-						reactions: {
-							author: {
-								email: 'tasnim@gmail.com',
-								name: 'Nishat',
-								profile_picture:
-									'https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg',
-							},
-						},
-					},
-				},
-				{
-					new: true,
-				}
-			);
+		if (postId && userEmail) {
+			// Check if the user has already liked the post
+			const post = await Post.findById(postId);
+
+			if (!post) {
+				return new NextResponse(
+					JSON.stringify({ message: 'Post not found' }, { status: 404 })
+				);
+			}
+
+		const hasLiked = post.reactions.some(
+			(reaction) => reaction.author.email === userEmail
+		);
+		console.log(hasLiked);
+
+
+			if (hasLiked) {
+				// User has already liked the post, so unlike it
+				post.reactions = post.reactions.filter(
+					(reaction) => reaction.author.email !== userEmail
+				);
+			} else {
+				// User hasn't liked the post, so like it
+				post.reactions.push({ author: author });
+			}
+
+			// Save the updated post
+			updatedPost = await post.save();
 		} else {
 			return new NextResponse.json(
 				{ message: 'Invalid request' },
@@ -116,7 +102,7 @@ export const PATCH = async (request) => {
 			)
 		);
 	} catch (error) {
-		console.error(error);
+		console.log(error.name, error.message);
 		return new NextResponse(
 			JSON.stringify({ message: 'Internal server error' }, { status: 500 })
 		);
