@@ -7,6 +7,14 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    // colors: {
+    //   "primary-color": '#2E4F6B',
+    //   "secondary-color": '#A7C5C5',
+    //   "white": "#fff",
+    //   "black": "#111",
+    //   "red": "#F20519",
+    //   "blue": "#304269"
+    // },
     colors: {
       "primary-color": '#349999',
       "secondary-color": '#A7C5C5',
@@ -14,6 +22,7 @@ module.exports = {
       "black": "#111",
       "red": "#F20519",
       "blue": "#304269"
+      
     },
     extend: {
       backgroundImage: {

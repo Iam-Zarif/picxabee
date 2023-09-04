@@ -8,14 +8,15 @@
 
 .logo {
   font-family: Comic Sans MS;
-  color: #024d47;
+  color: #2E4F6B;
+  /* #649fbd; */
   font-weight: bold;
 }
 
 .bee {
   font-family: sans-serif;
 
-  color: #d8b105;
+  color: #e6537b ;
 }
 
 /* ... your existing styles ... */
@@ -185,4 +186,32 @@ background: linear-gradient(90deg,
     color: white;
   }
 
+ 
+
   /* Dashboard  */
+  /* body{
+    background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,0.23853291316526615) 0%, rgba(241,7,118,0.20211834733893552) 100%);
+  } */
+    .btn-primary{
+      background-color: #fafbfc7e;
+      
+      border-radius: 15px;
+      border: 1px solid #2E4F6B;
+      font-weight: bold;
+    }
+    .btn-primary:hover{
+      background-color:#2E4F6B;
+      /* #3e0eee95; */
+      font-weight: bold;
+      
+      color: white;
+      border: none;
+    }
+  .search-primary{
+    background-color:#fafbfc7e;
+  }
+  .search-primary:hover{
+    background-color:#2E4F6B;
+  }
+ 

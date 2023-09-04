@@ -2,12 +2,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 // Do not touch my Navbar. declared by the author - Zarif
-import "./Navbar.module.css"
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import React, {  useEffect, useRef, useState } from "react";
 import { GoHome } from "react-icons/go";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
-import { BiSearchAlt2 } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
+
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
 
@@ -18,7 +19,7 @@ import {
   AiOutlineQuestionCircle,
   AiOutlineUser,
 } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
+import { BsExclamationCircle, BsSearch } from "react-icons/bs";
 import { HiOutlineChatAlt2, HiOutlinePaperAirplane, HiOutlineUserGroup } from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
@@ -28,19 +29,23 @@ import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
-import SearchSection from "./SearchSection";
+
 import Link from "next/link";
 import ThemeButton from "./ThemeButton";
 import { TbLayoutDashboard } from "react-icons/tb";
+import SearchSection from "./SearchSection";
+import NavFeedback from "./NavFeedback";
 
 ;
 const Navbar = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = (data) => {console.log(data)
+  router.push("/")
+  };
+
+  console.log(watch("example"));
   // const {user} = useContext(AuthProvider)
-  const route = useRouter();
-
-  
-
-  // Responsive navigation
+  const router = useRouter();
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -164,23 +169,24 @@ const Navbar = () => {
                   Settings
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
-                <p className=" flex items-center group  hover:ml-2 transition-all">
-                  <AiOutlineQuestionCircle size={28} className="inline mr-2" />
-                  Give Feedback
-                  <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                </p>
-                <p className=" flex items-center group  hover:ml-2 transition-all">
-                  <LuLogOut size={28} className="inline mr-2" />
-                  Log Out
-                  <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                </p>
-               <Link href="/dashboard">
+                <NavFeedback/>
+                {/*  */}
+
+<Link href="/dashboard">
                <p className=" flex items-center group  hover:ml-2 transition-all">
                   <TbLayoutDashboard size={28} className="inline mr-2" />
                   Dashboard
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
                </Link>
+
+                {/*  */}
+                <p className=" flex items-center group  hover:ml-2 transition-all">
+                  <LuLogOut size={28} className="inline mr-2" />
+                  Log Out
+                  <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                </p>
+               
                 <div className="divider"></div>
               </div>
             </div>
@@ -193,7 +199,7 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
       {/* <Container> */}
-      <div className=" fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+      <div className="my-container fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start group">
             {/* responsive dropdown */}
@@ -202,20 +208,21 @@ const Navbar = () => {
             <div  className=" logo normal-case text-xl group-hover:animate-pulse lg:text-3xl hidden lg:block lg:mb-5">
               {" "}
               <Link href={"/"}><span className="text-5xl">P</span>icxa
-              <span className="  ">bee</span></Link>
+              <span className="bee  ">bee</span></Link>
             </div>
           </div>
 
         
 
-          <div className="hidden lg:block navbar-center   mx-auto relative">
-            <SearchSection />
-            <BsSearch className="absolute left-14 top-4" size={20}/>
-          </div>
+         
         </div>
 
         {/* search box */}
         <div className="navbar-end hidden lg:flex mx-auto ">
+        <div className="hidden lg:block mr-12   mx-auto relative">
+            <SearchSection />
+            <BsSearch className="absolute left-14 top-4" size={20}/>
+          </div>
           <ul className="menu menu-horizontal px-1 ">
             {navItems}
             {/* <AiOutlineUser  className='text-xl  lg:text-2xl'/> */}
@@ -275,6 +282,32 @@ const Navbar = () => {
         )}
       </div>
       {/* You can open the modal using ID.showModal() method */}
+      <div className="flex gap-5">
+      <dialog id="my_modal_1" className="modal px-8 lg:px-0">
+        
+  <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="dark:bg-blue modal-box bg-white glass w-full">
+    <h1 className="text-center text-xl font-bold">users Feedback</h1>
+ <div className="flex flex-col gap-3 lg:mt-8 mt-4"> 
+ <input  {...register("name",{required:true})} placeholder="Enter you name" className="input border-none shadow-sm shadow-black"/>
+ {errors.name && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Name is required</span>}
+      {/* include validation with required or other standard HTML validation rules */}
+      <input {...register("email", { required: true })} placeholder="Enter you Email" className="input border-none shadow-sm shadow-black"/>
+      {errors.email && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Email is required</span>}
+
+      <textarea {...register("textarea", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"/>
+      {errors.textarea && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Give your feedback</span>}
+ </div>
+      {/* errors will return when field validation fails  */}
+    
+      
+      <input type="submit"  className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"/>
+    <div className="modal-action">
+      {/* if there is a button in form, it will close the modal */}
+       
+    </div>
+  </form>
+</dialog>
+      </div>
     </div>
   );
 };
