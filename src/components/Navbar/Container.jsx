@@ -9,3 +9,7 @@ const Container = ({ children }) => {
 };
 
 export default Container;
+
+// .my-container {
+// 	@apply w-full 2xl:w-[1450px] mx-auto;
+//   }
