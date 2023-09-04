@@ -284,13 +284,16 @@ const Navbar = () => {
       {/* You can open the modal using ID.showModal() method */}
       <div className="flex gap-5">
       <dialog id="my_modal_1" className="modal ">
-  <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="modal-box bg-white glass">
+  <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="modal-box bg-white glass w-full">
  <div className="flex flex-col gap-3"> 
- <input  {...register("example",{required:true})} className="input border-none shadow-sm shadow-black"/>
- {errors.example && <span className="text-orange-300 flex gap-2 items-center"><BsExclamationCircle/> This field is required</span>}
+ <input  {...register("name",{required:true})} placeholder="Enter you name" className="input border-none shadow-sm shadow-black"/>
+ {errors.name && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Name is required</span>}
       {/* include validation with required or other standard HTML validation rules */}
-      <input {...register("exampleRequired", { required: true })} className="input border-none shadow-sm shadow-black"/>
-      {errors.exampleRequired && <span className="text-orange-300 flex gap-2 items-center"><BsExclamationCircle/> This field is required</span>}
+      <input {...register("email", { required: true })} placeholder="Enter you Email" className="input border-none shadow-sm shadow-black"/>
+      {errors.email && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Email is required</span>}
+
+      <textarea {...register("textarea", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 border-none  shadow-sm shadow-black"/>
+      {errors.textarea && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Give your feedback</span>}
  </div>
       {/* errors will return when field validation fails  */}
     
@@ -298,7 +301,7 @@ const Navbar = () => {
       <input type="submit"  className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"/>
     <div className="modal-action">
       {/* if there is a button in form, it will close the modal */}
-      
+       
     </div>
   </form>
 </dialog>
