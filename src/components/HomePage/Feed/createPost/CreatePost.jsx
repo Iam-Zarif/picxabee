@@ -12,7 +12,7 @@ import useAuth from "@/hooks/useAuth";
 const CreatePost = () => {
   const router = useRouter();
   const { user } = useAuth();
-  console.log(user?.photoURL);
+  
   const [imageURL, setImageURL] = useState("");
   const [privacy, setPrivacy] = useState("public");
   const [loading, setLoading] = useState(false);
@@ -76,6 +76,10 @@ const CreatePost = () => {
 
   const onSubmit = async (data) => {
     const { text } = data;
+
+    if(text ==="" && imageURL === ""){
+      return;
+    }
 
     const newPost = {
       author: {
@@ -155,20 +159,18 @@ const CreatePost = () => {
                 <div className="flex gap-x-2">
                   <label className="custom-file-upload">
                     <input
-                      className="h-auto"
+                      className="h-auto hidden image"
                       type="file"
                       id="image-input"
                       accept="image/*"
                       onChange={handleImage}
                     />
-                    <BsImageFill color="" size={22} />
+                    <BsImageFill color="#19A7CE" size={22} />
                   </label>
                 </div>
                 <div className="flex items-center gap-x-4">
                   <div className="flex items-center justify-end">
-                    <label for="inputTag">
-                      <input id="inputTag" type="file" />
-                    </label>
+                    
 
                     <div className="form-control w-full ">
                       <select
