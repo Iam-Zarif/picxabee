@@ -2,12 +2,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 // Do not touch my Navbar. declared by the author - Zarif
-import "./Navbar.module.css"
-import React, { useContext, useEffect, useRef, useState } from "react";
+
+import React, {  useEffect, useRef, useState } from "react";
 import { GoHome } from "react-icons/go";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
-import { BiSearchAlt2 } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
+
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
 
@@ -28,10 +29,12 @@ import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
-import SearchSection from "./SearchSection";
+
 import Link from "next/link";
 import ThemeButton from "./ThemeButton";
 import { TbLayoutDashboard } from "react-icons/tb";
+import SearchSection from "./SearchSection";
+import NavFeedback from "./NavFeedback";
 
 ;
 const Navbar = () => {
@@ -164,11 +167,12 @@ const Navbar = () => {
                   Settings
                   <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                 </p>
-                <p className=" flex items-center group  hover:ml-2 transition-all">
-                  <AiOutlineQuestionCircle size={28} className="inline mr-2" />
-                  Give Feedback
-                  <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                </p>
+                <NavFeedback/>
+                {/*  */}
+{/* Open the modal using ID.showModal() method */}
+
+
+                {/*  */}
                 <p className=" flex items-center group  hover:ml-2 transition-all">
                   <LuLogOut size={28} className="inline mr-2" />
                   Log Out
@@ -275,6 +279,21 @@ const Navbar = () => {
         )}
       </div>
       {/* You can open the modal using ID.showModal() method */}
+      <div className="flex gap-5">
+      <dialog id="my_modal_1" className="modal ">
+  <form method="dialog" className="modal-box   glass">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+      {/* if there is a button in form, it will close the modal */}
+      <button className="btn-primary px-4 flex items-center gap-1 py-2 transform hover:scale-110 transition-transform duration-300 ease-in-out">
+  Close<RxCross2/>
+</button>
+
+    </div>
+  </form>
+</dialog>
+      </div>
     </div>
   );
 };
