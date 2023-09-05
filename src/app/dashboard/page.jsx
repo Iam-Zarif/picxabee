@@ -7,6 +7,8 @@ const DashboardPage = () => {
 			<div className="h-[150px] bg-red bg-opacity-10">
 				<h3>Total User: 220k</h3>
 			</div>
+
+			
 			<div className="bg-blue bg-opacity-10 h-[150px]">
 			<h3>Total Post: 220k</h3>
 
