@@ -2,7 +2,7 @@ import Post from '@/models/Post';
 import connect from '@/utils/db';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
-
+// get post data
 export const GET = async () => {
 	try {
 		await connect();
@@ -13,7 +13,7 @@ export const GET = async () => {
 		return new NextResponse('Database Error', { status: 500 });
 	}
 };
-
+// tuhin vai
 export async function POST(request) {
 	try {
 		const post = await request.json();
@@ -26,7 +26,8 @@ export async function POST(request) {
 	}
 }
 
-//nishat
+//delete post
+// 
 export const DELETE = async (request) => {
 	// const { id } = await request.json();
 	try {
@@ -39,7 +40,7 @@ export const DELETE = async (request) => {
 	}
 };
 
-
+// like 
 export const PATCH = async (request) => {
 	try {
 		const newReaction = await request.json();
@@ -108,3 +109,4 @@ export const PATCH = async (request) => {
 		);
 	}
 };
+
