@@ -5,10 +5,10 @@
 import { useForm } from "react-hook-form";
 import React, {  useContext, useEffect, useRef, useState } from "react";
 import { GoHome } from "react-icons/go";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoNotificationsOutline, IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
-
+import 'animate.css';
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
 
@@ -20,6 +20,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { BsExclamationCircle, BsSearch } from "react-icons/bs";
+import { GrNotification } from "react-icons/";
 import { HiOutlineChatAlt2, HiOutlinePaperAirplane, HiOutlineUserGroup } from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
@@ -42,6 +43,7 @@ import Swal from "sweetalert2";
 ;
 const Navbar = () => {
   const { user,logout} = useContext(AuthContext);
+  // console.log(user);
   const handleLogOut =()=>{
     logout().then(data =>{console.log(data)
       Swal.fire({
@@ -53,14 +55,42 @@ const Navbar = () => {
     }).catch(err =>{console.log(err)});  
   }
   
-  console.log(user);
+  // console.log(user);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = (data) => {console.log(data)
-   
-  };
 
-  console.log(watch("example"));
-  // const {user} = useContext(AuthProvider)
+ 
+const onSubmit = async (data) => {
+		const feedback = {
+			author: {
+				profile_picture: user?.photoURL,
+				email: user?.email,
+				name: user?.displayName,
+			},
+			feedback: data.feedback,
+		};
+		console.log(feedback);
+
+		try {
+			const res = await fetch('api/feedbacks', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json', 
+				},
+				body: JSON.stringify(feedback),
+			});
+
+			if (res.ok) {
+      
+				console.log('Feedback submitted successfully.');
+			} else {
+				console.error('Error submitting feedback.');
+			}
+		} catch (error) {
+			console.error('An error occurred:', error);
+		}
+ };
+
+
   const router = useRouter();
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -136,24 +166,20 @@ const Navbar = () => {
         <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
       </a>
     </li>
-    <li>
-      <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
-        <AiOutlinePlusCircle className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
-      </a>
-    </li>
+   
 
     <li>
       <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
         <HiOutlineChatAlt2
-          onClick={() => route.push("/messages")}
+          onClick={() => router.push("/messages")}
           className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform "
         />
       </a>
     </li>
-    <li className="hidden lg:block">
-      <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform">
-        <span className="indicator-item badge bg-lime-500 text-white font-bold px-3">5</span>
-        <HiOutlinePaperAirplane className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
+    <li className="hidden lg:relative lg:block">
+      <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform ">
+        <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">5</span>
+        <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
       </a>
     </li>
     <li>
@@ -167,7 +193,7 @@ const Navbar = () => {
         <></>
 
         <Drawer open={isOpen} onClose={toggleDrawer} direction="right" className="bla bla bla ">
-          <div className="dark:bg-zinc-700 min-h-screen">
+          <div className="dark:bg-black-bg-primary  min-h-screen">
             <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
               <p className=" ">
                 <AiOutlineUser className="inline" /> <span>{user.displayName}</span>
@@ -187,7 +213,7 @@ const Navbar = () => {
                 Settings
                 <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
               </p>
-              <NavFeedback/>
+              {/* <NavFeedback/> */}
               {/*  */}
 
 <Link href="/dashboard">
@@ -305,30 +331,27 @@ const Navbar = () => {
       </div>
       {/* You can open the modal using ID.showModal() method */}
       <div className="flex gap-5">
-      <dialog id="my_modal_1" className="modal px-8 lg:px-0">
+      {/* <dialog id="my_modal_1" className="modal px-8 lg:px-0 z-0">
         
   <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="dark:bg-blue modal-box bg-white glass w-full">
     <h1 className="text-center text-xl font-bold">users Feedback</h1>
  <div className="flex flex-col gap-3 lg:mt-8 mt-4"> 
  <input  {...register("name",{required:true})} value={user?.displayName} readOnly className=" input border-none shadow-sm shadow-black"/>
  
-      {/* include validation with required or other standard HTML validation rules */}
       <input {...register("email", { required: true })} value={user?.email} readOnly className="input border-none shadow-sm shadow-black"/>
     
 
-      <textarea {...register("textarea", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"/>
+      <textarea {...register("feedback", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"/>
       {errors.textarea && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Give your feedback</span>}
  </div>
-      {/* errors will return when field validation fails  */}
-    
-      
       <input type="submit"  className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"/>
+      
     <div className="modal-action">
-      {/* if there is a button in form, it will close the modal */}
+     <p>Press ESC to continue</p>
        
     </div>
   </form>
-</dialog>
+</dialog> */}
       </div>
     </div>
   );
