@@ -32,14 +32,3 @@ export const POST = async (req) => {
 	}
 };
 
-// export async function POST(request) {
-// 	try {
-// 		const post = await request.json();
-// 		await connect();
-// 		await Post.create(post);
-// 		return NextResponse.json({ message: 'Post Created' }, { status: 201 });
-// 	} catch (error) {
-// 		console.log(error.name, error.message);
-// 		return NextResponse.json({ error: error.message });
-// 	}
-// }

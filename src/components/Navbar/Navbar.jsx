@@ -79,13 +79,7 @@ const onSubmit = async (data) => {
 			});
 
 			if (res.ok) {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Feedback submitted',
-          showConfirmButton: false,
-          timer: 1500
-        })
+      
 				console.log('Feedback submitted successfully.');
 			} else {
 				console.error('Error submitting feedback.');
