@@ -55,8 +55,25 @@ const Navbar = () => {
   
   console.log(user);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = (data) => {console.log(data)
-   
+  const onSubmit =async (data) => {
+    const feedbackUser = {
+			
+			author: {
+				email: user?.email,
+				name: user?.displayName,
+        
+			},
+			
+		};
+		console.log(feedbackUser );
+    console.log(data)
+   const res = await("api/feedbacks",{
+    method: "POST",
+    headers:{
+      "content-type": "application/json",
+    },
+    body:JSON.stringify({feedbackUser})
+   })
   };
 
   console.log(watch("example"));
@@ -167,7 +184,7 @@ const Navbar = () => {
         <></>
 
         <Drawer open={isOpen} onClose={toggleDrawer} direction="right" className="bla bla bla ">
-          <div className="dark:bg-zinc-700 min-h-screen">
+          <div className="dark:bg-gray  min-h-screen">
             <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
               <p className=" ">
                 <AiOutlineUser className="inline" /> <span>{user.displayName}</span>
@@ -324,7 +341,7 @@ const Navbar = () => {
       
       <input type="submit"  className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"/>
     <div className="modal-action">
-      {/* if there is a button in form, it will close the modal */}
+     <p>Press ESC to continue</p>
        
     </div>
   </form>
