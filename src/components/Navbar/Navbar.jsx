@@ -42,6 +42,7 @@ import Swal from "sweetalert2";
 ;
 const Navbar = () => {
   const { user,logout} = useContext(AuthContext);
+  // console.log(user);
   const handleLogOut =()=>{
     logout().then(data =>{console.log(data)
       Swal.fire({
@@ -53,31 +54,32 @@ const Navbar = () => {
     }).catch(err =>{console.log(err)});  
   }
   
-  console.log(user);
+  // console.log(user);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
   const onSubmit =async (data) => {
-    const feedbackUser = {
+    const feedback = {
 			
 			author: {
+        profile_picture : user?.photoURL,
 				email: user?.email,
 				name: user?.displayName,
         
 			},
-			
+			feedback: data.feedback
 		};
-		console.log(feedbackUser );
-    console.log(data)
+		console.log(feedback );
+    // console.log(data)
    const res = await("api/feedbacks",{
     method: "POST",
     headers:{
       "content-type": "application/json",
     },
-    body:JSON.stringify({feedbackUser})
+    body:JSON.stringify({ feedback})
    })
   };
 
-  console.log(watch("example"));
-  // const {user} = useContext(AuthProvider)
+
   const router = useRouter();
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -329,16 +331,12 @@ const Navbar = () => {
  <div className="flex flex-col gap-3 lg:mt-8 mt-4"> 
  <input  {...register("name",{required:true})} value={user?.displayName} readOnly className=" input border-none shadow-sm shadow-black"/>
  
-      {/* include validation with required or other standard HTML validation rules */}
       <input {...register("email", { required: true })} value={user?.email} readOnly className="input border-none shadow-sm shadow-black"/>
     
 
-      <textarea {...register("textarea", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"/>
+      <textarea {...register("feedback", { required: true })} placeholder="Give your feedback"  className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"/>
       {errors.textarea && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Give your feedback</span>}
  </div>
-      {/* errors will return when field validation fails  */}
-    
-      
       <input type="submit"  className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"/>
     <div className="modal-action">
      <p>Press ESC to continue</p>

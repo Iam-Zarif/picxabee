@@ -36,7 +36,7 @@ const SearchSection = () => {
   
  </div>
  <BsSearch size={35}
-  className="absolute cursor-pointer right-0 hover:bg-primary-color hover:text-white rounded-2xl px-1 py-2  transition-transform duration-500 hover:translate-x-1 transform scale-100 hover:scale-105"
+  className="absolute cursor-pointer right-1 hover:bg-primary-color hover:text-white rounded-2xl px-1 py-2  transition-transform duration-500 hover:translate-x-1 transform scale-100 hover:scale-105"
   onClick={() => handleSearch(noSpaceText.toLowerCase())}
 >
   Search
