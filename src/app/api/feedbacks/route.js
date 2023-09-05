@@ -21,7 +21,7 @@ export const POST = async (req) => {
 	try {
 		await connect();
 		const  feedback  = await req.json();
-		console.log(feedback)
+		
 		await Feedback.create(feedback);
 		return new NextResponse(JSON.stringify({ message: 'Feedback Uploaded' }), {
 			status: 200,
