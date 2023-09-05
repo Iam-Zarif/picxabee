@@ -25,6 +25,7 @@
     "eslint-config-next": "13.4.13",
     "firebase": "^10.3.0",
     "heroicons": "^2.0.18",
+    "lottie-react": "^2.4.0",
     "moment": "^2.29.4",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.5",
