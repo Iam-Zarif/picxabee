@@ -8,8 +8,8 @@ import React from 'react';
 const dashBoardLayout = ({ children }) => {
 	return (
 		<>
-			<div className="grid lg:grid-cols-12 ">
-				<div className="col-span-1  mr-12 z-50 h-screen  ">
+			<div className="grid lg:grid-cols-12  ">
+				<div className="col-span-1 h-[100vh] z-50">
 					<Sidebar></Sidebar>
 				</div>
 				<div className="col-span-11  z-10 ">

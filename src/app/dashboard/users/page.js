@@ -1,18 +1,6 @@
-'use client';
-import useSWR from 'swr';
-
-import Loading from '../activities/loading';
-import UserRow from '@/components/Dashboard/users/UserRow';
 
 const Users = () => {
-	const fetcher = (...args) => fetch(...args).then((res) => res.json());
-	const { data: users, error, isLoading } = useSWR('/api/users', fetcher);
-	// console.log(users);
-
-	if (error) return <div>failed to load</div>;
-	if (isLoading) return ( <div className='mx-auto  '>
-		<Loading/>
-	</div>);
+	
 	return (
 		<>
 		<h1>hello users</h1></>

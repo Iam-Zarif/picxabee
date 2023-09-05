@@ -6,7 +6,6 @@ import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 
 const RegisterForm = () => {
 
@@ -64,8 +63,6 @@ const RegisterForm = () => {
 				},
 				(error) => {
 					console.error(error);
-					toast.dismiss(toastId);
-					toast.error('Error uploading photo');
 				},
 				async () => {
 					try {

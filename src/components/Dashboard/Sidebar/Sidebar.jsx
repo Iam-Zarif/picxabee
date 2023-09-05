@@ -45,7 +45,7 @@ const toggleLinks = () => {
     <>
       <div
         ref={menuRef}
-        className={`glass mx-auto pl-5 relative pt-8 pr-12 ${
+        className={`glass mx-auto pl-5 relative pt-8 pr-12 h-[100vh] ${
           showLinks ? 'expanded' : ''
         }`}
       >
