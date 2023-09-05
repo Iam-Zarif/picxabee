@@ -8,7 +8,7 @@ import { GoHome } from "react-icons/go";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
-
+import 'animate.css';
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
 
@@ -57,27 +57,43 @@ const Navbar = () => {
   // console.log(user);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const onSubmit =async (data) => {
-    const feedback = {
-			
+ 
+const onSubmit = async (data) => {
+		const feedback = {
 			author: {
-        profile_picture : user?.photoURL,
+				profile_picture: user?.photoURL,
 				email: user?.email,
 				name: user?.displayName,
-        
 			},
-			feedback: data.feedback
+			feedback: data.feedback,
 		};
-		console.log(feedback );
-    // console.log(data)
-   const res = await("api/feedbacks",{
-    method: "POST",
-    headers:{
-      "content-type": "application/json",
-    },
-    body:JSON.stringify({ feedback})
-   })
-  };
+		console.log(feedback);
+
+		try {
+			const res = await fetch('api/feedbacks', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json', 
+				},
+				body: JSON.stringify(feedback),
+			});
+
+			if (res.ok) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Feedback submitted',
+          showConfirmButton: false,
+          timer: 1500
+        })
+				console.log('Feedback submitted successfully.');
+			} else {
+				console.error('Error submitting feedback.');
+			}
+		} catch (error) {
+			console.error('An error occurred:', error);
+		}
+ };
 
 
   const router = useRouter();
@@ -186,7 +202,7 @@ const Navbar = () => {
         <></>
 
         <Drawer open={isOpen} onClose={toggleDrawer} direction="right" className="bla bla bla ">
-          <div className="dark:bg-gray  min-h-screen">
+          <div className="dark:bg-black-bg-primary  min-h-screen">
             <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
               <p className=" ">
                 <AiOutlineUser className="inline" /> <span>{user.displayName}</span>
@@ -324,7 +340,7 @@ const Navbar = () => {
       </div>
       {/* You can open the modal using ID.showModal() method */}
       <div className="flex gap-5">
-      <dialog id="my_modal_1" className="modal px-8 lg:px-0">
+      <dialog id="my_modal_1" className="modal px-8 lg:px-0 z-0">
         
   <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="dark:bg-blue modal-box bg-white glass w-full">
     <h1 className="text-center text-xl font-bold">users Feedback</h1>
@@ -338,6 +354,7 @@ const Navbar = () => {
       {errors.textarea && <span className="text-red flex gap-2 items-center"><BsExclamationCircle/> Give your feedback</span>}
  </div>
       <input type="submit"  className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"/>
+      
     <div className="modal-action">
      <p>Press ESC to continue</p>
        
