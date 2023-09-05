@@ -26,7 +26,7 @@ const CommentSection = ({ id, open }) => {
 		};
 		console.log(newComment);
 
-		fetch('http://localhost:3000/api/posts/comments', {
+		fetch('/posts/comments', {
 			method: 'PATCH',
 			// cache: "no-cache",
 			headers: {

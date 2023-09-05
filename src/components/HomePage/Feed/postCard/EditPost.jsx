@@ -1,11 +1,42 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { PiShareFat } from 'react-icons/pi';
 
-const EditPost = ({post}) => {
-		const [editPost, setEditPost] = useState(false);
+const EditPost = ({ post }) => {
+	const { register, handleSubmit } = useForm();
+	const { _id: id } = post;
+	console.log(id);
+	const onSubmit = (data) => {
+		console.log(data.content);
+		const newContent = {
+			content: data.content,
+		};
+		console.log(newContent);
+
+		fetch(`/posts/${id}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(newContent),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error('Network response was not ok');
+				}
+
+				return res.json();
+			})
+			.then((data) => {
+				console.log('Received data:', data);
+			})
+			.catch((error) => {
+				console.error('Fetch error:', error);
+			});
+	};
 
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
@@ -26,14 +57,19 @@ const EditPost = ({post}) => {
 						<p className="font-normal text-sm ">{formattedDateTime}</p>
 					</div>
 				</div>
-					{/* <BsThreeDots
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/> */}
-				
 			</div>
-			{post?.content && <h1 className="px-5 py-3">{post?.content}</h1>}
-			{/* <h1 className="min-h-64 px-5 py-3">{post?.content}</h1> */}
+			{/* {post?.content && <h1 className="px-5 py-3">{post?.content}</h1>} */}
+			<form onSubmit={handleSubmit(onSubmit)}>
+				{post?.content && (
+					<textarea
+						{...register('content')}
+						defaultValue={post?.content}
+						label="content"
+						className="w-full min-h-96 px-5 py-3"
+					/>
+				)}
+				<button type="submit" className='btn-primary cursor-pointer'>Post</button>
+			</form>
 			{post?.image && (
 				<Image
 					src={post?.image}
@@ -45,10 +81,6 @@ const EditPost = ({post}) => {
 			)}
 			<div className="flex justify-end px-5 py-3 ">
 				<div className="flex gap-3">
-					{/* <BsSave
-						size={26}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/> */}
 					<AiOutlineComment
 						onClick={() => setOpen(!open)}
 						size={28}
@@ -63,7 +95,6 @@ const EditPost = ({post}) => {
 					</p>
 				</div>
 			</div>
-
 		</div>
 	);
 };
