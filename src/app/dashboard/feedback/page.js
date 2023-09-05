@@ -1,3 +1,4 @@
+"user client"
 
 import Image from "next/image";
 import Loading from '../loading';
