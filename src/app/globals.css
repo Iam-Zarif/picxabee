@@ -128,6 +128,7 @@
   transition: transform 0.3s ease; /* Adjust the duration (0.3s) for the animation speed */
 }
 
+
 .placeholder-white::placeholder {
   color: white;
 }
