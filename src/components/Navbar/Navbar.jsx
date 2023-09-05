@@ -5,7 +5,7 @@
 import { useForm } from "react-hook-form";
 import React, {  useContext, useEffect, useRef, useState } from "react";
 import { GoHome } from "react-icons/go";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoNotificationsOutline, IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
 import 'animate.css';
@@ -20,6 +20,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { BsExclamationCircle, BsSearch } from "react-icons/bs";
+import { GrNotification } from "react-icons/";
 import { HiOutlineChatAlt2, HiOutlinePaperAirplane, HiOutlineUserGroup } from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
@@ -165,24 +166,20 @@ const onSubmit = async (data) => {
         <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
       </a>
     </li>
-    <li>
-      <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
-        <AiOutlinePlusCircle className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform " />
-      </a>
-    </li>
+   
 
     <li>
       <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
         <HiOutlineChatAlt2
-          onClick={() => route.push("/messages")}
+          onClick={() => router.push("/messages")}
           className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform "
         />
       </a>
     </li>
-    <li className="hidden lg:block">
-      <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform">
-        <span className="indicator-item badge bg-lime-500 text-white font-bold px-3">5</span>
-        <HiOutlinePaperAirplane className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
+    <li className="hidden lg:relative lg:block">
+      <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform ">
+        <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">5</span>
+        <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
       </a>
     </li>
     <li>
@@ -216,7 +213,7 @@ const onSubmit = async (data) => {
                 Settings
                 <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
               </p>
-              <NavFeedback/>
+              {/* <NavFeedback/> */}
               {/*  */}
 
 <Link href="/dashboard">
@@ -334,7 +331,7 @@ const onSubmit = async (data) => {
       </div>
       {/* You can open the modal using ID.showModal() method */}
       <div className="flex gap-5">
-      <dialog id="my_modal_1" className="modal px-8 lg:px-0 z-0">
+      {/* <dialog id="my_modal_1" className="modal px-8 lg:px-0 z-0">
         
   <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="dark:bg-blue modal-box bg-white glass w-full">
     <h1 className="text-center text-xl font-bold">users Feedback</h1>
@@ -354,7 +351,7 @@ const onSubmit = async (data) => {
        
     </div>
   </form>
-</dialog>
+</dialog> */}
       </div>
     </div>
   );
