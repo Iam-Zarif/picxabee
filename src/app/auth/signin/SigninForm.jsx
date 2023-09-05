@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 const SigninForm = () => {
 
-    const {user, signIn, setLoading } = useAuth()
+    const { user, signIn, setLoading } = useAuth()
     console.log(user);
     const navigate = useRouter()
 
@@ -25,7 +25,10 @@ const SigninForm = () => {
                     setLoading(false)
                     navigate.push('/')
                 })
-                .catch(err => console.log(err.code));
+                .catch(err =>
+                    // console.log(err.code)
+                    alert(err.code)
+                );
 
         } catch (err) {
             console.log('Signin Failed', err);
@@ -60,7 +63,7 @@ const SigninForm = () => {
                 <p className="font-semibold">Forgot Password</p>
             </div>
 
-            <input type="submit" className="bg-black w-full text-white rounded-md p-3 cursor-pointer" />
+            <input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer" />
         </form>
     );
 };
