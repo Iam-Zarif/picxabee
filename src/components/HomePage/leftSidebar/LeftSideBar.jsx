@@ -6,7 +6,7 @@ const LeftSideBar = () => {
         // <div >
         //     <TrandingTopicList />
         // </div>
-        <div className='bg-black bg-opacity-30 h-[700px] mr-10 '>
+        <div className='bg-black bg-opacity-30 h-[750px] mr-10 '>
 
             </div>
     );
