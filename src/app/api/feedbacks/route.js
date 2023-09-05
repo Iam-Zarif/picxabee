@@ -1,3 +1,4 @@
+
 import Feedback from '@/models/Feedback';
 import connect from '@/utils/db';
 import { NextResponse } from 'next/server';
@@ -12,14 +13,29 @@ export const GET = async () => {
 		return new NextResponse('Database Error', { status: 500 });
 	}
 };
-
+// Zarif 
 export const POST = async (req) => {
 	try{
-		const {feedbackUser}  =await req.json();
-	console.log("the Users",feedbackUser)
-	return new NextResponse(JSON.stringify(feedbackUser), { status: 200 });
+		await connect();
+		const {feedback}  =await req.json();
+		await Feedback.create(feedback);
+	console.log("the Users",feedback)
+	return new NextResponse(JSON.stringify(feedback), { status: 200 });
 	}
-	catch (err) {
-		return new NextResponse('Database Error', { status: 500 });
+	catch (error) {
+		console.log(error.name, error.message);
+		return NextResponse.json({ error: error.message });
 	}
 }
+
+// export async function POST(request) {
+// 	try {
+// 		const post = await request.json();
+// 		await connect();
+// 		await Post.create(post);
+// 		return NextResponse.json({ message: 'Post Created' }, { status: 201 });
+// 	} catch (error) {
+// 		console.log(error.name, error.message);
+// 		return NextResponse.json({ error: error.message });
+// 	}
+// }
