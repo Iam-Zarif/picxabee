@@ -12,3 +12,14 @@ export const GET = async () => {
 		return new NextResponse('Database Error', { status: 500 });
 	}
 };
+
+export const POST = async (req) => {
+	try{
+		const {feedbackUser}  =await req.json();
+	console.log("the Users",feedbackUser)
+	return new NextResponse(JSON.stringify(feedbackUser), { status: 200 });
+	}
+	catch (err) {
+		return new NextResponse('Database Error', { status: 500 });
+	}
+}
