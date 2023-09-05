@@ -2,13 +2,16 @@ import React from 'react';
 import MiniProfile from './MiniProfile';
 import Suggestions from './Suggestions';
 import TrandingTopicList from '../leftSidebar/TrandingTopicList';
+import Ad from '@/components/ad/Ad';
 
 const RightSideBar = () => {
     return (
         <>
-            <div className='bg-black bg-opacity-20 h-[200px] ml-10 '>
+            <div className=' ml-10 '>
 
+            <Ad />
             </div>
+
 
             <div className='my-5'>
                 {/* <MiniProfile /> */}

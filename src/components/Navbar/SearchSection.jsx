@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { BsSearch } from "react-icons/bs";
 
 
 const SearchSection = () => {
@@ -30,16 +31,16 @@ const SearchSection = () => {
     name="search"
     id="search"
     placeholder="Search"
-    className="mx-10 pl-12 w-[200px] lg:w-fit mr-auto   rounded-2xl pr-2 py-3 shadow-sm shadow-slate-300 hover:shadow-md hover:shadow-slate-400 border focus:border-transparent focus:outline-none"
+    className="mx-10 pl-5 w-[200px] lg:w-fit mr-auto   rounded-2xl pr-2 py-2 shadow-sm shadow-primary-color shadow-slate-300 hover:shadow-md hover:shadow-slate-400  focus:border-transparent focus:outline-none"
   />
   
  </div>
- <button
-  className="text-sm absolute right-0 search-primary px-4 ml-auto hover:text-white py-3 font-bold rounded-xl border h-full transition-transform duration-300 transform scale-100 hover:scale-105"
+ <BsSearch size={35}
+  className="absolute cursor-pointer right-0 hover:bg-primary-color hover:text-white rounded-2xl px-1 py-2  transition-transform duration-500 hover:translate-x-1 transform scale-100 hover:scale-105"
   onClick={() => handleSearch(noSpaceText.toLowerCase())}
 >
   Search
-</button>
+</BsSearch>
 
 </div>
     </div>
