@@ -22,6 +22,7 @@ const DashboardPage = () => {
 			setYesLoading(false);
 		}, 2000); // Simulated 2-second delay
 	}, []);
+
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const { data: users } = useSWR('/api/users', fetcher, {
 		refreshInterval: 1000,
@@ -42,11 +43,12 @@ const DashboardPage = () => {
 		const { data: feedbacks } = useSWR('/api/posts', feedbackFetcher, {
 			refreshInterval: 1000,
 		});
+		
 console.log(posts)
 	return (
 		// <div className="flex gap-5 w-10/12 ">
 		<>
-
+{/* 
 			{
 				yesLoading ? <> <Loading /></>
 					:
@@ -122,7 +124,8 @@ console.log(posts)
 							</div>
 						</div>
 					</div>
-			}
+			} */}
+			<h1>hello</h1>
 		</>
 	);
 };
