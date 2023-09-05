@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Loading from '../loading';
+import useSWR from 'swr'
 
 const FeedbackPage = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
