@@ -14,19 +14,23 @@ export const GET = async () => {
 	}
 };
 // Zarif 
+
+
+// 
 export const POST = async (req) => {
-	try{
+	try {
 		await connect();
-		const {feedback}  =await req.json();
+		const  feedback  = await req.json();
+		console.log(feedback)
 		await Feedback.create(feedback);
-	console.log("the Users",feedback)
-	return new NextResponse(JSON.stringify(feedback), { status: 200 });
-	}
-	catch (error) {
+		return new NextResponse(JSON.stringify({ message: 'Feedback Uploaded' }), {
+			status: 200,
+		});
+	} catch (error) {
 		console.log(error.name, error.message);
 		return NextResponse.json({ error: error.message });
 	}
-}
+};
 
 // export async function POST(request) {
 // 	try {

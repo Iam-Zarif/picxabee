@@ -90,7 +90,6 @@ const SinglePost = ({ post }) => {
 				</button>
 				<EditOption
 					id={id}
-					post={post}
 					closeModal={closeModal}
 					openModal={openModal}
 					isOpen={isOpen}
@@ -154,7 +153,7 @@ const SinglePost = ({ post }) => {
 				)}
 			</div> */}
 			<div>
-				{post?.comments?.reverse().map(
+				{post?.comments?.map(
 					(comment, i) =>
 						// Check if the index is greater than or equal to 1
 						i >= 1 && (
