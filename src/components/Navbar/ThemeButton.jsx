@@ -8,8 +8,8 @@ const ThemeButton = () => {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className={`
-        border
+      className={` 
+        border mt-8
         ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}
         rounded-full
         py-2 px-4
