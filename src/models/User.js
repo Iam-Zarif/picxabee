@@ -38,7 +38,9 @@ try {
 			role: {
 				type: String,
 			},
-			
+			save_items: {
+				type: Array,
+			},
 		},
 		{
 			timestamps: true,

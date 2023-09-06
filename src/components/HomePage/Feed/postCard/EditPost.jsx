@@ -72,9 +72,14 @@ const EditPost = ({ post, closeModal }) => {
 						className="w-full min-h-96 px-5 py-3"
 					/>
 				)}
-				<button type="submit" className="btn-primary cursor-pointer">
-					Post
-				</button>
+				<div className="flex justify-end m-5">
+					<button
+						type="submit"
+						className="btn-primary px-4 py-2 cursor-pointer"
+					>
+						Post
+					</button>
+				</div>
 			</form>
 			{post?.image && (
 				<Image
@@ -85,7 +90,7 @@ const EditPost = ({ post, closeModal }) => {
 					className="object-contain border-none w-full h-[500px]" //object-contain
 				/>
 			)}
-			<div className="flex justify-end px-5 py-3 ">
+			{/* <div className="flex justify-end px-5 py-3 ">
 				<div className="flex gap-3">
 					<AiOutlineComment
 						size={28}
@@ -99,7 +104,7 @@ const EditPost = ({ post, closeModal }) => {
 						{post?.reactions && post?.reactions.length}
 					</p>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };
