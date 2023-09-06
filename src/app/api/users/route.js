@@ -31,3 +31,18 @@ export const POST = async (request) => {
 }
 
 
+export const PATCH = async (request) => {
+
+    try {
+        const id = request.nextUrl.searchParams.get("id");
+
+        await connect();
+        await User.findByIdAndUpdate(id, { role: 'admin' })
+
+        return NextResponse.json({ message: "user role updated" }, { status: 200 });
+
+    } catch (err) {
+        console.log(err);
+        return NextResponse.json({ message: "updated failed" }, { status: 500 })
+    }
+}
