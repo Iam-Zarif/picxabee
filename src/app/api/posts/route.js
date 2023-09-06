@@ -51,9 +51,8 @@ export async function POST(request) {
 }
 
 //delete post
-// 
+
 export const DELETE = async (request) => {
-	// const { id } = await request.json();
 	try {
 		const id = request.nextUrl.searchParams.get('id');
 		await connect();

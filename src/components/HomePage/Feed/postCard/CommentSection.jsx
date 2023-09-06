@@ -28,7 +28,7 @@ const CommentSection = ({ id, open }) => {
 
 		fetch('/posts/comments', {
 			method: 'PATCH',
-			// cache: "no-cache",
+			
 			headers: {
 				'content-type': 'application/json',
 			},
