@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link'
 
 const UserRow = ({ user, index }) => {
 	// console.log(user);
@@ -7,26 +8,35 @@ const UserRow = ({ user, index }) => {
 	// const options = { dateStyle: 'long', timeStyle: 'medium' };
 	const options = { year: 'numeric', month: 'long', day: 'numeric' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
+
+	const handlerUserStatus = (user) => {
+
+		fetch(`/api/users?id=${user._id}`, {
+			method: "PATCH",
+		})
+			.then(res => res.json())
+			.then(data => alert('updated user role'))
+	}
 	return (
 		<>
-			<tr className="text-base text-center">
+			<tr className="text-base text-left">
 				<th> {index + 1}</th>
 				<td>{user.name}</td>
-				<td>User</td>
+				<td>{user?.email}</td>
+				{/* <td>User</td> */}
 				<td>{formattedDateTime}</td>
-				<td>
-					<button className="btn btn-sm bg-green-400 hover:bg-primary text-xs capitalize">
-						Active
-					</button>
-				</td>
+				<td>Active</td>
+				<td>{user?.role}</td>
 				<td>
 					<details className="dropdown">
 						<summary className="">User</summary>
 						<ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-md">
-							<li>
-								<a>Admin</a>
+							<li onClick={() => handlerUserStatus(user)}>
+								{/* <Link >Admin</Link> */}
+								{/* <a>Admin</a> */}
+								Admin
 							</li>
-							<li>
+							<li >
 								<a>User</a>
 							</li>
 						</ul>

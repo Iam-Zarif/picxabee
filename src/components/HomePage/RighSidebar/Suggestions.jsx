@@ -7,7 +7,7 @@ const Suggestions = () => {
 
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const { data } = useSWR('/api/users', fetcher)
-    console.log(data)
+    // console.log(data)
     const SuggestedUsers = data && data.slice(0, 6)
 
     return (

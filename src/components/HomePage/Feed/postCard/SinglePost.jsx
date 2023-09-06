@@ -15,7 +15,6 @@ const SinglePost = ({ post }) => {
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const { user } = useAuth(AuthContext);
-	console.log(user);
 	const { _id: id } = post;
 	// if (post.author.email === user.email) {
 	// 	setReact(true);
@@ -43,7 +42,7 @@ const SinglePost = ({ post }) => {
 			},
 			reaction: 1,
 		};
-		console.log(NewReaction);
+		// console.log(NewReaction);
 
 		fetch('/api/posts', {
 			method: 'PATCH',
@@ -90,6 +89,7 @@ const SinglePost = ({ post }) => {
 				</button>
 				<EditOption
 					id={id}
+					post={post}
 					closeModal={closeModal}
 					openModal={openModal}
 					isOpen={isOpen}
@@ -117,6 +117,9 @@ const SinglePost = ({ post }) => {
 						size={28}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
+					<p className="font-semibold text-lg">
+						{post?.comments && post?.comments.length}
+					</p>
 					<PiShareFat
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
@@ -139,31 +142,16 @@ const SinglePost = ({ post }) => {
 					</p>
 				</div>
 			</div>
-			{/* <div>
-				{post.comments.length > 1 && (
-					<div>
-						{post?.comments?.reverse().map((comment, i) => (
-							<SingleComment
-								key={i}
-								comment={comment}
-								id={post._id}
-							></SingleComment>
-						))}
-					</div>
-				)}
-			</div> */}
+
 			<div>
-				{post?.comments?.map(
-					(comment, i) =>
-						// Check if the index is greater than or equal to 1
-						i >= 1 && (
-							<SingleComment
-								key={i}
-								comment={comment}
-								id={post._id}
-							></SingleComment>
-						)
-				)}
+				{post?.comments?.reverse().map((comment, i) => (
+					// Check if the index is greater than or equal to 1
+					<SingleComment
+						key={i}
+						comment={comment}
+						id={post._id}
+					></SingleComment>
+				))}
 			</div>
 			<div className="px-5 pb-5 ">
 				<div>
