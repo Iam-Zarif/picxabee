@@ -9,17 +9,17 @@ const RightSideBar = () => {
         <>
             <div className=' ml-10 '>
 
-            <Ad />
+                <Ad />
             </div>
 
 
             <div className='my-5'>
                 {/* <MiniProfile /> */}
-                <Suggestions />
+                {/* <Suggestions /> */}
             </div>
 
             <div className='ml-10'>
-            <TrandingTopicList />
+                <TrandingTopicList />
             </div>
         </>
     );

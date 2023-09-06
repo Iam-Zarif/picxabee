@@ -32,8 +32,6 @@ const UserRow = ({ user, index }) => {
 						<summary className="">User</summary>
 						<ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-md">
 							<li onClick={() => handlerUserStatus(user)}>
-								{/* <Link >Admin</Link> */}
-								{/* <a>Admin</a> */}
 								Admin
 							</li>
 							<li >
