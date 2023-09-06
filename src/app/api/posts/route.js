@@ -135,21 +135,3 @@ export const PATCH = async (request) => {
 };
 
 
-
-// export const PUT = async (request) => {
-// 	try {
-// 		// const { id } = params;
-// 		const id = request.nextUrl.searchParams.get('id');
-
-// 		console.log(id);
-
-// 		const { newContent: content } = await request.json();
-// 		console.log(content);
-// 		await connect();
-// 		await Post.findByIdAndUpdate(id, { content });
-// 		return NextResponse.json({ message: 'Post updated' }, { status: 200 });
-// 	} catch (error) {
-// 		console.log(error.name, error.message);
-// 		return NextResponse.json({ error: error.message });
-// 	}
-// };
