@@ -67,9 +67,9 @@ const SinglePost = ({ post }) => {
 	};
 
 	return (
-		<div data-aos="fade-up" className="lg:px-0 border-2 rounded-md mb-3">
+		<div data-aos="fade-up" className="lg:px-0 border border-2 rounded-md mb-3">
 			<div className="w-full flex items-center justify-between p-2">
-				<div className="flex items-center">
+				<div className="flex items-center ml-3 mt-4">
 					<Image
 						src={post?.author?.profile_picture}
 						width={50}
@@ -85,7 +85,7 @@ const SinglePost = ({ post }) => {
 				<button onClick={openModal}>
 					<BsThreeDots
 						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer mr-6"
 					/>
 				</button>
 				<EditOption
@@ -95,7 +95,7 @@ const SinglePost = ({ post }) => {
 					isOpen={isOpen}
 				></EditOption>
 			</div>
-			{post?.content && <h1 className="px-5 py-3">{post?.content}</h1>}
+			<div className="py-4 px-4 whitespace-normal">{post?.content && <h1 className="">{post?.content}</h1>}</div>
 			{/* <h1 className="min-h-64 px-5 py-3">{post?.content}</h1> */}
 			{post?.image && (
 				<Image
@@ -106,37 +106,39 @@ const SinglePost = ({ post }) => {
 					className="object-contain border-none w-full h-[500px]" //object-contain
 				/>
 			)}
-			<div className="flex justify-end px-5 py-3 ">
-				<div className="flex gap-3">
+			<div className="flex justify-end px-5 pt-2 pb-6 mr-4 pb">
+				<div className="flex items-center justify-between gap-x-[9px]">
 					<BsSave
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
 					<AiOutlineComment
 						onClick={() => setOpen(!open)}
-						size={28}
+						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
 					<PiShareFat
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
+					<div className="flex gap-x-1">
 					{react ? (
 						<AiFillHeart
 							onClick={() => handleRemoveReaction('tasnim@gmail.com')}
-							size={28}
+							size={26}
 							className="hover:scale-125 duration-300 hover:text-red-400 hover:cursor-pointer text-red-500"
 						/>
 					) : (
 						<AiOutlineHeart
 							onClick={handleReaction}
-							size={28}
+							size={26}
 							className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 						/>
 					)}
 					<p className="font-semibold text-lg">
 						{post?.reactions && post?.reactions.length}
 					</p>
+					</div>
 				</div>
 			</div>
 			{/* <div>
@@ -165,7 +167,7 @@ const SinglePost = ({ post }) => {
 						)
 				)}
 			</div>
-			<div className="px-5 pb-5 ">
+			<div>
 				<div>
 					{/* <p>
 						{likes && (
