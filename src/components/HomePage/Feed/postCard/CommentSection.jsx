@@ -26,7 +26,7 @@ const CommentSection = ({ id, open }) => {
 		};
 		console.log(newComment);
 
-		fetch('/posts/comments', {
+		fetch('api/posts/comments', {
 			method: 'PATCH',
 			
 			headers: {
