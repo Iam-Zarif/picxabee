@@ -2,26 +2,29 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
+import {  AiOutlineComment } from 'react-icons/ai';
 import { PiShareFat } from 'react-icons/pi';
 
 const EditPost = ({ post }) => {
 	const { register, handleSubmit } = useForm();
 	const { _id: id } = post;
 	console.log(id);
+
+
 	const onSubmit = (data) => {
 		console.log(data.content);
 		const newContent = {
-			content: data.content,
-		};
+			id,
+			content: data.content
+		}
 		console.log(newContent);
 
-		fetch(`/posts/${id}`, {
+		fetch(`http://localhost:3000/api/posts`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
 			},
-			body: JSON.stringify(newContent),
+			body: JSON.stringify( newContent ),
 		})
 			.then((res) => {
 				if (!res.ok) {
@@ -82,7 +85,6 @@ const EditPost = ({ post }) => {
 			<div className="flex justify-end px-5 py-3 ">
 				<div className="flex gap-3">
 					<AiOutlineComment
-						onClick={() => setOpen(!open)}
 						size={28}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>

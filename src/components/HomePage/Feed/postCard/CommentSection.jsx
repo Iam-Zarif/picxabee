@@ -4,7 +4,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 
 const CommentSection = ({ id, open }) => {
 	const { user } = useAuth();
-	console.log(user?.email);
+	
 
 	const { register, handleSubmit, setValue, watch, reset } = useForm();
 	const watchComment = watch('comment', '');

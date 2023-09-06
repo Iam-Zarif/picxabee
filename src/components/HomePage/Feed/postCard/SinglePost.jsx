@@ -15,7 +15,6 @@ const SinglePost = ({ post }) => {
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const { user } = useAuth(AuthContext);
-	console.log(user);
 	const { _id: id } = post;
 	// if (post.author.email === user.email) {
 	// 	setReact(true);
@@ -43,7 +42,7 @@ const SinglePost = ({ post }) => {
 			},
 			reaction: 1,
 		};
-		console.log(NewReaction);
+		// console.log(NewReaction);
 
 		fetch('/api/posts', {
 			method: 'PATCH',
@@ -90,6 +89,7 @@ const SinglePost = ({ post }) => {
 				</button>
 				<EditOption
 					id={id}
+					post={post}
 					closeModal={closeModal}
 					openModal={openModal}
 					isOpen={isOpen}
@@ -153,7 +153,7 @@ const SinglePost = ({ post }) => {
 				)}
 			</div> */}
 			<div>
-				{post?.comments?.map(
+				{post?.comments?.reverse().map(
 					(comment, i) =>
 						// Check if the index is greater than or equal to 1
 						i >= 1 && (

@@ -7,11 +7,12 @@ import EditPost from './EditPost';
 
 const MyModal = ({ id, closeModal, isOpen, post }) => {
 	const [editPost, setEditPost] = useState(false);
+	const router = useRouter()
 
 	// console.log(id);
 	// console.log(post);
 	const removePost = async (id) => {
-		console.log(id);
+		// console.log(id);
 
 		const confirmed = confirm('Are you sure?');
 
