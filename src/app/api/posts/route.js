@@ -63,7 +63,7 @@ export const DELETE = async (request) => {
 	}
 };
 
-// like 
+// add and remove reaction  
 export const PATCH = async (request) => {
 	try {
 		const newReaction = await request.json();
