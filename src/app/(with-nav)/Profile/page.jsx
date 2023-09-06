@@ -1,6 +1,6 @@
-import React from 'react';
+"use client"
 import cover from "/public/catCover.PNG";
-import dp from "/public/admin.jpg";
+
 // import fb from "/public/fb.PNG";
 // import linkDin from "/public/linkDin.PNG";
 // import github from "/public/github.PNG";
@@ -14,26 +14,31 @@ import { TbSend } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { LuEdit } from 'react-icons/lu';
 import PostCards from '@/components/HomePage/Feed/postCard/PostCards';
-
-
+import React, { useContext } from 'react';
+// import AuthContext from "@/context/AuthContext";
+import useAuth from "@/hooks/useAuth";
 
 
 const ProfilePage = () => {
+
+    const { user } = useAuth()
     return (
         <>
 
             <div className='profile-container my-container'>
                 <Image src={cover} alt='Profile Cover' className='cover-img mx-auto rounded-[14px] mb-4 w-[1550px] ' />
                 <div className="profile-details bg-white rounded-[4px] flex justify-between">
-                    <div className="pd-left mx-auto">
-                        <div className="pd-row flex mx-auto">
-                            <div className="avatar mr-5">
-                                <div className="w-36 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <Image src={dp} alt='Profile Picture' className='pd-image w-full' />
+                    <div className="mx-auto">
+                        <div className="flex mx-auto">
+                            <div className="mr-5">
+                                <div className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    {
+                                        user && <Image src={user?.photoURL} height={120} width={120} alt='Profile Picture' />
+                                    }
                                 </div>
                             </div>
                             <div className='mx-auto'>
-                                <h3 className='text-25 font-semibold text-2xl'>Hridoy Hoque</h3>
+                                <h3 className='text-25 font-semibold text-2xl'>{user?.displayName}</h3>
                                 <p className='text-30 '>120+ Friend</p>
                                 <div className='flex justify-start space-x-2 w-full pt-3 '>
                                     <BsFacebook size={24} />
@@ -46,7 +51,7 @@ const ProfilePage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="pd-right mx-auto">
+                    <div className="mx-auto">
 
                         <button className='btn btn-success inline-flex border-spacing-0 outline-0 pt-1 items-center ml-3 mb-2' type='button'>Contact <TbSend /></button>
                         <button className='btn btn-success inline-flex border-spacing-0 outline-0 pt-1 items-center ml-3 mb-2' type='button'>Follow <AiOutlinePlus /></button>
