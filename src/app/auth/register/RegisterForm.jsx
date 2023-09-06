@@ -34,7 +34,7 @@ const RegisterForm = () => {
 			if (!res.ok) throw new Error("Failed to upload image");
 
 			const data = await res.json();
-			console.log(data);
+			// console.log(data);
 			setValue("photoURL", data.data.url);
 
 		} catch (error) {
@@ -146,7 +146,7 @@ const RegisterForm = () => {
 				placeholder="Password"
 				{...register('password', {
 					required: true,
-					pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
+					// pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
 				})}
 				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.password ? 'border-red focus:border-red focus:outline-red' : ''
 					}`}
