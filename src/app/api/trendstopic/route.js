@@ -6,16 +6,7 @@ export const GET = async () => {
 
     try {
         await connect()
-        const posts = await Post.find() //{}, { content: 1, _id: 0 }
-
-        // let contents = []
-
-        // for(const content of posts){
-        //     contents.push(content)
-        // }
-
-        // return new NextResponse(JSON.stringify(contents), { status: 200 })
-
+        const posts = await Post.find() 
 
         const postContent = posts.map(post => post.content)
 
@@ -48,3 +39,28 @@ export const GET = async () => {
         return new NextResponse('trending Hashtag Fetch Problrms', { status: 500 })
     }
 }
+
+/*
+const posts = [
+  ];
+  
+  const postCountByDate = {};
+  
+  posts.forEach((post) => {
+    const createdAt = new Date(post.createdAt); 
+    const dateKey = createdAt.toISOString().split('T')[0]; 
+  
+    if (postCountByDate[dateKey]) {
+      postCountByDate[dateKey]++;
+    } else {
+      postCountByDate[dateKey] = 1;
+    }
+  });
+  
+  const postCountArray = Object.entries(postCountByDate).map(([date, count]) => ({
+    date,
+    count,
+  }));
+  
+  console.log(postCountArray);
+  */

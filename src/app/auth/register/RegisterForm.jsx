@@ -4,12 +4,14 @@ import { db, storage } from '@/firebase/firebase.config';
 import { updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const RegisterForm = () => {
 
 	const { createUser } = useContext(AuthContext);
+
+	const [urlFromImgbb, setUrlFromImgbb] = useState('')
 
 	const {
 		register,
@@ -36,6 +38,7 @@ const RegisterForm = () => {
 			const data = await res.json();
 			console.log(data);
 			setValue("photoURL", data.data.url);
+			setUrlFromImgbb(data.data.url)
 
 		} catch (error) {
 			console.log(error);
@@ -88,7 +91,7 @@ const RegisterForm = () => {
 								followers: 0,
 								following: 0,
 								posts: 0,
-								profile_picture: photoURL,
+								profile_picture: photoURL || '',
 								role: 'user',
 							}),
 						});
@@ -161,7 +164,7 @@ const RegisterForm = () => {
 			)}
 			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
-			<input type="submit" className="bg-black w-full text-white rounded-md p-3 cursor-pointer mt-3" />
+			<input type="submit" className="bg-black w-full text-white rounded-md p-3 cursor-pointer mt-3" disabled={!urlFromImgbb ? true : false}/>
 		</form>
 	);
 };
