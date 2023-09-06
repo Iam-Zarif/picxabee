@@ -9,21 +9,25 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 	const [editPost, setEditPost] = useState(false);
 	const router = useRouter()
 
-	// console.log(id);
-	// console.log(post);
 	const removePost = async (id) => {
-		// console.log(id);
 
 		const confirmed = confirm('Are you sure?');
 
 		if (confirmed) {
-			const res = await fetch(`/api/posts?id=${id}`, {
-				method: 'DELETE',
-			});
 
-			if (res.ok) {
-				router.refresh();
-			}
+			fetch(`/api/recycle?id=${id}`, {
+				method: 'POST'
+			})
+				.then(res => res.json())
+				.then(data=> console.log(data))
+
+			// const res = await fetch(`/api/posts?id=${id}`, {
+			// 	method: 'DELETE',
+			// });
+
+			// if (res.ok) {
+			// 	router.refresh();
+			// }
 		}
 	};
 	return (

@@ -4,18 +4,21 @@ import { db, storage } from '@/firebase/firebase.config';
 import { updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useContext, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
 const RegisterForm = () => {
 
 	const { createUser } = useContext(AuthContext);
+	const router = useRouter()
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-		setValue
+		setValue,
+		reset
 	} = useForm();
 
 	const uploadImage = async (event) => {
@@ -79,19 +82,19 @@ const RegisterForm = () => {
 							photoURL: downloadURL,
 						});
 
+						reset()
+
 						await fetch('/api/users', {
 							method: 'POST',
 							body: JSON.stringify({
 								name,
 								email,
 								bio: '',
-								followers: 0,
-								following: 0,
-								posts: 0,
 								profile_picture: photoURL || '',
 								role: 'user',
 							}),
 						});
+						router.push('/')
 					} catch (error) {
 						console.log(error);
 					}
@@ -146,7 +149,7 @@ const RegisterForm = () => {
 				placeholder="Password"
 				{...register('password', {
 					required: true,
-					pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
+					// pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
 				})}
 				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.password ? 'border-red focus:border-red focus:outline-red' : ''
 					}`}
@@ -154,11 +157,12 @@ const RegisterForm = () => {
 			{errors.password?.type === 'required' && (
 				<span className="text-red font-semibold">Password is required</span>
 			)}
-			{errors.password?.type === 'pattern' && (
+			{/* {errors.password?.type === 'pattern' && (
 				<span className="text-red font-semibold">
 					Password will be 1 number, 1 Capital and 1 special character
 				</span>
 			)}
+			 */}
 			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
 			<input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer mt-3" />
