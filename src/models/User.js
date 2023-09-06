@@ -34,6 +34,9 @@ try {
     profile_picture: {
       type: String,
     },
+    role: {
+      type: String,
+    },
   }, {
     timestamps: true,
   });
