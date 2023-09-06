@@ -17,11 +17,11 @@ export const PATCH = async (request) => {
 				);
 			}
 
-			const hasSaved = user.save_items.some(
+			const hasBookMarked = user.save_items.some(
 				(item) => item.toString() === postId
 			);
 
-			if (hasSaved) {
+			if (hasBookMarked) {
 				return new NextResponse(
 					JSON.stringify({ message: 'Post already saved' }, { status: 200 })
 				);
