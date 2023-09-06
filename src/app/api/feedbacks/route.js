@@ -23,9 +23,12 @@ export const POST = async (req) => {
 		const  feedback  = await req.json();
 		
 		await Feedback.create(feedback);
-		return new NextResponse(JSON.stringify({ message: 'Feedback Uploaded' }), {
-			status: 200,
-		});
+		return NextResponse.json({
+			msg:"Feedback sent successfully",success: true,
+		})
+		// return new NextResponse(JSON.stringify({ message: 'Feedback Uploaded' }), {
+		// 	status: 200,
+		// });
 	} catch (error) {
 		console.log(error.name, error.message);
 		return NextResponse.json({ error: error.message });
