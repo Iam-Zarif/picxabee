@@ -4,7 +4,7 @@ import cover from "/public/catCover.PNG";
 // import fb from "/public/fb.PNG";
 // import linkDin from "/public/linkDin.PNG";
 // import github from "/public/github.PNG";
-
+import useSWR from 'swr';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { FaGraduationCap, FaSchool, FaReact } from 'react-icons/fa';
 import { SiNextdotjs } from 'react-icons/si';
@@ -17,11 +17,20 @@ import PostCards from '@/components/HomePage/Feed/postCard/PostCards';
 import React, { useContext } from 'react';
 // import AuthContext from "@/context/AuthContext";
 import useAuth from "@/hooks/useAuth";
-
+import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 
 const ProfilePage = () => {
 
     const { user } = useAuth()
+    const fetcher = (...args) => fetch(...args).then((res) => res.json());
+    const {
+        data,
+        error,
+        isLoading,
+    } = useSWR('/api/posts', fetcher);
+
+    const ownPosts = data && data.filter(post => post.author.email === user.email)
+    console.log(ownPosts)
     return (
         <>
 
@@ -95,8 +104,12 @@ const ProfilePage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='col-span-7'>
-                            <PostCards />
+                        <div className='col-span-7 mr-12 mt-12'>
+                            {/* <PostCards /> */}
+                            {
+                               ownPosts && ownPosts.map(post => <SinglePost key={post._id} post={post}></SinglePost> )
+                               
+                            }
                         </div>
                     </div>
                 </div>
