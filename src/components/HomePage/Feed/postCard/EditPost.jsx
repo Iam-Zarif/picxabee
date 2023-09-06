@@ -81,30 +81,6 @@ const EditPost = ({ post, closeModal }) => {
 					</button>
 				</div>
 			</form>
-			{post?.image && (
-				<Image
-					src={post?.image}
-					width={600}
-					height={500}
-					alt="Posted Image"
-					className="object-contain border-none w-full h-[500px]" //object-contain
-				/>
-			)}
-			{/* <div className="flex justify-end px-5 py-3 ">
-				<div className="flex gap-3">
-					<AiOutlineComment
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-					<PiShareFat
-						size={26}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-					<p className="font-semibold text-lg">
-						{post?.reactions && post?.reactions.length}
-					</p>
-				</div>
-			</div> */}
 		</div>
 	);
 };
