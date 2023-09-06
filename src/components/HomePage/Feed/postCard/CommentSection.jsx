@@ -4,7 +4,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 
 const CommentSection = ({ id, open }) => {
 	const { user } = useAuth();
-	console.log(user?.email);
+	
 
 	const { register, handleSubmit, setValue, watch, reset } = useForm();
 	const watchComment = watch('comment', '');
@@ -26,9 +26,9 @@ const CommentSection = ({ id, open }) => {
 		};
 		console.log(newComment);
 
-		fetch('/posts/comments', {
+		fetch('api/posts/comments', {
 			method: 'PATCH',
-			// cache: "no-cache",
+			
 			headers: {
 				'content-type': 'application/json',
 			},

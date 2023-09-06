@@ -2,7 +2,11 @@ import Post from '@/models/Post';
 import connect from '@/utils/db';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
-// get post data
+
+
+// Get post data
+
+
 export const GET = async () => {
 	try {
 		await connect();
@@ -13,6 +17,26 @@ export const GET = async () => {
 		return new NextResponse('Database Error', { status: 500 });
 	}
 };
+
+// Update Post
+export const PUT = async (request)=> {
+	try {
+		
+		const  { id,  content } = await request.json();
+		console.log(content);
+		await connect();
+		await Post.findByIdAndUpdate(id, { content });
+		return NextResponse.json({ message: 'Post updated' }, { status: 200 });
+	} catch (error) {
+		console.log(error.name, error.message);
+		return NextResponse.json({ error: error.message });
+	}
+}
+
+
+
+
+
 // tuhin vai
 export async function POST(request) {
 	try {
@@ -27,9 +51,8 @@ export async function POST(request) {
 }
 
 //delete post
-// 
+
 export const DELETE = async (request) => {
-	// const { id } = await request.json();
 	try {
 		const id = request.nextUrl.searchParams.get('id');
 		await connect();
@@ -109,4 +132,5 @@ export const PATCH = async (request) => {
 		);
 	}
 };
+
 

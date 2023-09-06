@@ -11,8 +11,6 @@ const RegisterForm = () => {
 
 	const { createUser } = useContext(AuthContext);
 
-	const [urlFromImgbb, setUrlFromImgbb] = useState('')
-
 	const {
 		register,
 		handleSubmit,
@@ -38,7 +36,6 @@ const RegisterForm = () => {
 			const data = await res.json();
 			console.log(data);
 			setValue("photoURL", data.data.url);
-			setUrlFromImgbb(data.data.url)
 
 		} catch (error) {
 			console.log(error);
@@ -159,12 +156,12 @@ const RegisterForm = () => {
 			)}
 			{errors.password?.type === 'pattern' && (
 				<span className="text-red font-semibold">
-					Password will be 1 number, 1 Capital and 1 special character{' '}
+					Password will be 1 number, 1 Capital and 1 special character
 				</span>
 			)}
 			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
-			<input type="submit" className="bg-black w-full text-white rounded-md p-3 cursor-pointer mt-3" disabled={!urlFromImgbb ? true : false}/>
+			<input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer mt-3" />
 		</form>
 	);
 };

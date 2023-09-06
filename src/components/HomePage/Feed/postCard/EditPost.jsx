@@ -2,21 +2,23 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
+import {  AiOutlineComment } from 'react-icons/ai';
 import { PiShareFat } from 'react-icons/pi';
 
-const EditPost = ({ post }) => {
+const EditPost = ({ post, closeModal }) => {
 	const { register, handleSubmit } = useForm();
 	const { _id: id } = post;
-	console.log(id);
+
+
 	const onSubmit = (data) => {
 		console.log(data.content);
 		const newContent = {
+			id,
 			content: data.content,
 		};
 		console.log(newContent);
 
-		fetch(`/posts/${id}`, {
+		fetch(`/api/posts`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
@@ -31,6 +33,8 @@ const EditPost = ({ post }) => {
 				return res.json();
 			})
 			.then((data) => {
+			
+				closeModal();
 				console.log('Received data:', data);
 			})
 			.catch((error) => {
@@ -68,7 +72,9 @@ const EditPost = ({ post }) => {
 						className="w-full min-h-96 px-5 py-3"
 					/>
 				)}
-				<button type="submit" className='btn-primary cursor-pointer'>Post</button>
+				<button type="submit" className="btn-primary cursor-pointer">
+					Post
+				</button>
 			</form>
 			{post?.image && (
 				<Image
@@ -82,7 +88,6 @@ const EditPost = ({ post }) => {
 			<div className="flex justify-end px-5 py-3 ">
 				<div className="flex gap-3">
 					<AiOutlineComment
-						onClick={() => setOpen(!open)}
 						size={28}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>

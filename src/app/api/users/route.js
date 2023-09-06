@@ -11,7 +11,7 @@ export const GET = async () => {
         return new NextResponse(JSON.stringify(users), { status: 200 })
 
     } catch (err) {
-        return new NextResponse('User Fetch Problrms', { status: 500 })
+        return new NextResponse('User Fetch Problems', { status: 500 })
     }
 }
 
@@ -27,5 +27,22 @@ export const POST = async (request) => {
 
     } catch (err) {
         return new NextResponse("Database Error", { status: 500 });
+    }
+}
+
+
+export const PATCH = async (request) => {
+
+    try {
+        const id = request.nextUrl.searchParams.get("id");
+
+        await connect();
+        await User.findByIdAndUpdate(id, { role: 'admin' })
+
+        return NextResponse.json({ message: "user role updated" }, { status: 200 });
+
+    } catch (err) {
+        console.log(err);
+        return NextResponse.json({ message: "updated failed" }, { status: 500 })
     }
 }
