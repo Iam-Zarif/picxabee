@@ -18,7 +18,7 @@ const EditPost = ({ post, closeModal }) => {
 		};
 		console.log(newContent);
 
-		fetch(`http://localhost:3000/api/posts`, {
+		fetch(`/api/posts`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
