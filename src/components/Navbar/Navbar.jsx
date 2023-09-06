@@ -403,7 +403,7 @@ const Navbar = () => {
             </div >
             <input
               type="submit"
-              className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold"
+              className="block text-primary-color mt-5 shadow-sm shadow-black rounded-md px-3 py-1 hover:bg-primary-color  hover:text-white font-bold"
             />
            <div > <p
               
