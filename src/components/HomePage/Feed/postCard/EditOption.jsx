@@ -54,7 +54,7 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 								leaveTo="opacity-0 scale-95"
 							>
 								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all">
-									{(!editPost) && (
+									{!editPost && (
 										<ul className="text-center font-semibold space-y-5">
 											<li
 												onClick={() => setEditPost(!editPost)}
@@ -83,7 +83,9 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 											</li>
 										</ul>
 									)}
-									{editPost && <EditPost post={post}></EditPost>}
+									{editPost && (
+										<EditPost post={post} closeModal={closeModal}></EditPost>
+									)}
 								</Dialog.Panel>
 							</Transition.Child>
 						</div>

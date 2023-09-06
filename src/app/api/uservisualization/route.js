@@ -33,6 +33,6 @@ export const GET = async () => {
         return new NextResponse(JSON.stringify(userCountArray), { status: 200 })
 
     } catch (err) {
-        return new NextResponse('User Fetch Problrms', { status: 500 })
+        return new NextResponse('User Fetch Problems', { status: 500 })
     }
 }

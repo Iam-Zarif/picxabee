@@ -5,18 +5,17 @@ import { useForm } from 'react-hook-form';
 import {  AiOutlineComment } from 'react-icons/ai';
 import { PiShareFat } from 'react-icons/pi';
 
-const EditPost = ({ post }) => {
+const EditPost = ({ post, closeModal }) => {
 	const { register, handleSubmit } = useForm();
 	const { _id: id } = post;
-	console.log(id);
 
 
 	const onSubmit = (data) => {
 		console.log(data.content);
 		const newContent = {
 			id,
-			content: data.content
-		}
+			content: data.content,
+		};
 		console.log(newContent);
 
 		fetch(`http://localhost:3000/api/posts`, {
@@ -24,7 +23,7 @@ const EditPost = ({ post }) => {
 			headers: {
 				'content-type': 'application/json',
 			},
-			body: JSON.stringify( newContent ),
+			body: JSON.stringify(newContent),
 		})
 			.then((res) => {
 				if (!res.ok) {
@@ -34,6 +33,8 @@ const EditPost = ({ post }) => {
 				return res.json();
 			})
 			.then((data) => {
+			
+				closeModal();
 				console.log('Received data:', data);
 			})
 			.catch((error) => {
@@ -71,7 +72,9 @@ const EditPost = ({ post }) => {
 						className="w-full min-h-96 px-5 py-3"
 					/>
 				)}
-				<button type="submit" className='btn-primary cursor-pointer'>Post</button>
+				<button type="submit" className="btn-primary cursor-pointer">
+					Post
+				</button>
 			</form>
 			{post?.image && (
 				<Image

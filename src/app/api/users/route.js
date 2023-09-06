@@ -11,7 +11,7 @@ export const GET = async () => {
         return new NextResponse(JSON.stringify(users), { status: 200 })
 
     } catch (err) {
-        return new NextResponse('User Fetch Problrms', { status: 500 })
+        return new NextResponse('User Fetch Problems', { status: 500 })
     }
 }
 
@@ -29,3 +29,5 @@ export const POST = async (request) => {
         return new NextResponse("Database Error", { status: 500 });
     }
 }
+
+
