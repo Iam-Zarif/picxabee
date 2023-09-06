@@ -1,4 +1,4 @@
-import React from 'react'
+"use client"
 import useSWR from 'swr';
 
 const TotalPost = () => {
@@ -16,10 +16,10 @@ const TotalPost = () => {
 	if (isLoading) return <div>Loading...</div>;
 
   return (
-		<div>
-			<p className="font-bold text-3xl font-sans ">
+		<div className='h-[150px] bg-blue bg-opacity-10 rounded-md flex items-center justify-center'>
+			<h3 className="text-2xl font-semibold">
 				Total Posts: {posts?.length}
-			</p>
+			</h3>
 		</div>
 	);
 }

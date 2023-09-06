@@ -46,14 +46,16 @@ const Navbar = () => {
   // console.log(user);
   const handleLogOut = () => {
     logout().then(data => {
-      console.log(data)
+      // console.log(data)
       Swal.fire({
         icon: 'error',
         title: 'Caution',
         text: 'You logged Out!',
         footer: '<p></p><u><a href="/auth/signin" >Login</u></a> for having access</p>'
       })
-    }).catch(err => { console.log(err) });
+    }).catch(err => { 
+      // console.log(err) 
+    });
   }
 
   // console.log(user);
@@ -69,7 +71,7 @@ const Navbar = () => {
       },
       feedback: data.feedback,
     };
-    console.log(feedback);
+    // console.log(feedback);
 
     try {
       const res = await fetch('api/feedbacks', {
@@ -82,7 +84,7 @@ const Navbar = () => {
 
       if (res.ok) {
 
-        console.log('Feedback submitted successfully.');
+        // console.log('Feedback submitted successfully.');
       } else {
         console.error('Error submitting feedback.');
       }
@@ -199,8 +201,8 @@ const Navbar = () => {
                     <p className=" ">
                       <AiOutlineUser className="inline" /> <span>{user.displayName}</span>
                     </p>
-                    <div className="divider"></div>
-                    <ThemeButton />
+                    <hr className="text-primary-color"/>
+                    <ThemeButton/>
                     <Link href="/Profile">
                       <p className="  flex items-center group   hover:ml-2 transition-all">
                         <AiOutlineProfile size={28} className="inline mr-2 rounded-full " />
@@ -343,7 +345,7 @@ const Navbar = () => {
 
 
               <textarea {...register("feedback", { required: true })} placeholder="Give your feedback" className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black" />
-              {errors.textarea && <span className="text-red flex gap-2 items-center"><BsExclamationCircle /> Give your feedback</span>}
+              {errors.feedback && <span className="text-red flex gap-2 items-center"><BsExclamationCircle /> Give your feedback</span>}
             </div>
             <input type="submit" className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold" />
 
