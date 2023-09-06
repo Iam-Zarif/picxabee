@@ -143,3 +143,24 @@
 
 } */
 /* Dashboard  */
+
+.btn-primary{
+  background-color: #fafbfc7e;
+
+  border-radius: 15px;
+  border: 1px solid #2E4F6B;
+  font-weight: bold;
+}
+.btn-primary:hover{
+  background-color:#2E4F6B;
+  /* #3e0eee95; */
+  font-weight: bold;
+  color: white;
+  border: none;
+}
+.search-primary{
+background-color:#fafbfc7e;
+}
+.search-primary:hover{
+background-color:#2E4F6B;
+}
