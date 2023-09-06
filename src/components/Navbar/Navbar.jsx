@@ -14,20 +14,18 @@ import fakeUserData from "./fakeUsers.json";
 
 import {
   AiOutlineArrowRight,
-  AiOutlinePlusCircle,
   AiOutlineProfile,
-  AiOutlineQuestionCircle,
   AiOutlineUser,
 } from "react-icons/ai";
 import { BsExclamationCircle, BsSearch } from "react-icons/bs";
-import { GrNotification } from "react-icons/";
-import { HiOutlineChatAlt2, HiOutlinePaperAirplane, HiOutlineUserGroup } from "react-icons/hi";
+import {
+  HiOutlineChatAlt2,
+  HiOutlinePaperAirplane,
+  HiOutlineUserGroup,
+} from "react-icons/hi";
 // import component 👇
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
-
-//import styles 👇
-
 import "react-modern-drawer/dist/index.css";
 import { useRouter } from "next/navigation";
 
@@ -37,30 +35,36 @@ import { TbLayoutDashboard } from "react-icons/tb";
 import SearchSection from "./SearchSection";
 import NavFeedback from "./NavFeedback";
 import AuthContext from "@/context/AuthContext";
-import { FaUserAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-;
 const Navbar = () => {
+  const [error, setError] = useState([]);
   const { user, logout } = useContext(AuthContext);
   // console.log(user);
   const handleLogOut = () => {
-    logout().then(data => {
-      // console.log(data)
-      Swal.fire({
-        icon: 'error',
-        title: 'Caution',
-        text: 'You logged Out!',
-        footer: '<p></p><u><a href="/auth/signin" >Login</u></a> for having access</p>'
+    logout()
+      .then((data) => {
+        // console.log(data)
+        Swal.fire({
+          icon: "error",
+          title: "Caution",
+          text: "You logged Out!",
+          footer:
+            '<p></p><u><a href="/auth/signin" >Login</u></a> for having access</p>',
+        });
       })
-    }).catch(err => { 
-      // console.log(err) 
-    });
-  }
+      .catch((err) => {
+        // console.log(err)
+      });
+  };
 
   // console.log(user);
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     const feedback = {
@@ -71,28 +75,30 @@ const Navbar = () => {
       },
       feedback: data.feedback,
     };
-    // console.log(feedback);
 
     try {
-      const res = await fetch('api/feedbacks', {
-        method: 'POST',
+      const res = await fetch("api/feedbacks", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(feedback),
       });
 
       if (res.ok) {
-
         // console.log('Feedback submitted successfully.');
       } else {
-        console.error('Error submitting feedback.');
+        console.error("Error submitting feedback.");
       }
+      const { msg } = await res.json();
+      setError(msg);
+      setTimeout(() => {
+        setError(false); // Hide the message after 2 seconds
+      }, 2000);
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error("An error occurred:", error);
     }
   };
-
 
   const router = useRouter();
   useEffect(() => {
@@ -121,8 +127,6 @@ const Navbar = () => {
       setSearchResults([]);
       return;
     }
-
-    // Filter the data based on the search query
     const filteredResults = fakeUserData.filter((user) =>
       user.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -142,9 +146,7 @@ const Navbar = () => {
     );
 
     setSearchResults(filteredUsers);
-
   };
-
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -157,19 +159,20 @@ const Navbar = () => {
   };
   const navItems = (
     <>
-      {user ?
-        <><li>
-          <Link href="/">
-            <p className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
-              <GoHome className="text-2xl lg:text-2xl " />
-            </p></Link>
-        </li>
+      {user ? (
+        <>
+          <li>
+            <Link href="/">
+              <p className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
+                <GoHome className="text-2xl lg:text-2xl " />
+              </p>
+            </Link>
+          </li>
           <li>
             <a className="hover:bg-transparent hover:scale-125 transform transition-transform ">
               <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
             </a>
           </li>
-
 
           <li>
             <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
@@ -181,31 +184,43 @@ const Navbar = () => {
           </li>
           <li className="hidden lg:relative lg:block">
             <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform ">
-              <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">5</span>
+              <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">
+                5
+              </span>
               <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
             </a>
           </li>
           <li>
             <a className="hover:bg-transparent  ">
-              <Image src={user.photoURL} width={32} height={32}
+              <Image
+                src={user.photoURL}
+                width={32}
+                height={32}
                 className="rounded-full hover:scale-125 hover:translate-x-1 transform transition-transform"
                 onClick={toggleDrawer}
-              >
-
-              </Image>
+              ></Image>
               <></>
 
-              <Drawer open={isOpen} onClose={toggleDrawer} direction="right" className="bla bla bla ">
+              <Drawer
+                open={isOpen}
+                onClose={toggleDrawer}
+                direction="right"
+                className="bla bla bla "
+              >
                 <div className="dark:bg-black-bg-primary  min-h-screen">
                   <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
                     <p className=" ">
-                      <AiOutlineUser className="inline" /> <span>{user.displayName}</span>
+                      <AiOutlineUser className="inline" />{" "}
+                      <span>{user.displayName}</span>
                     </p>
-                    <hr className="text-primary-color"/>
-                    <ThemeButton/>
+                    <hr className="text-primary-color" />
+                    <ThemeButton />
                     <Link href="/Profile">
                       <p className="  flex items-center group   hover:ml-2 transition-all">
-                        <AiOutlineProfile size={28} className="inline mr-2 rounded-full " />
+                        <AiOutlineProfile
+                          size={28}
+                          className="inline mr-2 rounded-full "
+                        />
                         Profile
                         {/* profile er vitore change password */}
                         <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
@@ -216,7 +231,7 @@ const Navbar = () => {
                       Settings
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                     </p>
-                    <NavFeedback/>
+                    <NavFeedback />
                     {/*  */}
 
                     <Link href="/dashboard">
@@ -228,7 +243,10 @@ const Navbar = () => {
                     </Link>
 
                     {/*  */}
-                    <p onClick={handleLogOut} className=" flex items-center group  hover:ml-2 transition-all">
+                    <p
+                      onClick={handleLogOut}
+                      className=" flex items-center group  hover:ml-2 transition-all"
+                    >
                       <LuLogOut size={28} className="inline mr-2" />
                       Log Out
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
@@ -239,11 +257,20 @@ const Navbar = () => {
                 </div>
               </Drawer>
             </a>
-          </li></>
-        :
-        <><div>
-          <Link className="text-primary-color hover:text-white hover:bg-primary-color border py-2 font-semibold px-3 rounded-xl" href="/auth/signin">Sign In</Link>
-        </div></>}
+          </li>
+        </>
+      ) : (
+        <>
+          <div>
+            <Link
+              className="text-primary-color hover:text-white hover:bg-primary-color border py-2 font-semibold px-3 rounded-xl"
+              href="/auth/signin"
+            >
+              Sign In
+            </Link>
+          </div>
+        </>
+      )}
     </>
   );
 
@@ -258,21 +285,18 @@ const Navbar = () => {
             {/* responsive dropdown */}
             <div className=" logo normal-case text-xl group-hover:animate-pulse lg:text-3xl hidden lg:block lg:mb-5">
               {" "}
-              <Link href={"/"}><span className="text-5xl">P</span>icxa
-                <span className="bee  ">bee</span></Link>
+              <Link href={"/"}>
+                <span className="text-5xl">P</span>icxa
+                <span className="bee  ">bee</span>
+              </Link>
             </div>
           </div>
-
-
-
-
         </div>
 
         {/* search box */}
         <div className="navbar-end hidden lg:flex mx-auto ">
           <div className="hidden lg:block mr-12   mx-auto relative">
             <SearchSection />
-
           </div>
           <ul className="menu menu-horizontal px-1 ">
             {navItems}
@@ -296,13 +320,20 @@ const Navbar = () => {
         <div>
           <Image src={logo} alt="" className="w-12" />
         </div>
-        <div className={`logo text-xl lg:hidden ${searchActive ? "hidden" : "visible"}`}>
+        <div
+          className={`logo text-xl lg:hidden ${
+            searchActive ? "hidden" : "visible"
+          }`}
+        >
           <span className="text-2xl pl-5">P</span>icxa
           <span className="">bee</span>
         </div>
 
         {/* Search and Send Icons */}
-        <div data-aos="fade-left" className="indicator relative flex gap-6 lg:gap-8">
+        <div
+          data-aos="fade-left"
+          className="indicator relative flex gap-6 lg:gap-8"
+        >
           <BsSearch
             size={24}
             className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
@@ -310,9 +341,13 @@ const Navbar = () => {
           />
           <HiOutlinePaperAirplane
             size={28}
-            className={`cursor-pointer rotate-45 ${searchActive ? "hidden" : "visible"}`}
+            className={`cursor-pointer rotate-45 ${
+              searchActive ? "hidden" : "visible"
+            }`}
           />
-          <span className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}>
+          <span
+            className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
+          >
             <span className="mr-2 indicator-item badge bg-lime-500 text-white font-bold px-3 py-3">
               5
             </span>
@@ -328,30 +363,57 @@ const Navbar = () => {
               placeholder="Search..."
               className=" pl-3 w-full rounded-2xl py-1 shadow-sm shadow-slate-300 m border focus:border-transparent focus:outline-none"
             />
-
           </div>
         )}
       </div>
       {/* You can open the modal using ID.showModal() method */}
       <div className="flex gap-5">
         <dialog id="my_modal_1" className="modal px-8 lg:px-0 z-0">
-
-          <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="dark:bg-blue modal-box bg-white glass w-full">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            method="dialog"
+            className="dark:bg-blue modal-box bg-white glass w-full"
+          >
             <h1 className="text-center text-xl font-bold">users Feedback</h1>
             <div className="flex flex-col gap-3 lg:mt-8 mt-4">
-              <input  {...register("name", { required: true })} value={user?.displayName} readOnly className=" input border-none shadow-sm shadow-black" />
+              <input
+                {...register("name", { required: true })}
+                value={user?.displayName}
+                readOnly
+                className=" input border-none shadow-sm shadow-black"
+              />
 
-              <input {...register("email", { required: true })} value={user?.email} readOnly className="input border-none shadow-sm shadow-black" />
+              <input
+                {...register("email", { required: true })}
+                value={user?.email}
+                readOnly
+                className="input border-none shadow-sm shadow-black"
+              />
 
-
-              <textarea {...register("feedback", { required: true })} placeholder="Give your feedback" className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black" />
-              {errors.feedback && <span className="text-red flex gap-2 items-center"><BsExclamationCircle /> Give your feedback</span>}
-            </div>
-            <input type="submit" className="block text-red mt-5 shadow-sm shadow-black rounded-xl px-3 py-1 hover:bg-red hover:text-white font-bold" />
-
+              <textarea
+                {...register("feedback", { required: true })}
+                placeholder="Give your feedback"
+                className="textarea w-full lg:h-52 h-36 border-none  shadow-sm shadow-black"
+              />
+              {errors.feedback && (
+                <span className="text-red flex gap-2 items-center">
+                  <BsExclamationCircle /> Give your feedback
+                </span>
+              )}
+            </div >
+            <input
+              type="submit"
+              className="block text-primary-color mt-5 shadow-sm shadow-black rounded-md px-3 py-1 hover:bg-primary-color  hover:text-white font-bold"
+            />
+           <div > <p
+              
+              className=" text-white bg-primary-color  text-center  rounded-xl  mt-2"
+            >
+              {error}
+            </p>
+</div>
             <div className="modal-action">
               <p>Press ESC to continue</p>
-
             </div>
           </form>
         </dialog>
@@ -361,4 +423,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

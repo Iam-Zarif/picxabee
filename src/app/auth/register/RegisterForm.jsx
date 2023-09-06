@@ -4,11 +4,12 @@ import { db, storage } from '@/firebase/firebase.config';
 import { updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const RegisterForm = () => {
-
+const router = useRouter()
 	const { createUser } = useContext(AuthContext);
 
 	const {
@@ -92,11 +93,14 @@ const RegisterForm = () => {
 								role: 'user',
 							}),
 						});
+						
 					} catch (error) {
 						console.log(error);
 					}
 				}
+
 			);
+			router.push("/");
 		} catch (error) {
 			console.log('Signup Failed', error);
 		}
