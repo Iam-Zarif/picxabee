@@ -4,8 +4,8 @@ import {RiDeleteBin2Line} from 'react-icons/ri';
 const SingleComment = ({ comment, id }) => {
 const postId = id;
 const commentId = comment?._id;
-	console.log(comment?._id)
-	console.log(id)
+	// console.log(comment?._id)
+	// console.log(id)
 	const handleDeleteComment = async (postId, commentId) => {
 		// console.log(id);
 
@@ -53,7 +53,7 @@ const commentId = comment?._id;
 				<p className="font-normal">{comment?.comment}</p>
 			</div>
 			<button onClick={() => handleDeleteComment(postId, commentId)}>
-				<RiDeleteBin2Line size={16} />
+				<RiDeleteBin2Line className='text-gray hover:text-red' size={18} />
 			</button>
 		</div>
 	);

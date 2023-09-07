@@ -17,14 +17,11 @@ const SigninPage = () => {
 						<SigninForm />
 
 						<p className="my-5">
-							New to Picxabee?
-							<Link
+							New to Picxabee? Please <Link
 								href="/auth/register"
 								className="font-semibold text-primary-color"
-							>
-								 Register
-							</Link>
-							please.
+							> Register
+							</Link>.
 						</p>
 
 						<SocialLogin />

@@ -34,7 +34,7 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 	return (
 		<>
 			<Transition appear show={isOpen} as={Fragment}>
-				<Dialog as="div" className="relative z-50" onClose={closeModal}>
+				<Dialog as="div" className="relative z-50" onClose={closeModal} onClick={()=>setEditPost(false)}>
 					<Transition.Child
 						as={Fragment}
 						enter="ease-out duration-300"
@@ -89,7 +89,11 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 										</ul>
 									)}
 									{editPost && (
-										<EditPost post={post} closeModal={closeModal}></EditPost>
+										<EditPost
+											post={post}
+											closeModal={closeModal}
+											setEditPost={setEditPost}
+										></EditPost>
 									)}
 								</Dialog.Panel>
 							</Transition.Child>
