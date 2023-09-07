@@ -9,7 +9,7 @@ const commentId = comment?._id;
 	// console.log(comment?._id)
 	// console.log(id)
 	const DeleteActive = comment?.author?.email !== user?.email;
-	console.log(DeleteActive);
+	// console.log(DeleteActive);
 
 	const handleDeleteComment = async (postId, commentId) => {
 		// console.log(id);
