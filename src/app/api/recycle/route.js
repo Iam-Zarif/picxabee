@@ -38,7 +38,7 @@ export const POST = async (request) => {
         })
 
         await newRecylePost.save()
-        return new NextResponse(JSON.stringify({ message: "post has been created inside rycyle collection" }), { status: 201 });
+        return new NextResponse(JSON.stringify({ message: "post has been created inside recyle collection" }), { status: 201 });
 
     } catch (error) {
         return new NextResponse("Database Error", { status: 500 });

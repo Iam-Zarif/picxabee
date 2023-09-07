@@ -1,6 +1,8 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { BsSave, BsThreeDots } from 'react-icons/bs';
 import { PiShareFat } from 'react-icons/pi';
@@ -17,13 +19,11 @@ const SinglePost = ({ post }) => {
 	const { user } = useAuth(AuthContext);
 	const { _id: id } = post;
 
-
 	const isReacted = post.reactions.some((reaction) => {
 		return reaction?.author?.email === user?.email;
 	});
 
 	console.log(isReacted);
-
 
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
@@ -84,10 +84,16 @@ const SinglePost = ({ post }) => {
 				return res.json();
 			})
 			.then((data) => {
+				if (data.message == 'Post bookmarked successfully') {
+					toast.success(data.message);
+				} else {
+					toast.error(data.message);
+				}
+
 				console.log('Received data:', data);
 			})
 			.catch((error) => {
-				console.error('Fetch error:', error);
+				console.warning('Fetch error:', error);
 			});
 	};
 	return (
