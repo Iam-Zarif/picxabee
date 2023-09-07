@@ -36,6 +36,7 @@ import SearchSection from "./SearchSection";
 import NavFeedback from "./NavFeedback";
 import AuthContext from "@/context/AuthContext";
 import Swal from "sweetalert2";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Navbar = () => {
   const [error, setError] = useState([]);
@@ -164,32 +165,40 @@ const Navbar = () => {
         <>
           <li>
             <Link href="/">
-              <p className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
+              <p data-tip="Home" className="flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform ">
                 <GoHome className="text-2xl lg:text-2xl " />
               </p>
             </Link>
           </li>
+        
+
           <li>
+          {/* <li>
             <a className="hover:bg-transparent hover:scale-125 transform transition-transform ">
               <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
             </a>
           </li>
 
-          <li>
-            <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
+          <li> */}
+            <a data-tip="Message" className="hover:bg-transparent tooltip-bottom tooltip hover:scale-125 transform transition-transform">
               <HiOutlineChatAlt2
                 onClick={() => router.push("/messages")}
                 className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform "
               />
             </a>
           </li>
-          <li className="hidden lg:relative lg:block">
+          {/* <li className="hidden lg:relative lg:block">
             <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform ">
               <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">
                 5
               </span>
               <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
             </a>
+          </li> */}
+            <li>
+            <Link href={"/recycle"} data-tip="Recycle bin" className="hover:bg-transparent tooltip-bottom tooltip  hover:scale-125 transform transition-transform ">
+              <RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
+            </Link>
           </li>
           <li>
             <a className="hover:bg-transparent  ">

@@ -53,7 +53,7 @@ const commentId = comment?._id;
 				<p className="font-normal">{comment?.comment}</p>
 			</div>
 			<button onClick={() => handleDeleteComment(postId, commentId)}>
-				<RiDeleteBin2Line size={16} />
+				<RiDeleteBin2Line className='text-gray hover:text-red' size={18} />
 			</button>
 		</div>
 	);
