@@ -16,6 +16,6 @@ export const GET = async (request, { params }) => {
         return new NextResponse(JSON.stringify(posts), { status: 200 })
 
     } catch (err) {
-        return new NextResponse('trending Hashtag Fetch Problrms', { status: 500 })
+        return new NextResponse('trending Hashtag Fetch Problems', { status: 500 })
     }
 }
