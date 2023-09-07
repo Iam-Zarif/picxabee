@@ -23,9 +23,7 @@ const SinglePost = ({ post }) => {
 		return reaction?.author?.email === user?.email;
 	});
 
-	const isButtonDisabled = post?.author?.email !== user?.email;
-
-	// console.log(isReacted);
+	console.log(isReacted);
 
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
@@ -99,9 +97,12 @@ const SinglePost = ({ post }) => {
 			});
 	};
 	return (
-		<div data-aos="fade-up" className="lg:px-0 border border-2 rounded-md mb-3">
+		<div
+			data-aos="fade-up"
+			className="lg:px-0 border-2 border-gray-200 rounded-md mb-3 "
+		>
 			<div className="w-full flex items-center justify-between p-2">
-				<div className="flex items-center ml-3 mt-4">
+				<div className="flex items-center">
 					<Image
 						src={post?.author?.profile_picture}
 						width={50}
@@ -114,23 +115,12 @@ const SinglePost = ({ post }) => {
 						<p className="font-normal text-sm ">{formattedDateTime}</p>
 					</div>
 				</div>
-				<div>
-					{isButtonDisabled ? (
-						<button disabled>
-							<BsThreeDots
-								size={28}
-								className="text-gray-400 cursor-not-allowed"
-							/>
-						</button>
-					) : (
-						<button onClick={openModal}>
-							<BsThreeDots
-								size={28}
-								className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-							/>
-						</button>
-					)}
-</div>				
+				<button onClick={openModal}>
+					<BsThreeDots
+						size={28}
+						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+					/>
+				</button>
 				<EditOption
 					id={id}
 					post={post}
@@ -149,8 +139,8 @@ const SinglePost = ({ post }) => {
 					className="object-contain border-none w-full h-[500px]" //object-contain
 				/>
 			)}
-			<div className="flex justify-end px-5 pt-2 pb-6 mr-4 pb">
-				<div className="flex items-center justify-between gap-x-[9px]">
+			<div className="flex justify-end px-5 py-3 ">
+				<div className="flex gap-3">
 					<BsSave
 						onClick={handleBookmark}
 						size={26}
@@ -158,7 +148,7 @@ const SinglePost = ({ post }) => {
 					/>
 					<AiOutlineComment
 						onClick={() => setOpen(!open)}
-						size={26}
+						size={28}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
 					<p className="font-semibold text-lg">
@@ -168,24 +158,22 @@ const SinglePost = ({ post }) => {
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
-					<div className="flex gap-x-1">
-					{react ? (
+					{isReacted ? (
 						<AiFillHeart
-							onClick={() => handleRemoveReaction('tasnim@gmail.com')}
-							size={26}
-							className="hover:scale-125 duration-300 hover:text-red-400 hover:cursor-pointer text-red-500"
+							onClick={handleReaction}
+							size={28}
+							className="hover:scale-125 duration-300 hover:cursor-pointer text-red"
 						/>
 					) : (
 						<AiOutlineHeart
 							onClick={handleReaction}
-							size={26}
+							size={28}
 							className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 						/>
 					)}
 					<p className="font-semibold text-lg">
 						{post?.reactions && post?.reactions.length}
 					</p>
-					</div>
 				</div>
 			</div>
 
