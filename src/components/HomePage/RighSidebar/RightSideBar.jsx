@@ -9,7 +9,7 @@ const RightSideBar = () => {
         <>
             <div className=' ml-10 '>
 
-            <Ad />
+                <Ad />
             </div>
 
 
@@ -19,7 +19,7 @@ const RightSideBar = () => {
             </div>
 
             <div className='ml-10'>
-            <TrandingTopicList />
+                <TrandingTopicList />
             </div>
         </>
     );
