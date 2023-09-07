@@ -3,10 +3,14 @@ import connect from '@/utils/db';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
+
+// Get post data
+
+
 export const GET = async () => {
 	try {
 		await connect();
-		const posts = await Post.find();
+		const posts = await Post.find({ privacy: 'public' });
 
 		return new NextResponse(JSON.stringify(posts), { status: 200 });
 	} catch (err) {
@@ -14,6 +18,26 @@ export const GET = async () => {
 	}
 };
 
+// Update Post
+export const PUT = async (request)=> {
+	try {
+		
+		const  { id,  content } = await request.json();
+		console.log(content);
+		await connect();
+		await Post.findByIdAndUpdate(id, { content });
+		return NextResponse.json({ message: 'Post updated' }, { status: 200 });
+	} catch (error) {
+		console.log(error.name, error.message);
+		return NextResponse.json({ error: error.message });
+	}
+}
+
+
+
+
+
+// tuhin vai
 export async function POST(request) {
 	try {
 		const post = await request.json();
@@ -26,9 +50,9 @@ export async function POST(request) {
 	}
 }
 
-//nishat
+//delete post
+
 export const DELETE = async (request) => {
-	// const { id } = await request.json();
 	try {
 		const id = request.nextUrl.searchParams.get('id');
 		await connect();
@@ -39,7 +63,7 @@ export const DELETE = async (request) => {
 	}
 };
 
-
+// add and remove reaction  
 export const PATCH = async (request) => {
 	try {
 		const newReaction = await request.json();
@@ -108,3 +132,5 @@ export const PATCH = async (request) => {
 		);
 	}
 };
+
+
