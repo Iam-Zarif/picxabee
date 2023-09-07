@@ -203,7 +203,7 @@ const Navbar = () => {
           <li>
             <a className=" hover:bg-transparent ">
               <Image
-              
+              alt="User image"
                 src={user?.photoURL}
                 width={32}
                 height={32}
@@ -329,7 +329,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <div>
-          <Image src={logo} alt="" className="w-12" />
+          <Image src={logo} alt="logo" className="w-12" />
         </div>
         <div
           className={`logo text-xl lg:hidden ${
