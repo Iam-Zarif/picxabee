@@ -79,7 +79,7 @@
   color: white;
   padding: 0;
 }
-.container {
+.message-container {
   
   border: 1px solid white;
   width: 100%;
@@ -145,11 +145,12 @@
 /* Dashboard  */
 
 .btn-primary{
-  background-color: #fafbfc7e;
-
-  border-radius: 15px;
+  background-color: #2E4F6B;
+  opacity: .7;
+  border-radius: 6px;
   border: 1px solid #2E4F6B;
   font-weight: bold;
+  color: black;
 }
 .btn-primary:hover{
   background-color:#2E4F6B;
@@ -157,6 +158,7 @@
   font-weight: bold;
   color: white;
   border: none;
+  opacity: 1.0;
 }
 .search-primary{
 background-color:#fafbfc7e;
