@@ -197,7 +197,6 @@ const SinglePost = ({ post }) => {
 						key={i}
 						comment={comment}
 						id={post._id}
-						post={post}
 					></SingleComment>
 				))}
 			</div>
