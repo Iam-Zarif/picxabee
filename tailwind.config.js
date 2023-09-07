@@ -10,13 +10,16 @@ module.exports = {
 		colors: {
 			'primary-color': '#349999',
 			'secondary-color': '#A7C5C5',
-			'white': '#fff',
-			'black': '#111',
-			'red': '#F20519',
-			'blue': '#304269',
-			'gray': '#9ca3af',
-			'black-bg-primary':'#5A5A5A',
-			'black-bg-secondary':'#333333 ',
+			white: '#fff',
+			black: '#111',
+			red: '#F20519',
+			blue: '#304269',
+			gray: '#9ca3af',
+
+			'gray-400': '#94a3b8',
+
+			'black-bg-primary': '#5A5A5A',
+			'black-bg-secondary': '#333333 ',
 		},
 		extend: {
 			backgroundImage: {

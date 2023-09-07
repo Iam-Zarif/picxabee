@@ -4,8 +4,8 @@ import {RiDeleteBin2Line} from 'react-icons/ri';
 const SingleComment = ({ comment, id }) => {
 const postId = id;
 const commentId = comment?._id;
-	console.log(comment?._id)
-	console.log(id)
+	// console.log(comment?._id)
+	// console.log(id)
 	const handleDeleteComment = async (postId, commentId) => {
 		// console.log(id);
 

@@ -17,7 +17,7 @@ const RegisterPage = () => {
 
                         <RegisterForm />
 
-                        <p className="my-5">please <Link href="/auth/signin" className="font-semibold text-primary-color">Signin</Link>. You have an account on picxabee. </p>
+                        <p className="my-5">Please <Link href="/auth/signin" className="font-semibold text-primary-color">Signin</Link> if you already have an account on picxabee. </p>
 
                         <SocialLogin />
                     </div>
