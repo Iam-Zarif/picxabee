@@ -5,17 +5,16 @@ import Sidebar from "@/components/MessagesComponents/MessagesSidebarLeft/Sidebar
 
 const Messages = () => {
   return (
-    <div className="chatui">
-        <div className="container">
-            <Sidebar />
-            <div className="rightside">
-
-                <MessagesSideSectionRightNavbar />
-                <Chat />
-            </div>
-        </div>
-    </div>
-  )
+		<div className="chatui">
+			<div className="message-container">
+				<Sidebar />
+				<div className="rightside">
+					<MessagesSideSectionRightNavbar />
+					<Chat />
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default Messages;

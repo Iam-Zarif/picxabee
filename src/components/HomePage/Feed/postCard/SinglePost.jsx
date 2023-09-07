@@ -1,6 +1,8 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { BsSave, BsThreeDots } from 'react-icons/bs';
 import { PiShareFat } from 'react-icons/pi';
@@ -16,9 +18,15 @@ const SinglePost = ({ post }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { user } = useAuth(AuthContext);
 	const { _id: id } = post;
-	// if (post.author.email === user.email) {
-	// 	setReact(true);
-	// }
+
+	const isReacted = post.reactions.some((reaction) => {
+		return reaction?.author?.email === user?.email;
+	});
+
+	const isButtonDisabled = post?.author?.email !== user?.email;
+
+	// console.log(isReacted);
+
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
@@ -29,8 +37,6 @@ const SinglePost = ({ post }) => {
 	function openModal() {
 		setIsOpen(true);
 	}
-
-	const handleRemoveReaction = () => {};
 
 	const handleReaction = () => {
 		const NewReaction = {
@@ -65,6 +71,33 @@ const SinglePost = ({ post }) => {
 			});
 	};
 
+	const handleBookmark = () => {
+		fetch(`/api/users/bookmarks?userEmail=${user?.email}&postId=${id}`, {
+			method: 'PATCH',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return res.json();
+			})
+			.then((data) => {
+				if (data.message == 'Post bookmarked successfully') {
+					toast.success(data.message);
+				} else {
+					toast.error(data.message);
+				}
+
+				console.log('Received data:', data);
+			})
+			.catch((error) => {
+				console.warning('Fetch error:', error);
+			});
+	};
 	return (
 		<div data-aos="fade-up" className="lg:px-0 border border-2 rounded-md mb-3">
 			<div className="w-full flex items-center justify-between p-2">
@@ -81,12 +114,23 @@ const SinglePost = ({ post }) => {
 						<p className="font-normal text-sm ">{formattedDateTime}</p>
 					</div>
 				</div>
-				<button onClick={openModal}>
-					<BsThreeDots
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer mr-6"
-					/>
-				</button>
+				<div>
+					{isButtonDisabled ? (
+						<button disabled>
+							<BsThreeDots
+								size={28}
+								className="text-gray-400 cursor-not-allowed"
+							/>
+						</button>
+					) : (
+						<button onClick={openModal}>
+							<BsThreeDots
+								size={28}
+								className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+							/>
+						</button>
+					)}
+</div>				
 				<EditOption
 					id={id}
 					post={post}
@@ -95,8 +139,7 @@ const SinglePost = ({ post }) => {
 					isOpen={isOpen}
 				></EditOption>
 			</div>
-			<div className="py-4 px-4 whitespace-normal">{post?.content && <h1 className="">{post?.content}</h1>}</div>
-			{/* <h1 className="min-h-64 px-5 py-3">{post?.content}</h1> */}
+			{post?.content && <h1 className="px-5 py-3">{post?.content}</h1>}
 			{post?.image && (
 				<Image
 					src={post?.image}
@@ -109,6 +152,7 @@ const SinglePost = ({ post }) => {
 			<div className="flex justify-end px-5 pt-2 pb-6 mr-4 pb">
 				<div className="flex items-center justify-between gap-x-[9px]">
 					<BsSave
+						onClick={handleBookmark}
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
@@ -155,27 +199,7 @@ const SinglePost = ({ post }) => {
 					></SingleComment>
 				))}
 			</div>
-			<div>
-				<div>
-					{/* <p>
-						{likes && (
-							<>
-								Liked by
-								{likes.length > 1 ? (
-									<>
-										<Link className="font-bold" href={`/user/${likes[0]}`}>
-											{likes[0]}
-										</Link>
-										and <span className="font-bold"> others</span>
-									</>
-								) : (
-									<Link href={`/user/${likes[0]}`}>{likes[0]}</Link>
-								)}
-							</>
-						)}
-					</p> */}
-				</div>
-				{/* <p className="text-neutral-400 text-base">Add a comment...</p> */}
+			<div className="px-5 pb-5 ">
 				<CommentSection id={post._id} open={open}></CommentSection>
 			</div>
 		</div>

@@ -11,7 +11,8 @@ import { RxCross2 } from "react-icons/rx";
 // import 'animate.css';
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   AiOutlineArrowRight,
   AiOutlineProfile,
@@ -36,9 +37,11 @@ import SearchSection from "./SearchSection";
 import NavFeedback from "./NavFeedback";
 import AuthContext from "@/context/AuthContext";
 import Swal from "sweetalert2";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Navbar = () => {
-  const [error, setError] = useState([]);
+  const [success, setError] = useState([]);
+  
   const { user, logout } = useContext(AuthContext);
   // console.log(user);
   const handleLogOut = () => {
@@ -54,7 +57,7 @@ const Navbar = () => {
         });
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
       });
   };
 
@@ -62,10 +65,14 @@ const Navbar = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
 
+  
+  const notify = (feed) =>{
+    return toast(feed)
+  }
   const onSubmit = async (data) => {
     const feedback = {
       author: {
@@ -86,18 +93,24 @@ const Navbar = () => {
       });
 
       if (res.ok) {
+        
         // console.log('Feedback submitted successfully.');
       } else {
         console.error("Error submitting feedback.");
+
       }
       const { msg } = await res.json();
       setError(msg);
       setTimeout(() => {
         setError(false); // Hide the message after 2 seconds
       }, 2000);
+     reset();
+     notify("Submitted feedback");
     } catch (error) {
       console.error("An error occurred:", error);
+      
     }
+   
   };
 
   const router = useRouter();
@@ -118,7 +131,6 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const navbarRef = useRef(null);
-  const searchButtonRef = useRef(null);
 
   const [searchActive, setSearchActive] = useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -133,8 +145,6 @@ const Navbar = () => {
 
     setSearchResults(filteredResults);
   }, [searchQuery]);
-
-  const [autoSaveTimer, setAutoSaveTimer] = useState(null);
 
   const handleSearch = () => {
     if (searchQuery.trim() === "") {
@@ -163,40 +173,49 @@ const Navbar = () => {
         <>
           <li>
             <Link href="/">
-              <p className="flex items-center   hover:scale-125 hover:translate-x-1 transform transition-transform ">
+              <p data-tip="Home" className="flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform ">
                 <GoHome className="text-2xl lg:text-2xl " />
               </p>
             </Link>
           </li>
+        
+
           <li>
+          {/* <li>
             <a className="hover:bg-transparent hover:scale-125 transform transition-transform ">
               <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
             </a>
           </li>
 
-          <li>
-            <a className="hover:bg-transparent  hover:scale-125 transform transition-transform">
+          <li> */}
+            <a data-tip="Message" className="hover:bg-transparent tooltip-bottom tooltip hover:scale-125 transform transition-transform">
               <HiOutlineChatAlt2
                 onClick={() => router.push("/messages")}
                 className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform "
               />
             </a>
           </li>
-          <li className="hidden lg:relative lg:block">
+          {/* <li className="hidden lg:relative lg:block">
             <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform ">
               <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">
                 5
               </span>
               <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
             </a>
+          </li> */}
+            <li>
+            <Link href={"/recycle"} data-tip="Recycle bin" className="hover:bg-transparent tooltip-bottom tooltip  hover:scale-125 transform transition-transform ">
+              <RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
+            </Link>
           </li>
           <li>
-            <a className="hover:bg-transparent  ">
+            <a className=" hover:bg-transparent ">
               <Image
-                src={user.photoURL}
+              alt="User image"
+                src={user?.photoURL}
                 width={32}
                 height={32}
-                className="rounded-full hover:scale-125 hover:translate-x-1 transform transition-transform"
+                className="rounded-full  hover:scale-125 hover:translate-x-1 transform transition-transform"
                 onClick={toggleDrawer}
               ></Image>
               <></>
@@ -263,7 +282,7 @@ const Navbar = () => {
         <>
           <div>
             <Link
-              className="text-primary-color hover:text-white hover:bg-primary-color border py-2 font-semibold px-3 rounded-xl"
+              className="text-white hover:text-primary-color hover:bg-white bg-primary-color  py-3 shadow-sm hover:shadow-primary-color font-semibold px-3 rounded-xl"
               href="/auth/signin"
             >
               Sign In
@@ -318,7 +337,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <div>
-          <Image src={logo} alt="" className="w-12" />
+          <Image src={logo} alt="logo" className="w-12" />
         </div>
         <div
           className={`logo text-xl lg:hidden ${
@@ -372,20 +391,20 @@ const Navbar = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             method="dialog"
-            className="dark:bg-blue modal-box bg-white glass w-full"
+            className="dark:bg-black-bg-primary modal-box bg-white glass w-full"
           >
             <h1 className="text-center text-xl font-bold">users Feedback</h1>
             <div className="flex flex-col gap-3 lg:mt-8 mt-4">
               <input
                 {...register("name", { required: true })}
-                value={user?.displayName}
+                value={`name: ` + user?.displayName}
                 readOnly
                 className=" input border-none shadow-sm shadow-black"
               />
 
               <input
                 {...register("email", { required: true })}
-                value={user?.email}
+                value={`Email: ` +user?.email}
                 readOnly
                 className="input border-none shadow-sm shadow-black"
               />
@@ -402,15 +421,12 @@ const Navbar = () => {
               )}
             </div >
             <input
+            onClick={notify}
               type="submit"
-              className="block text-primary-color mt-5 shadow-sm shadow-black rounded-md px-3 py-1 hover:bg-primary-color  hover:text-white font-bold"
+              className="block mt-5 shadow-sm dark:bg-gray    shadow-black rounded-md px-3 py-1 btn-primary dark:hover:btn-primary font-bold"
             />
-           <div > <p
-              
-              className=" text-white bg-primary-color  text-center  rounded-xl  mt-2"
-            >
-              {error}
-            </p>
+           <div > 
+
 </div>
             <div className="modal-action">
               <p>Press ESC to continue</p>
@@ -418,6 +434,7 @@ const Navbar = () => {
           </form>
         </dialog>
       </div>
+      <ToastContainer />
     </div>
   );
 };
