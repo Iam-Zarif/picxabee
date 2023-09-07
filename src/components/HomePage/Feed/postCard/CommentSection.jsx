@@ -51,27 +51,29 @@ const CommentSection = ({ id, open }) => {
 
 	return (
 		<div className={`${open ? '' : 'hidden'}`}>
-			<form className="flex relative" onSubmit={handleSubmit(onSubmit)}>
-				<textarea
+		<div className="px-5 pb-5">	<form className="flex items-center justify-between" onSubmit={handleSubmit(onSubmit)}>
+				<input
 					{...register('comment')}
 					value={watchComment}
 					onChange={(e) => setValue('comment', e.target.value)}
 					placeholder="Write a comment..."
-					className="border-none focus:outline-none overflow-visible min-h-fit max-h-fit w-11/12 break-words text-gray-400 bg-slate-50 rounded-md"
+					className="ml-3 border-none focus:outline-none overflow-visible min-h-fit max-h-fit w-11/12 break-words text-gray-400 bg-slate-50 rounded-md"
 				/>
 
-				<button
+			   <div className="mr-[18px] cursor-pointer"><button
 					type="submit"
 					className={`font-normal  ml-5 flex justify-center  ${
 						watchComment ? 'visible' : 'hidden'
 					}`}
 				>
 					<AiOutlineSend
-						size={26}
-						className="absolute top-2 right-3 hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						size={24}
+						className="md:right-32 md:mr-[10px] hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
 				</button>
+				</div>
 			</form>
+			</div>
 		</div>
 	);
 };

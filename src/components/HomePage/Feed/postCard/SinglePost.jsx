@@ -99,12 +99,9 @@ const SinglePost = ({ post }) => {
 			});
 	};
 	return (
-		<div
-			data-aos="fade-up"
-			className="lg:px-0 border-2 border-gray-200 rounded-md mb-3 "
-		>
+		<div data-aos="fade-up" className="lg:px-0 border border-2 rounded-md mb-3">
 			<div className="w-full flex items-center justify-between p-2">
-				<div className="flex items-center">
+				<div className="flex items-center ml-3 mt-4">
 					<Image
 						src={post?.author?.profile_picture}
 						width={50}
@@ -152,8 +149,8 @@ const SinglePost = ({ post }) => {
 					className="object-contain border-none w-full h-[500px]" //object-contain
 				/>
 			)}
-			<div className="flex justify-end px-5 py-3 ">
-				<div className="flex gap-3">
+			<div className="flex justify-end px-5 pt-2 pb-6 mr-4 pb">
+				<div className="flex items-center justify-between gap-x-[9px]">
 					<BsSave
 						onClick={handleBookmark}
 						size={26}
@@ -161,7 +158,7 @@ const SinglePost = ({ post }) => {
 					/>
 					<AiOutlineComment
 						onClick={() => setOpen(!open)}
-						size={28}
+						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
 					<p className="font-semibold text-lg">
@@ -171,22 +168,24 @@ const SinglePost = ({ post }) => {
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
-					{isReacted ? (
+					<div className="flex gap-x-1">
+					{react ? (
 						<AiFillHeart
-							onClick={handleReaction}
-							size={28}
-							className="hover:scale-125 duration-300 hover:cursor-pointer text-red"
+							onClick={() => handleRemoveReaction('tasnim@gmail.com')}
+							size={26}
+							className="hover:scale-125 duration-300 hover:text-red-400 hover:cursor-pointer text-red-500"
 						/>
 					) : (
 						<AiOutlineHeart
 							onClick={handleReaction}
-							size={28}
+							size={26}
 							className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 						/>
 					)}
 					<p className="font-semibold text-lg">
 						{post?.reactions && post?.reactions.length}
 					</p>
+					</div>
 				</div>
 			</div>
 
