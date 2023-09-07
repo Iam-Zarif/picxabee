@@ -379,7 +379,7 @@ const Navbar = () => {
             <div className="flex flex-col gap-3 lg:mt-8 mt-4">
               <input
                 {...register("name", { required: true })}
-                value={user?.displayName}
+                value={`name: ` + user?.displayName}
                 readOnly
                 className=" input border-none shadow-sm shadow-black"
               />
