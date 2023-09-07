@@ -14,7 +14,7 @@ const FeedbackPage = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
   const formatDate = (createdAt) => {
     const inputDate = new Date(createdAt);
@@ -27,7 +27,7 @@ const FeedbackPage = () => {
     <div className="w-10/12 mb-60 ml-auto mr-20 pt-8 mt-20 z-0">
       {isLoading ? (
         <>
-<Loading />
+<div className=""><Loading /></div>
         </>
       ) : (
         <>
