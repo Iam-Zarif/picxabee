@@ -1,11 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
 import {RiDeleteBin2Line} from 'react-icons/ri';
-const SingleComment = ({ comment, id }) => {
+import useAuth from '@/hooks/useAuth';
+const SingleComment = ({ comment, id, post }) => {
+	const {user}  = useAuth()
 const postId = id;
 const commentId = comment?._id;
 	// console.log(comment?._id)
 	// console.log(id)
+	const isButtonDisabled = post?.author?.email !== user?.email;
+
 	const handleDeleteComment = async (postId, commentId) => {
 		// console.log(id);
 
@@ -52,9 +56,15 @@ const commentId = comment?._id;
 
 				<p className="font-normal">{comment?.comment}</p>
 			</div>
-			<button onClick={() => handleDeleteComment(postId, commentId)}>
-				<RiDeleteBin2Line className='text-gray hover:text-red' size={18} />
-			</button>
+			<div>
+				(isButtonDisabled)?
+				<button >
+					<RiDeleteBin2Line className="text-gray hover:text-red" size={18} />
+				</button> :
+				<button onClick={() => handleDeleteComment(postId, commentId)}>
+					<RiDeleteBin2Line className="text-gray hover:text-red" size={18} />
+				</button>
+			</div>
 		</div>
 	);
 };
