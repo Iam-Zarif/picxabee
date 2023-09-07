@@ -6,7 +6,6 @@ import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 
 const Bookmark = () => {
 	const { user } = useAuth();
-	console.log(user?.email);
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const {
 		data: posts,
@@ -15,22 +14,32 @@ const Bookmark = () => {
 	} = useSWR(`/api/users/bookmarks?userEmail=${user?.email}`, fetcher, {
 		refreshInterval: 1000,
 	});
-	console.log(posts);
+	// console.log(posts);
 	if (error) return <div>failed to load</div>;
 	if (isLoading) return <div>loading...</div>;
 
 	return (
-		<div className='lg:w-1/2 mx-auto'>
-            <div>
-                <h1 text-primary>Bookmarked by {user?.name}</h1>
-               < hr/>
-
-            </div>
+		<div className="lg:w-1/2 mx-auto mt-8">
 			<div>
+				<h1 className="text-primary-color font-bold text-3xl text-center">
+					Bookmarked by {user?.displayName}
+				</h1>
+				<hr className="w-[70%] h-5 text-primary-color pb-10 font-bold mx-auto " />
+			</div>
+			{/* <div>
 				{posts &&
-					posts.map((post) => (
+					posts?.map((post) => (
 						<SinglePost key={post._id} post={post}></SinglePost>
 					))}
+			</div> */}
+			<div>
+				{Array.isArray(posts) && posts.length > 0 ? (
+					posts.map((post) => (
+						<SinglePost key={post._id} post={post}></SinglePost>
+					))
+				) : (
+					<p>No posts available.</p>
+				)}
 			</div>
 		</div>
 	);

@@ -23,7 +23,9 @@ const SinglePost = ({ post }) => {
 		return reaction?.author?.email === user?.email;
 	});
 
-	console.log(isReacted);
+	const isButtonDisabled = post?.author?.email !== user?.email;
+
+	// console.log(isReacted);
 
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
@@ -115,12 +117,23 @@ const SinglePost = ({ post }) => {
 						<p className="font-normal text-sm ">{formattedDateTime}</p>
 					</div>
 				</div>
-				<button onClick={openModal}>
-					<BsThreeDots
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-				</button>
+				<div>
+					{isButtonDisabled ? (
+						<button disabled>
+							<BsThreeDots
+								size={28}
+								className="text-gray-400 cursor-not-allowed"
+							/>
+						</button>
+					) : (
+						<button onClick={openModal}>
+							<BsThreeDots
+								size={28}
+								className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+							/>
+						</button>
+					)}
+</div>				
 				<EditOption
 					id={id}
 					post={post}
@@ -184,6 +197,7 @@ const SinglePost = ({ post }) => {
 						key={i}
 						comment={comment}
 						id={post._id}
+						post={post}
 					></SingleComment>
 				))}
 			</div>
