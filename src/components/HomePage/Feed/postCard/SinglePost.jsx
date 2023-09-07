@@ -13,7 +13,6 @@ import useAuth from '@/hooks/useAuth';
 import AuthContext from '@/context/AuthContext';
 
 const SinglePost = ({ post }) => {
-	const [react, setReact] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const { user } = useAuth(AuthContext);
