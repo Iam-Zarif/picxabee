@@ -11,7 +11,8 @@ import { RxCross2 } from "react-icons/rx";
 // import 'animate.css';
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   AiOutlineArrowRight,
   AiOutlineProfile,
@@ -39,7 +40,8 @@ import Swal from "sweetalert2";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Navbar = () => {
-  const [error, setError] = useState([]);
+  const [success, setError] = useState([]);
+  
   const { user, logout } = useContext(AuthContext);
   // console.log(user);
   const handleLogOut = () => {
@@ -55,7 +57,7 @@ const Navbar = () => {
         });
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
       });
   };
 
@@ -67,6 +69,10 @@ const Navbar = () => {
     formState: { errors },
   } = useForm();
 
+  
+  const notify = (feed) =>{
+    return toast(feed)
+  }
   const onSubmit = async (data) => {
     const feedback = {
       author: {
@@ -87,9 +93,11 @@ const Navbar = () => {
       });
 
       if (res.ok) {
+        
         // console.log('Feedback submitted successfully.');
       } else {
         console.error("Error submitting feedback.");
+
       }
       const { msg } = await res.json();
       setError(msg);
@@ -97,9 +105,12 @@ const Navbar = () => {
         setError(false); // Hide the message after 2 seconds
       }, 2000);
      reset();
+     notify("Submitted feedback");
     } catch (error) {
       console.error("An error occurred:", error);
+      
     }
+   
   };
 
   const router = useRouter();
@@ -120,7 +131,6 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const navbarRef = useRef(null);
-  const searchButtonRef = useRef(null);
 
   const [searchActive, setSearchActive] = useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -135,8 +145,6 @@ const Navbar = () => {
 
     setSearchResults(filteredResults);
   }, [searchQuery]);
-
-  const [autoSaveTimer, setAutoSaveTimer] = useState(null);
 
   const handleSearch = () => {
     if (searchQuery.trim() === "") {
@@ -413,15 +421,12 @@ const Navbar = () => {
               )}
             </div >
             <input
+            onClick={notify}
               type="submit"
-              className="block mt-5 shadow-sm dark:bg-gray  shadow-black rounded-md px-3 py-1 btn-primary dark:hover:btn-primary font-bold"
+              className="block mt-5 shadow-sm dark:bg-gray    shadow-black rounded-md px-3 py-1 btn-primary dark:hover:btn-primary font-bold"
             />
-           <div > <p
-              
-              className=" text-white bg-primary-color  text-center  rounded-xl  mt-2 dark:bg-white dark:text-black"
-            >
-              {error}
-            </p>
+           <div > 
+
 </div>
             <div className="modal-action">
               <p>Press ESC to continue</p>
@@ -429,6 +434,7 @@ const Navbar = () => {
           </form>
         </dialog>
       </div>
+      <ToastContainer />
     </div>
   );
 };
