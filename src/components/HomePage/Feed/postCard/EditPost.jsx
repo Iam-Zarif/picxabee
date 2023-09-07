@@ -5,10 +5,9 @@ import { useForm } from 'react-hook-form';
 import {  AiOutlineComment } from 'react-icons/ai';
 import { PiShareFat } from 'react-icons/pi';
 
-const EditPost = ({ post, closeModal }) => {
+const EditPost = ({ post, closeModal, setEditPost }) => {
 	const { register, handleSubmit } = useForm();
 	const { _id: id } = post;
-
 
 	const onSubmit = (data) => {
 		console.log(data.content);
@@ -33,8 +32,8 @@ const EditPost = ({ post, closeModal }) => {
 				return res.json();
 			})
 			.then((data) => {
-			
 				closeModal();
+				setEditPost(false);
 				console.log('Received data:', data);
 			})
 			.catch((error) => {
