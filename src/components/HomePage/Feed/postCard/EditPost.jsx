@@ -1,11 +1,46 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
+import { useForm } from 'react-hook-form';
+import {  AiOutlineComment } from 'react-icons/ai';
 import { PiShareFat } from 'react-icons/pi';
 
-const EditPost = ({post}) => {
-		const [editPost, setEditPost] = useState(false);
+const EditPost = ({ post, closeModal }) => {
+	const { register, handleSubmit } = useForm();
+	const { _id: id } = post;
+
+
+	const onSubmit = (data) => {
+		console.log(data.content);
+		const newContent = {
+			id,
+			content: data.content,
+		};
+		console.log(newContent);
+
+		fetch(`/api/posts`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(newContent),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error('Network response was not ok');
+				}
+
+				return res.json();
+			})
+			.then((data) => {
+			
+				closeModal();
+				console.log('Received data:', data);
+			})
+			.catch((error) => {
+				console.error('Fetch error:', error);
+			});
+	};
 
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
@@ -26,44 +61,26 @@ const EditPost = ({post}) => {
 						<p className="font-normal text-sm ">{formattedDateTime}</p>
 					</div>
 				</div>
-					{/* <BsThreeDots
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/> */}
-				
 			</div>
-			{post?.content && <h1 className="px-5 py-3">{post?.content}</h1>}
-			{/* <h1 className="min-h-64 px-5 py-3">{post?.content}</h1> */}
-			{post?.image && (
-				<Image
-					src={post?.image}
-					width={600}
-					height={500}
-					alt="Posted Image"
-					className="object-contain border-none w-full h-[500px]" //object-contain
-				/>
-			)}
-			<div className="flex justify-end px-5 py-3 ">
-				<div className="flex gap-3">
-					{/* <BsSave
-						size={26}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/> */}
-					<AiOutlineComment
-						onClick={() => setOpen(!open)}
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+			{/* {post?.content && <h1 className="px-5 py-3">{post?.content}</h1>} */}
+			<form onSubmit={handleSubmit(onSubmit)}>
+				{post?.content && (
+					<textarea
+						{...register('content')}
+						defaultValue={post?.content}
+						label="content"
+						className="w-full min-h-96 px-5 py-3"
 					/>
-					<PiShareFat
-						size={26}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-					<p className="font-semibold text-lg">
-						{post?.reactions && post?.reactions.length}
-					</p>
+				)}
+				<div className="flex justify-end m-5">
+					<button
+						type="submit"
+						className="btn-primary px-4 py-2 cursor-pointer"
+					>
+						Post
+					</button>
 				</div>
-			</div>
-
+			</form>
 		</div>
 	);
 };

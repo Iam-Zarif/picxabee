@@ -4,9 +4,8 @@ import { db, storage } from '@/firebase/firebase.config';
 import { updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 
 const RegisterForm = () => {
 
@@ -35,7 +34,7 @@ const RegisterForm = () => {
 			if (!res.ok) throw new Error("Failed to upload image");
 
 			const data = await res.json();
-			console.log(data);
+			// console.log(data);
 			setValue("photoURL", data.data.url);
 
 		} catch (error) {
@@ -64,8 +63,6 @@ const RegisterForm = () => {
 				},
 				(error) => {
 					console.error(error);
-					toast.dismiss(toastId);
-					toast.error('Error uploading photo');
 				},
 				async () => {
 					try {
@@ -91,8 +88,9 @@ const RegisterForm = () => {
 								followers: 0,
 								following: 0,
 								posts: 0,
-								profile_picture: photoURL,
+								profile_picture: photoURL || '',
 								role: 'user',
+								save_items:[],
 							}),
 						});
 					} catch (error) {
@@ -149,7 +147,7 @@ const RegisterForm = () => {
 				placeholder="Password"
 				{...register('password', {
 					required: true,
-					pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
+					// pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
 				})}
 				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.password ? 'border-red focus:border-red focus:outline-red' : ''
 					}`}
@@ -159,12 +157,12 @@ const RegisterForm = () => {
 			)}
 			{errors.password?.type === 'pattern' && (
 				<span className="text-red font-semibold">
-					Password will be 1 number, 1 Capital and 1 special character{' '}
+					Password will be 1 number, 1 Capital and 1 special character
 				</span>
 			)}
 			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
-			<input type="submit" className="bg-black w-full text-white rounded-md p-3 cursor-pointer mt-3" />
+			<input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer mt-3" />
 		</form>
 	);
 };

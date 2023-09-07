@@ -128,13 +128,6 @@
   transition: transform 0.3s ease; /* Adjust the duration (0.3s) for the animation speed */
 }
 
-.layout{
-  background: rgb(40,74,235);
-background: linear-gradient(90deg,
-rgba(40,74,235,0.6979166666666667) 4%,
-rgba(4,131,238,0.5130427170868348) 47%,
- rgba(169,63,217,0.8015581232492998) 100%);
-}
 
 .placeholder-white::placeholder {
   color: white;
@@ -151,67 +144,23 @@ rgba(4,131,238,0.5130427170868348) 47%,
 } */
 /* Dashboard  */
 
-.name{
-    font-family:Segoe Print;
+.btn-primary{
+  background-color: #fafbfc7e;
+
+  border-radius: 15px;
+  border: 1px solid #2E4F6B;
+  font-weight: bold;
 }
-.sidebar{
-    background: rgb(28,27,57);
-background: linear-gradient(90deg, rgba(28,27,57,0.3617822128851541) 0%, rgba(6,26,79,0.36458333333333337) 35%, rgba(128,149,153,0.20211834733893552) 100%);
+.btn-primary:hover{
+  background-color:#2E4F6B;
+  /* #3e0eee95; */
+  font-weight: bold;
+  color: white;
+  border: none;
 }
-
-
-
-.link-item {
-    
-    transition-duration: 1000ms;
-  }
-  
-  .show .link-item {
-    
-    opacity: 1;
-  }
-  .menu-icon {
-    transition: transform 0.3s ease; /* Adjust the duration (0.3s) for the animation speed */
-  }
-
-  .layout{
-    background: rgb(40,74,235);
-background: linear-gradient(90deg,
- rgba(40,74,235,0.6979166666666667) 4%,
-  rgba(4,131,238,0.5130427170868348) 47%,
-   rgba(169,63,217,0.8015581232492998) 100%);
-  }
-
-  .placeholder-white::placeholder {
-    color: white;
-  }
-
- 
-
-  /* Dashboard  */
-  /* body{
-    background: rgb(0,0,0);
-background: linear-gradient(90deg, rgba(0,0,0,0.23853291316526615) 0%, rgba(241,7,118,0.20211834733893552) 100%);
-  } */
-    .btn-primary{
-      background-color: #fafbfc7e;
-      
-      border-radius: 15px;
-      border: 1px solid #2E4F6B;
-      font-weight: bold;
-    }
-    .btn-primary:hover{
-      background-color:#2E4F6B;
-      /* #3e0eee95; */
-      font-weight: bold;
-      
-      color: white;
-      border: none;
-    }
-  .search-primary{
-    background-color:#fafbfc7e;
-  }
-  .search-primary:hover{
-    background-color:#2E4F6B;
-  }
- 
+.search-primary{
+background-color:#fafbfc7e;
+}
+.search-primary:hover{
+background-color:#2E4F6B;
+}
