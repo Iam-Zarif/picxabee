@@ -19,15 +19,16 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 				method: 'POST'
 			})
 				.then(res => res.json())
-				.then(data=> console.log(data))
+				.then(async () => {
 
-			// const res = await fetch(`/api/posts?id=${id}`, {
-			// 	method: 'DELETE',
-			// });
+					const res = await fetch(`/api/posts?id=${id}`, {
+						method: 'DELETE',
+					});
 
-			// if (res.ok) {
-			// 	router.refresh();
-			// }
+					if (res.ok) {
+						router.refresh();
+					}
+				})
 		}
 	};
 	return (

@@ -24,8 +24,7 @@ export const POST = async (request) => {
         await connect()
         const recylePost = await Post.findOne({ _id: id })
         const newRecylePost = new Recycle({
-            // content: 'Hello World',
-            // image: 'nai'
+
             author: {
                 email: recylePost?.author?.email,
                 name: recylePost?.author?.name,
@@ -38,12 +37,24 @@ export const POST = async (request) => {
             comments: recylePost?.comments
         })
 
-        console.log(newRecylePost);
-
-        await newRecylePost.save()  
+        await newRecylePost.save()
         return new NextResponse(JSON.stringify({ message: "post has been created inside rycyle collection" }), { status: 201 });
 
     } catch (error) {
         return new NextResponse("Database Error", { status: 500 });
     }
 }
+
+export const DELETE = async (request) => {
+
+    const id = request.nextUrl.searchParams.get('id');
+    
+	try {
+		await connect();
+		await Recycle.findByIdAndDelete(id);
+		return NextResponse.json({ message: 'Post deleted' }, { status: 200 });
+
+	} catch (error) {
+		JSON.stringify({ message: 'Internal server error' }, { status: 500 });
+	}
+};
