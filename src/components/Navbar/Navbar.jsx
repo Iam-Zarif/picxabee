@@ -62,7 +62,7 @@ const Navbar = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -95,6 +95,7 @@ const Navbar = () => {
       setTimeout(() => {
         setError(false); // Hide the message after 2 seconds
       }, 2000);
+     reset();
     } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -372,7 +373,7 @@ const Navbar = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             method="dialog"
-            className="dark:bg-blue modal-box bg-white glass w-full"
+            className="dark:bg-black-bg-primary modal-box bg-white glass w-full"
           >
             <h1 className="text-center text-xl font-bold">users Feedback</h1>
             <div className="flex flex-col gap-3 lg:mt-8 mt-4">
@@ -385,7 +386,7 @@ const Navbar = () => {
 
               <input
                 {...register("email", { required: true })}
-                value={user?.email}
+                value={`Email: ` +user?.email}
                 readOnly
                 className="input border-none shadow-sm shadow-black"
               />
@@ -403,11 +404,11 @@ const Navbar = () => {
             </div >
             <input
               type="submit"
-              className="block text-primary-color mt-5 shadow-sm shadow-black rounded-md px-3 py-1 hover:bg-primary-color  hover:text-white font-bold"
+              className="block mt-5 shadow-sm dark:bg-gray  shadow-black rounded-md px-3 py-1 btn-primary dark:hover:btn-primary font-bold"
             />
            <div > <p
               
-              className=" text-white bg-primary-color  text-center  rounded-xl  mt-2"
+              className=" text-white bg-primary-color  text-center  rounded-xl  mt-2 dark:bg-white dark:text-black"
             >
               {error}
             </p>
