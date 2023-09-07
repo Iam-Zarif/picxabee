@@ -18,7 +18,7 @@ import {
   AiOutlineProfile,
   AiOutlineUser,
 } from "react-icons/ai";
-import { BsExclamationCircle, BsSearch } from "react-icons/bs";
+import { BsBookmarkCheck, BsExclamationCircle, BsSearch } from "react-icons/bs";
 import {
   HiOutlineChatAlt2,
   HiOutlinePaperAirplane,
@@ -245,11 +245,16 @@ const Navbar = () => {
                         <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    <p className=" flex items-center group  hover:ml-2 transition-all">
+                    {/* <p className=" flex items-center group  hover:ml-2 transition-all">
                       <IoSettingsOutline size={28} className="inline mr-2" />
                       Settings
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                    </p>
+                    </p> */}
+                   <Link href="/bookmark"> <p className=" flex items-center group  hover:ml-2 transition-all">
+                      <BsBookmarkCheck size={28} className="inline mr-2" />
+                      Bookmarks
+                      <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                    </p></Link>
                     <NavFeedback />
                     {/*  */}
 

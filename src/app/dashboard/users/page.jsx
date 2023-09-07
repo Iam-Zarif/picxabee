@@ -11,7 +11,7 @@ const UserPage = () => {
     if (error) return <div>failed to load</div>;
     if (isLoading)
         return (
-            <div className="mx-auto  ">
+            <div className="mx-auto  flex justify-center items-center pt-40">
                 <Loading />
             </div>
         );
