@@ -50,7 +50,6 @@ const RegisterForm = () => {
 			const res = await createUser(email, password);
 			const storageRef = ref(storage, name);
 
-			// rezon vai bolche j photoURL ta imgbb er Url holeo hbe 
 
 			const response = await fetch(photoURL);
 			const blob = await response.blob();
@@ -90,7 +89,7 @@ const RegisterForm = () => {
 								posts: 0,
 								profile_picture: photoURL || '',
 								role: 'user',
-								save_items:[],
+								
 							}),
 						});
 					} catch (error) {
