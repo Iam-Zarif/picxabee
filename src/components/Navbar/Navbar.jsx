@@ -201,12 +201,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <a className="hover:bg-transparent  ">
+            <a className=" hover:bg-transparent ">
               <Image
-                src={user.photoURL}
+              
+                src={user?.photoURL}
                 width={32}
                 height={32}
-                className="rounded-full hover:scale-125 hover:translate-x-1 transform transition-transform"
+                className="rounded-full  hover:scale-125 hover:translate-x-1 transform transition-transform"
                 onClick={toggleDrawer}
               ></Image>
               <></>
@@ -273,7 +274,7 @@ const Navbar = () => {
         <>
           <div>
             <Link
-              className="text-primary-color hover:text-white hover:bg-primary-color border py-2 font-semibold px-3 rounded-xl"
+              className="text-white hover:text-primary-color hover:bg-white bg-primary-color  py-3 shadow-sm hover:shadow-primary-color font-semibold px-3 rounded-xl"
               href="/auth/signin"
             >
               Sign In
