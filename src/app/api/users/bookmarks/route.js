@@ -3,6 +3,10 @@ import connect from '@/utils/db';
 import { NextResponse } from 'next/server';
 
 
+
+
+
+
 export const PATCH = async (request) => {
 	try {
 		const userEmail = request.nextUrl.searchParams.get('userEmail');

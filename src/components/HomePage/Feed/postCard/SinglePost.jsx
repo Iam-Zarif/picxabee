@@ -16,10 +16,15 @@ const SinglePost = ({ post }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { user } = useAuth(AuthContext);
 	const { _id: id } = post;
-	// const { email: userEmail } = user;
-	// if (post.author.email === user.email) {
-	// 	setReact(true);
-	// }
+
+
+	const isReacted = post.reactions.some((reaction) => {
+		return reaction?.author?.email === user?.email;
+	});
+
+	console.log(isReacted);
+
+
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
@@ -147,10 +152,11 @@ const SinglePost = ({ post }) => {
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
-					{react ? (
+					{isReacted ? (
 						<AiFillHeart
+							onClick={handleReaction}
 							size={28}
-							className="hover:scale-125 duration-300 hover:text-red-400 hover:cursor-pointer text-red-500"
+							className="hover:scale-125 duration-300 hover:cursor-pointer text-red"
 						/>
 					) : (
 						<AiOutlineHeart
