@@ -9,27 +9,31 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 	const [editPost, setEditPost] = useState(false);
 	const router = useRouter()
 
-	// console.log(id);
-	// console.log(post);
 	const removePost = async (id) => {
-		// console.log(id);
 
 		const confirmed = confirm('Are you sure?');
 
 		if (confirmed) {
-			const res = await fetch(`/api/posts?id=${id}`, {
-				method: 'DELETE',
-			});
 
-			if (res.ok) {
-				router.refresh();
-			}
+			fetch(`/api/recycle?id=${id}`, {
+				method: 'POST'
+			})
+				.then(res => res.json())
+				.then(data=> console.log(data))
+
+			// const res = await fetch(`/api/posts?id=${id}`, {
+			// 	method: 'DELETE',
+			// });
+
+			// if (res.ok) {
+			// 	router.refresh();
+			// }
 		}
 	};
 	return (
 		<>
 			<Transition appear show={isOpen} as={Fragment}>
-				<Dialog as="div" className="relative z-50" onClose={closeModal}>
+				<Dialog as="div" className="relative z-50" onClose={closeModal} onClick={()=>setEditPost(false)}>
 					<Transition.Child
 						as={Fragment}
 						enter="ease-out duration-300"
@@ -84,7 +88,11 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 										</ul>
 									)}
 									{editPost && (
-										<EditPost post={post} closeModal={closeModal}></EditPost>
+										<EditPost
+											post={post}
+											closeModal={closeModal}
+											setEditPost={setEditPost}
+										></EditPost>
 									)}
 								</Dialog.Panel>
 							</Transition.Child>

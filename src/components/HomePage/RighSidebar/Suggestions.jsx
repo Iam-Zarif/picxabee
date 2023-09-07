@@ -8,7 +8,7 @@ const Suggestions = () => {
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const { data } = useSWR('/api/users', fetcher)
     // console.log(data)
-    const SuggestedUsers = data && data.slice(0, 6)
+    const SuggestedUsers = data && data?.slice(0, 6)
 
     return (
         <div className="mt-4 ml-10">
@@ -23,7 +23,7 @@ const Suggestions = () => {
                     className="flex items-center justify-between mt-3"
                 >
                     <div className='flex items-center gap-2'>
-                            <Image height={40} width={40} className="w-10 h-10 rounded-full border p-[2px]" src={user?.profile_picture} alt="" />
+                            <Image height={40} width={40} className="w-10 h-10 rounded-full border p-[2px]" src={user?.profile_picture || ''} alt="" />
                         <h2 className="font-semibold text-sm">{user?.name}</h2>
                     </div>
                     <div className=" ml-4 ">

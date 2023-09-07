@@ -13,33 +13,28 @@ export const GET = async () => {
 };
 
 export const POST = async (request) => {
+	const body = await request.json();
+	const newUser = new User(body);
 
-    const body = await request.json()
-    const newUser = new User(body)
-
-    try {
-        await connect()
-        await newUser.save()
-        return new NextResponse("User has been created", { status: 201 });
-
-    } catch (err) {
-        return new NextResponse("Database Error", { status: 500 });
-    }
-}
-
+	try {
+		await connect();
+		await newUser.save();
+		return new NextResponse('User has been created', { status: 201 });
+	} catch (err) {
+		return new NextResponse('Database Error', { status: 500 });
+	}
+};
 
 export const PATCH = async (request) => {
+	try {
+		const id = request.nextUrl.searchParams.get('id');
 
-    try {
-        const id = request.nextUrl.searchParams.get("id");
+		await connect();
+		await User.findByIdAndUpdate(id, { role: 'admin' });
 
-        await connect();
-        await User.findByIdAndUpdate(id, { role: 'admin' })
-
-        return NextResponse.json({ message: "user role updated" }, { status: 200 });
-
-    } catch (err) {
-        console.log(err);
-        return NextResponse.json({ message: "updated failed" }, { status: 500 })
-    }
-}
+		return NextResponse.json({ message: 'user role updated' }, { status: 200 });
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'updated failed' }, { status: 500 });
+	}
+};

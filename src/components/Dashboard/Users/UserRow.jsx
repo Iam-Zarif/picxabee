@@ -5,6 +5,7 @@ const UserRow = ({ user, index }) => {
 	// console.log(user);
 
 	const date1 = new Date(user.createdAt);
+	// const options = { dateStyle: 'long', timeStyle: 'medium' };
 	const options = { year: 'numeric', month: 'long', day: 'numeric' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
 
@@ -31,8 +32,6 @@ const UserRow = ({ user, index }) => {
 						<summary className="">User</summary>
 						<ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-md">
 							<li onClick={() => handlerUserStatus(user)}>
-								{/* <Link >Admin</Link> */}
-								{/* <a>Admin</a> */}
 								Admin
 							</li>
 							<li >

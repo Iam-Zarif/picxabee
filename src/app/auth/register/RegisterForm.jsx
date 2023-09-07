@@ -5,18 +5,20 @@ import { updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useRouter } from 'next/navigation';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
 const RegisterForm = () => {
-const router = useRouter()
+
 	const { createUser } = useContext(AuthContext);
+	const router = useRouter()
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-		setValue
+		setValue,
+		reset
 	} = useForm();
 
 	const uploadImage = async (event) => {
@@ -35,7 +37,7 @@ const router = useRouter()
 			if (!res.ok) throw new Error("Failed to upload image");
 
 			const data = await res.json();
-			console.log(data);
+			// console.log(data);
 			setValue("photoURL", data.data.url);
 
 		} catch (error) {
@@ -51,7 +53,6 @@ const router = useRouter()
 			const res = await createUser(email, password);
 			const storageRef = ref(storage, name);
 
-			// rezon vai bolche j photoURL ta imgbb er Url holeo hbe 
 
 			const response = await fetch(photoURL);
 			const blob = await response.blob();
@@ -80,27 +81,25 @@ const router = useRouter()
 							photoURL: downloadURL,
 						});
 
+						reset()
+
 						await fetch('/api/users', {
 							method: 'POST',
 							body: JSON.stringify({
 								name,
 								email,
 								bio: '',
-								followers: 0,
-								following: 0,
-								posts: 0,
 								profile_picture: photoURL || '',
 								role: 'user',
+								
 							}),
 						});
-						
+						router.push('/')
 					} catch (error) {
 						console.log(error);
 					}
 				}
-
 			);
-			router.push("/");
 		} catch (error) {
 			console.log('Signup Failed', error);
 		}
@@ -150,7 +149,7 @@ const router = useRouter()
 				placeholder="Password"
 				{...register('password', {
 					required: true,
-					pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
+					// pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8}/,
 				})}
 				className={`block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent ${errors.password ? 'border-red focus:border-red focus:outline-red' : ''
 					}`}
@@ -158,11 +157,12 @@ const router = useRouter()
 			{errors.password?.type === 'required' && (
 				<span className="text-red font-semibold">Password is required</span>
 			)}
-			{errors.password?.type === 'pattern' && (
+			{/* {errors.password?.type === 'pattern' && (
 				<span className="text-red font-semibold">
 					Password will be 1 number, 1 Capital and 1 special character
 				</span>
 			)}
+			 */}
 			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
 			<input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer mt-3" />
