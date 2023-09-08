@@ -301,9 +301,9 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
       {/* <Container> */}
-      <div className="my-container fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+      <div className="my-container fixed lg:glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
-          <div className="navbar-start group">
+          <div className="navbar-start group bg-white">
             {/* responsive dropdown */}
 
             {/* responsive dropdown */}
@@ -330,14 +330,14 @@ const Navbar = () => {
       </div>
       {/* </Container> */}
       <ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
-        <div className="fixed  bg-slate-200 bottom-0  py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
+        <div className="fixed  bg-slate-200 bottom-0 bg-white  dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
           {navItems}
         </div>
         {/* <AiOutlineUser className='text-xl lg:text-2xl' /> */}
       </ul>
 
       <div
-        className="fixed py-4 top-0 w-full left-0 z-50 bg-slate-100 pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
+        className="fixed py-4 top-0 w-full left-0 z-50 dark:bg-black bg-white pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
         ref={navbarRef}
       >
         {/* Logo */}
