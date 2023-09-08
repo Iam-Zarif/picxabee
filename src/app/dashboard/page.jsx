@@ -1,8 +1,12 @@
+import UserRow from "@/components/Dashboard/Users/UserRow";
 import DashboardPageComponent from "@/components/Dashboard/dashboardPageCpmponent/DashboardPageComponent";
 import TotalUser from "@/components/Dashboard/dashboardPageCpmponent/TotalUser";
 import TotalUserChart from "@/components/Dashboard/dashboardPageCpmponent/TotalUserChart";
+import useAuth from "@/hooks/useAuth";
+import { useContext } from "react";
 
 const DashboardPage = () => {
+	
 
 	return (
 		<>

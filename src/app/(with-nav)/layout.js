@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 
 
 export default function NavLayout({children}) {
+	
 	return (
 		<section className="">
 			{/* Include shared UI here e.g. a header or sidebar */}

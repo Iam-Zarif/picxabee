@@ -38,8 +38,12 @@ import NavFeedback from "./NavFeedback";
 import AuthContext from "@/context/AuthContext";
 import Swal from "sweetalert2";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import useFetchData from "@/hooks/useFetchData";
+import { LoggedInUser } from "@/hooks/loggedInUser";
 
 const Navbar = () => {
+  const loggedInUer = LoggedInUser();
+  console.log("Log user is ", loggedInUer);
   const [success, setError] = useState([]);
   
   const { user, logout } = useContext(AuthContext);
@@ -258,13 +262,7 @@ const Navbar = () => {
                     <NavFeedback />
                     {/*  */}
 
-                    <Link href="/dashboard">
-                      <p className=" flex items-center group  hover:ml-2 transition-all">
-                        <TbLayoutDashboard size={28} className="inline mr-2" />
-                        Dashboard
-                        <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                      </p>
-                    </Link>
+                   
 
                     {/*  */}
                     <p
