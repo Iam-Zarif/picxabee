@@ -1,8 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const UserRow = ({ user, index }) => {
-	// console.log(user);
+
+// This is done by zarif, it can be updated by the author
+	const router = useRouter()
+	console.log("User is now  -  ",user.role);
+	if(user.role === 'user'){
+		router.push("/")
+	}
+// This is done by zarif, it can be updated by the author
 
 	const date1 = new Date(user.createdAt);
 	// const options = { dateStyle: 'long', timeStyle: 'medium' };

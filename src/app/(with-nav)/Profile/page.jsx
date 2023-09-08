@@ -21,7 +21,8 @@ import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 
 const ProfilePage = () => {
 
-    const { user } = useAuth()
+    const { user } = useAuth();
+    
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const {
         data,
