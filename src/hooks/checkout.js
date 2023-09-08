@@ -1,4 +1,4 @@
-import {loadStripe} from "@stripe/stripe-js"
+import { loadStripe } from "@stripe/stripe-js";
 export async function checkout ({lineItems}) {
 let stripepromise = null;
 let getstripe = () => {
