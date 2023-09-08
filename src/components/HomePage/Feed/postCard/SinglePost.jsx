@@ -5,7 +5,6 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { BsBookmarkCheck, BsThreeDots } from 'react-icons/bs';
-import { PiShareFat } from 'react-icons/pi';
 import CommentSection from './CommentSection';
 import EditOption from './EditOption';
 import SingleComment from './SingleComment';
@@ -129,7 +128,7 @@ const SinglePost = ({ post }) => {
 						<button onClick={openModal}>
 							<BsThreeDots
 								size={28}
-								className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+								className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
 							/>
 						</button>
 					)}
@@ -157,13 +156,13 @@ const SinglePost = ({ post }) => {
 					<BsBookmarkCheck
 						onClick={handleBookmark}
 						size={26}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
 					<div className="flex gap-1">
 						<AiOutlineComment
 							onClick={() => setOpen(!open)}
 							size={28}
-							className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+							className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
 						/>
 						<p className="font-semibold text-lg">
 							{post?.comments && post?.comments.length}
@@ -174,13 +173,13 @@ const SinglePost = ({ post }) => {
 							<AiFillHeart
 								onClick={handleReaction}
 								size={28}
-								className="hover:scale-125 duration-300 hover:cursor-pointer text-red"
+								className="hover:scale-110 duration-300 hover:cursor-pointer text-red"
 							/>
 						) : (
 							<AiOutlineHeart
 								onClick={handleReaction}
 								size={28}
-								className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+								className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
 							/>
 						)}
 						<p className="font-semibold text-lg">
@@ -190,7 +189,7 @@ const SinglePost = ({ post }) => {
 				</div>
 			</div>
 
-			<div className=''>
+			<div>
 				{post?.comments?.reverse().map((comment, i) => (
 					<SingleComment
 					

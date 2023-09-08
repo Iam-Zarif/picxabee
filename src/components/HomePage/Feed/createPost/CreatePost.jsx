@@ -173,14 +173,14 @@ const CreatePost = () => {
 											accept="image/*"
 											onChange={handleImage}
 										/>
-										<BsImageFill color="#19A7CE" size={22} />
+										<BsImageFill color="#2E4F6B" size={22} />
 									</label>
 								</div>
 								<div className="flex items-center gap-x-4">
 									<div className="flex items-center justify-end">
 										<div className="form-control w-full ">
 											<select
-												className="select select-bordered rounded-md"
+												className="select select-bordered rounded-md hover:bg-primary-color hover:text-white hover:border-white border-gray dark:border-white dark:hover:bg-black"
 												value={privacy}
 												onChange={(e) => setPrivacy(e.target.value)}
 											>
@@ -191,7 +191,8 @@ const CreatePost = () => {
 										</div>
 
 										<button
-											className="btn btn-info rounded-md font-semibold lg:ml-5 capitalize"
+											className="btn
+                       rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
 											disabled={loading}
 										>
 											Create Post
