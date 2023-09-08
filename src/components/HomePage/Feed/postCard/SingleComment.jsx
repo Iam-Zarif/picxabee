@@ -43,7 +43,7 @@ const SingleComment = ({ comment, id }) => {
 	};
 
 	return (
-		<div className="flex gap-2   py-2 last:pb-4 items-center">
+		<div className="flex  gap-2   py-2 last:pb-4 items-center">
 			<Image
 				src={comment?.author?.profile_picture}
 				width={40}
