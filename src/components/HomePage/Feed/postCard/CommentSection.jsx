@@ -5,6 +5,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 const CommentSection = ({ id, open }) => {
 	const { user } = useAuth();
 
+
 	const { register, handleSubmit, setValue, watch, reset } = useForm();
 	const watchComment = watch('comment', '');
 
@@ -60,7 +61,7 @@ const CommentSection = ({ id, open }) => {
 						value={watchComment}
 						onChange={(e) => setValue('comment', e.target.value)}
 						placeholder="Write a comment..."
-						className="border-none focus:outline-none overflow-visible min-h-8 p-3 max-h-fit w-full break-words text-gray-400 bg-gray dark:bg-black-bg-secondary rounded-md"
+						className="border-none focus:outline-none overflow-visible min-h-8 p-3 max-h-fit w-full break-words text-white bg-gray dark:bg-black-bg-secondary rounded-md"
 					/>
 
 					<div className="cursor-pointer">
@@ -72,7 +73,7 @@ const CommentSection = ({ id, open }) => {
 						>
 							<AiOutlineSend
 								size={24}
-								className="md:right-32 md:mr-[10px] hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+								className="md:right-32 md:mr-[10px] hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
 							/>
 						</button>
 					</div>
