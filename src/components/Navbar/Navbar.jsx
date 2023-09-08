@@ -322,7 +322,6 @@ const Navbar = () => {
         </div>
 
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio consequuntur corporis ad consectetur ut a dignissimos, quasi nesciunt doloremque eveniet facere commodi officia nihil officiis ex qui aspernatur sunt, accusantium hic nulla, praesentium voluptatibus. Dicta architecto suscipit sapiente quo? Iure aut ullam deserunt cupiditate modi consequatur unde porro officia vel pariatur hic veritatis nihil, sapiente laborum corporis dicta ipsam voluptatem facere debitis eos perspiciatis doloremque totam quasi ea. Fuga nihil sed dolores placeat libero ea labore iure, ipsa quos ullam officiis rem commodi alias debitis quod sunt accusantium pariatur tempora perspiciatis aut maiores animi excepturi! Cumque possimus reiciendis necessitatibus odit.</p>
 
 
         {/* search box */}
