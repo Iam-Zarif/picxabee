@@ -4,20 +4,18 @@ import LeftSideBar from "@/components/HomePage/leftSidebar/LeftSideBar";
 
 export default function Home() {
   return (
-    <div className="my-container grid lg:grid-cols-4 lg:gap-3 ">
+		<div className="my-container grid lg:grid-cols-4 lg:gap-3 ">
+			<div className="hidden lg:block">
+				<LeftSideBar />
+			</div>
 
-      <div className="">
-        <LeftSideBar />
-      </div>
+			<div className="col-span-2">
+				<Feed />
+			</div>
 
-      <div className="col-span-2">
-        <Feed />
-      </div>
-
-      <div >
-        <RightSideBar />
-      </div>
-
-    </div>
-  );
+			<div className="hidden lg:block">
+				<RightSideBar />
+			</div>
+		</div>
+	);
 }

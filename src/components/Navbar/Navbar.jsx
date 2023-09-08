@@ -215,7 +215,7 @@ const Navbar = () => {
                 src={user?.photoURL}
                 width={32}
                 height={32}
-                className="rounded-full  hover:scale-125 hover:translate-x-1 transform transition-transform"
+                className="h-8 w-8 rounded-full  hover:scale-125  transform transition-transform"
                 onClick={toggleDrawer}
               ></Image>
               <></>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
-import { BsSave, BsThreeDots } from 'react-icons/bs';
+import { BsBookmarkCheck, BsThreeDots } from 'react-icons/bs';
 import { PiShareFat } from 'react-icons/pi';
 import CommentSection from './CommentSection';
 import EditOption from './EditOption';
@@ -13,6 +13,7 @@ import useAuth from '@/hooks/useAuth';
 import AuthContext from '@/context/AuthContext';
 
 const SinglePost = ({ post }) => {
+	const [react, setReact] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const { user } = useAuth(AuthContext);
@@ -22,7 +23,9 @@ const SinglePost = ({ post }) => {
 		return reaction?.author?.email === user?.email;
 	});
 
-	console.log(isReacted);
+	const isButtonDisabled = post?.author?.email !== user?.email;
+
+	// console.log(isReacted);
 
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
@@ -98,9 +101,9 @@ const SinglePost = ({ post }) => {
 	return (
 		<div
 			data-aos="fade-up"
-			className="lg:px-0 border-2 border-gray-200 rounded-md mb-3 "
+			className="border-[1px] border-gray rounded-md mb-3 p-5 dark:bg-black"
 		>
-			<div className="w-full flex items-center justify-between p-2">
+			<div className="w-full flex items-center justify-between">
 				<div className="flex items-center">
 					<Image
 						src={post?.author?.profile_picture}
@@ -114,12 +117,23 @@ const SinglePost = ({ post }) => {
 						<p className="font-normal text-sm ">{formattedDateTime}</p>
 					</div>
 				</div>
-				<button onClick={openModal}>
-					<BsThreeDots
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-				</button>
+				<div>
+					{isButtonDisabled ? (
+						<button disabled>
+							<BsThreeDots
+								size={28}
+								className="text-gray-400 cursor-not-allowed"
+							/>
+						</button>
+					) : (
+						<button onClick={openModal}>
+							<BsThreeDots
+								size={28}
+								className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+							/>
+						</button>
+					)}
+				</div>
 				<EditOption
 					id={id}
 					post={post}
@@ -128,65 +142,65 @@ const SinglePost = ({ post }) => {
 					isOpen={isOpen}
 				></EditOption>
 			</div>
-			{post?.content && <h1 className="px-5 py-3">{post?.content}</h1>}
+			{post?.content && <h1 className="py-3">{post?.content}</h1>}
 			{post?.image && (
 				<Image
 					src={post?.image}
 					width={600}
 					height={500}
 					alt="Posted Image"
-					className="object-contain border-none w-full h-[500px]" //object-contain
+					className="object-contain border-none w-full h-[500px] py-3 rounded-md" //object-contain
 				/>
 			)}
-			<div className="flex justify-end px-5 py-3 ">
-				<div className="flex gap-3">
-					<BsSave
+			<div className="bg-gray bg-opacity-10 py-2 mx-auto rounded-md">
+				<div className="flex justify-around">
+					<BsBookmarkCheck
 						onClick={handleBookmark}
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
-					<AiOutlineComment
-						onClick={() => setOpen(!open)}
-						size={28}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-					<p className="font-semibold text-lg">
-						{post?.comments && post?.comments.length}
-					</p>
-					<PiShareFat
-						size={26}
-						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-					{isReacted ? (
-						<AiFillHeart
-							onClick={handleReaction}
-							size={28}
-							className="hover:scale-125 duration-300 hover:cursor-pointer text-red"
-						/>
-					) : (
-						<AiOutlineHeart
-							onClick={handleReaction}
+					<div className="flex gap-1">
+						<AiOutlineComment
+							onClick={() => setOpen(!open)}
 							size={28}
 							className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 						/>
-					)}
-					<p className="font-semibold text-lg">
-						{post?.reactions && post?.reactions.length}
-					</p>
+						<p className="font-semibold text-lg">
+							{post?.comments && post?.comments.length}
+						</p>
+					</div>
+					<div className="flex gap-1">
+						{isReacted ? (
+							<AiFillHeart
+								onClick={handleReaction}
+								size={28}
+								className="hover:scale-125 duration-300 hover:cursor-pointer text-red"
+							/>
+						) : (
+							<AiOutlineHeart
+								onClick={handleReaction}
+								size={28}
+								className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
+							/>
+						)}
+						<p className="font-semibold text-lg">
+							{post?.reactions && post?.reactions.length}
+						</p>
+					</div>
 				</div>
 			</div>
 
 			<div>
 				{post?.comments?.reverse().map((comment, i) => (
-					// Check if the index is greater than or equal to 1
 					<SingleComment
 						key={i}
 						comment={comment}
 						id={post._id}
+						post={post}
 					></SingleComment>
 				))}
 			</div>
-			<div className="px-5 pb-5 ">
+			<div className=''> 
 				<CommentSection id={post._id} open={open}></CommentSection>
 			</div>
 		</div>
