@@ -1,3 +1,4 @@
+import DonationCards from "@/components/HomePage/Donation/DonationCards";
 import Feed from "@/components/HomePage/Feed/Feed";
 import RightSideBar from "@/components/HomePage/RighSidebar/RightSideBar";
 import LeftSideBar from "@/components/HomePage/leftSidebar/LeftSideBar";
@@ -9,9 +10,15 @@ export default function Home() {
 				<LeftSideBar />
 			</div>
 
+<<<<<<< HEAD
+      <div className="hidden lg:block">
+        <DonationCards />
+      </div>
+=======
 			<div className="col-span-2">
 				<Feed />
 			</div>
+>>>>>>> 72b83b04be216087e8935aea64b2523d0517fcf5
 
 			<div className="hidden lg:block">
 				<RightSideBar />
