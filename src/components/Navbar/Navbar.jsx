@@ -43,7 +43,7 @@ const Navbar = () => {
   const [success, setError] = useState([]);
   
   const { user, logout } = useContext(AuthContext);
-  // console.log(user);
+  console.log(user);
   const handleLogOut = () => {
     logout()
       .then((data) => {
@@ -301,9 +301,9 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
       {/* <Container> */}
-      <div className="my-container fixed lg:glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav  lg:pb-0  items-center ">
+      <div className="my-container fixed  lg:glass bg-white z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
-          <div className="navbar-start group bg-white">
+          <div className="navbar-start group ">
             {/* responsive dropdown */}
 
             {/* responsive dropdown */}
