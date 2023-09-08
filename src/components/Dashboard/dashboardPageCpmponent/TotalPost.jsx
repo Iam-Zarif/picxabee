@@ -1,7 +1,7 @@
 "use client"
 import useSWR from 'swr';
 import {
-  HiOutlineUsers
+  HiOutlineCreditCard
 } from "react-icons/hi";
 
 const TotalPost = () => {
@@ -24,7 +24,7 @@ const TotalPost = () => {
 				<p className="text-sm">Total Posts</p>
 				<div className="flex items-center justify-between gap-x-3">
 				
-				<HiOutlineUsers className="text-3xl"/>
+				<HiOutlineCreditCard className="text-3xl"/>
 				<p className="text-3xl">{posts?.length}</p>
 				</div>
 			</div> 
