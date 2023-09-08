@@ -43,7 +43,7 @@ const SingleComment = ({ comment, id }) => {
 	};
 
 	return (
-		<div className="flex gap-2 py-2 last:pb-4 items-center">
+		<div className="flex gap-2   py-2 last:pb-4 items-center">
 			<Image
 				src={comment?.author?.profile_picture}
 				width={40}
@@ -54,7 +54,7 @@ const SingleComment = ({ comment, id }) => {
 			<p className="text-sm font-bold">{comment?.author?.name}</p>
 
 				<div className='w-1/2'>
-					<h1 className="font-normal">{comment?.comment}</h1>
+					<h1 className="text-normal">{comment?.comment}</h1>
 				</div>
 	
 			<button

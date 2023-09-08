@@ -101,7 +101,7 @@ const SinglePost = ({ post }) => {
 	return (
 		<div
 			data-aos="fade-up"
-			className="border-[1px] border-gray rounded-md mb-3 p-5 dark:bg-black"
+			className="border-[1px]  border-gray rounded-md mb-3 p-5 dark:bg-black"
 		>
 			<div className="w-full flex items-center justify-between">
 				<div className="flex items-center">
@@ -190,9 +190,10 @@ const SinglePost = ({ post }) => {
 				</div>
 			</div>
 
-			<div>
+			<div className=''>
 				{post?.comments?.reverse().map((comment, i) => (
 					<SingleComment
+					
 						key={i}
 						comment={comment}
 						id={post._id}
