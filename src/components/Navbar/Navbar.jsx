@@ -38,11 +38,12 @@ import NavFeedback from "./NavFeedback";
 import AuthContext from "@/context/AuthContext";
 import Swal from "sweetalert2";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import useFetchData from "@/hooks/useFetchData";
 import { LoggedInUser } from "@/hooks/loggedInUser";
+
 
 const Navbar = () => {
   const loggedInUer = LoggedInUser();
+  console.log(loggedInUer);
   console.log("Log user is ", loggedInUer);
   const [success, setError] = useState([]);
   
@@ -402,14 +403,14 @@ const Navbar = () => {
                 {...register("name", { required: true })}
                 value={`name: ` + user?.displayName}
                 readOnly
-                className=" input border-none shadow-sm shadow-black"
+                className=" input border-none shadow-sm shadow-black cursor-default"
               />
 
               <input
                 {...register("email", { required: true })}
                 value={`Email: ` +user?.email}
                 readOnly
-                className="input border-none shadow-sm shadow-black"
+                className="input border-none shadow-sm shadow-black cursor-default"
               />
 
               <textarea
