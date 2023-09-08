@@ -5,10 +5,10 @@ import SocialLogin from '@/components/socialLogin/SocialLogin';
 const SigninPage = () => {
 	return (
 		<>
-			<div className="my-container h-[76vh] flex flex-col justify-center items-center ">
-				<div className="grid grid-cols-3 w-full">
+			<div className="my-container h-[100vh] flex flex-col justify-center items-center p-5 lg:p-0">
+				<div className="grid lg:grid-cols-3 w-full">
 					<div></div>
-					<div className="w-3/4">
+					<div className="lg:w-3/4">
 						<div className="text-center ">
 							<h1 className="text-4xl font-semibold">Welcome to Picxabee.</h1>
 							<p className="font-semibold">Please enter your details.</p>
