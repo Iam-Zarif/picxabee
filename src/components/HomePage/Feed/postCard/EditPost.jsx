@@ -45,7 +45,10 @@ const EditPost = ({ post, closeModal, setEditPost }) => {
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
 	return (
-		<div data-aos="fade-up" className="lg:px-0 border-2 rounded-md mb-3">
+		<div
+			data-aos="fade-up"
+			className="lg:px-0 border-[1px] border-gray rounded-md mb-3 p-5 dark:bg-black dark:text-white  dark:border-white"
+		>
 			<div className="w-full flex items-center justify-between p-2">
 				<div className="flex items-center">
 					<Image
@@ -61,20 +64,20 @@ const EditPost = ({ post, closeModal, setEditPost }) => {
 					</div>
 				</div>
 			</div>
-			{/* {post?.content && <h1 className="px-5 py-3">{post?.content}</h1>} */}
 			<form onSubmit={handleSubmit(onSubmit)}>
 				{post?.content && (
 					<textarea
 						{...register('content')}
 						defaultValue={post?.content}
 						label="content"
-						className="w-full min-h-96 px-5 py-3"
+						className="w-full min-h-96 px-5 py-3 border-none hover:border-none"
 					/>
 				)}
 				<div className="flex justify-end m-5">
 					<button
 						type="submit"
-						className="btn-primary px-4 py-2 cursor-pointer"
+						className="cursor-pointer btn
+                       rounded-md hover:bg-primary-color hover:text-white border-2 border-primary-color hover:border-white font-semibold capitalize    dark:border-white dark:hover:bg-black"
 					>
 						Post
 					</button>

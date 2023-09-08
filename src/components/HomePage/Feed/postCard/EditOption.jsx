@@ -34,7 +34,12 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 	return (
 		<>
 			<Transition appear show={isOpen} as={Fragment}>
-				<Dialog as="div" className="relative z-50" onClose={closeModal} onClick={()=>setEditPost(false)}>
+				<Dialog
+					as="div"
+					className="relative z-50"
+					onClose={closeModal}
+					onClick={() => setEditPost(false)}
+				>
 					<Transition.Child
 						as={Fragment}
 						enter="ease-out duration-300"
@@ -58,26 +63,26 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 								leaveFrom="opacity-100 scale-100"
 								leaveTo="opacity-0 scale-95"
 							>
-								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all">
+								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-black">
 									{!editPost && (
-										<ul className="text-center font-semibold space-y-5">
+										<ul className="text-center font-semibold space-y-3 ">
 											<li
 												onClick={() => setEditPost(!editPost)}
-												className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300"
+												className="bg-[#f1f5f9] dark:bg-gray rounded-sm hover:bg-slate-200 py-2 hover:scale-105 duration-300 hover:text-primary-color"
 											>
 												Edit Post
 											</li>
-											<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300 text-red-500">
+											{/* <li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-2 hover:scale-105 duration-300 text-red-500">
 												Unfollow
 											</li>
-											<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300">
+											<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-2 hover:scale-105 duration-300">
 												Add to favorites
 											</li>
 
-											<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300 pb-3">
+											<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-2 hover:scale-105 duration-300 pb-3">
 												Copy link
-											</li>
-											<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-3 hover:scale-105 duration-300">
+											</li> */}
+											<li className="bg-[#f1f5f9] dark:bg-gray rounded-sm hover:bg-slate py-2 hover:scale-105 duration-300 hover:text-primary-color">
 												<Link
 													className=""
 													onClick={() => removePost(id)}
