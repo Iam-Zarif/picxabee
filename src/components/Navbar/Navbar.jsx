@@ -11,13 +11,14 @@ import { RxCross2 } from "react-icons/rx";
 // import 'animate.css';
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   AiOutlineArrowRight,
   AiOutlineProfile,
   AiOutlineUser,
 } from "react-icons/ai";
-import { BsExclamationCircle, BsSearch } from "react-icons/bs";
+import { BsBookmarkCheck, BsExclamationCircle, BsSearch } from "react-icons/bs";
 import {
   HiOutlineChatAlt2,
   HiOutlinePaperAirplane,
@@ -39,9 +40,10 @@ import Swal from "sweetalert2";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Navbar = () => {
-  const [error, setError] = useState([]);
+  const [success, setError] = useState([]);
+  
   const { user, logout } = useContext(AuthContext);
-  // console.log(user);
+  console.log(user);
   const handleLogOut = () => {
     logout()
       .then((data) => {
@@ -55,7 +57,7 @@ const Navbar = () => {
         });
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
       });
   };
 
@@ -67,6 +69,10 @@ const Navbar = () => {
     formState: { errors },
   } = useForm();
 
+  
+  const notify = (feed) =>{
+    return toast(feed)
+  }
   const onSubmit = async (data) => {
     const feedback = {
       author: {
@@ -87,9 +93,11 @@ const Navbar = () => {
       });
 
       if (res.ok) {
+        
         // console.log('Feedback submitted successfully.');
       } else {
         console.error("Error submitting feedback.");
+
       }
       const { msg } = await res.json();
       setError(msg);
@@ -97,9 +105,12 @@ const Navbar = () => {
         setError(false); // Hide the message after 2 seconds
       }, 2000);
      reset();
+     notify("Submitted feedback");
     } catch (error) {
       console.error("An error occurred:", error);
+      
     }
+   
   };
 
   const router = useRouter();
@@ -120,7 +131,6 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const navbarRef = useRef(null);
-  const searchButtonRef = useRef(null);
 
   const [searchActive, setSearchActive] = useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -135,8 +145,6 @@ const Navbar = () => {
 
     setSearchResults(filteredResults);
   }, [searchQuery]);
-
-  const [autoSaveTimer, setAutoSaveTimer] = useState(null);
 
   const handleSearch = () => {
     if (searchQuery.trim() === "") {
@@ -207,7 +215,7 @@ const Navbar = () => {
                 src={user?.photoURL}
                 width={32}
                 height={32}
-                className="rounded-full  hover:scale-125 hover:translate-x-1 transform transition-transform"
+                className="h-8 w-8 rounded-full  hover:scale-125  transform transition-transform"
                 onClick={toggleDrawer}
               ></Image>
               <></>
@@ -237,11 +245,16 @@ const Navbar = () => {
                         <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    <p className=" flex items-center group  hover:ml-2 transition-all">
+                    {/* <p className=" flex items-center group  hover:ml-2 transition-all">
                       <IoSettingsOutline size={28} className="inline mr-2" />
                       Settings
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                    </p>
+                    </p> */}
+                   <Link href="/bookmark"> <p className=" flex items-center group  hover:ml-2 transition-all">
+                      <BsBookmarkCheck size={28} className="inline mr-2" />
+                      Bookmarks
+                      <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                    </p></Link>
                     <NavFeedback />
                     {/*  */}
 
@@ -288,9 +301,9 @@ const Navbar = () => {
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
       {/* <Container> */}
-      <div className="my-container fixed glass z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav bg-base-100  lg:pb-0  items-center ">
+      <div className="my-container fixed  lg:glass bg-white z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
-          <div className="navbar-start group">
+          <div className="navbar-start group ">
             {/* responsive dropdown */}
 
             {/* responsive dropdown */}
@@ -317,14 +330,14 @@ const Navbar = () => {
       </div>
       {/* </Container> */}
       <ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
-        <div className="fixed  bg-slate-200 bottom-0  py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
+        <div className="fixed  bg-slate-200 bottom-0 bg-white  dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
           {navItems}
         </div>
         {/* <AiOutlineUser className='text-xl lg:text-2xl' /> */}
       </ul>
 
       <div
-        className="fixed py-4 top-0 w-full left-0 z-50 bg-slate-100 pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
+        className="fixed py-4 top-0 w-full left-0 z-50 dark:bg-black bg-white pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
         ref={navbarRef}
       >
         {/* Logo */}
@@ -413,15 +426,12 @@ const Navbar = () => {
               )}
             </div >
             <input
+            onClick={notify}
               type="submit"
-              className="block mt-5 shadow-sm dark:bg-gray  shadow-black rounded-md px-3 py-1 btn-primary dark:hover:btn-primary font-bold"
+              className="block mt-5 shadow-sm dark:bg-gray    shadow-black rounded-md px-3 py-1 btn-primary dark:hover:btn-primary font-bold"
             />
-           <div > <p
-              
-              className=" text-white bg-primary-color  text-center  rounded-xl  mt-2 dark:bg-white dark:text-black"
-            >
-              {error}
-            </p>
+           <div > 
+
 </div>
             <div className="modal-action">
               <p>Press ESC to continue</p>
@@ -429,6 +439,7 @@ const Navbar = () => {
           </form>
         </dialog>
       </div>
+      <ToastContainer />
     </div>
   );
 };

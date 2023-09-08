@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 
 const UserRow = ({ user, index }) => {
 	// console.log(user);
@@ -10,13 +10,12 @@ const UserRow = ({ user, index }) => {
 	const formattedDateTime = date1.toLocaleString(undefined, options);
 
 	const handlerUserStatus = (user) => {
-
 		fetch(`/api/users?id=${user._id}`, {
-			method: "PATCH",
+			method: 'PATCH',
 		})
-			.then(res => res.json())
-			.then(data => alert('updated user role'))
-	}
+			.then((res) => res.json())
+			.then((data) => alert('updated user role'));
+	};
 	return (
 		<>
 			<tr className="text-base text-left">
@@ -31,10 +30,8 @@ const UserRow = ({ user, index }) => {
 					<details className="dropdown">
 						<summary className="">User</summary>
 						<ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-md">
-							<li onClick={() => handlerUserStatus(user)}>
-								Admin
-							</li>
-							<li >
+							<li onClick={() => handlerUserStatus(user)}>Admin</li>
+							<li>
 								<a>User</a>
 							</li>
 						</ul>
