@@ -19,7 +19,7 @@ const TotalPost = () => {
 	if (isLoading) return <div>Loading...</div>;
 
   return (
-		<div className='h-[150px] bg-blue bg-opacity-30 rounded-md flex items-center justify-start'>
+		<div className='flex-1 px-4 py-6 bg-blue bg-opacity-30 rounded-md flex items-center justify-start'>
 			<div className="text-white font-semibold text-start space-y-4 pl-6">
 				<p className="text-sm">Total Posts</p>
 				<div className="flex items-center justify-between gap-x-3">
