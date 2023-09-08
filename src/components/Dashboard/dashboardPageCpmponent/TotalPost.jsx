@@ -1,5 +1,8 @@
 "use client"
 import useSWR from 'swr';
+import {
+  HiOutlineCreditCard
+} from "react-icons/hi";
 
 const TotalPost = () => {
 
@@ -16,12 +19,17 @@ const TotalPost = () => {
 	if (isLoading) return <div>Loading...</div>;
 
   return (
-		<div className='h-[150px] bg-blue bg-opacity-10 rounded-md flex items-center justify-center'>
-			<h3 className="text-2xl font-semibold">
-				Total Posts: {posts?.length}
-			</h3>
+		<div className='h-[150px] bg-blue bg-opacity-30 rounded-md flex items-center justify-start'>
+			<div className="text-white font-semibold text-start space-y-4 pl-6">
+				<p className="text-sm">Total Posts</p>
+				<div className="flex items-center justify-between gap-x-3">
+				
+				<HiOutlineCreditCard className="text-3xl"/>
+				<p className="text-3xl">{posts?.length}</p>
+				</div>
+			</div> 
 		</div>
 	);
 }
 
-export default TotalPost
+export default TotalPost;

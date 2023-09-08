@@ -4,7 +4,7 @@ import { ClimbingBoxLoader } from 'react-spinners'
 const Loading = () => {
     
   return (
-    <div><ClimbingBoxLoader className='mx-auto' size={60} color="#FFFFFF" /></div>
+    <div className='mt-40'><ClimbingBoxLoader className='mx-auto ' size={60} color="#FFFFFF" /></div>
   )
 }
 
