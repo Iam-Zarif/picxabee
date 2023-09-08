@@ -11,7 +11,7 @@ const TopBar = () => {
 	return (
 		<>
 			<div className="h-20  glass  px-28 flex justify-end lg:gap-96  items-center">
-				<div>
+				{/* <div>
 					<div className="group relative hidden h-full w-full items-center md:flex lg:w-64">
 						<div className="absolute flex cursor-pointer items-center justify-center p-3 pr-2 text-sm uppercase text-gray-500 sm:hidden">
 							<svg
@@ -35,9 +35,9 @@ const TopBar = () => {
 							/>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<div className="flex justify-end items-center gap-6">
-					<ImShare2
+					{/* <ImShare2
 						size={25}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/>
@@ -48,7 +48,7 @@ const TopBar = () => {
 					<BsBellFill
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
+					/> */}
 					<Link href="/Profile">
 						
 						<Image
