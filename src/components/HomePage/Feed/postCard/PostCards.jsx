@@ -2,12 +2,8 @@
 import useSWR from 'swr';
 import SinglePost from './SinglePost';
 import FeedCardLoader from '@/components/loader/FeedCardLoader';
-import useLoggedInUser from '@/hooks/useLoggedInUser';
 
 const PostCards = () => {
-
-	
-
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const {
 		data: posts,
@@ -24,8 +20,6 @@ const PostCards = () => {
 				<FeedCardLoader />
 			</div>
 		);
-
-	// console.log(posts);
 
 	return (
 		<>
