@@ -1,10 +1,13 @@
-import useLoggedInUser from '@/hooks/useLoggedInUser';
+import useAuth from '@/hooks/useAuth';
+import useFetchData from '@/hooks/useFetchData';
+
 import React from 'react'
 import { AiOutlineArrowRight, AiOutlineQuestionCircle } from 'react-icons/ai'
 
 const NavFeedback = () => {
-  const { loggedInUser } = useLoggedInUser();
-  console.log(loggedInUser?.role);
+  const {user} = useAuth()
+  const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+console.log(loggedInUser?.role);
   return (
     <>
    
