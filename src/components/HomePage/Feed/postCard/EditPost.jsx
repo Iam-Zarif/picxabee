@@ -70,7 +70,7 @@ const EditPost = ({ post, closeModal, setEditPost }) => {
 						{...register('content')}
 						defaultValue={post?.content}
 						label="content"
-						className="w-full min-h-96 px-5 py-3 border-none hover:border-none"
+						className="w-full min-h-96 px-5 py-3 border-none hover:border-none focus:outline-none"
 					/>
 				)}
 				<div className="flex justify-end m-5">

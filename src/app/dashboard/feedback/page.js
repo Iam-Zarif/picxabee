@@ -1,29 +1,32 @@
-"use client"
-import Image from "next/image";
-import Loading from "../loading";
+'use client';
+import Image from 'next/image';
+import Loading from '../loading';
 import useSWR from 'swr';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { Disclosure } from '@headlessui/react';
+import { ChevronUpIcon } from '@heroicons/react/20/solid';
+
 const FeedbackPage = () => {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data: feedbacks } = useSWR("/api/feedbacks", fetcher, {
-    refreshInterval: 1000,
-  });
-  console.log(feedbacks);
+	const fetcher = (...args) => fetch(...args).then((res) => res.json());
+	const { data: feedbacks } = useSWR('/api/feedbacks', fetcher, {
+		refreshInterval: 1000,
+	});
+	console.log(feedbacks);
 
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-  const formatDate = (createdAt) => {
-    const inputDate = new Date(createdAt);
-    const options = { dateStyle: "long", timeStyle: "medium" };
-    const formattedDateTime = inputDate.toLocaleString(undefined, options);
-    return formattedDateTime;
-  };
+	const [isLoading, setIsLoading] = useState(true);
+	useEffect(() => {
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 1000);
+	}, []);
+	const formatDate = (createdAt) => {
+		const inputDate = new Date(createdAt);
+		const options = { dateStyle: 'long', timeStyle: 'medium' };
+		const formattedDateTime = inputDate.toLocaleString(undefined, options);
+		return formattedDateTime;
+	};
 
-  return (
+	return (
 		<div className="w-8/12 mb-60 ml-auto mr-40 pt-8 mt-20 z-0">
 			{isLoading ? (
 				<>
@@ -35,39 +38,39 @@ const FeedbackPage = () => {
 				<>
 					<div>
 						{feedbacks?.map((feedback) => (
-							<div
-								key={feedback._id}
-								className="collapse collapse-arrow join-item border rounded-md border-red border-opacity-20 bg-red bg-opacity-10"
-							>
-								<input
-									type="radio"
-									name="my-accordion-4"
-									checked="checked"
-									style={{ color: 'red' }}
-								/>
-								<div className="glass collapse-title text-xl font-medium">
-									<div className="flex items-center">
-										<Image
-											src={feedback?.author?.profile_picture}
-											width={50}
-											height={50}
-											alt="Picture of the author"
-											className="rounded-full h-12 w-12 object-cover border p-1 mr-3"
-										/>
-										<div>
-											<p className="font-semibold capitalize">
-												{feedback?.author?.name}
-											</p>
-											<p className="font-light text-sm">
-												{formatDate(feedback?.createdAt)}
-											</p>
-										</div>
-									</div>
-								</div>
-								<div className="collapse-content">
-									<h1 className="px-5 py-3">{feedback?.feedback}</h1>
-								</div>
-							</div>
+							<Disclosure key={feedback._id}>
+								{({ open }) => (
+									<>
+										<Disclosure.Button className="flex w-full justify-between rounded-md bg-teal-100 px-4 py-2 text-left text-sm font-medium text-teal-900 hover:bg-teal-200 focus:outline-none focus-visible:ring focus-visible:ring-teal-500 focus-visible:ring-opacity-75">
+											<div className="flex items-center">
+												<Image
+													src={feedback?.author?.profile_picture}
+													width={50}
+													height={50}
+													alt="Picture of the author"
+													className="rounded-full h-12 w-12 object-cover border p-1 mr-3"
+												/>
+												<div>
+													<p className="font-semibold capitalize">
+														{feedback?.author?.name}
+													</p>
+													<p className="font-light text-sm">
+														{formatDate(feedback?.createdAt)}
+													</p>
+												</div>
+											</div>{' '}
+											<ChevronUpIcon
+												className={`${
+													open ? 'rotate-180 transform' : ''
+												} h-5 w-5 text-teal-500`}
+											/>
+										</Disclosure.Button>
+										<Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 bg-teal-200 rounded-md">
+											<h1 className="px-5 py-3">{feedback?.feedback}</h1>{' '}
+										</Disclosure.Panel>
+									</>
+								)}
+							</Disclosure>
 						))}
 					</div>
 				</>
