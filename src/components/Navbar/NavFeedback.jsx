@@ -1,6 +1,6 @@
 import useAuth from '@/hooks/useAuth';
 import useFetchData from '@/hooks/useFetchData';
-import { Link } from '@mui/material';
+import { Link } from 'next/link';
 
 import React from 'react'
 import { AiOutlineArrowRight, AiOutlineQuestionCircle } from 'react-icons/ai'
