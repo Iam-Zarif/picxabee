@@ -1,6 +1,6 @@
 'use client';
-import SinglePost from './SinglePost';
 import useSWR from 'swr';
+import SinglePost from './SinglePost';
 import FeedCardLoader from '@/components/loader/FeedCardLoader';
 
 const PostCards = () => {
