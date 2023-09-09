@@ -7,12 +7,14 @@ export const GET = async () => {
 	try {
 		await connect();
 		const feedbacks = await Feedback.find();
-
 		return new NextResponse(JSON.stringify(feedbacks), { status: 200 });
-	} catch (err) {
-		return new NextResponse('Database Error', { status: 500 });
+	} catch (error) {
+		console.log(error.name, error.message);
+		return NextResponse.json({ error: error.message });
 	}
 };
+
+
 // Zarif 
 
 

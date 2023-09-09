@@ -1,4 +1,5 @@
 'use client';
+import { LoggedInUser } from '@/hooks/loggedInUser';
 import SinglePost from './SinglePost';
 import useSWR from 'swr';
 
@@ -17,6 +18,9 @@ const PostCards = () => {
 	if (isLoading) return <div>loading...</div>;
 
 	// console.log(posts);
+
+
+
 
 	return (
 		<>
