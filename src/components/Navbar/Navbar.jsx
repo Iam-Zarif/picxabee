@@ -42,9 +42,9 @@ import { LoggedInUser } from "@/hooks/loggedInUser";
 
 
 const Navbar = () => {
-  const loggedInUer = LoggedInUser();
-  console.log(loggedInUer);
-  console.log("Log user is ", loggedInUer);
+// const loggedInUer = LoggedInUser();
+// console.log(loggedInUer);
+  // console.log("Log user is ", loggedInUer);
   const [success, setError] = useState([]);
   
   const { user, logout } = useContext(AuthContext);

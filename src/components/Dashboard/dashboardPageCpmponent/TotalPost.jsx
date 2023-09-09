@@ -3,17 +3,12 @@ import useSWR from 'swr';
 import {
   HiOutlineCreditCard
 } from "react-icons/hi";
+import useFetchData from '@/hooks/useFetchData';
 
 const TotalPost = () => {
 
-	const fetcher = (...args) => fetch(...args).then((res) => res.json());
-	const {
-		data: posts,
-		error,
-		isLoading,
-	} = useSWR('/api/posts', fetcher, {
-		refreshInterval: 1000,
-	});
+	    const { data: posts, error, isLoading } = useFetchData('/api/posts');
+
 
 	if (error) return <div>Failed to load</div>;
 	if (isLoading) return <div>Loading...</div>;
