@@ -1,3 +1,4 @@
+"use client"
 import useAuth from '@/hooks/useAuth';
 import useFetchData from '@/hooks/useFetchData';
 import Link from 'next/link';
