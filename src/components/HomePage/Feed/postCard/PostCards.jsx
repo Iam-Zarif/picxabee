@@ -1,5 +1,5 @@
 'use client';
-import { LoggedInUser } from '@/hooks/useLoggedInUser';
+
 import SinglePost from './SinglePost';
 import useSWR from 'swr';
 import PostCardLoader from '@/components/loader/PostCardLoader';
