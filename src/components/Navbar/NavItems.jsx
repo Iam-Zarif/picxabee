@@ -21,9 +21,12 @@ import NavFeedback from "./NavFeedback";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
+import useFetchData from "@/hooks/useFetchData";
 
 const NavItems = () => {
   const { user, logout } = useAuth();
+  const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+console.log(loggedInUser?.role);
   const handleLogOut = () => {
     logout()
       .then((data) => {

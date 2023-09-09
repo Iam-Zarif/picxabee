@@ -4,18 +4,18 @@ import useSWR from 'swr';
 
 const useLoggedInUser = () => {
 	const { user } = useAuth();
-	const email = user?.email || ''; undefined
+	const email = user?.email || '';
+	
 
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(
-		`/api/loggedInUser?userEmail=${email}`, 
-		fetcher
-	);
+	const {
+		data: loggedInUser,
+		error,
+		isLoading,
+	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher);
 
-	console.log(data);
+	console.log(loggedInUser);
 
-	return { data, error, isLoading };
+	return { loggedInUser, error, isLoading };
 };
 export default useLoggedInUser;
-
-// `api/loggedInUser?userEmail=${user?.email}`;
