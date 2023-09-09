@@ -1,23 +1,21 @@
-'use client';
-import useAuth from './useAuth';
-import useSWR from 'swr';
+// 'use client';
+// import useAuth from './useAuth';
+// import useSWR from 'swr';
 
-const useLoggedInUser = () => {
-	const { user } = useAuth();
-	const email = user?.email || '';
-	undefined;
+// const useLoggedInUser = () => {
+// 	const { user } = useAuth();
+// 	const email = user?.email || '';
+	
 
-	const fetcher = (...args) => fetch(...args).then((res) => res.json());
-	const {
-		data: loggedInUser,
-		error,
-		isLoading,
-	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher);
+// 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
+// 	const {
+// 		data: loggedInUser,
+// 		error,
+// 		isLoading,
+// 	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher);
 
-	console.log(loggedInUser);
+// 	console.log(loggedInUser);
 
-	return { loggedInUser, error, isLoading };
-};
-export default useLoggedInUser;
-
-// `api/loggedInUser?userEmail=${user?.email}`;
+// 	return { loggedInUser, error, isLoading };
+// };
+// export default useLoggedInUser;

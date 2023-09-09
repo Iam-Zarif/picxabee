@@ -6,12 +6,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../../../public/swarm.png";
 import fakeUserData from "./fakeUsers.json";
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {  BsSearch } from "react-icons/bs";
-import {
-  HiOutlinePaperAirplane,
-} from "react-icons/hi";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BsSearch } from "react-icons/bs";
+import { HiOutlinePaperAirplane } from "react-icons/hi";
 import Image from "next/image";
 import "react-modern-drawer/dist/index.css";
 import Link from "next/link";
@@ -19,12 +17,22 @@ import SearchSection from "./SearchSection";
 import NavItems from "./NavItems";
 import useAuth from "@/hooks/useAuth";
 import FeedbackForm from "./FeedbackForm";
-
+import useFetchData from "@/hooks/useFetchData";
+import useSWR from "swr";
 
 const Navbar = () => {
- 
   const { user } = useAuth();
- 
+  console.log(user?.email);
+  const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+
+  // const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  // const { data, error, isLoading } = useSWR(
+  //   `
+	// 	/api/loggedInUser?userEmail=${user?.email}`,
+  //   fetcher,
+  //   { refreshInterval: 1000 }
+  // );
+  console.log(loggedInUser);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -44,7 +52,7 @@ const Navbar = () => {
   const navbarRef = useRef(null);
 
   const [searchActive, setSearchActive] = useState(false);
- 
+
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setSearchResults([]);
@@ -69,7 +77,6 @@ const Navbar = () => {
     setSearchResults(filteredUsers);
   };
 
- 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       // Enter key was pressed, trigger the search button click event
@@ -97,7 +104,7 @@ const Navbar = () => {
             <SearchSection />
           </div>
           <ul className="menu menu-horizontal px-1 ">
-           <NavItems/>
+            <NavItems />
             {/* <AiOutlineUser  className='text-xl  lg:text-2xl'/> */}
           </ul>
         </div>
@@ -105,7 +112,7 @@ const Navbar = () => {
       {/* </Container> */}
       <ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
         <div className="fixed  bg-slate-200 bottom-0 bg-white  dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
-          <NavItems/>
+          <NavItems />
         </div>
         {/* <AiOutlineUser className='text-xl lg:text-2xl' /> */}
       </ul>
@@ -164,7 +171,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-<FeedbackForm/>     
+      <FeedbackForm />
       <ToastContainer />
     </div>
   );
