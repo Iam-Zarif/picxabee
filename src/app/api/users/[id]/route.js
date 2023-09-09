@@ -42,7 +42,7 @@ export const DELETE = async (request, { params }) => {
 
 		await specificUser.save();
 		return NextResponse.json(
-			{ message: 'UnFollow Successfully' },
+			{ message: 'Unfollow Successfully' },
 			{ status: 404 }
 		);
 	} catch (error) {

@@ -112,7 +112,7 @@ const Suggestions = () => {
                       className="text-red-400 text-sm"
                       onClick={() => handleUnFollow(users?._id)}
                     >
-                      UnFollow
+                      Unfollow
                     </button>
                   ) : (
                     <button
