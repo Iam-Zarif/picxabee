@@ -53,7 +53,9 @@ const SingleComment = ({ comment, id }) => {
 					className="rounded-full h-10 w-10 object-cover border p-1"
 				/>
 				<p className="text-sm font-bold break-keep">{comment?.author?.name}</p>
-				<h1 className="text-normal break-all text-gray-400">{comment?.comment}</h1>
+				<h1 className="text-normal break-all text-black-bg-secondary">
+					{comment?.comment}
+				</h1>
 			</div>
 
 			<button

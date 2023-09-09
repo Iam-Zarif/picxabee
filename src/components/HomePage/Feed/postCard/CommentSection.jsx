@@ -61,7 +61,7 @@ const CommentSection = ({ id, open }) => {
 						value={watchComment}
 						onChange={(e) => setValue('comment', e.target.value)}
 						placeholder="Write a comment..."
-						className="border-none focus:outline-none overflow-visible min-h-8 p-3 max-h-fit w-full break-words text-white bg-gray dark:bg-black-bg-secondary rounded-md"
+						className="border-none focus:outline-none overflow-visible min-h-8 p-3 max-h-fit w-full break-words text-white dark:text-white bg-gray bg-opacity-50 dark:bg-black-bg-secondary rounded-md"
 					/>
 
 					<div className="cursor-pointer">
