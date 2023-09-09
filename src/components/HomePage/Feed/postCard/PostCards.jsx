@@ -2,7 +2,8 @@
 import { LoggedInUser } from '@/hooks/loggedInUser';
 import SinglePost from './SinglePost';
 import useSWR from 'swr';
-
+import PostCardLoader from '@/components/loader/PostCardLoader';
+import FeedCardLoader from '@/components/loader/FeedCardLoader';
 
 const PostCards = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -15,12 +16,14 @@ const PostCards = () => {
 	});
 
 	if (error) return <div>failed to load</div>;
-	if (isLoading) return <div>loading...</div>;
+	if (isLoading)
+		return (
+			<div>
+				<FeedCardLoader />
+			</div>
+		);
 
 	// console.log(posts);
-
-
-
 
 	return (
 		<>
