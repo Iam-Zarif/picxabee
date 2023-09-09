@@ -20,6 +20,13 @@ module.exports = {
 
 			'black-bg-primary': '#5A5A5A',
 			'black-bg-secondary': '#333333 ',
+			'teal-900': '#134e4a',
+
+			'teal-500': '#14b8a6',
+
+			'teal-200': '#99f6e4',
+
+			'teal-100': '#ccfbf1',
 		},
 		extend: {
 			backgroundImage: {
