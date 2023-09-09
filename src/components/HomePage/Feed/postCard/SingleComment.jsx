@@ -43,20 +43,19 @@ const SingleComment = ({ comment, id }) => {
 	};
 
 	return (
-		<div className="flex  gap-2   py-2 last:pb-4 items-center">
-			<Image
-				src={comment?.author?.profile_picture}
-				width={40}
-				height={40}
-				alt="Picture of the author"
-				className="rounded-full h-10 w-10 object-cover border p-1"
-			/>
-			<p className="text-sm font-bold">{comment?.author?.name}</p>
+		<div className="flex py-2 last:pb-4 justify-between">
+			<div className="flex  gap-2 last:pb-4 items-center">
+				<Image
+					src={comment?.author?.profile_picture}
+					width={40}
+					height={40}
+					alt="Picture of the author"
+					className="rounded-full h-10 w-10 object-cover border p-1"
+				/>
+				<p className="text-sm font-bold break-keep">{comment?.author?.name}</p>
+				<h1 className="text-normal break-all text-gray-400">{comment?.comment}</h1>
+			</div>
 
-				<div className='w-1/2'>
-					<h1 className="text-normal">{comment?.comment}</h1>
-				</div>
-	
 			<button
 				disabled={DeleteActive}
 				onClick={() => handleDeleteComment(postId, commentId)}
