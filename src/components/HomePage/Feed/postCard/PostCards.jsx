@@ -1,11 +1,19 @@
 'use client';
-import { LoggedInUser } from '@/hooks/loggedInUser';
+import { LoggedInUser } from '@/hooks/useloggedInUser';
 import SinglePost from './SinglePost';
 import useSWR from 'swr';
 import PostCardLoader from '@/components/loader/PostCardLoader';
 import FeedCardLoader from '@/components/loader/FeedCardLoader';
+import useAuth from '@/hooks/useAuth';
+import useFetchData from '@/hooks/useFetchData';
 
 const PostCards = () => {
+const { user } = useAuth();
+console.log(user);
+
+const { data } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+console.log(data)
+
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const {
 		data: posts,
@@ -25,8 +33,15 @@ const PostCards = () => {
 
 	// console.log(posts);
 
+
+
+
 	return (
 		<>
+
+
+
+
 			<div className="pb-28 pt-12 mx-auto w-full">
 				{posts &&
 					posts
