@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import SinglePost from './SinglePost';
 import FeedCardLoader from '@/components/loader/FeedCardLoader';
 
-// onk onk error 
+
 const PostCards = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const {
