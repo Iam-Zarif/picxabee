@@ -1,9 +1,9 @@
-import React from "react";
-import TotalUser from "./TotalUser";
-import TotalUserChart from "./TotalUserChart";
-import TotalPost from "./TotalPost";
-import TotalPostChart from "./TotalPostChart";
-import TotalFeedback from "./TotalFeedback";
+"use client"
+import TotalUser from './TotalUser';
+import TotalUserChart from './TotalUserChart';
+import TotalPost from './TotalPost';
+import TotalPostChart from './TotalPostChart';
+import TotalFeedback from './TotalFeedback';
 
 const DashboardPageComponent = () => {
   return (
@@ -34,16 +34,16 @@ const DashboardPageComponent = () => {
                     <TotalPostChart />
                 </div>
             </div>*/}
-      <div className="flex flex-col xl:flex-row items-center justify-center mx-6">
-        <div className="basis-full xl:basis-1/2">
-          <TotalUserChart />
-        </div>
-        <div className="basis-full xl:basis-1/2">
-          <TotalPostChart />
-        </div>
-      </div>
-    </>
-  );
+			<div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
+				<div className="basis-full xl:basis-1/2">
+					<TotalUserChart />
+				</div>
+				<div className="basis-full xl:basis-1/2">
+					<TotalPostChart />
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default DashboardPageComponent;
