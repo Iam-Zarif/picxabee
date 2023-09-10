@@ -101,8 +101,8 @@ const toggleLinks = () => {
 					{/* <ThemeButton/> */}
 					
 				</ul>
-				<div className="absolute bottom-4 flex flex-col items-center gap-y-4 tooltip" data-tip="change theme">
-			<div>	<DashboardThemeButton/></div>
+				<div className="absolute bottom-4 flex flex-col items-center gap-y-4 tooltip" >
+			<div data-tip="change theme" className="tooltip">	<DashboardThemeButton /></div>
 					<Link href="/" className="group">
 						<div className="text-center group-hover:animate-pulse group-hover:scale-105 transform transition-transform duration-300">
 							<Image

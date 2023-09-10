@@ -19,6 +19,7 @@ import useAuth from "@/hooks/useAuth";
 import FeedbackForm from "./FeedbackForm";
 import useFetchData from "@/hooks/useFetchData";
 import useSWR from "swr";
+import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -89,21 +90,24 @@ const Navbar = () => {
       {/* <Container> */}
       <div className="my-container fixed  lg:glass bg-white z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
-          <div className="navbar-start group ">
+          <div className="navbar-start group flex items-center">
             <div className=" logo normal-case text-xl group-hover:animate-pulse lg:text-3xl hidden lg:block lg:mb-5">
-              {" "}
+             
               <Link href={"/"}>
                 <span className="text-5xl">P</span>icxa
                 <span className="bee  ">bee</span>
               </Link>
             </div>
+          
+            
           </div>
         </div>
         <div className="navbar-end hidden lg:flex mx-auto ">
+        
           <div className="hidden lg:block mr-12   mx-auto relative">
             <SearchSection />
           </div>
-          <ul className="menu menu-horizontal px-1 ">
+          <ul className="menu menu-horizontal px-1 flex items-center">
             <NavItems />
             {/* <AiOutlineUser  className='text-xl  lg:text-2xl'/> */}
           </ul>

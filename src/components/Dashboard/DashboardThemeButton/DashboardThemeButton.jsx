@@ -10,7 +10,7 @@ const DashboardThemeButton = () => {
       <button
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         className={` 
-          border mt-8
+          border 
           ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}
           rounded-full
           py-2 px-4
