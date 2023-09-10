@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 "use client"	
-=======
-"use client"
-
->>>>>>> ac5aa7043f96145594ddaaa8b98cc27d436ff086
 import React from "react";
 import TotalUser from "./TotalUser";
 import TotalUserChart from "./TotalUserChart";
