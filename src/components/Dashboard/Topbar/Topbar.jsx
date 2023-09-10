@@ -1,13 +1,16 @@
-import React from 'react';
+'use client'
 import Image from 'next/image';
 import { BsBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import {  ImShare2 } from 'react-icons/im';
 import Link from 'next/link';
+import useAuth from '@/hooks/useAuth';
 
 
 const TopBar = () => {
+	const {user} = useAuth()
+	// console.log(user)
 	return (
 		<>
 			<div className="h-20  glass  px-28 flex justify-end lg:gap-96  items-center">
@@ -50,13 +53,12 @@ const TopBar = () => {
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/> */}
 					<Link href="/Profile">
-						
 						<Image
-							src="https://i.ibb.co/wz4Knkr/326458237-1340401556808776-5697246596607663538-n.jpg"
+							src={user?.photoURL}
 							width={40}
 							height={40}
-							alt="Posted Image"
-							className="object-contain border rounded-full"
+							alt="User Image"
+							className="h-10 w-10 object-cover border rounded-full"
 						/>
 					</Link>
 				</div>

@@ -25,14 +25,12 @@ const TotalPostChart = () => {
 	if (error) return <div>Failed to load</div>;
 	if (isLoading) return <div>Loading...</div>;
 
-	
-
-	console.log(posts);
+	// console.log(posts);
 	let postCountByDate = {};
 
 	posts.forEach((post) => {
-		const createdAt = new Date(post.createdAt); 
-		const dateKey = createdAt.toISOString().split('T')[0]; 
+		const createdAt = new Date(post.createdAt);
+		const dateKey = createdAt.toISOString().split('T')[0];
 
 		if (postCountByDate[dateKey]) {
 			postCountByDate[dateKey]++;
@@ -56,20 +54,21 @@ const TotalPostChart = () => {
 	// 	{ date: '30/10/23', count: 100 },
 	// ];
 
-	console.log(postCountArray);
+	// console.log(postCountArray);
 
 	return (
 		<ResponsiveContainer width="100%" height={300}>
 			<LineChart
 				width={500}
-				height={400}
-				data={postCountArray} 
+				height={300}
+				data={postCountArray}
 				margin={{
 					top: 30,
 					right: 30,
 					left: 20,
 					bottom: 0,
 				}}
+				className="bg-red bg-opacity-5 rounded-md"
 			>
 				<CartesianGrid strokeDasharray="3 3" />
 				<XAxis dataKey="date" />
