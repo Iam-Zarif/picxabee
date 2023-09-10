@@ -9,6 +9,7 @@ import { FaUsersGear } from 'react-icons/fa6';
 import { MdSpaceDashboard } from 'react-icons/md';
 import { TiThMenu } from 'react-icons/ti';
 import { MdFeedback } from 'react-icons/md';
+import DashboardThemeButton from '../DashboardThemeButton/DashboardThemeButton';
 
 
 const Sidebar = () => {
@@ -61,7 +62,7 @@ const toggleLinks = () => {
 					}}
 				/>
 				<ul
-					className={` flex min-h-fit flex-col gap-8 mt-16 ml-6 ${
+					className={` flex min-h-fit  flex-col gap-8 mt-16 ml-6 ${
 						showLinks ? 'show' : ''
 					}`}
 				>
@@ -97,8 +98,11 @@ const toggleLinks = () => {
 							</div>
 						</Link>
 					</li>
+					{/* <ThemeButton/> */}
+					
 				</ul>
-				<div className="absolute bottom-4 ">
+				<div className="absolute bottom-4 flex flex-col items-center gap-y-4 tooltip" data-tip="change theme">
+			<div>	<DashboardThemeButton/></div>
 					<Link href="/" className="group">
 						<div className="text-center group-hover:animate-pulse group-hover:scale-105 transform transition-transform duration-300">
 							<Image
