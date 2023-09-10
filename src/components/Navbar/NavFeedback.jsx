@@ -17,25 +17,16 @@ console.log(loggedInUser?.role);
     <>
 
     
-   {/* {
-    (loggedInUser?.role === 'user') ?
+   {
+  
      <><p onClick={()=>window.my_modal_1.showModal()} className=" flex items-center group  hover:ml-2 transition-all">
      <AiOutlineQuestionCircle size={28} className="inline mr-2" />
      Give Feedback
      <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
    </p></> 
-     : 
-     <>
-     <div><Link href="/dashboard">
-                      
-                      <p className=" flex items-center group  hover:ml-2 transition-all">
-                        <TbLayoutDashboard size={28} className="inline mr-2" />
-                        Dashboard
-                        <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                      </p>
-                    </Link></div></>
-   } */}
-    <div> {
+    
+   }
+    {/* <div> {
       (loggedInUser?.role === "user") &&  <div><p onClick={()=>window.my_modal_1.showModal()} className=" flex items-center group  hover:ml-2 transition-all">
       <AiOutlineQuestionCircle size={28} className="inline mr-2" />
       Give Feedback
@@ -51,7 +42,7 @@ console.log(loggedInUser?.role);
         <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
       </p>
     </Link></div>
-     }</div>   
+     }</div>    */}
    
   {/*  */}
 
