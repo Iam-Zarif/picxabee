@@ -151,7 +151,19 @@ console.log(loggedInUser?.role);
                         <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    <NavFeedback />
+                    <div>
+                      {(loggedInUser?.role == 'admin') ? <><Link href="/dashboard">
+                      
+                      <p className=" flex items-center group  hover:ml-2 transition-all">
+                        <TbLayoutDashboard size={28} className="inline mr-2" />
+                        Dashboard
+                        <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                      </p>
+                    </Link></>
+                      :
+                      <><NavFeedback /></>}
+                    </div>
+                    
                    
                  
                     <p
