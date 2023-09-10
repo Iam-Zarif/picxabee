@@ -22,9 +22,9 @@ const RegisterPage = () => {
 								href="/auth/signin"
 								className="font-semibold text-primary-color"
 							>
-								Signin 
+								Signin{' '}
 							</Link>
-							 if you already have an account on picxabee.
+							if you already have an account on picxabee.
 						</p>
 
 						<SocialLogin />
