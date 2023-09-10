@@ -21,9 +21,12 @@ import NavFeedback from "./NavFeedback";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
+import useFetchData from "@/hooks/useFetchData";
 
 const NavItems = () => {
   const { user, logout } = useAuth();
+  const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+console.log(loggedInUser?.role);
   const handleLogOut = () => {
     logout()
       .then((data) => {
@@ -148,14 +151,19 @@ const NavItems = () => {
                       </p>
                     </Link>
                     <NavFeedback />
-                    <Link href="/dashboard">
-                      {" "}
+                    {
+                      (loggedInUser?.user === "admin") ? <><Link href="/dashboard">
+                      
                       <p className=" flex items-center group  hover:ml-2 transition-all">
                         <TbLayoutDashboard size={28} className="inline mr-2" />
                         Dashboard
                         <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
-                    </Link>
+                    </Link></>
+                      :
+                      <><div className="hidden"></div></> 
+                    }
+                    
                     {/*  */}
 
                     {/*  */}
