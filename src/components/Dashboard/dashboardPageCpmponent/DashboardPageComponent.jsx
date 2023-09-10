@@ -1,5 +1,4 @@
-"use client"
-
+"use client"	
 import React from "react";
 import TotalUser from "./TotalUser";
 import TotalUserChart from "./TotalUserChart";
