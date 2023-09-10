@@ -14,11 +14,12 @@ const DashboardThemeButton = () => {
           ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}
           rounded-full
           py-2 px-4
+          h-11
           hover:bg-opacity-80
           transition-all
         `}
       >
-        {theme === "dark" ? <><HiOutlineLightBulb /></> : <><HiLightBulb/></>}
+        {theme === "dark" ? <><HiOutlineLightBulb size={24} /></> : <><HiLightBulb size={24}/></>}
       </button>
     )
 }
