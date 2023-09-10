@@ -1,32 +1,41 @@
+<<<<<<< HEAD
 "use client"
 import TotalUser from './TotalUser';
 import TotalUserChart from './TotalUserChart';
 import TotalPost from './TotalPost';
 import TotalPostChart from './TotalPostChart';
 import TotalFeedback from './TotalFeedback';
+=======
+import React from "react";
+import TotalUser from "./TotalUser";
+import TotalUserChart from "./TotalUserChart";
+import TotalPost from "./TotalPost";
+import TotalPostChart from "./TotalPostChart";
+import TotalFeedback from "./TotalFeedback";
+>>>>>>> 882eb5673df86e9a9e584a9cae6af912a2533b7e
 
 const DashboardPageComponent = () => {
-	return (
-		<>
-			{/*<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 m-10 text-center my-container"> */}
-			<div className="flex items-center md:items-center md:flex-row flex-col justify-between md:space-y-0 space-y-8 mx-6 py-10 gap-x-5">
-				<TotalUser />
+  return (
+    <>
+      {/*<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 m-10 text-center my-container"> */}
+      <div className="flex items-center md:items-center md:flex-row flex-col justify-between md:space-y-0 space-y-8 mx-6 py-10 gap-x-5">
+        <TotalUser />
 
-				<TotalPost />
-				<TotalFeedback />
+        <TotalPost />
+        <TotalFeedback />
 
-				{/* <TotalUser /> */}
+        {/* <TotalUser /> */}
 
-				{/* <div className="bg-red bg-opacity-10 h-[150px] rounded-md flex items-center justify-center">
+        {/* <div className="bg-red bg-opacity-10 h-[150px] rounded-md flex items-center justify-center">
                     <h3 className="text-2xl font-semibold">Total User: 55</h3>
                 </div>
 
                 <div className="bg-blue bg-opacity-30 h-[150px] rounded-md flex items-center justify-center">
                     <h3 className="text-2xl font-semibold">Total User: 28</h3>
                 </div>*/}
-			</div>
+      </div>
 
-			{/* <div className="grid grid-cols-1 md:grid-cols-6 gap-x-10 m-10">
+      {/* <div className="grid grid-cols-1 md:grid-cols-6 gap-x-10 m-10">
                 <div className="col-span-1 md:col-span-3 w-full">
                     <TotalUserChart />
                 </div>
