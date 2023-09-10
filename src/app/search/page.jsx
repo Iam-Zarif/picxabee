@@ -12,15 +12,15 @@ const SearchPage =  ({ searchParams }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data } = useSWR('/api/users', fetcher)
-  console.log(data);
+  // console.log(data);
   const searchText = searchParams.userSearch;
 
   const filteredResults = data?.filter((user) =>
     user.name.replace(/\s+/g, "").toLowerCase().includes(searchText)
   );
-  console.log(searchText);
+  // console.log(searchText);
  
-  console.log(filteredResults);
+  // console.log(filteredResults);
   return (
     <>
     <Navbar/>
@@ -37,7 +37,7 @@ const SearchPage =  ({ searchParams }) => {
             })
           }
           {filteredResults?.map((user, index) => (
-            <div key={index} className="border hover:bg-light-gray border-gray justify-evenly rounded-xl flex items-center px-5 py-2 gap-5">
+            <div key={index} className="border hover:bg-light-gray dark:hover:bg-black border-gray justify-evenly rounded-xl flex items-center px-5 py-2 gap-5">
               <Image src={user?.profile_picture} height={50} width={50} className="rounded-full w-10 h-10"></Image>
              <div className="flex flex-col">
              <h2 className='font-bold'> {user?.name}</h2>
