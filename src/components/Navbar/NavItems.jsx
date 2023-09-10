@@ -22,6 +22,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import useFetchData from "@/hooks/useFetchData";
+import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
 
 const NavItems = () => {
   const { user, logout } = useAuth();
@@ -105,9 +106,9 @@ console.log(loggedInUser?.role);
               <Image
                 alt="User image"
                 src={user?.photoURL}
-                width={32}
-                height={32}
-                className="h-8 w-8 rounded-full  hover:scale-125  transform transition-transform"
+                width={35}
+                height={35}
+                className="h-8 w-8 rounded-full  hover:scale-125 border-2 dark:border-gray border-primary-color transform transition-transform"
                 onClick={toggleDrawer}
               ></Image>
               <></>
@@ -150,10 +151,9 @@ console.log(loggedInUser?.role);
                         <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    <NavFeedback />
-                    {
-                      (loggedInUser?.user === "admin") ? <><Link href="/dashboard">
-                      {" "}
+                    <div>
+                      {(loggedInUser?.role == 'admin') ? <><Link href="/dashboard">
+                      
                       <p className=" flex items-center group  hover:ml-2 transition-all">
                         <TbLayoutDashboard size={28} className="inline mr-2" />
                         Dashboard
@@ -161,12 +161,11 @@ console.log(loggedInUser?.role);
                       </p>
                     </Link></>
                       :
-                      <><div className="hidden"></div></> 
-                    }
+                      <><NavFeedback /></>}
+                    </div>
                     
-                    {/*  */}
-
-                    {/*  */}
+                   
+                 
                     <p
                       onClick={handleLogOut}
                       className=" flex items-center group  hover:ml-2 transition-all"
@@ -185,13 +184,17 @@ console.log(loggedInUser?.role);
         </>
       ) : (
         <>
-          <div>
-            <Link
-              className="text-white hover:text-primary-color hover:bg-white bg-primary-color  py-3 shadow-sm hover:shadow-primary-color font-semibold px-3 rounded-xl"
+          <div className="flex items-center gap-8">
+           <div className="hover:scale-110  transform transition-transform"> <Link
+              className="  text-primary-color  hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
               href="/auth/signin"
             >
               Sign In
-            </Link>
+            </Link></div>
+           <div > {user ?
+            <></>
+          :
+          <div className=" hover:scale-125  transform transition-transform"><DashboardThemeButton/></div>}</div>
           </div>
         </>
       )}
