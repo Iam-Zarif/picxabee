@@ -17,7 +17,7 @@ const TotalFeedback = () => {
 	if (error) return <div>Failed to load</div>;
 	if (isLoading) return <div>Loading...</div>;
 
-	console.log(data);
+	// console.log(data);
 
 	return (
 		<div className="flex-1 px-4 py-6 bg-red bg-opacity-30 rounded-md flex items-center justify-start">
