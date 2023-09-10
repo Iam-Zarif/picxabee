@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { GoHome } from "react-icons/go";
 import { LuLogOut } from "react-icons/lu";
@@ -21,12 +22,19 @@ import NavFeedback from "./NavFeedback";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
+import useSWR from 'swr';
 import useFetchData from "@/hooks/useFetchData";
 import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
 
-const NavItems = () => {
+const NavItems =  () => {
   const { user, logout } = useAuth();
-  const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+  // const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+	const { data :loggedInUser, error, isLoading } = useSWR(`
+		/api/loggedInUser?userEmail=${user?.email}`, 
+		fetcher,{refreshInterval: 1000}
+	);
+  // console.log(data);
 console.log(loggedInUser?.role);
   const handleLogOut = () => {
     logout()
@@ -44,16 +52,16 @@ console.log(loggedInUser?.role);
         console.log(err);
       });
   };
-  const toggleDrawer = () => {
+  const toggleDrawer = async () => {
     setIsOpen((prevState) => !prevState);
   };
   const [isOpen, setIsOpen] = React.useState(false);
   
 
   const router = useRouter();
-  return (
+    return  (
     <>
-      {user ? (
+      {   user ? (
         <>
           <li>
             <Link href="/">
@@ -152,7 +160,10 @@ console.log(loggedInUser?.role);
                       </p>
                     </Link>
                     <div>
-                      {(loggedInUser?.role == 'admin') ? <><Link href="/dashboard">
+
+
+
+                      {(loggedInUser?.role === 'admin') ? <><Link href="/dashboard">
                       
                       <p className=" flex items-center group  hover:ml-2 transition-all">
                         <TbLayoutDashboard size={28} className="inline mr-2" />
@@ -161,7 +172,14 @@ console.log(loggedInUser?.role);
                       </p>
                     </Link></>
                       :
-                      <><NavFeedback /></>}
+                      <>
+                      <NavFeedback />
+                      </>}
+
+
+
+
+
                     </div>
                     
                    
