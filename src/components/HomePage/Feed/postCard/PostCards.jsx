@@ -1,8 +1,6 @@
 'use client';
-import { LoggedInUser } from '@/hooks/loggedInUser';
-import SinglePost from './SinglePost';
 import useSWR from 'swr';
-import PostCardLoader from '@/components/loader/PostCardLoader';
+import SinglePost from './SinglePost';
 import FeedCardLoader from '@/components/loader/FeedCardLoader';
 
 const PostCards = () => {
@@ -22,8 +20,6 @@ const PostCards = () => {
 				<FeedCardLoader />
 			</div>
 		);
-
-	// console.log(posts);
 
 	return (
 		<>

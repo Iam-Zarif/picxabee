@@ -53,7 +53,7 @@ const SingleComment = ({ comment, id }) => {
 					className="rounded-full h-10 w-10 object-cover border p-1"
 				/>
 				<p className="text-sm font-bold break-keep">{comment?.author?.name}</p>
-				<h1 className="text-normal break-all text-black-bg-secondary">
+				<h1 className="text-normal break-all text-black-bg-secondary dark:text-white">
 					{comment?.comment}
 				</h1>
 			</div>
@@ -62,7 +62,7 @@ const SingleComment = ({ comment, id }) => {
 				disabled={DeleteActive}
 				onClick={() => handleDeleteComment(postId, commentId)}
 			>
-				<RiDeleteBin2Line className={`text-gray hover:text-red`} size={18} />
+				<RiDeleteBin2Line className={`text-gray hover:text-red ml-3`} size={18} />
 			</button>
 		</div>
 	);
