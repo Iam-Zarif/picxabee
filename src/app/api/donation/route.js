@@ -15,14 +15,6 @@ export const GET = async () => {
   }
 };
 
-// const fetcher = (...args) => fetch(...args).then((res) => res.json());
-// const {
-// 	data: posts,
-// 	error,
-// 	isLoading,
-// } = useSWR('/api/donation', fetcher, {
-// 	refreshInterval: 1000,
-// });
 
 export const POST = async (request) => {
   try {
