@@ -36,7 +36,7 @@ export const GET = async () => {
         return new NextResponse(JSON.stringify(hastags.slice(0, 10)), { status: 200 })
 
     } catch (err) {
-        return new NextResponse('trending Hashtag Fetch Problrms', { status: 500 })
+        return new NextResponse('trending Hashtag Fetch Problems', { status: 500 })
     }
 }
 

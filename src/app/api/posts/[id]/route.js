@@ -6,7 +6,7 @@ export const GET = async (request,{ params} ) => {
 	try {
 		const { id } = params;
 
-		console.log(id);
+		// console.log(id);
 		await connect();
 		const posts = await Post.findOne({ _id: id });
 

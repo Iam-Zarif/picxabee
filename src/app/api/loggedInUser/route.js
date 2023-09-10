@@ -8,7 +8,6 @@ export const GET = async (request) => {
 		const userEmail = request.nextUrl.searchParams.get('userEmail');
 		await connect();
 		const user = await User.findOne({ email: userEmail });
-		console.log(user);
 		return new NextResponse(JSON.stringify(user), { status: 200 });
 	} catch (error) {
 		console.log(error.name, error.message);
