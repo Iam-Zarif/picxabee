@@ -93,28 +93,52 @@ const CreatePost = () => {
     };
 
     const url = "/api/posts";
+    const donationURL = "/api/donation"
 
     if (loading) {
       return;
     }
 
-    try {
-      const res = await fetch(url, {
-        cache: "no-cache",
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(newPost),
-      });
-      if (res.ok) {
-        router.refresh();
-        setImageURL("")
-        reset();
+    if (privacy !== "donation") {
+      try {
+        const res = await fetch(url, {
+          cache: "no-cache",
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newPost),
+        });
+        if (res.ok) {
+          router.refresh();
+          setImageURL("")
+          reset();
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
+    else{
+      try {
+        const res = await fetch(donationURL, {
+          cache: "no-cache",
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newPost),
+        });
+        if (res.ok) {
+          router.refresh();
+          setImageURL("")
+          reset();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    
   };
 
   return (
