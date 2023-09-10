@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 "use client"
 import TotalUser from './TotalUser';
 import TotalUserChart from './TotalUserChart';
 import TotalPost from './TotalPost';
 import TotalPostChart from './TotalPostChart';
 import TotalFeedback from './TotalFeedback';
-=======
-import React from "react";
-import TotalUser from "./TotalUser";
-import TotalUserChart from "./TotalUserChart";
-import TotalPost from "./TotalPost";
-import TotalPostChart from "./TotalPostChart";
-import TotalFeedback from "./TotalFeedback";
->>>>>>> 882eb5673df86e9a9e584a9cae6af912a2533b7e
 
 const DashboardPageComponent = () => {
   return (
