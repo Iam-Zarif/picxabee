@@ -8,6 +8,7 @@ import { ClipLoader } from "react-spinners";
 
 const Suggestions = () => {
   const { user } = useAuth();
+  console.log(user?.email);
   const router = useRouter();
   const [loadingData, setLoading] = useState(false);
 
@@ -21,11 +22,13 @@ const Suggestions = () => {
   const { data } = useSWR("/api/users", fetcher, {
     refreshInterval: 1000,
   });
-  // console.log(data);
-  const SuggestedUsers = data && data?.slice(0, 6);
+
+  const filteredUsers = data && data?.filter(obj=> obj.email !== user?.email);
+  const SuggestedUsers = filteredUsers && filteredUsers?.slice(0, 6);
+
 
   const handleFollow = async (id) => {
-    console.log(id, "follow");
+    
     const newFollowers = {
       email: user?.email,
       name: user?.displayName,
@@ -47,7 +50,6 @@ const Suggestions = () => {
         throw new Error("Failed to Fetch");
       }
 
-      router.push("/");
       router.refresh();
     } catch (error) {
       console.log(error.message);
@@ -70,7 +72,6 @@ const Suggestions = () => {
         throw new Error("Failed to Fetch");
       }
 
-      router.push("/");
       router.refresh();
     } catch (error) {
       console.log(error.message);
@@ -109,7 +110,7 @@ const Suggestions = () => {
                     return f?.email === user?.email;
                   }) ? (
                     <button
-                      className="text-red-400 text-sm"
+                      className="text-red-400 text-sm font-bold"
                       onClick={() => handleUnFollow(users?._id)}
                     >
                       UnFollow
