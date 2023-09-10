@@ -204,11 +204,18 @@ console.log(loggedInUser?.role);
         <>
           <div className="flex items-center gap-8">
            <div className="hover:scale-110  transform transition-transform"> <Link
-              className="  text-primary-color  hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
+              className="  text-primary-color dark:hover:text-primary-color hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
               href="/auth/signin"
             >
               Sign In
-            </Link></div>
+            </Link>
+            {/* <Link
+              className="  text-red dark:hover:text-red hover:text-white hover:bg-red dark:hover:bg-black bg-white  py-3 border-red  border dark:bg-red dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
+              href="/auth/signin"
+            >
+              Sign In
+            </Link> */}
+            </div>
            <div > {user ?
             <></>
           :

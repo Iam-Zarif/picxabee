@@ -10,14 +10,14 @@ import { useRouter } from 'next/navigation';
 
 const DashboardPage = () => {
 	// ---------------------------------------sorry to interrupt- from Zarifff---------------------------------------
-	// const { user } = useAuth();
-	// const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
-	// const router = useRouter();
-	// useEffect(() => {
-	// 	if (loggedInUser?.role === 'user') {
-	// 		router.push("/");
-	// 	}
-	// }, [loggedInUser?.role, router]);
+	const { user } = useAuth();
+	const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
+	const router = useRouter();
+	useEffect(() => {
+		if (loggedInUser?.role === 'user') {
+			router.push("/");
+		}
+	}, [loggedInUser?.role, router]);
 	// ---------------------------------------sorry to interrupt- from Zarifff---------------------------------------
 
 	return (
