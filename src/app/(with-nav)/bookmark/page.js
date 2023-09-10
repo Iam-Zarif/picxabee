@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import useAuth from '@/hooks/useAuth';
 import React from 'react';
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
+import PostCardLoader from '@/components/loader/PostCardLoader';
 
 const Bookmark = () => {
 	const { user } = useAuth();
@@ -14,31 +15,36 @@ const Bookmark = () => {
 	} = useSWR(`/api/users/bookmarks?userEmail=${user?.email}`, fetcher, {
 		refreshInterval: 1000,
 	});
-	// console.log(posts);
 	if (error) return <div>failed to load</div>;
-	if (isLoading) return <div>loading...</div>;
+	if (isLoading)
+		return (
+			<div>
+				<PostCardLoader />
+			</div>
+		);
 
 	return (
 		<div className="lg:w-1/2 mx-auto mt-8">
-			<div>
-				<h1 className="text-primary-color font-bold text-3xl text-center">
+			<div className="w-fit mx-auto">
+				<p className="text-primary-color font-bold text-4xl text-center  border-b-2 px-3">
 					Bookmarked by {user?.displayName}
-				</h1>
-				<hr className="w-[70%] h-5 text-primary-color pb-10 font-bold mx-auto " />
+				</p>
+				{/* <hr className="w-fit text-primary-color h-1" /> */}
 			</div>
-			{/* <div>
-				{posts &&
-					posts?.map((post) => (
-						<SinglePost key={post._id} post={post}></SinglePost>
-					))}
-			</div> */}
 			<div>
-				{Array.isArray(posts) && posts.length > 0 ? (
+				{Array.isArray(posts) && posts.length < 0 ? (
 					posts.map((post) => (
 						<SinglePost key={post._id} post={post}></SinglePost>
 					))
 				) : (
-					<p>No posts available.</p>
+					<div
+						className="min-h-[calc(100vh-300px)] flex items-center justify-center text-red text-3xl w-full"
+						style={{
+							minHeight: 'calc(100vh - 300px)',
+						}}
+					>
+						<p className="">No posts available.</p>
+					</div>
 				)}
 			</div>
 		</div>
