@@ -1,4 +1,4 @@
-import React from 'react';
+"use client"
 import TotalUser from './TotalUser';
 import TotalUserChart from './TotalUserChart';
 import TotalPost from './TotalPost';
@@ -34,7 +34,7 @@ const DashboardPageComponent = () => {
                     <TotalPostChart />
                 </div>
             </div>*/}
-			<div className="flex flex-col xl:flex-row items-center justify-center mx-6">
+			<div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
 				<div className="basis-full xl:basis-1/2">
 					<TotalUserChart />
 				</div>
