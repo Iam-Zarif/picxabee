@@ -28,19 +28,24 @@ const SearchPage =  ({ searchParams }) => {
       {filteredResults?.length === 0 ? (
         "No User Found"
       ) : (
-        <div className="flex flex-col w-2/5 gap-8">
+        <div className="flex flex-col w-2/5 gap-4  content-center">
           <p className="text-3xl font-semibold">People</p>
           
+          {
+            filteredResults?.map((user) =>{
+              console.log(user);
+            })
+          }
           {filteredResults?.map((user, index) => (
-            <div key={index} className="glass justify-evenly rounded-xl flex items-center px-5 py-2 gap-5">
-              <Image src={photo} height={50} width={50} className="rounded-full"></Image>
+            <div key={index} className="border hover:bg-light-gray border-gray justify-evenly rounded-xl flex items-center px-5 py-2 gap-5">
+              <Image src={user?.profile_picture} height={50} width={50} className="rounded-full w-10 h-10"></Image>
              <div className="flex flex-col">
-             <h2>Name: {user?.name}</h2>
+             <h2 className='font-bold'> {user?.name}</h2>
              
              </div>
              <div className="flex gap-5">
-              <button className="btn outline btn-sm">Follow <AiOutlinePlusCircle size={22}/></button>
-              <button className="btn outline btn-sm">Message <HiOutlineChatAlt2 size={22}/></button>
+              <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white">Follow <AiOutlinePlusCircle size={22}/></button>
+              <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white">Message <HiOutlineChatAlt2 size={22}/></button>
              </div>
               {/* {user.profile_picture && (
       <Image src={user.profile_picture} width={40} height={40} />
@@ -49,6 +54,7 @@ const SearchPage =  ({ searchParams }) => {
           ))}
         </div>
       )}
+     
       <div className="mt-2">
         <Suggestions/>
       </div>
