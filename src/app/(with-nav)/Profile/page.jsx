@@ -29,7 +29,7 @@ const ProfilePage = () => {
 			error,
 			isLoading,
 		} = useSWR(
-			`http://localhost:3000/api/profile?userEmail=nishat@gmail.com`,
+			`/api/profile?userEmail=${user?.email}`,
 			fetcher
 		);
 
