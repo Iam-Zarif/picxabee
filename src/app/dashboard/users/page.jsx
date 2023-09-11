@@ -1,19 +1,18 @@
 "use client";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 import UserRow from "@/components/Dashboard/Users/UserRow";
 import Loading from "../activities/loading";
 import useFetchData from "@/hooks/useFetchData";
 import { useState } from "react";
 import { InputGroup } from "react-bootstrap";
+import { FaSearchengin } from "react-icons/fa";
+import { TbUserSearch } from "react-icons/tb";
 
 const UserPage = () => {
-	// Sorry to interrupt - from Zarifff
+  // Sorry to interrupt - from Zarifff
   const [Search, setSearch] = useState("");
-  console.log(Search);
   const { data: users, error, isLoading } = useFetchData("/api/users");
-
   if (error) return <div>failed to load</div>;
-//   console.log(users);
   if (isLoading)
     return (
       <div className="mx-auto  flex justify-center items-center pt-40">
@@ -23,22 +22,24 @@ const UserPage = () => {
 
   return (
     <div className="w-10/12 ml-auto mr-24 pt-8">
-      <div className="border mb-3 w-3/12 text-2xl z-0	 p-2 rounded-md flex justify-between">
-        
-        <div>
-          <h1 className="">Total User: {users?.length}</h1>
-        </div>
-		
+      <div className="flex justify-between">
+      <div className="relative">
+        <form>
+          <InputGroup className="mb-3">
+            <Form.Control
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="User's name"
+              className="text-xl  pl-10 w-[200px] lg:w-fit mr-auto   rounded-2xl pr-2 py-2 border-1 border border-gray shadow-slate-300 hover:shadow-md hover:shadow-slate-400  focus:border-transparent focus:outline-dotted"
+            />
+          </InputGroup>
+        </form>
+        <TbUserSearch size={26} className="absolute top-2 left-2"/>
       </div>
-	  <div>
-          <form>
-            <InputGroup className="mb-3">
-			<Form.Control 
-			onChange={(e) => setSearch(e.target.value)}
-			placeholder="name" />
-			</InputGroup>
-          </form>
+        <div >
+          <h1 className="border rounded-md px-4 py-2 text-xl"><span className="font-bold">Total Users </span> : {users?.length}</h1>
         </div>
+      </div>
+     
       <div className="w-full mb-60 ml-auto mr-24 glass mt-16 rounded-md z-0">
         <div>
           {/* className="overflow-x-auto" */}
@@ -60,9 +61,12 @@ const UserPage = () => {
 
               {users &&
                 users
-                  .reverse().filter((user) =>{
-					return Search.toLowerCase() === "" ? user : user.name.toLowerCase().includes(Search)
-				  })
+                  .reverse()
+                  .filter((user) => {
+                    return Search.toLowerCase() === ""
+                      ? user
+                      : user.name.toLowerCase().includes(Search);
+                  })
                   .map((user, index) => (
                     <UserRow key={user._id} user={user} index={index}></UserRow>
                   ))}
