@@ -63,7 +63,7 @@ const SigninForm = () => {
                 <p className="font-semibold">Forgot Password</p>
             </div>
 
-            <input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer" />
+            <input type="submit" className="bg-primary-color bg-opacity-90 hover:bg-opacity-100 w-full text-white rounded-md p-3 cursor-pointer" />
         </form>
     );
 };
