@@ -11,7 +11,22 @@ const SearchSection = () => {
   const [searchText, setSearchText] = useState("");
 
   const noSpaceText = searchText.replace(/\s+/g, "");
-  console.log(noSpaceText);
+  // console.log(noSpaceText);
+  const fetchData = (value) => {
+    fetch("http://localhost:3000/api/users")
+      .then((res) => res.json())
+      .then((data) =>{
+         console.log(data);
+         const results = data.filter((user) =>{
+          return user && user.name && user.name.toLowerCase()
+         })
+      });
+  };
+
+  const handleChange = (value) => {
+    setSearchText(value);
+    fetchData(value);
+  };
 
   const handleSearch = (text) => {
     if (searchText === "") {
@@ -30,7 +45,7 @@ const SearchSection = () => {
               <div className="">
                 <input
                   value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={(e) => handleChange(e.target.value)}
                   type="text"
                   name="search"
                   id="search"

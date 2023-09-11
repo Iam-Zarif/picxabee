@@ -20,6 +20,7 @@ import ThemeButton from "./ThemeButton";
 import { TbLayoutDashboard } from "react-icons/tb";
 import NavFeedback from "./NavFeedback";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import useSWR from 'swr';
@@ -146,11 +147,11 @@ console.log(loggedInUser?.role);
                         <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    {/* <p className=" flex items-center group  hover:ml-2 transition-all">
+                    <p className=" flex items-center group  hover:ml-2 transition-all">
                       <IoSettingsOutline size={28} className="inline mr-2" />
                       Settings
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                    </p> */}
+                    </p>
                     <Link href="/bookmark">
                       {" "}
                       <p className=" flex items-center group  hover:ml-2 transition-all">
@@ -160,6 +161,7 @@ console.log(loggedInUser?.role);
                       </p>
                     </Link>
                     <div>
+
 
 
 
@@ -173,7 +175,7 @@ console.log(loggedInUser?.role);
                     </Link></>
                       :
                       <>
-                      <NavFeedback />
+                    <p>I am User</p>
                       </>}
 
 
