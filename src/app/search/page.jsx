@@ -17,15 +17,11 @@ const SearchPage =  ({ searchParams }) => {
   }
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data } = useSWR('/api/users', fetcher)
-  // console.log(data);
   const searchText = searchParams.userSearch;
 
   const filteredResults = data?.filter((user) =>
     user.name.replace(/\s+/g, "").toLowerCase().includes(searchText)
   );
-  // console.log(searchText);
- 
-  // console.log(filteredResults);
   return (
     <>
     <Navbar/>
@@ -40,7 +36,7 @@ const SearchPage =  ({ searchParams }) => {
           <div className='flex flex-col gap-2 lg:px-0 px-8'><p className="mb-2 text-3xl font-semibold">People</p>
           
          
-          {filteredResults?.slice(0, seeMore ? 10 : 4).map((user, index) => (
+          {filteredResults?.slice(0, seeMore ? filteredResults.length : 4).map((user, index) => (
             <div key={index} className="border  hover:bg-light-gray dark:hover:bg-black border-gray justify-between rounded-xl flex items-center px-5 py-2 ">
               <div className='flex gap-2 items-center'>
               <Image src={user?.profile_picture} height={50} width={50} className="rounded-full lg:w-10 lg:h-10 h-8 w-8"></Image>
@@ -76,3 +72,5 @@ const SearchPage =  ({ searchParams }) => {
 };
 
 export default SearchPage;
+
+
