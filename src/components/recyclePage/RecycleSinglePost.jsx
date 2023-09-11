@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 const RecycleSinglePost = ({ post }) => {
 
-	const router = useRouter()
+    const router = useRouter()
 
     const { _id: id } = post;
     const date1 = new Date(post?.createdAt);
@@ -116,13 +116,14 @@ const RecycleSinglePost = ({ post }) => {
             </div>
 
             <div>
-                {post?.comments?.reverse().map((comment, i) => (
-                    <SingleComment
-                        key={i}
-                        comment={comment}
-                        id={post._id}
-                    ></SingleComment>
-                ))}
+                {
+                    post?.comments?.reverse().map((comment, i) => (
+                        <SingleComment
+                            key={i}
+                            comment={comment}
+                            id={post._id}
+                        ></SingleComment>
+                    ))}
             </div>
 
         </div>

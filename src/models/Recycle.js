@@ -27,9 +27,6 @@ try {
         image: {
             type: String
         },
-        privacy: {
-            type: String
-        },
         reactions: [
             {
                 author: {
@@ -59,18 +56,15 @@ try {
                         type: String
                     },
                 },
-                content: {
-                    type: String
-                },
-                image: {
-                    type: String
-                },
-                privacy: {
+                comment: {
                     type: String
                 }
             },
             { timestamps: true }
-        ]
+        ],
+        privacy: {
+            type: String
+        }
     }, {
         timestamps: true,
     });

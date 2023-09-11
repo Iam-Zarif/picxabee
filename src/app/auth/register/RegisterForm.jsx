@@ -91,7 +91,7 @@ const RegisterForm = () => {
 								bio: '',
 								profile_picture: photoURL || '',
 								role: 'user',
-								
+
 							}),
 						});
 						router.push('/')
@@ -165,7 +165,33 @@ const RegisterForm = () => {
 			 */}
 			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
-			<input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer mt-3" />
+			<input type="submit" className="bg-primary-color border border-primary-color hover:text-primary-color duration-300 hover:bg-transparent w-full text-white rounded-md p-3 cursor-pointer mt-3" />
+
+			<div className='space-y-5 mt-5'>
+				<div>
+					<a href="#_" class="relative inline-flex items-center justify-start px-10 py-2 overflow-hidden font-medium transition-all border border-primary-color rounded  group">
+						<span class="w-48 h-48 rounded rotate-[-40deg] bg-primary-color absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+						<span class="relative w-full text-left text-black transition-colors duration-500 ease-in-out group-hover:text-white">Button Text</span>
+					</a>
+				</div>
+
+				<div>
+					<a href="#_" class="relative px-5 py-2 overflow-hidden font-medium text-primary-color bg-white border border-primary-color shadow-inner group rounded-md">
+						<span class="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-primary-color group-hover:w-full ease rounded-md"></span>
+						<span class="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-primary-color group-hover:w-full ease rounded-md"></span>
+						<span class="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-primary-color group-hover:h-full ease rounded-md"></span>
+						<span class="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-primary-color group-hover:h-full ease rounded-md"></span>
+						<span class="absolute inset-0 w-full h-full duration-300 delay-300 bg-primary-color rounded-md opacity-0 group-hover:opacity-100"></span>
+						<span class="relative transition-colors duration-300 delay-200 group-hover:text-white ease rounded-md">Button Text</span>
+					</a>
+				</div>
+
+				<div>
+					
+				</div>
+			</div>
+
+
 		</form>
 	);
 };

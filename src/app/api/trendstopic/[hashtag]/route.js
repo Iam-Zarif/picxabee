@@ -7,6 +7,8 @@ export const GET = async (request, { params }) => {
     let { hashtag } = params
     hashtag = hashtag.slice(0, -1)
 
+    console.log('hastag', hashtag);
+
     try {
         await connect()
         const posts = await Post.find({
