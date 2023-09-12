@@ -26,6 +26,8 @@ import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThe
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { MdOutlineLockReset } from "react-icons/md";
+import { NavLink } from "react-router-dom";
+
 
 const NavItems = () => {
   const { user, logout } = useAuth();
@@ -56,25 +58,31 @@ const NavItems = () => {
   };
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpen1, setIsOpen1] = React.useState(false);
-
+const pathname = usePathname()
   const router = useRouter();
-  const pathname = usePathname();
-  console.log(pathname ===  "/");
   return (
     <>
+    
       {user ? (
         <>
+       <ul>
+ 
+</ul>
+         
+
+
           <li>
-            <Link
+           <div className={pathname === '/' ? 'active' : ''}>
+           <Link
+          
               href="/"
-              className={` ${
-               pathname === "/" ? "bg-blue text-white" : ""
-              } flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform`}
+              className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
             >
               <p data-tip="Home">
                 <GoHome className="text-2xl lg:text-2xl " />
               </p>
             </Link>
+           </div>
           </li>
 
           <li>
@@ -103,17 +111,17 @@ const NavItems = () => {
               <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
             </a>
           </li> */}
+          <div className={pathname === '/recycle' ? 'active' : ''}>
           <li>
             <Link
               href={"/recycle"}
               data-tip="Recycle bin"
-              className={` ${
-                pathname === "/recycle" ? "bg-blue text-white" : ""
-               } flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform`}
+              className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
             >
               <RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
             </Link>
           </li>
+          </div>
           <li>
             <a className=" hover:bg-transparent ">
               <Image
