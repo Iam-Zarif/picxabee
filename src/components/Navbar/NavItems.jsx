@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { GoHome } from "react-icons/go";
 import { LuLogOut } from "react-icons/lu";
@@ -11,7 +11,7 @@ import {
 } from "react-icons/ai";
 import { BsBookmarkCheck } from "react-icons/bs";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
@@ -23,20 +23,24 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
-import useSWR from 'swr';
+import useSWR from "swr";
 import useFetchData from "@/hooks/useFetchData";
 import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
 
-const NavItems =  () => {
+import useCurrentUser from "@/hooks/useCurrentUser";
+
+const NavItems = () => {
   const { user, logout } = useAuth();
   // const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-	const { data :loggedInUser, error, isLoading } = useSWR(`
-		/api/loggedInUser?userEmail=${user?.email}`, 
-		fetcher,{refreshInterval: 1000}
-	);
+  // const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  // const { data :loggedInUser, error, isLoading } = useSWR(`
+  // 	/api/loggedInUser?userEmail=${user?.email}`,
+  // 	fetcher,{refreshInterval: 1000}
+  // );
   // console.log(data);
-console.log(loggedInUser?.role);
+  const { loggedInUser } = useCurrentUser();
+
+  // console.log(loggedInUser);
   const handleLogOut = () => {
     logout()
       .then((data) => {
@@ -57,12 +61,11 @@ console.log(loggedInUser?.role);
     setIsOpen((prevState) => !prevState);
   };
   const [isOpen, setIsOpen] = React.useState(false);
-  
 
   const router = useRouter();
-    return  (
+  return (
     <>
-      {   user ? (
+      {user ? (
         <>
           <li>
             <Link href="/">
@@ -161,31 +164,26 @@ console.log(loggedInUser?.role);
                       </p>
                     </Link>
                     <div>
-
-
-
-
-                      {(loggedInUser?.role === 'admin') ? <><Link href="/dashboard">
-                      
-                      <p className=" flex items-center group  hover:ml-2 transition-all">
-                        <TbLayoutDashboard size={28} className="inline mr-2" />
-                        Dashboard
-                        <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                      </p>
-                    </Link></>
-                      :
-                      <>
-                    <p>I am User</p>
-                      </>}
-
-
-
-
-
+                      { loggedInUser?.role === "admin" ? (
+                        <>
+                          <Link href="/dashboard">
+                            <p className=" flex items-center group  hover:ml-2 transition-all">
+                              <TbLayoutDashboard
+                                size={28}
+                                className="inline mr-2"
+                              />
+                              Dashboard
+                              <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                            </p>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <p>I am User</p>
+                        </>
+                      )}
                     </div>
-                    
-                   
-                 
+
                     <p
                       onClick={handleLogOut}
                       className=" flex items-center group  hover:ml-2 transition-all"
@@ -205,23 +203,31 @@ console.log(loggedInUser?.role);
       ) : (
         <>
           <div className="flex items-center gap-8">
-           <div className="hover:scale-110  transform transition-transform"> <Link
-              className="  text-primary-color dark:hover:text-primary-color hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
-              href="/auth/signin"
-            >
-              Sign In
-            </Link>
-            {/* <Link
+            <div className="hover:scale-110  transform transition-transform">
+              {" "}
+              <Link
+                className="  text-primary-color dark:hover:text-primary-color hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
+                href="/auth/signin"
+              >
+                Sign In
+              </Link>
+              {/* <Link
               className="  text-red dark:hover:text-red hover:text-white hover:bg-red dark:hover:bg-black bg-white  py-3 border-red  border dark:bg-red dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
               href="/auth/signin"
             >
               Sign In
             </Link> */}
             </div>
-           <div > {user ?
-            <></>
-          :
-          <div className=" hover:scale-125  transform transition-transform"><DashboardThemeButton/></div>}</div>
+            <div>
+              {" "}
+              {user ? (
+                <></>
+              ) : (
+                <div className=" hover:scale-125  transform transition-transform">
+                  <DashboardThemeButton />
+                </div>
+              )}
+            </div>
           </div>
         </>
       )}
