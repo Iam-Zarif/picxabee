@@ -17,10 +17,12 @@ module.exports = {
 			gray: '#9ca3af',
 
 			'gray-400': '#94a3b8',
-            "light-gray":"#f5f5f5",
+			'light-gray': '#f5f5f5',
 			'black-bg-primary': '#5A5A5A',
 			'black-bg-secondary': '#333333 ',
 			'teal-900': '#134e4a',
+
+			'teal-700': '#0f766e',
 
 			'teal-500': '#14b8a6',
 
