@@ -2,7 +2,7 @@
 import useAuth from './useAuth';
 import useSWR from 'swr';
 
-const useLoggedInUser = () => {
+const useCurrentUser = () => {
 	const { user } = useAuth();
 	const email = user?.email || '';
 	
@@ -14,8 +14,9 @@ const useLoggedInUser = () => {
 		isLoading,
 	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher);
 
-	console.log(loggedInUser)
+	// console.log(loggedInUser);
+  
 
 	return { loggedInUser, error, isLoading };
 };
-export default useLoggedInUser;
+export default useCurrentUser;

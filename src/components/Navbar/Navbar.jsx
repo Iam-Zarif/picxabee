@@ -20,10 +20,11 @@ import FeedbackForm from "./FeedbackForm";
 import useFetchData from "@/hooks/useFetchData";
 import useSWR from "swr";
 import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
+import SearchSuggest from "./SearchSuggest";
 
 const Navbar = () => {
   const { user } = useAuth();
-  console.log(user?.email);
+  // console.log(user?.email);
   const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
 
   // const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -33,7 +34,7 @@ const Navbar = () => {
   //   fetcher,
   //   { refreshInterval: 1000 }
   // );
-  console.log(loggedInUser);
+  // console.log(loggedInUser);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -106,6 +107,7 @@ const Navbar = () => {
         
           <div className="hidden lg:block mr-12   mx-auto relative">
             <SearchSection />
+            {/* <SearchSuggest/> */}
           </div>
           <ul className="menu menu-horizontal px-1 flex items-center">
             <NavItems />
