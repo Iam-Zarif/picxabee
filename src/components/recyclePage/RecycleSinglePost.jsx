@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { PiShareFat } from 'react-icons/pi';
@@ -16,7 +17,6 @@ const RecycleSinglePost = ({ post }) => {
     const formattedDateTime = date1.toLocaleString(undefined, options);
 
     const removePostHandler = async (id) => {
-        console.log(id);
 
         const confirmed = confirm('Are you sure?');
 
@@ -31,7 +31,6 @@ const RecycleSinglePost = ({ post }) => {
             }
         }
     }
-
 
     return (
         <div data-aos="fade-up" className="lg:px-0 border-2 rounded-md mb-3">
@@ -83,14 +82,12 @@ const RecycleSinglePost = ({ post }) => {
                                     size={28}
                                     className="hover:scale-105 duration-300 text-xs"
                                 />
-
                             </>
                         }
                         <p className="font-semibold text-lg">
                             {post?.reactions && post?.reactions.length}
                         </p>
                     </div>
-
 
                     <div className='flex items-center gap-0.5'>
                         <AiOutlineComment
