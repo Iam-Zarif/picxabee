@@ -35,8 +35,6 @@ body.active-modal {
     transform: translate(-50%, -50%);
     background: #f1f1f1;
     border-radius: 6px;
-    /* width:30%; */
-    /* min-width: 300px; */
     height: 80vh;
     object-fit: cover;
 }

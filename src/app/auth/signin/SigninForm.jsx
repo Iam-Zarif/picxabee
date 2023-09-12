@@ -7,7 +7,7 @@ const SigninForm = () => {
 
     const { user, signIn, setLoading } = useAuth()
     console.log(user);
-    const navigate = useRouter()
+    const router = useRouter()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -23,10 +23,9 @@ const SigninForm = () => {
                     console.log('Successfully Login')
                     reset()
                     setLoading(false)
-                    navigate.push('/')
+                    router.push('/')
                 })
                 .catch(err =>
-                    // console.log(err.code)
                     alert(err.code)
                 );
 

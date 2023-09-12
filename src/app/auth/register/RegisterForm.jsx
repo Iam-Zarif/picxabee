@@ -37,7 +37,6 @@ const RegisterForm = () => {
 			if (!res.ok) throw new Error("Failed to upload image");
 
 			const data = await res.json();
-			// console.log(data);
 			setValue("photoURL", data.data.url);
 
 		} catch (error) {

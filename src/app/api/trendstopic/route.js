@@ -11,8 +11,6 @@ export const GET = async () => {
         const postContent = posts.map(post => post.content)
 
         const hashtagRegex = /#[a-zA-Z0-9_]+(?=\s)/g
-        // /#[a-zA-Z0-9_]+\s?/g
-        // /#[a-zA-Z0-9_\s]+/g;
         const totalHashtags = postContent && JSON.stringify(postContent).match(hashtagRegex);
 
         const hashtagCounts = {};
