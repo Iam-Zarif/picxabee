@@ -64,7 +64,7 @@ const SearchSection = () => {
                 </div>
                 
                  
-                <div className="absolute lg:top-11  lg:right-2">
+                <div className="absolute lg:top-11  lg:right-0">
                 <SearchSuggest results={results}/>
                 </div>
               </div>
