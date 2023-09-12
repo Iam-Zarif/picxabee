@@ -16,7 +16,7 @@ export const PUT = async (request, { params }) => {
 		},
 	});
 	return NextResponse.json(
-		{ message: 'Following Successfully' },
+		{ message: 'Follower Successfully' },
 		{ status: 200 }
 	);
 };
@@ -42,7 +42,7 @@ export const DELETE = async (request, { params }) => {
 
 		await specificUser.save();
 		return NextResponse.json(
-			{ message: 'Unfollow Successfully' },
+			{ message: 'UnFollower Successfully' },
 			{ status: 404 }
 		);
 	} catch (error) {
@@ -50,33 +50,21 @@ export const DELETE = async (request, { params }) => {
 	}
 };
 
-// export const DELETE = async (request, { params }) => {
-//   try {
-//     const { id } = params;
-//     const { email } = await request.json();
+export const AddFollowing = async() => {
+	const { id } = params;
+	console.log(id);
+	const { newFollowers } = await request.json();
+	console.log(newFollowers);
 
-//     if (!id || !email) {
-//       return NextResponse.json({ message: "Missing ID or  Email" }, { status: 400 });
-//     }
+	await connect();
 
-//     await connect();
-
-//     const user = await User.findById(id);
-
-//     if (!user) {
-//       return NextResponse.json({ message: "Post not found" }, { status: 404 });
-//     }
-
-//     const followIndex = User.followers.findIndex((follow) => follow.email === email);
-//     if (followIndex === -1) {
-//       return NextResponse.json({ message: "Comment not found" }, { status: 404 });
-//     }
-
-//     User.followers.splice(followIndex, 1);
-//     await User.save();
-
-//     return NextResponse.json({ message: "UnFollow" }, { status: 200 });
-//   } catch (error) {
-//     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
-//   }
-// };
+	await User.findByIdAndUpdate(id, {
+		$push: {
+			followers: newFollowers,
+		},
+	});
+	return NextResponse.json(
+		{ message: 'Follower Successfully' },
+		{ status: 200 }
+	);
+}

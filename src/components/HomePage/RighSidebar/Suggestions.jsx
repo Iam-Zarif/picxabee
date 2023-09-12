@@ -8,7 +8,7 @@ import { ClipLoader } from "react-spinners";
 
 const Suggestions = () => {
   const { user } = useAuth();
-  console.log(user?.email);
+  
   const router = useRouter();
   const [loadingData, setLoading] = useState(false);
 
@@ -110,14 +110,14 @@ const Suggestions = () => {
                     return f?.email === user?.email;
                   }) ? (
                     <button
-                      className="text-red-400 text-sm font-bold"
+                      className="text-sm font-bold text-red" 
                       onClick={() => handleUnFollow(users?._id)}
                     >
-                      Unfollow
+                      UnFollow
                     </button>
                   ) : (
                     <button
-                      className="text-red-400 text-sm"
+                      className="text-sm font-bold text-blue"
                       onClick={() => handleFollow(users?._id)}
                     >
                       Follow
