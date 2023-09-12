@@ -6,14 +6,9 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Image from "next/image";
 
-
 const AddStoryModal = ({ ...props }) => {
 
-
     const { modal, setModal, addStoryToggleModal, imgUrl, setImgUrl } = props
-
-    const [addStoryLoading, setAddStoryLoading] = useState(false)
-
     const {
         handleSubmit,
         formState: { errors },
@@ -42,6 +37,7 @@ const AddStoryModal = ({ ...props }) => {
             console.log(data);
             setValue("photo", data.data.url);
             setImgUrl(data.data.url);
+
         } catch (error) {
             console.log(error);
         }
@@ -67,7 +63,6 @@ const AddStoryModal = ({ ...props }) => {
             .catch(err => {
                 console.log(err);
             })
-        console.log(data);
     }
 
     return (
