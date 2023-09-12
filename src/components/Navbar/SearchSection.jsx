@@ -52,13 +52,14 @@ const SearchSection = () => {
             <div className="flex">
               <div className="relative flex flex-col items-center">
                <div className=""> <input
+             
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
                   type="text"
                   name="search"
                   id="search"
                   placeholder="Search"
-                  className="mx-10 pl-5 w-[200px] lg:w-fit mr-auto   rounded-2xl pr-2 py-2 border-1 border border-gray shadow-slate-300 hover:shadow-md hover:shadow-slate-400  focus:border-transparent focus:outline-none"
+                  className="mx-10 pl-5 w-[200px] lg:w-fit mr-auto   rounded-2xl pr-2 py-2 border-1 border border-gray shadow-slate-300 hover:shadow-md hover:shadow-slate-400  focus:border-transparent focus:outline-primary-color "
                 />
                 
                 </div>
@@ -70,7 +71,7 @@ const SearchSection = () => {
               </div>
               <BsSearch
                 size={35}
-                className="absolute hover:scale-125  transform transition-transform cursor-pointer right-1  group-hover:text-primary-color rounded-2xl px-1 py-2    "
+                className="absolute hover:scale-125  transform transition-transform cursor-pointer top-1 right-1  group-hover:text-primary-color rounded-2xl px-1 py-2    "
                 onClick={() => handleSearch(noSpaceText.toLowerCase())}
               >
                 Search
