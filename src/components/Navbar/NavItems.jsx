@@ -9,7 +9,7 @@ import {
   AiOutlineProfile,
   AiOutlineUser,
 } from "react-icons/ai";
-import { BsBookmarkCheck } from "react-icons/bs";
+import { BsArrowLeftCircle, BsBookmarkCheck } from "react-icons/bs";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -28,6 +28,7 @@ import useFetchData from "@/hooks/useFetchData";
 import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { MdOutlineLockReset } from "react-icons/md";
 
 const NavItems = () => {
   const { user, logout } = useAuth();
@@ -60,7 +61,11 @@ const NavItems = () => {
   const toggleDrawer = async () => {
     setIsOpen((prevState) => !prevState);
   };
+  const toggleDrawer1 = async () => {
+    setIsOpen1((prevState) => !prevState);
+  };
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen1, setIsOpen1] = React.useState(false);
 
   const router = useRouter();
   return (
@@ -129,7 +134,7 @@ const NavItems = () => {
                 open={isOpen}
                 onClose={toggleDrawer}
                 direction="right"
-                className="bla bla bla "
+                className="bla bla bla dark:bg-black"
               >
                 <div className="dark:bg-black-bg-primary  min-h-screen">
                   <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
@@ -138,7 +143,7 @@ const NavItems = () => {
                       <span>{user.displayName}</span>
                     </p>
                     <hr className="text-primary-color" />
-                    <ThemeButton />
+
                     <Link href="/Profile">
                       <p className="  flex items-center group   hover:ml-2 transition-all">
                         <AiOutlineProfile
@@ -150,11 +155,46 @@ const NavItems = () => {
                         <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    <p className=" flex items-center group  hover:ml-2 transition-all">
+                    <p
+                      onClick={toggleDrawer1}
+                      className=" flex items-center group  hover:ml-2 transition-all"
+                    >
                       <IoSettingsOutline size={28} className="inline mr-2" />
                       Settings
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                     </p>
+                    {/*  */}
+                    <Drawer
+                      open={isOpen1}
+                      onClose={toggleDrawer1}
+                      direction="right"
+                      className="bla bla bla dark:bg-black  "
+                    >
+                      <div className="dark:bg-black-bg-primary lg:pl-2  min-h-screen ">
+                        <p onClick={toggleDrawer1} className="pt-8 ">
+                          <BsArrowLeftCircle
+                            size={26}
+                            className="hover:scale-110"
+                          />
+                        </p>
+                        <div className="lg:text-lg lg:pl-2 flex flex-col  gap-5 w-11/12 mx-auto">
+                          <div className="">
+                            {" "}
+                            <ThemeButton />
+                          </div>
+
+                          <p className=" flex items-center group  hover:ml-2 transition-all">
+                            <MdOutlineLockReset
+                              size={28}
+                              className="inline mr-2"
+                            />
+                            Reset Password
+                            <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                          </p>
+                        </div>
+                      </div>
+                    </Drawer>
+                    {/*  */}
                     <Link href="/bookmark">
                       {" "}
                       <p className=" flex items-center group  hover:ml-2 transition-all">
@@ -164,7 +204,7 @@ const NavItems = () => {
                       </p>
                     </Link>
                     <div>
-                      { loggedInUser?.role === "admin" ? (
+                      {loggedInUser?.role === "admin" ? (
                         <>
                           <Link href="/dashboard">
                             <p className=" flex items-center group  hover:ml-2 transition-all">
