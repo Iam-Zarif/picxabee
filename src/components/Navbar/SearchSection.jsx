@@ -14,7 +14,7 @@ const SearchSection = () => {
   const noSpaceText = searchText.replace(/\s+/g, "");
   // console.log(noSpaceText);
   const fetchData = (value) => {
-    fetch("http://localhost:3000/api/users")
+    fetch("/api/users")
       .then((res) => res.json())
       .then((data) => {
         //  console.log(data);
@@ -64,7 +64,7 @@ const SearchSection = () => {
                 </div>
                 
                  
-                <div className="absolute lg:top-11 lg:right-2">
+                <div className="absolute lg:top-11  lg:right-2">
                 <SearchSuggest results={results}/>
                 </div>
               </div>
