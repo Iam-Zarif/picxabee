@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { BeatLoader } from "react-spinners";
 import useAuth from "@/hooks/useAuth";
+import HomeButton from "@/components/button/HomeButton";
 
 const CreatePost = () => {
   const router = useRouter();
@@ -144,7 +145,7 @@ const CreatePost = () => {
   return (
 		<>
 			{user && (
-				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-75 shadow-sm  mx-auto mt-10 rounded-md">
+				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-10 rounded-md">
 					<div className="">
 						<h1 className="text-center font-semibold text-lg py-2">
 							Create a Post
@@ -168,7 +169,7 @@ const CreatePost = () => {
 							<div className="mt-5">
 								{loading && (
 									<BeatLoader
-										color="#36d7b7"
+										color="#349999"
 										loading
 										margin={4}
 										size={10}
@@ -181,8 +182,8 @@ const CreatePost = () => {
 										width={150}
 										height={80}
 										objectPosition="center"
-										className="w-36 h-20"
-										alt=""
+										className="w-24 h-24 rounded-md"
+										alt="uploaded image"
 									/>
 								)}
 							</div>
@@ -197,14 +198,18 @@ const CreatePost = () => {
 											accept="image/*"
 											onChange={handleImage}
 										/>
-										<BsImageFill color="#2E4F6B" size={22} />
+										<BsImageFill
+											// color="#349999"
+											className="text-primary-color dark:text-black"
+											size={22}
+										/>
 									</label>
 								</div>
 								<div className="flex items-center gap-x-4">
-									<div className="flex items-center justify-end">
+									<div className="flex items-center justify-end gap-2 lg:gap-5">
 										<div className="form-control w-full ">
 											<select
-												className="select select-bordered rounded-md hover:bg-primary-color hover:text-white hover:border-white border-gray dark:border-white dark:hover:bg-black"
+												className="select h-12 w-28 rounded-md border-none focus:outline-none  text-white hover:text-white bg-primary-color hover:bg-teal-700 dark:bg-black dark:hover:bg-[#2a0f17] hover:scale-105 transition duration-300"
 												value={privacy}
 												onChange={(e) => setPrivacy(e.target.value)}
 											>
@@ -214,13 +219,17 @@ const CreatePost = () => {
 											</select>
 										</div>
 
-										<button
+										{/* <button
 											className="btn
                        rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
 											disabled={loading}
 										>
 											Create Post
-										</button>
+										</button> */}
+
+										<div>
+											<HomeButton title="Create Post" disabled={loading} />
+										</div>
 										<div className="form-control w-full max-w-xs flex "></div>
 									</div>
 									{/* <BsEmojiSmile size={22} className="mt-5" /> */}
