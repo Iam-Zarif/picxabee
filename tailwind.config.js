@@ -15,7 +15,8 @@ module.exports = {
 			red: '#F20519',
 			blue: '#304269',
 			gray: '#9ca3af',
-
+// msg - #35393B
+// msg - 2nd = #3D4244
 			'gray-400': '#94a3b8',
 			'light-gray': '#f5f5f5',
 			'black-bg-primary': '#5A5A5A',
