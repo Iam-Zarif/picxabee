@@ -1,148 +1,159 @@
-"use client";
+'use client';
 
-import "./CreatePost.css";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { BsImageFill } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { BeatLoader } from "react-spinners";
-import useAuth from "@/hooks/useAuth";
-import HomeButton from "@/components/button/HomeButton";
+import './CreatePost.css';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { BsImageFill } from 'react-icons/bs';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { BeatLoader } from 'react-spinners';
+import useAuth from '@/hooks/useAuth';
+import HomeButton from '@/components/button/HomeButton';
 
 const CreatePost = () => {
-  const router = useRouter();
-  const { user } = useAuth();
-  
-  const [imageURL, setImageURL] = useState("");
-  const [privacy, setPrivacy] = useState("public");
-  const [loading, setLoading] = useState(false);
-  // console.log(privacy);
+	const router = useRouter();
+	const { user } = useAuth();
 
-  const textareaRef = useRef(null);
-  const handleOutsideClick = (event) => {
-    if (textareaRef.current && !textareaRef.current.contains(event.target)) {
-      // Clicked outside the textarea, collapse it to 2 rows
-      setExpanded(false);
-    }
-  };
+	const [imageURL, setImageURL] = useState('');
+	const [privacy, setPrivacy] = useState('public');
+	const [loading, setLoading] = useState(false);
+	// console.log(privacy);
 
-  useEffect(() => {
-    // Add event listener for clicks outside the textarea
-    document.addEventListener("mousedown", handleOutsideClick);
+	const textareaRef = useRef(null);
+	const handleOutsideClick = (event) => {
+		if (textareaRef.current && !textareaRef.current.contains(event.target)) {
+			// Clicked outside the textarea, collapse it to 2 rows
+			setExpanded(false);
+		}
+	};
 
-    return () => {
-      // Remove the event listener when the component unmounts
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
-  const [expanded, setExpanded] = useState(false);
+	useEffect(() => {
+		// Add event listener for clicks outside the textarea
+		document.addEventListener('mousedown', handleOutsideClick);
 
-  const handleClick = () => {
-    // Toggle the expanded state when clicked
-    setExpanded(!expanded);
-  };
+		return () => {
+			// Remove the event listener when the component unmounts
+			document.removeEventListener('mousedown', handleOutsideClick);
+		};
+	}, []);
+	const [expanded, setExpanded] = useState(false);
 
-  const handleImage = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    const url =
-      "https://api.imgbb.com/1/upload?expiration=600&key=f3218173624c8aebe56d3c415677e482";
+	const handleClick = () => {
+		// Toggle the expanded state when clicked
+		setExpanded(!expanded);
+	};
 
-    setLoading(true);
+	const handleImage = async (e) => {
+		const file = e.target.files[0];
+		const formData = new FormData();
+		formData.append('image', file);
+		const url =
+			'https://api.imgbb.com/1/upload?expiration=600&key=f3218173624c8aebe56d3c415677e482';
 
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        body: formData,
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setImageURL(data.data.url);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+		setLoading(true);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+		try {
+			const res = await fetch(url, {
+				method: 'POST',
+				body: formData,
+			});
+			if (res.ok) {
+				const data = await res.json();
+				setImageURL(data.data.url);
+			}
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
-  const onSubmit = async (data) => {
-    const { text } = data;
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm();
 
-    if(text ==="" && imageURL === ""){
-      return;
-    }
+	const onSubmit = async (data) => {
+		const { text } = data;
 
-    const newPost = {
-      author: {
-        email: user?.email,
-        name: user?.displayName,
-        profile_picture:user?.photoURL,
-      },
-      content: text,
-      image: imageURL,
-      privacy,
-    };
+		if (text === '' && imageURL === '') {
+			return;
+		}
 
-    const url = "/api/posts";
-    const donationURL = "/api/donation"
+		const newPost = {
+			author: {
+				email: user?.email,
+				name: user?.displayName,
+				profile_picture: user?.photoURL,
+			},
+			content: text,
+			image: imageURL,
 
-    if (loading) {
-      return;
-    }
+			privacy,
+		};
 
-    if (privacy !== "donation") {
-      try {
-        const res = await fetch(url, {
-          cache: "no-cache",
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newPost),
-        });
-        if (res.ok) {
-          router.refresh();
-          setImageURL("")
-          reset();
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    else{
-      try {
-        const res = await fetch(donationURL, {
-          cache: "no-cache",
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newPost),
-        });
-        if (res.ok) {
-          router.refresh();
-          setImageURL("")
-          reset();
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
+		const newDonationPost = {
+			author: {
+				email: user?.email,
+				name: user?.displayName,
+				profile_picture: user?.photoURL,
+			},
+			content: text,
+			image: imageURL,
+			status: 'pending',
+			amount: 0,
+			privacy,
+		};
 
-    
-  };
+		const url = '/api/posts';
+		const donationURL = '/api/donation';
 
-  return (
+		if (loading) {
+			return;
+		}
+
+		if (privacy !== 'donation') {
+			try {
+				const res = await fetch(url, {
+					cache: 'no-cache',
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
+					},
+					body: JSON.stringify(newPost),
+				});
+				if (res.ok) {
+					router.refresh();
+					setImageURL('');
+					reset();
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		} else {
+			try {
+				const res = await fetch(donationURL, {
+					cache: 'no-cache',
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
+					},
+					body: JSON.stringify(newPost),
+				});
+				if (res.ok) {
+					router.refresh();
+					setImageURL('');
+					reset();
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
+	return (
 		<>
 			{user && (
 				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-3 rounded-md">
