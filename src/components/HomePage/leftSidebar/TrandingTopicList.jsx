@@ -1,11 +1,15 @@
 'use client'
 
-import useFetchData from '@/hooks/useFetchData';
 import Link from 'next/link';
 import HashtagLoader from '@/components/loader/HashtagLoader';
+import useSWR from "swr";
 
 const TrandingTopicList = () => {
-    const { data, isLoading } = useFetchData('/api/trendstopic')
+
+    const fetcher = (...args) => fetch(...args).then((res) => res.json());
+    const { data, isLoading } = useSWR(`/api/trendstopic`, fetcher, {
+        refreshInterval: 1000
+    });
 
     return (
         <div className='rounded-md'>

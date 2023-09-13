@@ -2,45 +2,38 @@
 import React from "react";
 import { GoHome } from "react-icons/go";
 import { LuLogOut } from "react-icons/lu";
-// import 'animate.css';
+
 import "react-toastify/dist/ReactToastify.css";
 import {
   AiOutlineArrowRight,
   AiOutlineProfile,
   AiOutlineUser,
 } from "react-icons/ai";
-import { BsBookmarkCheck } from "react-icons/bs";
+import { BsArrowLeftCircle, BsBookmarkCheck } from "react-icons/bs";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
-import { useRouter } from "next/navigation";
+import { useRouter,usePathname } from "next/navigation";
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Link from "next/link";
 import ThemeButton from "./ThemeButton";
 import { TbLayoutDashboard } from "react-icons/tb";
-import NavFeedback from "./NavFeedback";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
-import useSWR from "swr";
-import useFetchData from "@/hooks/useFetchData";
 import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { MdOutlineLockReset } from "react-icons/md";
+
+
 
 const NavItems = () => {
   const { user, logout } = useAuth();
-  // const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
-  // const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  // const { data :loggedInUser, error, isLoading } = useSWR(`
-  // 	/api/loggedInUser?userEmail=${user?.email}`,
-  // 	fetcher,{refreshInterval: 1000}
-  // );
-  // console.log(data);
+
   const { loggedInUser } = useCurrentUser();
 
-  // console.log(loggedInUser);
   const handleLogOut = () => {
     logout()
       .then((data) => {
@@ -60,22 +53,36 @@ const NavItems = () => {
   const toggleDrawer = async () => {
     setIsOpen((prevState) => !prevState);
   };
+  const toggleDrawer1 = async () => {
+    setIsOpen1((prevState) => !prevState);
+  };
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const [isOpen1, setIsOpen1] = React.useState(false);
+const pathname = usePathname()
   const router = useRouter();
   return (
     <>
+    
       {user ? (
         <>
+       <ul>
+ 
+</ul>
+         
+
+
           <li>
-            <Link href="/">
-              <p
-                data-tip="Home"
-                className="flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform "
-              >
+           <div className={pathname === '/' ? 'active' : ''}>
+           <Link
+          
+              href="/"
+              className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
+            >
+              <p data-tip="Home">
                 <GoHome className="text-2xl lg:text-2xl " />
               </p>
             </Link>
+           </div>
           </li>
 
           <li>
@@ -104,15 +111,17 @@ const NavItems = () => {
               <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
             </a>
           </li> */}
+          <div className={pathname === '/recycle' ? 'active' : ''}>
           <li>
             <Link
               href={"/recycle"}
               data-tip="Recycle bin"
-              className="hover:bg-transparent tooltip-bottom tooltip  hover:scale-125 transform transition-transform "
+              className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
             >
               <RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
             </Link>
           </li>
+          </div>
           <li>
             <a className=" hover:bg-transparent ">
               <Image
@@ -129,7 +138,7 @@ const NavItems = () => {
                 open={isOpen}
                 onClose={toggleDrawer}
                 direction="right"
-                className="bla bla bla "
+                className="bla bla bla dark:bg-black"
               >
                 <div className="dark:bg-black-bg-primary  min-h-screen">
                   <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
@@ -138,8 +147,9 @@ const NavItems = () => {
                       <span>{user.displayName}</span>
                     </p>
                     <hr className="text-primary-color" />
-                    <ThemeButton />
-                    <Link href="/Profile">
+
+                   <div className={pathname === '/Profile' ? 'sideActive' : ''}>
+                   <Link href="/Profile" className="">
                       <p className="  flex items-center group   hover:ml-2 transition-all">
                         <AiOutlineProfile
                           size={28}
@@ -150,12 +160,51 @@ const NavItems = () => {
                         <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    <p className=" flex items-center group  hover:ml-2 transition-all">
+                   </div>
+                   <div className={pathname === '/settings' ? 'sideActive' : ''}>
+                   <p
+                      onClick={toggleDrawer1}
+                      className=" flex items-center group  hover:ml-2 transition-all"
+                    >
                       <IoSettingsOutline size={28} className="inline mr-2" />
                       Settings
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                     </p>
-                    <Link href="/bookmark">
+                   </div>
+                    {/*  */}
+                    <Drawer
+                      open={isOpen1}
+                      onClose={toggleDrawer1}
+                      direction="right"
+                      className="bla bla bla dark:bg-black  "
+                    >
+                      <div className="dark:bg-black-bg-primary lg:pl-2  min-h-screen ">
+                        <p onClick={toggleDrawer1} className="pt-8 ">
+                          <BsArrowLeftCircle
+                            size={26}
+                            className="hover:scale-110 ml-4"
+                          />
+                        </p>
+                        <div className="lg:text-lg lg:pl-2 flex flex-col  gap-5 w-11/12 mx-auto">
+                          <div className="">
+                            {" "}
+                            <ThemeButton />
+                          </div>
+
+                          <p className=" flex items-center group  hover:ml-2 transition-all">
+                            <MdOutlineLockReset
+                              size={28}
+                              className="inline mr-2"
+                            />
+                            Reset Password
+                            <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                          </p>
+                        </div>
+                      </div>
+                    </Drawer>
+                    {/*  */}
+                   <div  className={pathname === '/bookmark' ? 'sideActive' : ''}>
+                   <Link href="/bookmark">
                       {" "}
                       <p className=" flex items-center group  hover:ml-2 transition-all">
                         <BsBookmarkCheck size={28} className="inline mr-2" />
@@ -163,10 +212,12 @@ const NavItems = () => {
                         <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
+                   </div>
                     <div>
-                      { loggedInUser?.role === "admin" ? (
+                      {loggedInUser?.role === "admin" ? (
                         <>
-                          <Link href="/dashboard">
+                         <div className={pathname === '/dashboard' ? 'sideActive' : ''}>
+                         <Link href="/dashboard">
                             <p className=" flex items-center group  hover:ml-2 transition-all">
                               <TbLayoutDashboard
                                 size={28}
@@ -176,6 +227,7 @@ const NavItems = () => {
                               <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                             </p>
                           </Link>
+                         </div>
                         </>
                       ) : (
                         <>
