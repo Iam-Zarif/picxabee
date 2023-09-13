@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-// Do not touch my Navbar. declared by the author - Zarif
 
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../../../public/swarm.png";
@@ -18,23 +17,11 @@ import NavItems from "./NavItems";
 import useAuth from "@/hooks/useAuth";
 import FeedbackForm from "./FeedbackForm";
 import useFetchData from "@/hooks/useFetchData";
-import useSWR from "swr";
-import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
-import SearchSuggest from "./SearchSuggest";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { user } = useAuth();
-  // console.log(user?.email);
   const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
-
-  // const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  // const { data, error, isLoading } = useSWR(
-  //   `
-	// 	/api/loggedInUser?userEmail=${user?.email}`,
-  //   fetcher,
-  //   { refreshInterval: 1000 }
-  // );
-  // console.log(loggedInUser);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -67,24 +54,48 @@ const Navbar = () => {
     setSearchResults(filteredResults);
   }, [searchQuery]);
 
-  const handleSearch = () => {
-    if (searchQuery.trim() === "") {
-      setSearchResults([]);
+ 
+  const router = useRouter();
+  const [searchText, setSearchText] = useState("");
+  const [results, setResults] = useState([]);
+  const noSpaceText = searchText.replace(/\s+/g, "");
+  // console.log(noSpaceText);
+  const fetchData = (value) => {
+    fetch("/api/users")
+      .then((res) => res.json())
+      .then((data) => {
+        //  console.log(data);
+        const results = data.filter((user) => {
+          return (
+            value &&
+            user &&
+            user.name &&
+            user.name.toLowerCase().includes(value)
+          );
+        });
+        // console.log(results);
+        setResults(results);
+      });
+  };
+
+  const handleChange = (value) => {
+    setSearchText(value);
+    fetchData(value);
+  };
+
+  const handleSearch = (text) => {
+    if (searchText === "") {
+      router.push("/");
       return;
     }
-    const filteredUsers = users.filter((user) =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    setSearchResults(filteredUsers);
+    router.push(`/search?userSearch=${text}`);
   };
-
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      // Enter key was pressed, trigger the search button click event
-      handleSearch();
+      handleSearch(searchText);
     }
   };
+ 
 
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
@@ -170,6 +181,8 @@ const Navbar = () => {
           <div className="flex py-2">
             <input
               onKeyPress={handleKeyPress}
+              value={searchText}
+              onChange={(e) => handleChange(e.target.value)}
               type="text"
               placeholder="Search..."
               className=" pl-3 w-full rounded-2xl py-1 shadow-sm shadow-slate-300 m border focus:border-transparent focus:outline-none"

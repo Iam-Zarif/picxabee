@@ -43,7 +43,11 @@ const SearchSection = () => {
     }
     router.push(`/search?userSearch=${text}`);
   };
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch(searchText);
+    }
+  };
   return (
     <>
       {user ? (
@@ -52,7 +56,7 @@ const SearchSection = () => {
             <div className="flex">
               <div className="relative flex flex-col items-center">
                <div className=""> <input
-             
+             onKeyPress={handleKeyPress}
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
                   type="text"

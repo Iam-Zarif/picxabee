@@ -140,7 +140,7 @@ const Suggestions = () => {
                     </button>
                   ) : (
                     <button
-                      className="text-sm font-bold text-blue"
+                      className="text-sm font-bold text-blue dark:text-teal-200"
                       onClick={() => handleFollow(users?._id , users?.email , users?.name)}
                     >
                       Follow
