@@ -26,7 +26,7 @@ import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThe
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { MdOutlineLockReset } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+
 
 
 const NavItems = () => {
