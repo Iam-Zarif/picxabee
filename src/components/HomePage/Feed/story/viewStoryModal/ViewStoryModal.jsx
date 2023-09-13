@@ -31,6 +31,7 @@ const ViewStoryModal = ({...props}) => {
                             <Image
                                 src={index === 1 || index === 0 ? '' : data[index - 2].image}
                                 fill={true}
+                                objectFit='cover'
                                 alt=""
                                 className="rounded-md bg-cover"
                                 sizes="(min-width: 768px) 100vw"
@@ -43,6 +44,7 @@ const ViewStoryModal = ({...props}) => {
                             <Image
                                 src={index === 0 ? '' : data[index - 1].image}
                                 fill={true}
+                                objectFit='cover'
                                 alt=""
                                 className="rounded-md "
                                 sizes="(min-width: 768px) 100vw"
@@ -55,6 +57,7 @@ const ViewStoryModal = ({...props}) => {
                             <Image
                                 src={story.image}
                                 fill={true}
+                                objectFit='cover'
                                 alt=""
                                 className="rounded-md my-auto"
                                 sizes="(min-width: 768px) 100vw"
@@ -70,6 +73,7 @@ const ViewStoryModal = ({...props}) => {
                             <Image
                                 src={index === data.length - 1 ? '' : data[index + 1].image}
                                 fill={true}
+                                objectFit='cover'
                                 alt=""
                                 className="rounded-md bg-cover"
                                 sizes="(min-width: 768px) 100vw"
@@ -82,6 +86,7 @@ const ViewStoryModal = ({...props}) => {
                             <Image
                                 src={((index === data.length - 2) || (data.length - 1) === index) ? '' : data[index + 2].image}
                                 fill={true}
+                                objectFit='cover'
                                 alt=""
                                 className="rounded-md bg-cover"
                                 sizes="(min-width: 768px) 100vw"

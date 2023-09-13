@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ThemeProviders from "./ThemeProviders";
 import { Toaster } from "react-hot-toast";
+import MessageProvider from "@/provider/MessageProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
 			</head>
 			<body className={`${inter.className} dark:bg-black-bg-secondary `}>
 				<Providers>
+					<MessageProvider>
 					<ChatContextProvider>
 						<ThemeProviders>
 							<div className="">
@@ -35,6 +37,7 @@ export default function RootLayout({ children }) {
 							</div>
 						</ThemeProviders>
 					</ChatContextProvider>
+					</MessageProvider>
 				</Providers>
 				<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 				<script>AOS.init();</script>
