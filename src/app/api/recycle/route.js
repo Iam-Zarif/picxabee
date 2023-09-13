@@ -3,14 +3,19 @@ import Post from "@/models/Post";
 import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
-
 export const GET = async (request) => {
+
+    const email = request.nextUrl.searchParams.get('email');
 
     try {
         await connect()
-        const recyclePost = await Recycle.find()
-        return new NextResponse(JSON.stringify(recyclePost), { status: 201 });
+        const recyclePost = await Recycle.find({ 'author.email': email })
 
+        if (email) {
+            return new NextResponse(JSON.stringify(recyclePost), { status: 201 });
+        } else {
+            return new NextResponse(JSON.stringify([]), { status: 201 });
+        }
     } catch (error) {
         return new NextResponse("Database Error", { status: 500 });
     }
@@ -48,13 +53,13 @@ export const POST = async (request) => {
 export const DELETE = async (request) => {
 
     const id = request.nextUrl.searchParams.get('id');
-    
-	try {
-		await connect();
-		await Recycle.findByIdAndDelete(id);
-		return NextResponse.json({ message: 'Post deleted' }, { status: 200 });
 
-	} catch (error) {
-		JSON.stringify({ message: 'Internal server error' }, { status: 500 });
-	}
+    try {
+        await connect();
+        await Recycle.findByIdAndDelete(id);
+        return NextResponse.json({ message: 'Post deleted' }, { status: 200 });
+
+    } catch (error) {
+        JSON.stringify({ message: 'Internal server error' }, { status: 500 });
+    }
 };

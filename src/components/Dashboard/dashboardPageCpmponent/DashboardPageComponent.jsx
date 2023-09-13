@@ -1,9 +1,11 @@
-"use client"
-import TotalUser from './TotalUser';
-import TotalUserChart from './TotalUserChart';
-import TotalPost from './TotalPost';
-import TotalPostChart from './TotalPostChart';
-import TotalFeedback from './TotalFeedback';
+"use client"	
+import React from "react";
+import TotalUser from "./TotalUser";
+import TotalUserChart from "./TotalUserChart";
+import TotalPost from "./TotalPost";
+import TotalPostChart from "./TotalPostChart";
+import TotalFeedback from "./TotalFeedback";
+
 
 const DashboardPageComponent = () => {
   return (

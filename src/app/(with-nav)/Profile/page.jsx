@@ -25,13 +25,16 @@ const ProfilePage = () => {
     
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const {
-        data,
-        error,
-        isLoading,
-    } = useSWR('/api/posts', fetcher);
+			data: ownPosts,
+			error,
+			isLoading,
+		} = useSWR(
+			`/api/profile?userEmail=${user?.email}`,
+			fetcher
+		);
 
-    const ownPosts = data && data?.filter(post => post?.author?.email === user?.email)
-    console.log(ownPosts)
+    // const ownPosts = data && data?.filter(post => post?.author?.email === user?.email)
+    console.log(ownPosts);
     return (
         <>
 

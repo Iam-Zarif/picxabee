@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { BsExclamationCircle } from 'react-icons/bs'
 
 const FeedbackForm = () => {
-  const [success, setError] = useState([]);
+  const [error, setError] = useState([]);
   const {user} = useAuth();
     const notify = (feed) =>{
         return toast(feed)

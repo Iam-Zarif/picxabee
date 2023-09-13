@@ -5,10 +5,9 @@ const { Schema } = mongoose;
 let User;
 
 try {
-    // Try to get the existing model if it exists
     User = mongoose.model("Recyle");
+
 } catch {
-    // If the model doesn't exist, define it
     const userSchema = new Schema({
         author: {
             email: {
@@ -25,9 +24,6 @@ try {
             type: String,
         },
         image: {
-            type: String
-        },
-        privacy: {
             type: String
         },
         reactions: [
@@ -59,18 +55,15 @@ try {
                         type: String
                     },
                 },
-                content: {
-                    type: String
-                },
-                image: {
-                    type: String
-                },
-                privacy: {
+                comment: {
                     type: String
                 }
             },
             { timestamps: true }
-        ]
+        ],
+        privacy: {
+            type: String
+        }
     }, {
         timestamps: true,
     });

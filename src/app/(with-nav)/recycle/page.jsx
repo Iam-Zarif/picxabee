@@ -1,13 +1,14 @@
 "use client"
 
 import RecycleSinglePost from "@/components/recyclePage/RecycleSinglePost";
+import useAuth from "@/hooks/useAuth";
 import useFetchData from "@/hooks/useFetchData";
 
 const RecyclePage = () => {
 
-    const { data: posts } = useFetchData('api/recycle')
+    const {user} = useAuth()
 
-    console.log(posts);
+    const { data: posts } = useFetchData(`api/recycle?email=${user?.email}`)
 
     return (
         <div className='my-container'>
@@ -17,6 +18,7 @@ const RecyclePage = () => {
             <div className="grid grid-cols-3 gap-5">
 
                 {
+                    posts && posts.length === 0 ? <h3>You have no post for recycle</h3> :
                     posts && posts.reverse().map(post => <RecycleSinglePost key={post._id} post={post}/>)
                 }
 
