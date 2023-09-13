@@ -148,7 +148,8 @@ const pathname = usePathname()
                     </p>
                     <hr className="text-primary-color" />
 
-                    <Link href="/Profile">
+                   <div className={pathname === '/Profile' ? 'sideActive' : ''}>
+                   <Link href="/Profile" className="">
                       <p className="  flex items-center group   hover:ml-2 transition-all">
                         <AiOutlineProfile
                           size={28}
@@ -159,7 +160,9 @@ const pathname = usePathname()
                         <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
-                    <p
+                   </div>
+                   <div className={pathname === '/settings' ? 'sideActive' : ''}>
+                   <p
                       onClick={toggleDrawer1}
                       className=" flex items-center group  hover:ml-2 transition-all"
                     >
@@ -167,6 +170,7 @@ const pathname = usePathname()
                       Settings
                       <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                     </p>
+                   </div>
                     {/*  */}
                     <Drawer
                       open={isOpen1}
@@ -199,7 +203,8 @@ const pathname = usePathname()
                       </div>
                     </Drawer>
                     {/*  */}
-                    <Link href="/bookmark">
+                   <div  className={pathname === '/bookmark' ? 'sideActive' : ''}>
+                   <Link href="/bookmark">
                       {" "}
                       <p className=" flex items-center group  hover:ml-2 transition-all">
                         <BsBookmarkCheck size={28} className="inline mr-2" />
@@ -207,10 +212,12 @@ const pathname = usePathname()
                         <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
                     </Link>
+                   </div>
                     <div>
                       {loggedInUser?.role === "admin" ? (
                         <>
-                          <Link href="/dashboard">
+                         <div className={pathname === '/dashboard' ? 'sideActive' : ''}>
+                         <Link href="/dashboard">
                             <p className=" flex items-center group  hover:ml-2 transition-all">
                               <TbLayoutDashboard
                                 size={28}
@@ -220,6 +227,7 @@ const pathname = usePathname()
                               <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                             </p>
                           </Link>
+                         </div>
                         </>
                       ) : (
                         <>
