@@ -11,149 +11,151 @@ import useAuth from '@/hooks/useAuth';
 import HomeButton from '@/components/button/HomeButton';
 
 const CreatePost = () => {
-	const router = useRouter();
-	const { user } = useAuth();
+  const router = useRouter();
+  const { user } = useAuth();
+  
+  const [imageURL, setImageURL] = useState("");
+  const [privacy, setPrivacy] = useState("public");
+  const [loading, setLoading] = useState(false);
+  // console.log(privacy);
 
-	const [imageURL, setImageURL] = useState('');
-	const [privacy, setPrivacy] = useState('public');
-	const [loading, setLoading] = useState(false);
-	// console.log(privacy);
+  const textareaRef = useRef(null);
+  const handleOutsideClick = (event) => {
+    if (textareaRef.current && !textareaRef.current.contains(event.target)) {
+      // Clicked outside the textarea, collapse it to 2 rows
+      setExpanded(false);
+    }
+  };
 
-	const textareaRef = useRef(null);
-	const handleOutsideClick = (event) => {
-		if (textareaRef.current && !textareaRef.current.contains(event.target)) {
-			// Clicked outside the textarea, collapse it to 2 rows
-			setExpanded(false);
-		}
-	};
+  useEffect(() => {
+    // Add event listener for clicks outside the textarea
+    document.addEventListener("mousedown", handleOutsideClick);
 
-	useEffect(() => {
-		// Add event listener for clicks outside the textarea
-		document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      // Remove the event listener when the component unmounts
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+  const [expanded, setExpanded] = useState(false);
 
-		return () => {
-			// Remove the event listener when the component unmounts
-			document.removeEventListener('mousedown', handleOutsideClick);
-		};
-	}, []);
-	const [expanded, setExpanded] = useState(false);
+  const handleClick = () => {
+    // Toggle the expanded state when clicked
+    setExpanded(!expanded);
+  };
 
-	const handleClick = () => {
-		// Toggle the expanded state when clicked
-		setExpanded(!expanded);
-	};
+  const handleImage = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    const url =
+      "https://api.imgbb.com/1/upload?expiration=600&key=f3218173624c8aebe56d3c415677e482";
 
-	const handleImage = async (e) => {
-		const file = e.target.files[0];
-		const formData = new FormData();
-		formData.append('image', file);
-		const url =
-			'https://api.imgbb.com/1/upload?expiration=600&key=f3218173624c8aebe56d3c415677e482';
+    setLoading(true);
 
-		setLoading(true);
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setImageURL(data.data.url);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-		try {
-			const res = await fetch(url, {
-				method: 'POST',
-				body: formData,
-			});
-			if (res.ok) {
-				const data = await res.json();
-				setImageURL(data.data.url);
-			}
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setLoading(false);
-		}
-	};
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-	const {
-		register,
-		handleSubmit,
-		reset,
-		formState: { errors },
-	} = useForm();
+  const onSubmit = async (data) => {
+    const { text } = data;
 
-	const onSubmit = async (data) => {
-		const { text } = data;
+    if(text ==="" && imageURL === ""){
+      return;
+    }
 
-		if (text === '' && imageURL === '') {
-			return;
-		}
+    const donationPost = {
+      author: {
+        email: user?.email,
+        name: user?.displayName,
+        profile_picture:user?.photoURL,
+      },
+      content: text,
+      image: imageURL,
+      privacy,
+      status:"pending",
+      amount: 0
+    };
+    
+    const newPost = {
+      author: {
+        email: user?.email,
+        name: user?.displayName,
+        profile_picture:user?.photoURL,
+      },
+      content: text,
+      image: imageURL,
+      privacy,
+    };
 
-		const newPost = {
-			author: {
-				email: user?.email,
-				name: user?.displayName,
-				profile_picture: user?.photoURL,
-			},
-			content: text,
-			image: imageURL,
+    const url = "/api/posts";
+    const donationURL = "/api/donation"
 
-			privacy,
-		};
+    if (loading) {
+      return;
+    }
 
-		const newDonationPost = {
-			author: {
-				email: user?.email,
-				name: user?.displayName,
-				profile_picture: user?.photoURL,
-			},
-			content: text,
-			image: imageURL,
-			status: 'pending',
-			amount: 0,
-			privacy,
-		};
+    if (privacy !== "donation") {
+      try {
+        const res = await fetch(url, {
+          cache: "no-cache",
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newPost),
+        });
+        if (res.ok) {
+          router.refresh();
+          setImageURL("")
+          reset();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else{
+      try {
+        const res = await fetch(donationURL, {
+          cache: "no-cache",
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(donationPost),
+        });
+        if (res.ok) {
+          router.refresh();
+          setImageURL("")
+          reset();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
-		const url = '/api/posts';
-		const donationURL = '/api/donation';
+    
+  };
 
-		if (loading) {
-			return;
-		}
-
-		if (privacy !== 'donation') {
-			try {
-				const res = await fetch(url, {
-					cache: 'no-cache',
-					method: 'POST',
-					headers: {
-						'content-type': 'application/json',
-					},
-					body: JSON.stringify(newPost),
-				});
-				if (res.ok) {
-					router.refresh();
-					setImageURL('');
-					reset();
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		} else {
-			try {
-				const res = await fetch(donationURL, {
-					cache: 'no-cache',
-					method: 'POST',
-					headers: {
-						'content-type': 'application/json',
-					},
-					body: JSON.stringify(newPost),
-				});
-				if (res.ok) {
-					router.refresh();
-					setImageURL('');
-					reset();
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		}
-	};
-
-	return (
+  return (
 		<>
 			{user && (
 				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-3 rounded-md">
@@ -210,7 +212,6 @@ const CreatePost = () => {
 											onChange={handleImage}
 										/>
 										<BsImageFill
-											// color="#349999"
 											className="text-primary-color dark:text-black"
 											size={22}
 										/>
@@ -230,20 +231,12 @@ const CreatePost = () => {
 											</select>
 										</div>
 
-										{/* <button
-											className="btn
-                       rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
-											disabled={loading}
-										>
-											Create Post
-										</button> */}
 
 										<div>
 											<HomeButton title="Create Post" disabled={loading} />
 										</div>
 										<div className="form-control w-full max-w-xs flex "></div>
 									</div>
-									{/* <BsEmojiSmile size={22} className="mt-5" /> */}
 								</div>
 							</div>
 						</div>

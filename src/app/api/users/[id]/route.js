@@ -14,7 +14,7 @@ export const PUT = async (request, { params }) => {
 		},
 	});
 	return NextResponse.json(
-		{ message: 'Following Successfully' },
+		{ message: 'Follower Successfully' },
 		{ status: 200 }
 	);
 };
@@ -37,10 +37,27 @@ export const DELETE = async (request, { params }) => {
 
 		await specificUser.save();
 		return NextResponse.json(
-			{ message: 'Unfollow Successfully' },
+			{ message: 'UnFollower Successfully' },
 			{ status: 404 }
 		);
 	} catch (error) {
 		console.log(error.message);
 	}
+};
+
+export const AddFollowing = async (request, { params }) => {
+	const { email } = params;
+	const { newFollowing } = await request.json();
+
+	await connect();
+
+	await User.findByIdAndUpdate(email, {
+		$push: {
+			followers: newFollowers,
+		},
+	});
+	return NextResponse.json(
+		{ message: 'Follower Successfully' },
+		{ status: 200 }
+	);
 };

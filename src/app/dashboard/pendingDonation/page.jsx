@@ -1,9 +1,14 @@
-//hridoy vaiya/////
-
+'use client'
+import useSWR from 'swr';
 import React from 'react';
 import PendingDonationCard from './PendingDonationCard';
+import useFetchData from '@/hooks/useFetchData';
 
-const pendingDonationPage = () => {
+const PendingDonationPage = () => {
+
+  const { data } = useFetchData('/api/donation?currentStatus=pending');
+	console.log(data);
+
     const pendingDonations = [
         {
           title: 'Donation 1',
@@ -45,4 +50,4 @@ const pendingDonationPage = () => {
     );
 };
 
-export default pendingDonationPage;
+export default PendingDonationPage;
