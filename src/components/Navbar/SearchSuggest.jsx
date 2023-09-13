@@ -2,7 +2,7 @@
 import React from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import Link from 'next/link';
-
+import Image from "next/image"
 const SearchSuggest = ({ results }) => {
    
   return (
@@ -18,7 +18,7 @@ const SearchSuggest = ({ results }) => {
         <Link href={"/profile"}>
         <div className="flex flex-row-reverse">
          <p className="pl-2 dark:text-black"> {result.name}</p>
-         <img src={result.profile_picture} className="w-6 h-6 rounded-full" alt="" />
+         <Image src={result.profile_picture} height={10} width={10}  className="w-6 h-6 rounded-full" alt="profile picture" />
          </div></Link>
          <TiDeleteOutline className="cursor-pointer hover:scale-125 dark:text-black" size={25}/>
          </div>
