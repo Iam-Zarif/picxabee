@@ -46,6 +46,6 @@ Social media application and communication platform.
 - Vercel
 
 ## 🔗 Live Link
-[![portfolio](https://i.ibb.co/JybSPGm/live.jpg)](https://picxabee.vercel.app//)
+[![portfolio](https://i.ibb.co/prDyM95/live-streaming-1.png)](https://picxabee.vercel.app//)
 
 
