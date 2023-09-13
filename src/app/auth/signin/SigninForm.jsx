@@ -1,12 +1,12 @@
 "use client"
 import useAuth from "@/hooks/useAuth";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 const SigninForm = () => {
 
-    const { user, signIn, setLoading } = useAuth()
-    console.log(user);
+    const { signIn, setLoading } = useAuth()
     const router = useRouter()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -59,7 +59,7 @@ const SigninForm = () => {
                     <input type="checkbox" name="" id="" />
                     <p>Remember </p>
                 </div>
-                <p className="font-semibold">Forgot Password</p>
+                <p className="font-semibold"><Link href='/auth/resetPassword'>Forgot Password</Link></p>
             </div>
 
             <input type="submit" className="bg-primary-color bg-opacity-90 hover:bg-opacity-100 w-full text-white rounded-md p-3 cursor-pointer" />

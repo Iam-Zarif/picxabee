@@ -9,7 +9,7 @@ export default function NavLayout({children}) {
 		<section className="">
 			{/* Include shared UI here e.g. a header or sidebar */}
 			<Navbar></Navbar>
-			<div className="py-28 mx-5 dark:text-white">{children}</div>
+			<div className="px-2 py-20 xl:py-28 dark:text-white">{children}</div>
 		</section>
 	);
 }
