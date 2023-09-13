@@ -173,3 +173,9 @@ background-color:#2E4F6B;
  
   border-radius: 10px;
 }
+.sideActive{
+  border: 1px solid #feffff;
+  background-color: #eaedf1 !important;
+  border-radius: 8px;
+ padding: 6px 0px;
+}
