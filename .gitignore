@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# testing compo
+postCards.test.jsx
+DashboardPageComponent.test.jsx

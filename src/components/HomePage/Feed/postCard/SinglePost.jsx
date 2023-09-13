@@ -2,20 +2,17 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { BsBookmarkCheck, BsThreeDots } from 'react-icons/bs';
 import CommentSection from './CommentSection';
 import EditOption from './EditOption';
 import SingleComment from './SingleComment';
 import useAuth from '@/hooks/useAuth';
-import AuthContext from '@/context/AuthContext';
 
 const SinglePost = ({ post }) => {
-	const [react, setReact] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const { user } = useAuth(AuthContext);
+	const { user } = useAuth();
 	const { _id: id } = post;
 
 	const isReacted = post.reactions.some((reaction) => {
