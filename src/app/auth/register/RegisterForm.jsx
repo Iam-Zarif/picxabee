@@ -37,7 +37,6 @@ const RegisterForm = () => {
 			if (!res.ok) throw new Error("Failed to upload image");
 
 			const data = await res.json();
-			// console.log(data);
 			setValue("photoURL", data.data.url);
 
 		} catch (error) {
@@ -91,7 +90,7 @@ const RegisterForm = () => {
 								bio: '',
 								profile_picture: photoURL || '',
 								role: 'user',
-								
+
 							}),
 						});
 						router.push('/')
@@ -165,7 +164,7 @@ const RegisterForm = () => {
 			 */}
 			<input onChange={uploadImage} type="file" className="block mt-3 p-3 border border-primary-color outline-primary-color rounded-md w-full bg-transparent" required />
 
-			<input type="submit" className="bg-primary-color w-full text-white rounded-md p-3 cursor-pointer mt-3" />
+			<input type="submit" className="bg-primary-color border border-primary-color hover:text-primary-color duration-300 hover:bg-transparent w-full text-white rounded-md p-3 cursor-pointer mt-3" />
 		</form>
 	);
 };

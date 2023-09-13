@@ -2,7 +2,6 @@ import Story from "@/models/Story"
 import connect from "@/utils/db"
 import { NextResponse } from "next/server"
 
-
 export const GET = async () => {
 
     try {

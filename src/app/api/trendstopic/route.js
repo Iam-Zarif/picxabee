@@ -10,7 +10,7 @@ export const GET = async () => {
 
         const postContent = posts.map(post => post.content)
 
-        const hashtagRegex = /#[a-zA-Z0-9_]+/g;
+        const hashtagRegex = /#[a-zA-Z0-9_]+(?=\s)/g
         const totalHashtags = postContent && JSON.stringify(postContent).match(hashtagRegex);
 
         const hashtagCounts = {};
@@ -39,28 +39,3 @@ export const GET = async () => {
         return new NextResponse('trending Hashtag Fetch Problems', { status: 500 })
     }
 }
-
-/*
-const posts = [
-  ];
-  
-  const postCountByDate = {};
-  
-  posts.forEach((post) => {
-    const createdAt = new Date(post.createdAt); 
-    const dateKey = createdAt.toISOString().split('T')[0]; 
-  
-    if (postCountByDate[dateKey]) {
-      postCountByDate[dateKey]++;
-    } else {
-      postCountByDate[dateKey] = 1;
-    }
-  });
-  
-  const postCountArray = Object.entries(postCountByDate).map(([date, count]) => ({
-    date,
-    count,
-  }));
-  
-  console.log(postCountArray);
-  */
