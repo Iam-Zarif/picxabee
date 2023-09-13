@@ -5,21 +5,47 @@ import toast from 'react-hot-toast';
 
 const UserRow = ({ user, index }) => {
 
-// This is done by zarif, it can be updated by the author
-	
-// This is done by zarif, it can be updated by the author
+	const router = useRouter()
+
+	// This is done by zarif, it can be updated by the author
+
+	// This is done by zarif, it can be updated by the author
 
 	const date1 = new Date(user.createdAt);
 	const options = { year: 'numeric', month: 'long', day: 'numeric' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
 
-	const handlerUserStatus = (user) => {
+	const handlerUserStatusAdmin = (user) => {
 		fetch(`/api/users?id=${user._id}`, {
 			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({ role: 'admin' })
 		})
 			.then((res) => res.json())
-			.then((data) => toast.success('updated user role'));
+			.then(() => {
+				toast.success('updated user role')
+				router.refresh()
+			});
 	};
+
+	const handlerUserStatusUser = (user) => {
+		fetch(`/api/users?id=${user._id}`, {
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({ role: 'user' })
+		})
+			.then((res) => res.json())
+			.then(() => {
+				toast.success('updated user role')
+				router.refresh()
+			});
+	}
+
+
 	return (
 		<>
 			<tr className="text-base text-left">
@@ -35,10 +61,8 @@ const UserRow = ({ user, index }) => {
 							{user?.role}
 						</summary>
 						<ul className="p-2 shadow menu dropdown-content z-[1] bg-gray-400 bg-opacity-80 rounded-md cursor-pointer">
-							<li onClick={() => handlerUserStatus(user)}>Admin</li>
-							<li>
-								User
-							</li>
+							<li onClick={() => handlerUserStatusAdmin(user)}>Admin</li>
+							<li onClick={() => handlerUserStatusUser(user)}>User</li>
 						</ul>
 					</details>
 				</td>

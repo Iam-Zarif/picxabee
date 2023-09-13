@@ -165,6 +165,16 @@ background-color:#fafbfc7e;
 .search-primary:hover{
 background-color:#2E4F6B;
 }
-.for-message {
-  color: rgb(52,153,153);
+
+.active{
+ border: 1px solid #feffff;
+ background-color: #eaedf1 !important;
+ 
+  border-radius: 10px;
+}
+.sideActive{
+  border: 1px solid #feffff;
+  background-color: #eaedf1 !important;
+  border-radius: 8px;
+ padding: 6px 0px;
 }

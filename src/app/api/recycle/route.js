@@ -3,11 +3,9 @@ import Post from "@/models/Post";
 import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
-
 export const GET = async (request) => {
 
     const email = request.nextUrl.searchParams.get('email');
-
 
     try {
         await connect()
