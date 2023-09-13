@@ -2,20 +2,19 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { BsBookmarkCheck, BsThreeDots } from 'react-icons/bs';
 import CommentSection from './CommentSection';
 import EditOption from './EditOption';
 import SingleComment from './SingleComment';
 import useAuth from '@/hooks/useAuth';
-import AuthContext from '@/context/AuthContext';
 
 const SinglePost = ({ post }) => {
-	const [react, setReact] = useState(false);
+	const [expanded, setExpanded] = useState(false);
+
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const { user } = useAuth(AuthContext);
+	const { user } = useAuth();
 	const { _id: id } = post;
 
 	const isReacted = post.reactions.some((reaction) => {
@@ -97,6 +96,39 @@ const SinglePost = ({ post }) => {
 				console.warning('Fetch error:', error);
 			});
 	};
+
+ const wordLimit = 100; 
+	const toggleExpand = () => {
+		setExpanded(!expanded);
+	};
+
+
+  const renderContent = () => {
+		const words = post?.content.split(' ');
+
+		if (expanded || words.length <= wordLimit) {
+			return (
+				<div>
+					<h1 className="py-3">{post?.content}</h1>
+					{words.length > wordLimit && (
+						<button onClick={toggleExpand}>Show Less</button>
+					)}
+				</div>
+			);
+		} else {
+			const shortenedContent = words.slice(0, wordLimit).join(' ');
+			return (
+				<div>
+					<h1 className="py-3">{shortenedContent}</h1>
+					<button onClick={toggleExpand}>Show More</button>
+				</div>
+			);
+		}
+	};
+
+
+	
+	
 	return (
 		<div
 			data-aos="fade-up"
@@ -141,7 +173,9 @@ const SinglePost = ({ post }) => {
 					isOpen={isOpen}
 				></EditOption>
 			</div>
-			{post?.content && <h1 className="py-3">{post?.content}</h1>}
+			{/* {post?.content && <h1 className="py-3">{post?.content}</h1>} */}
+			{post?.content && renderContent()}
+
 			{post?.image && (
 				<Image
 					src={post?.image}
@@ -192,7 +226,6 @@ const SinglePost = ({ post }) => {
 			<div>
 				{post?.comments?.reverse().map((comment, i) => (
 					<SingleComment
-					
 						key={i}
 						comment={comment}
 						id={post._id}
@@ -200,7 +233,7 @@ const SinglePost = ({ post }) => {
 					></SingleComment>
 				))}
 			</div>
-			<div className=''> 
+			<div className="">
 				<CommentSection id={post._id} open={open}></CommentSection>
 			</div>
 		</div>
