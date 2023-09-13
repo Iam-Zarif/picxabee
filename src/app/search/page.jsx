@@ -37,14 +37,14 @@ const SearchPage =  ({ searchParams }) => {
           
          
           {filteredResults?.slice(0, seeMore ? filteredResults.length : 8).map((user, index) => (
-            <div key={index} className="border  hover:bg-light-gray dark:hover:bg-black border-gray justify-between rounded-xl flex items-center px-5 py-2 ">
+            <div key={index} className="border lg:gap-10 hover:bg-light-gray dark:hover:bg-black border-gray justify-between rounded-xl flex items-center px-5 py-2 ">
               <div className='flex gap-2 items-center'>
               <Image src={user?.profile_picture} height={50} width={50} className="rounded-full lg:w-10 lg:h-10 h-8 w-8"></Image>
              <h2 className='lg:font-bold font-normal text-sm lg:text-base'> {user?.name}</h2>
               </div>
              
              <div className="flex gap-5">
-              <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='text-sm'>Follow</span> <AiOutlinePlusCircle size={22}/></button>
+              <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='text-sm lg:block hidden'>Follow</span> <AiOutlinePlusCircle size={22}/></button>
               <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='lg:block hidden'>Message</span> <HiOutlineChatAlt2 size={22}/></button>
              </div>
             
