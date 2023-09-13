@@ -8,7 +8,7 @@ import { ClipLoader } from "react-spinners";
 
 const Suggestions = () => {
   const { user } = useAuth();
-  console.log(user?.email);
+  
   const router = useRouter();
   const [loadingData, setLoading] = useState(false);
 
@@ -27,12 +27,19 @@ const Suggestions = () => {
   const SuggestedUsers = filteredUsers && filteredUsers?.slice(0, 6);
 
 
-  const handleFollow = async (id) => {
+  const handleFollow = async (id , followingEmail , followingName) => {
     
     const newFollowers = {
       email: user?.email,
       name: user?.displayName,
     };
+
+    const newFollowing = {
+        name:followingName,
+        email: followingEmail
+    }
+
+    console.log(newFollowing);
 
     setLoading(true);
 
@@ -56,6 +63,22 @@ const Suggestions = () => {
     } finally {
       setLoading(false);
     }
+
+    try {
+      const res = await fetch(`/api/users/${user?.email}`,{
+        cache: "no-cache",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ newFollowing }),
+      })
+      if (res.ok) {
+        
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+
   };
 
   const handleUnFollow = async (id) => {
@@ -110,15 +133,15 @@ const Suggestions = () => {
                     return f?.email === user?.email;
                   }) ? (
                     <button
-                      className="text-red-400 text-sm font-bold"
+                      className="text-sm font-bold text-red" 
                       onClick={() => handleUnFollow(users?._id)}
                     >
-                      Unfollow
+                      UnFollow
                     </button>
                   ) : (
                     <button
-                      className="text-red-400 text-sm"
-                      onClick={() => handleFollow(users?._id)}
+                      className="text-sm font-bold text-blue"
+                      onClick={() => handleFollow(users?._id , users?.email , users?.name)}
                     >
                       Follow
                     </button>
