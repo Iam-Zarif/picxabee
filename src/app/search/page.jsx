@@ -25,7 +25,7 @@ const SearchPage =  ({ searchParams }) => {
   return (
     <>
     <Navbar/>
-    <div className="flex lg:flex-row flex-col   items-center lg:items-start content-center justify-center gap-10 mt-28">
+    <div className="flex lg:flex-row flex-col pb-20  items-center lg:items-start content-center justify-center gap-10 mt-28">
       {filteredResults?.length === 0 ? (
         "No User Found"
       ) : (
@@ -36,7 +36,7 @@ const SearchPage =  ({ searchParams }) => {
           <div className='flex flex-col gap-2 lg:px-0 px-8'><p className="mb-2 text-3xl font-semibold">People</p>
           
          
-          {filteredResults?.slice(0, seeMore ? filteredResults.length : 4).map((user, index) => (
+          {filteredResults?.slice(0, seeMore ? filteredResults.length : 8).map((user, index) => (
             <div key={index} className="border  hover:bg-light-gray dark:hover:bg-black border-gray justify-between rounded-xl flex items-center px-5 py-2 ">
               <div className='flex gap-2 items-center'>
               <Image src={user?.profile_picture} height={50} width={50} className="rounded-full lg:w-10 lg:h-10 h-8 w-8"></Image>
