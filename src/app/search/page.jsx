@@ -44,7 +44,7 @@ const SearchPage =  ({ searchParams }) => {
               </div>
              
              <div className="flex gap-5">
-              <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='text-sm'>Follow</span> <AiOutlinePlusCircle size={22}/></button>
+              <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='text-sm lg:block hidden'>Follow</span> <AiOutlinePlusCircle size={22}/></button>
               <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='lg:block hidden'>Message</span> <HiOutlineChatAlt2 size={22}/></button>
              </div>
             
