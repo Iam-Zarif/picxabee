@@ -135,6 +135,7 @@ const Navbar = () => {
       </ul>
 
       <div
+      
         className="fixed py-4 top-0 w-full left-0 z-50 dark:bg-black bg-white pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
         ref={navbarRef}
       >
