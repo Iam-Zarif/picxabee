@@ -4,12 +4,12 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request) => {
   try {
-    const statusNow = await request.json();
+    
     await connect();
-    const donations = await Donation.find({status: statusNow});
+    const donations = await Donation.find();
     return new NextResponse(JSON.stringify(donations), { status: 200 });
   } catch (error) {
-    console.log(error.name, error.message);
+    // console.log(error.name, error.message);
     return NextResponse.json({ error: error.message });
   }
 };
