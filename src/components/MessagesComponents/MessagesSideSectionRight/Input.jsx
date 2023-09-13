@@ -95,9 +95,9 @@ const formattedDate = moment(dateToFormat).format('MMMM D, YYYY [at] h:mm A [UTC
             <div className="flex items-center gap-4 pr-3">
                 <input type="file" style={{display: "none"}} id="file" onChange={e=> setImg(e.target.files[0])}/>
                 <label htmlFor="file">
-                   <HiOutlineInboxIn className="h-5 w-5 for-message hover:scale-125 cursor-pointer transition-all duration-150 ease-out"/>
+                   <HiOutlineInboxIn className="text-primary-color h-5 w-5 for-message hover:scale-125 cursor-pointer transition-all duration-150 ease-out"/>
                 </label>
-                <button className="font-semibold for-message" onClick={handleSend}>Send</button>
+                <button className="font-semibold for-message text-primary-color" onClick={handleSend}>Send</button>
             </div>
         </div>
     </div>
