@@ -17,11 +17,11 @@ export const GET = async () => {
 export const POST = async (request) => {
 
     const body = await request.json()
-    const newStory = new Story(body)
+    // const newStory = new Story(body)
 
     try {
         await connect()
-        await newStory.save()
+        await Story.create(body)
         return new NextResponse("Story has been created", { status: 201 });
 
     } catch (err) {

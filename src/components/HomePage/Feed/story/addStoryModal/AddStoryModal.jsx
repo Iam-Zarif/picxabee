@@ -5,9 +5,11 @@ import styles from './addstorymodal.module.css'
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Image from "next/image";
+import useAuth from "@/hooks/useAuth";
 
 const AddStoryModal = ({ ...props }) => {
 
+    const {user} = useAuth()
     const { modal, setModal, addStoryToggleModal, imgUrl, setImgUrl } = props
     const {
         handleSubmit,
@@ -29,11 +31,11 @@ const AddStoryModal = ({ ...props }) => {
                     body: formData,
                 }
             );
-            setAddStoryLoading(true)
+            // setAddStoryLoading(true)
             if (!res.ok) throw new Error("Failed to upload image");
 
             const data = await res.json();
-            setAddStoryLoading(false)
+            // setAddStoryLoading(false)
             console.log(data);
             setValue("photo", data.data.url);
             setImgUrl(data.data.url);
@@ -52,12 +54,15 @@ const AddStoryModal = ({ ...props }) => {
                 "Content-type": "application/json"
             },
             body: JSON.stringify({
-                username: 'jahid',
+                author:{
+                    email: user?.email,
+                    name: user?.displayName,
+                    profile_pic: user?.photoURL
+                },
                 image: data.photo
             })
         })
             .then(() => {
-                console.log('complete story');
                 setModal(false)
             })
             .catch(err => {
@@ -100,6 +105,7 @@ const AddStoryModal = ({ ...props }) => {
                                     imgUrl.length == 0 ? <span></span> : (<Image
                                         src={imgUrl}
                                         fill={true}
+                                        objectFit="cover"
                                         alt=""
                                         className="rounded-md my-auto"
                                         sizes="(min-width: 768px) 100vw"
