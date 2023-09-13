@@ -37,3 +37,4 @@ next-env.d.ts
 # testing compo
 postCards.test.jsx
 DashboardPageComponent.test.jsx
+sum.test.js
