@@ -158,7 +158,7 @@ const CreatePost = () => {
   return (
 		<>
 			{user && (
-				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-10 rounded-md">
+				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-3 rounded-md">
 					<div className="">
 						<h1 className="text-center font-semibold text-lg py-2">
 							Create a Post
