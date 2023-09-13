@@ -1,9 +1,13 @@
 import React from 'react'
-
+import loaderImage from "../../../public/swarm.png"
+import Image from "next/image"
 const Loading = () => {
   return (
-    <div>Loading</div>
+    <div className="loaderContainer flex flex-col gap-y-3 items-center fade-in-out">
+    <Image alt='logo' src={loaderImage} height={150} width={150} className='block text-center'/>
+    <p className='text-2xl font-bold text-primary-color '>V 1.1</p>
+  </div>
   )
 }
 
-export default Loading
+export default Loading;
