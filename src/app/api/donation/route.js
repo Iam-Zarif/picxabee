@@ -6,7 +6,7 @@ export const GET = async (request) => {
 	try {
 
 		const currentStatus = request.nextUrl.searchParams.get('currentStatus');
-		console.log(currentStatus);
+		// console.log(currentStatus);
 		await connect();
 		const donations = await Donation.find({ status: currentStatus });
 		return new NextResponse(JSON.stringify(donations), { status: 200 });
