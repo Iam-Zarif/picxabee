@@ -46,7 +46,7 @@ const toggleLinks = () => {
 		<>
 			<div
 				ref={menuRef}
-				className={`min-h-screen fixed   glass mx-auto pl-5  pt-8 pr-12 ${
+				className={`min-h-screen fixed   glass mx-auto lg:pl-5  pr-4 pt-8 lg:pr-12 ${
 					//relative
 					showLinks ? 'expanded' : ''
 				}`}
@@ -106,7 +106,7 @@ const toggleLinks = () => {
 					<Link href="/" className="group">
 						<div className="text-center group-hover:animate-pulse group-hover:scale-105 transform transition-transform duration-300">
 							<Image
-								className="mx-auto"
+								className="mx-auto h-12 lg:w-16 lg:h-16"
 								height={'55'}
 								width={'55'}
 								src={'https://i.ibb.co/34ZRTbb/swarm.png'}
