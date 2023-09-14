@@ -13,7 +13,7 @@ const CommentSection = ({ id, open }) => {
 		if (data.comment.trim() !== '') {
 			reset();
 		}
-		console.log(data);
+		// console.log(data);
 		const newComment = {
 			id,
 			author: {
@@ -24,7 +24,7 @@ const CommentSection = ({ id, open }) => {
 
 			comment: data.comment,
 		};
-		console.log(newComment);
+		// console.log(newComment);
 
 		fetch('api/posts/comments', {
 			method: 'PATCH',
