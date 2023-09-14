@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import "./CreatePost.css";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { BsImageFill } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { BeatLoader } from "react-spinners";
-import useAuth from "@/hooks/useAuth";
-import HomeButton from "@/components/button/HomeButton";
+import './CreatePost.css';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { BsImageFill } from 'react-icons/bs';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { BeatLoader } from 'react-spinners';
+import useAuth from '@/hooks/useAuth';
+import HomeButton from '@/components/button/HomeButton';
 
 const CreatePost = () => {
   const router = useRouter();
@@ -82,6 +82,19 @@ const CreatePost = () => {
       return;
     }
 
+    const donationPost = {
+      author: {
+        email: user?.email,
+        name: user?.displayName,
+        profile_picture:user?.photoURL,
+      },
+      content: text,
+      image: imageURL,
+      privacy,
+      status:"pending",
+      amount: 0
+    };
+    
     const newPost = {
       author: {
         email: user?.email,
@@ -127,7 +140,7 @@ const CreatePost = () => {
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify(newPost),
+          body: JSON.stringify(donationPost),
         });
         if (res.ok) {
           router.refresh();
@@ -145,7 +158,7 @@ const CreatePost = () => {
   return (
 		<>
 			{user && (
-				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-10 rounded-md">
+				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-3 rounded-md">
 					<div className="">
 						<h1 className="text-center font-semibold text-lg py-2">
 							Create a Post
@@ -199,7 +212,6 @@ const CreatePost = () => {
 											onChange={handleImage}
 										/>
 										<BsImageFill
-											// color="#349999"
 											className="text-primary-color dark:text-black"
 											size={22}
 										/>
@@ -219,20 +231,12 @@ const CreatePost = () => {
 											</select>
 										</div>
 
-										{/* <button
-											className="btn
-                       rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
-											disabled={loading}
-										>
-											Create Post
-										</button> */}
 
 										<div>
 											<HomeButton title="Create Post" disabled={loading} />
 										</div>
 										<div className="form-control w-full max-w-xs flex "></div>
 									</div>
-									{/* <BsEmojiSmile size={22} className="mt-5" /> */}
 								</div>
 							</div>
 						</div>
