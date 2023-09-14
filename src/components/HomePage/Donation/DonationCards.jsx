@@ -5,15 +5,10 @@ import DonationCard from './DonationCard';
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 import useFetchData from '@/hooks/useFetchData';
-<<<<<<< HEAD
-
-=======
->>>>>>> 7f168970ef57b927b0bc7586f428606ccaca0884
 
 const DonationCards = () => {
   const router = useRouter();
-  // const{ data } =useFetchData(`/api/donation`)
-  // console.log(data)
+ 
 
   const { data } = useFetchData("/api/donation?currentStatus=approved");
   console.log(data);
