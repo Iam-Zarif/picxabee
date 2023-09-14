@@ -35,14 +35,14 @@ const DashboardPageComponent = () => {
                     <h3 className="text-2xl font-semibold">Total User: 28</h3>
                 </div>*/}
 
-      {/* <div className="grid grid-cols-1 md:grid-cols-6 gap-x-10 m-10">
-                <div className="col-span-1 md:col-span-3 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-x-10 m-10">
+                <div className="col-span-1 md:col-span-3   lg:w-full">
                     <TotalUserChart />
                 </div>
                 <div className="col-span-1 md:col-span-3">
                     <TotalPostChart />
                 </div>
-            </div>*/}
+            </div>
 			{/* <div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
 			<div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
 				<div className="basis-full xl:basis-1/2">
@@ -51,6 +51,7 @@ const DashboardPageComponent = () => {
 				<div className="basis-full xl:basis-1/2">
 					<TotalPostChart />
 				</div>
+			</div>
 			</div> */}
 		</>
 	);

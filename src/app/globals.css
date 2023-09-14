@@ -22,6 +22,7 @@
 /* ... your existing styles ... */
 
 /* Position Navbar at the bottom on small screens */
+
 @media (max-width: 767px) {
   .myNav {
     position: fixed;
@@ -29,6 +30,11 @@
     width: 100%;
     /* Adjust the z-index as needed */
   }
+  /* .barChart{
+    height: 100px !important;
+    width: 200px !important;
+  display: block;
+  } */
 
   .lg\:navbar {
     justify-content: space-between;
