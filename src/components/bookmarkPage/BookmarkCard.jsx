@@ -4,12 +4,12 @@ import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { BsBookmarkCheck, BsThreeDots } from 'react-icons/bs';
-import CommentSection from './CommentSection';
-import EditOption from './EditOption';
-import SingleComment from './SingleComment';
+import CommentSection from '../HomePage/Feed/postCard/CommentSection';
+import EditOption from '../HomePage/Feed/postCard/EditOption';
+import SingleComment from '../HomePage/Feed/postCard/SingleComment';
 import useAuth from '@/hooks/useAuth';
 
-const SinglePost = ({ post }) => {
+const BookmarkCard = ({ post }) => {
 	const [expanded, setExpanded] = useState(false);
 
 	const [open, setOpen] = useState(false);
@@ -69,13 +69,9 @@ const SinglePost = ({ post }) => {
 			});
 	};
 
-	const handleBookmark = () => {
+	const handleRemoveBookmark = () => {
 		fetch(`/api/users/bookmarks?userEmail=${user?.email}&postId=${id}`, {
-			method: 'PATCH',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(),
+			method: 'DELETE',
 		})
 			.then((res) => {
 				if (!res.ok) {
@@ -84,26 +80,20 @@ const SinglePost = ({ post }) => {
 				return res.json();
 			})
 			.then((data) => {
-				if (data.message == 'Post bookmarked successfully') {
-					toast.success(data.message);
-				} else {
-					toast.error(data.message);
-				}
-
-				console.log('Received data:', data);
+				toast.success(data.message);
+                console.log(data)
 			})
 			.catch((error) => {
-				console.warning('Fetch error:', error);
+				console.log('Error:', error);
 			});
 	};
 
- const wordLimit = 100; 
+	const wordLimit = 100;
 	const toggleExpand = () => {
 		setExpanded(!expanded);
 	};
 
-
-  const renderContent = () => {
+	const renderContent = () => {
 		const words = post?.content.split(' ');
 
 		if (expanded || words.length <= wordLimit) {
@@ -125,16 +115,15 @@ const SinglePost = ({ post }) => {
 				<div>
 					<h1 className="py-3">
 						{shortenedContent}
-						<button className='text-sm text-gray' onClick={toggleExpand}>...Show More</button>
+						<button className="text-sm text-gray" onClick={toggleExpand}>
+							...Show More
+						</button>
 					</h1>
 				</div>
 			);
 		}
 	};
 
-
-	
-	
 	return (
 		<div
 			data-aos="fade-up"
@@ -194,9 +183,10 @@ const SinglePost = ({ post }) => {
 			<div className="bg-gray bg-opacity-10 py-2 mx-auto rounded-md">
 				<div className="flex justify-around">
 					<BsBookmarkCheck
-						onClick={handleBookmark}
+						onClick={handleRemoveBookmark}
 						size={26}
-						className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						className="text-primary-color hover:scale-110 duration-300 hover:text-red hover:cursor-pointer tooltip"
+						data-tip="Remove from Bookmark"
 					/>
 					<div className="flex gap-1">
 						<AiOutlineComment
@@ -246,4 +236,4 @@ const SinglePost = ({ post }) => {
 	);
 };
 
-export default SinglePost;
+export default BookmarkCard;
