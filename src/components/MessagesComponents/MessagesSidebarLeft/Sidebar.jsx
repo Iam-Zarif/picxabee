@@ -1,12 +1,12 @@
 "use client"
+import { MessageContext } from "@/provider/MessageProvider";
 import { useContext } from "react";
 import ChatChats from "./ChatChats";
 import ChatNavbar from "./ChatNavbar";
 import ChatSearch from "./ChatSearch";
-import { MessageContext } from "@/provider/MessageProvider";
 
 const Sidebar = () => {
-  const {drawerOn, setDrawerOn} = useContext(MessageContext);
+  const {drawerOn} = useContext(MessageContext);
 
   return (
     <>

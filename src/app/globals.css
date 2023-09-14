@@ -8,7 +8,7 @@
 
 .logo {
   font-family: Comic Sans MS;
-  color: #2E4F6B;
+  color: #2e4f6b;
   /* #649fbd; */
   font-weight: bold;
 }
@@ -16,7 +16,7 @@
 .bee {
   font-family: sans-serif;
 
-  color: #e6537b ;
+  color: #e6537b;
 }
 
 /* ... your existing styles ... */
@@ -70,7 +70,6 @@
   @apply text-xs font-bold;
 }
 
-
 /* .my-container {
   @apply w-full 2xl:max-w-screen-xl mx-auto;
 } */
@@ -85,13 +84,11 @@
   padding: 0;
 }
 .message-container {
-  
   border: 1px solid white;
   width: 100%;
   height: 100%;
   display: flex;
   overflow: hidden;
-
 }
 .massage-sidebar {
   background-color: white;
@@ -118,28 +115,23 @@
   animation: fadeInOut 2s ease-in-out infinite;
 }
 
-
-
 .link-item {
-    
   transition-duration: 1000ms;
 }
 
 .show .link-item {
-  
   opacity: 1;
 }
 .menu-icon {
   transition: transform 0.3s ease; /* Adjust the duration (0.3s) for the animation speed */
 }
 
-
 .placeholder-white::placeholder {
   color: white;
 }
 
-.name{
-  font-family:Segoe Print;
+.name {
+  font-family: Segoe Print;
 }
 /* body{
   background-color: #00DBDE;
@@ -149,44 +141,48 @@
 } */
 /* Dashboard  */
 
-.btn-primary{
-  background-color: #2E4F6B;
-  opacity: .7;
+.btn-primary {
+  background-color: #2e4f6b;
+  opacity: 0.7;
   border-radius: 6px;
-  border: 1px solid #2E4F6B;
+  border: 1px solid #2e4f6b;
   font-weight: bold;
   color: black;
 }
-.btn-primary:hover{
-  background-color:#2E4F6B;
+.btn-primary:hover {
+  background-color: #2e4f6b;
   /* #3e0eee95; */
   font-weight: bold;
   color: white;
   border: none;
-  opacity: 1.0;
+  opacity: 1;
 }
-.search-primary{
-background-color:#fafbfc7e;
+.search-primary {
+  background-color: #fafbfc7e;
 }
-.search-primary:hover{
-background-color:#2E4F6B;
+.search-primary:hover {
+  background-color: #2e4f6b;
 }
 
-.active{
- border: 1px solid #feffff;
- background-color: #eaedf1 !important;
- 
+.active {
+  border: 1px solid #feffff;
+  background-color: #eaedf1 !important;
+
   border-radius: 10px;
 }
-.sideActive{
+.sideActive {
   border: 1px solid #feffff;
   background-color: #eaedf1 !important;
   border-radius: 8px;
- padding: 6px 0px;
+  padding: 6px 0px;
 }
 .loaderContainer {
-  background: rgb(238,243,245);
-background: linear-gradient(90deg, rgba(238,243,245,0.23853291316526615) 18%, rgba(7,130,241,0.47) 83%);
+  background: rgb(238, 243, 245);
+  background: linear-gradient(
+    90deg,
+    rgba(238, 243, 245, 0.23853291316526615) 18%,
+    rgba(7, 130, 241, 0.47) 83%
+  );
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
