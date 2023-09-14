@@ -10,6 +10,7 @@ export default function NavLayout({children}) {
 			{/* Include shared UI here e.g. a header or sidebar */}
 			{/* <Navbar></Navbar> */}
 			<div className="px-2   dark:text-white">{children}</div>
+			
 		</section>
 	);
 }
