@@ -204,7 +204,7 @@ const SinglePost = ({ post }) => {
 					className="object-contain border-none w-full h-[500px] py-3 rounded-md" //object-contain
 				/>
 			)}
-			<div className="bg-gray bg-opacity-10 mt-7 py-2 mx-auto rounded-md">
+			<div className="bg-gray bg-opacity-10 mt-7 py-2 mb-5 mx-auto rounded-md">
 				<div className="flex justify-around">
 					<div className="flex gap-1">
 						{isReacted ? (

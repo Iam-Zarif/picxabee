@@ -27,9 +27,9 @@ const Bookmark = () => {
 	return (
 		<>
 		<Navbar/>
-		<div className="lg:w-1/2 mx-auto mt-28">
+		<div className="lg:w-1/2 mx-auto lg:mt-28 mt-20">
 			<div className="w-fit mx-auto mb-10">
-				<p className="text-primary-color font-bold text-4xl text-center  border-b-2 px-3">
+				<p className="text-primary-color font-bold lg:text-4xl text-xl text-center  border-b-2 px-3">
 					Bookmarked by {user?.displayName}
 				</p>
 			</div>
