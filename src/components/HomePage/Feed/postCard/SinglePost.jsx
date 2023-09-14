@@ -112,7 +112,7 @@ const SinglePost = ({ post }) => {
 					<h1 className="py-3">
 						{post?.content}
 						{words.length > wordLimit && (
-							<button className="text-sm text-gray" onClick={toggleExpand}>
+							<button className="text-xs text-gray" onClick={toggleExpand}>
 								...Show Less
 							</button>
 						)}
@@ -125,7 +125,7 @@ const SinglePost = ({ post }) => {
 				<div>
 					<h1 className="py-3">
 						{shortenedContent}
-						<button className='text-sm text-gray' onClick={toggleExpand}>...Show More</button>
+						<button className='text-xs text-gray' onClick={toggleExpand}>...Show More</button>
 					</h1>
 				</div>
 			);
@@ -193,21 +193,6 @@ const SinglePost = ({ post }) => {
 			)}
 			<div className="bg-gray bg-opacity-10 py-2 mx-auto rounded-md">
 				<div className="flex justify-around">
-					<BsBookmarkCheck
-						onClick={handleBookmark}
-						size={26}
-						className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
-					/>
-					<div className="flex gap-1">
-						<AiOutlineComment
-							onClick={() => setOpen(!open)}
-							size={28}
-							className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
-						/>
-						<p className="font-semibold text-lg">
-							{post?.comments && post?.comments.length}
-						</p>
-					</div>
 					<div className="flex gap-1">
 						{isReacted ? (
 							<AiFillHeart
@@ -226,6 +211,22 @@ const SinglePost = ({ post }) => {
 							{post?.reactions && post?.reactions.length}
 						</p>
 					</div>
+					<div className="flex gap-1">
+						<AiOutlineComment
+							onClick={() => setOpen(!open)}
+							size={28}
+							className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						/>
+						<p className="font-semibold text-lg">
+							{post?.comments && post?.comments.length}
+						</p>
+					</div>
+
+					<BsBookmarkCheck
+						onClick={handleBookmark}
+						size={26}
+						className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
+					/>
 				</div>
 			</div>
 
