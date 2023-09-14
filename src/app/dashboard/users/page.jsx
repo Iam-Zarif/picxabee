@@ -1,27 +1,28 @@
-"use client";
-import Form from "react-bootstrap/Form";
-import UserRow from "@/components/Dashboard/Users/UserRow";
-import Loading from "../activities/loading";
-import useFetchData from "@/hooks/useFetchData";
-import { useState } from "react";
-import { InputGroup } from "react-bootstrap";
-import { FaSearchengin } from "react-icons/fa";
-import { TbUserSearch } from "react-icons/tb";
-import UserRowSm from "@/components/Dashboard/Users/userRowSm";
+'use client';
+import Form from 'react-bootstrap/Form';
+import UserRow from '@/components/Dashboard/Users/UserRow';
+import Loading from '../activities/loading';
+import useFetchData from '@/hooks/useFetchData';
+import { useState } from 'react';
+import { InputGroup } from 'react-bootstrap';
+import { FaSearchengin } from 'react-icons/fa';
+import { TbUserSearch } from 'react-icons/tb';
+import UserRowSm from '@/components/Dashboard/Users/userRowSm';
 
 const UserPage = () => {
-  // Sorry to interrupt - from Zarifff
-  const [Search, setSearch] = useState("");
-  const { data: users, error, isLoading } = useFetchData("/api/users");
-  if (error) return <div>failed to load</div>;
-  if (isLoading)
-    return (
-      <div className="mx-auto  flex justify-center items-center pt-40">
-        <Loading />
-      </div>
-    );
+	// Sorry to interrupt - from Zarifff
+	const [Search, setSearch] = useState('');
+	const { data: users, error, isLoading } = useFetchData('/api/users');
+	console.log(users);
+	if (error) return <div>failed to load</div>;
+	if (isLoading)
+		return (
+			<div className="mx-auto  flex justify-center items-center pt-40">
+				<Loading />
+			</div>
+		);
 
-  return (
+	return (
 		<div className="w-10/12 ml-auto lg:mr-24 pt-8">
 			<div className="flex justify-between">
 				<div className="relative">
@@ -97,8 +98,11 @@ const UserPage = () => {
 											: user.name.toLowerCase().includes(Search);
 									})
 									.map((user, index) => (
-										<UserRowSm key={user._id} user={user} index={index}></UserRowSm>
-
+										<UserRowSm
+											key={user._id}
+											user={user}
+											index={index}
+										></UserRowSm>
 									))}
 						</tbody>
 					</table>
