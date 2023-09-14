@@ -25,7 +25,7 @@ const DonationCards = () => {
 		// Add more donation items as needed
 	];
 	return (
-		<div className="p-4">
+		<div className="">
 			{donations.map((donation, index) => (
 				<DonationCard
 					key={index}
