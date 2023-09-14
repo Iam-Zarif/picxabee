@@ -177,6 +177,7 @@
   padding: 6px 0px;
 }
 .loaderContainer {
+  
   background: rgb(238,243,245);
 background: linear-gradient(90deg, rgba(238,243,245,0.23853291316526615) 18%, rgba(2, 90, 51, 0.245) 83%);
   display: flex;
