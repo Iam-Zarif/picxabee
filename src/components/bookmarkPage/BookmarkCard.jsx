@@ -81,7 +81,7 @@ const BookmarkCard = ({ post }) => {
 			})
 			.then((data) => {
 				toast.success(data.message);
-                console.log(data)
+                // console.log(data)
 			})
 			.catch((error) => {
 				console.log('Error:', error);
@@ -181,24 +181,7 @@ const BookmarkCard = ({ post }) => {
 				/>
 			)}
 			<div className="bg-gray bg-opacity-10 py-2 mx-auto rounded-md">
-				<div className="flex justify-around">
-					<BsBookmarkCheck
-						onClick={handleRemoveBookmark}
-						size={26}
-						className="text-primary-color hover:scale-110 duration-300 hover:text-red hover:cursor-pointer tooltip"
-						data-tip="Remove from Bookmark"
-					/>
-					<div className="flex gap-1">
-						<AiOutlineComment
-							onClick={() => setOpen(!open)}
-							size={28}
-							className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
-						/>
-						<p className="font-semibold text-lg">
-							{post?.comments && post?.comments.length}
-						</p>
-					</div>
-					<div className="flex gap-1">
+				<div className="flex justify-around">	<div className="flex gap-1">
 						{isReacted ? (
 							<AiFillHeart
 								onClick={handleReaction}
@@ -216,6 +199,23 @@ const BookmarkCard = ({ post }) => {
 							{post?.reactions && post?.reactions.length}
 						</p>
 					</div>
+					<div className="flex gap-1">
+						<AiOutlineComment
+							onClick={() => setOpen(!open)}
+							size={28}
+							className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						/>
+						<p className="font-semibold text-lg">
+							{post?.comments && post?.comments.length}
+						</p>
+					</div>
+					<BsBookmarkCheck
+						onClick={handleRemoveBookmark}
+						size={26}
+						className="text-primary-color hover:scale-110 duration-300 hover:text-red hover:cursor-pointer tooltip"
+						data-tip="Remove from Bookmark"
+					/>
+				
 				</div>
 			</div>
 
