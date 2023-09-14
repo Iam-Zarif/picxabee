@@ -62,14 +62,15 @@ const Stories = () => {
                 isLoading ?
                     <StoryLoader /> :
                     <>
-                        <div className='lg:m-0 grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-7 gap-[5px]'>
+                        <div className='lg:m-0 grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-7 gap-[5px] xl:gap-2 2xl:gap-[5px]'>
                             <div onClick={addStoryToggleModal} className="cursor-pointer w-fit">
                                 <div className='relative'>
                                     <Image
                                         src={user?.photoURL}
                                         width={112}
                                         height={154}
-                                        className='w-24 2xl:w-28 h-36 rounded-md'
+                                        objectFit='cover'
+                                        className='w-full 2xl:w-28 h-36 rounded-md'
                                         alt='story'
                                     // layout='responsive'
                                     />
