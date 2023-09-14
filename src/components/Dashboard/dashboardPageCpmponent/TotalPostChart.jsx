@@ -57,7 +57,7 @@ const TotalPostChart = () => {
 	// console.log(postCountArray);
 
 	return (
-		<ResponsiveContainer width="100%" maxHeight={300} height={200} className="ml-8 lg:ml-0">
+		<ResponsiveContainer width="100%" maxHeight={300} height={250} className="ml-8 lg:ml-0">
 			<LineChart
 				width={500}
 				height={300}
