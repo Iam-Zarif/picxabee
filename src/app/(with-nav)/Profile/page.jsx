@@ -18,6 +18,7 @@ import React, { useContext } from 'react';
 // import AuthContext from "@/context/AuthContext";
 import useAuth from "@/hooks/useAuth";
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
+import Navbar from "@/components/Navbar/Navbar";
 
 const ProfilePage = () => {
 
@@ -37,7 +38,7 @@ const ProfilePage = () => {
     console.log(ownPosts);
     return (
         <>
-
+<Navbar/>
             <div className='profile-container my-container '>
                 <Image src={cover} alt='Profile Cover' className=' cover-img mx-auto rounded-[14px] mb-4 w-[1550px] ' />
                 <div className="profile-details rounded-[4px] flex justify-between">

@@ -4,6 +4,7 @@ import useAuth from '@/hooks/useAuth';
 import React from 'react';
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 import PostCardLoader from '@/components/loader/PostCardLoader';
+import Navbar from '@/components/Navbar/Navbar';
 
 const Bookmark = () => {
 	const { user } = useAuth();
@@ -24,6 +25,8 @@ const Bookmark = () => {
 		);
 
 	return (
+		<>
+		<Navbar/>
 		<div className="lg:w-1/2 mx-auto mt-8">
 			<div className="w-fit mx-auto">
 				<p className="text-primary-color font-bold text-4xl text-center  border-b-2 px-3">
@@ -48,6 +51,7 @@ const Bookmark = () => {
 				)}
 			</div>
 		</div>
+		</>
 	);
 };
 
