@@ -1,13 +1,13 @@
 "use client";
 import Form from "react-bootstrap/Form";
 import UserRow from "@/components/Dashboard/Users/UserRow";
-import UserRowSm from '@/components/Dashboard/Users/UserRowSm';
 import Loading from "../activities/loading";
 import useFetchData from "@/hooks/useFetchData";
 import { useState } from "react";
 import { InputGroup } from "react-bootstrap";
 import { FaSearchengin } from "react-icons/fa";
 import { TbUserSearch } from "react-icons/tb";
+import UserRowSm from "@/components/Dashboard/Users/userRowSm";
 
 const UserPage = () => {
   // Sorry to interrupt - from Zarifff
@@ -98,6 +98,7 @@ const UserPage = () => {
 									})
 									.map((user, index) => (
 										<UserRowSm key={user._id} user={user} index={index}></UserRowSm>
+
 									))}
 						</tbody>
 					</table>
