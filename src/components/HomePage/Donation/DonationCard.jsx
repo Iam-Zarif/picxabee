@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { checkout } from '@/hooks/checkout';
 import Image from 'next/image';
@@ -5,7 +6,7 @@ import Image from 'next/image';
 const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, username }) => {
     return (
         <div className='mb-2'>
-            <div className="card w-80 glass rounded-md">
+            <div className="card w-full glass rounded-md">
                 <Image
                     src={imageUrl}
                     alt="donate"

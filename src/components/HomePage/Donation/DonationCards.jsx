@@ -5,10 +5,13 @@ import DonationCard from './DonationCard';
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 import useFetchData from '@/hooks/useFetchData';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f168970ef57b927b0bc7586f428606ccaca0884
 
-const DonationCards = () => {  
-	const router = useRouter();
+const DonationCards = () => {
+  const router = useRouter();
   // const{ data } =useFetchData(`/api/donation`)
   // console.log(data)
 
@@ -30,7 +33,7 @@ const DonationCards = () => {
   ];
   return (
     <div className="flex flex-col items-center justify-between">
-      <div className="p-4">
+      <div className="">
         {donations.map((donation, index) => (
           <DonationCard
             key={index}
@@ -43,7 +46,7 @@ const DonationCards = () => {
       <button
         className="btn
                     rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
-					onClick={()=> router.push("/AllDonations")}
+        onClick={() => router.push("/AllDonations")}
       >
         See more
       </button>
