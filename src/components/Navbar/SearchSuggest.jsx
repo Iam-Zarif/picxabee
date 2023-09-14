@@ -12,7 +12,7 @@ const SearchSuggest = ({ results }) => {
       })} */}
 
 <div className=" overflow-scroll overflow-x-hidden">
-        {results.map((result) => (
+        {results.slice(0, 6).map((result) => (
          <ul  key={result._id} className=""> <li className="hover:bg-white list-none bg-light-gray  lg:w-72  flex flex-col gap-y-2  p-1">
          <div className="flex  justify-between">
         <Link href={"/profile"}>
