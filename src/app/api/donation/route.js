@@ -3,16 +3,21 @@ import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const GET = async (request) => {
-  try {
-    
-    await connect();
-    const donations = await Donation.find();
-    return new NextResponse(JSON.stringify(donations), { status: 200 });
-  } catch (error) {
-    // console.log(error.name, error.message);
-    return NextResponse.json({ error: error.message });
-  }
+	try {
+
+		const currentStatus = request.nextUrl.searchParams.get('currentStatus');
+		console.log(currentStatus);
+		await connect();
+		const donations = await Donation.find({ status: currentStatus });
+		return new NextResponse(JSON.stringify(donations), { status: 200 });
+	} catch (error) {
+		console.log(error.name, error.message);
+		return new NextResponse(JSON.stringify({ error: error.message }), {
+			status: 500,
+		});
+	}
 };
+
 
 
 export const POST = async (request) => {

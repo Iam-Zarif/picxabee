@@ -3,12 +3,13 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"test": "vitest",
+		"coverage": "vitest run --coverage",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"test": "vitest",
-		"coverage": "vitest run --coverage"
+		"ceverage": "jest --coverage"
 	},
 	"dependencies": {
 		"@emailjs/browser": "^3.11.0",
@@ -59,12 +60,13 @@
 		"uuid": "^9.0.0"
 	},
 	"devDependencies": {
-		"@testing-library/jest-dom": "^6.1.2",
+		"@testing-library/jest-dom": "^5.17.0",
 		"@testing-library/react": "^14.0.0",
+		"@testing-library/user-event": "^14.4.3",
+		"@vitejs/plugin-react": "^4.0.4",
 		"daisyui": "^3.5.1",
-		"jest": "^29.6.4",
-		"jsdom": "^22.1.0",
 		"jest-environment-jsdom": "^29.6.4",
+		"jsdom": "^22.1.0",
 		"vitest": "^0.34.4"
 	}
 }
