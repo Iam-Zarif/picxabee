@@ -11,15 +11,15 @@ const DashboardPageComponent = () => {
     
 	
 		<>
-			<div className="flex items-center md:items-center md:flex-row flex-col justify-between md:space-y-0 space-y-8 mx-6 py-10 gap-x-5 cards-container">
-				<div className="card-box">
+			<div className="flex  flex-col gap-5 lg:flex-row px-20 mt-5 lg:mt-10 lg:px-0 ">
+				<div className="w-2/3 mx-auto lg:w-full">
 					<TotalUser />
 				</div>
-				<div className="card-box">
+				<div className="w-2/3 mx-auto  lg:w-full">
 					<TotalPost />
 				</div>
 
-				<div className="card-box">
+				<div className="w-2/3 mx-auto  lg:w-full">
 					<TotalFeedback />
 				</div>
 			</div>
