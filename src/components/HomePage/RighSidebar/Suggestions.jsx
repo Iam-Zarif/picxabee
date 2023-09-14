@@ -8,7 +8,7 @@ import { ClipLoader } from "react-spinners";
 
 const Suggestions = () => {
   const { user } = useAuth();
-  
+
   const router = useRouter();
   const [loadingData, setLoading] = useState(false);
 
@@ -23,21 +23,21 @@ const Suggestions = () => {
     refreshInterval: 1000,
   });
 
-  const filteredUsers = data && data?.filter(obj=> obj.email !== user?.email);
+  const filteredUsers = data && data?.filter((obj) => obj.email !== user?.email);
   const SuggestedUsers = filteredUsers && filteredUsers?.slice(0, 6);
 
-
-  const handleFollow = async (id , followingEmail , followingName) => {
-    
+  const handleFollow = async (id, followingEmail, followingName) => {
     const newFollowers = {
       email: user?.email,
       name: user?.displayName,
     };
 
     const newFollowing = {
-        name:followingName,
-        email: followingEmail
-    }
+      name: followingName,
+      email: followingEmail,
+    };
+
+    const email   = user?.email
 
     console.log(newFollowing);
 
@@ -65,20 +65,20 @@ const Suggestions = () => {
     }
 
     try {
-      const res = await fetch(`/api/users/${user?.email}`,{
+      const res = await fetch(`/api/users`, {
         cache: "no-cache",
+        method: "POST",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({ newFollowing }),
-      })
+        body: JSON.stringify({ newFollowing },email),
+      });
       if (res.ok) {
-        
+        console.log("Success");
       }
     } catch (error) {
       console.log(error.message);
     }
-
   };
 
   const handleUnFollow = async (id) => {
@@ -133,7 +133,7 @@ const Suggestions = () => {
                     return f?.email === user?.email;
                   }) ? (
                     <button
-                      className="text-sm font-bold text-red" 
+                      className="text-sm font-bold text-red"
                       onClick={() => handleUnFollow(users?._id)}
                     >
                       UnFollow
@@ -141,7 +141,7 @@ const Suggestions = () => {
                   ) : (
                     <button
                       className="text-sm font-bold text-blue"
-                      onClick={() => handleFollow(users?._id , users?.email , users?.name)}
+                      onClick={() => handleFollow(users?._id, users?.email, users?.name)}
                     >
                       Follow
                     </button>
