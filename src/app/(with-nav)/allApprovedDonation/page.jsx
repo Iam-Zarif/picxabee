@@ -17,6 +17,7 @@ const AllApprovedDonationPage = () => {
     const approvedDonations = donationPosts && donationPosts?.filter(donationPost=> donationPost.status === 'approved');
     return (
       <>
+      
       <Navbar />
         <div className='my-container lg:mt-24'>
 
