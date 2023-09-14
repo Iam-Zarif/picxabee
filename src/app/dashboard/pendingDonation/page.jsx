@@ -7,7 +7,7 @@ import useFetchData from '@/hooks/useFetchData';
 const PendingDonationPage = () => {
 
   const { data } = useFetchData('/api/donation?currentStatus=pending');
-	console.log(data);
+	// console.log(data);
 
     const pendingDonations = [
         {
