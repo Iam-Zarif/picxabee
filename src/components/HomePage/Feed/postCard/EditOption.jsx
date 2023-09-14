@@ -82,7 +82,7 @@ const MyModal = ({ id, closeModal, isOpen, post }) => {
 											<li className="bg-gray-100 rounded-sm hover:bg-slate-200 py-2 hover:scale-105 duration-300 pb-3">
 												Copy link
 											</li> */}
-											<li className="bg-[#f1f5f9] dark:bg-gray rounded-sm hover:bg-slate py-2 hover:scale-105 duration-300 hover:text-primary-color">
+											<li className="bg-[#f1f5f9] dark:bg-gray rounded-sm hover:bg-slate py-2 hover:scale-105 duration-300 hover:text-red">
 												<Link
 													className=""
 													onClick={() => removePost(id)}
