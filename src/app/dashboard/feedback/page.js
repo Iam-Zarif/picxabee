@@ -41,7 +41,8 @@ const FeedbackPage = () => {
 							<Disclosure key={feedback._id}>
 								{({ open }) => (
 									<>
-										<Disclosure.Button className="flex w-full justify-between rounded-md bg-teal-100 px-4 py-2 text-left text-sm font-medium text-teal-900 hover:bg-teal-200 focus:outline-none focus-visible:ring focus-visible:ring-teal-500 focus-visible:ring-opacity-75">
+										<Disclosure.Button className="flex w-full justify-between rounded-md bg-teal-100 border border-gray ml-20 lg:ml-0
+										px-4 py-2 text-left text-sm font-medium text-teal-900 hover:bg-teal-200 focus:outline-none focus-visible:ring focus-visible:ring-teal-500 focus-visible:ring-opacity-75">
 											<div className="flex items-center">
 												<Image
 													src={feedback?.author?.profile_picture}
