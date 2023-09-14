@@ -15,20 +15,20 @@ const Messages = () => {
 
   let rightSideClassName;
 
-  // if (drawerOn && window.innerWidth <= 768) {
-  //   rightSideClassName = "hidden"
-  // } else {
-  //   rightSideClassName = "rightside"
-  // }
+  if (drawerOn && window.innerWidth <= 768) {
+    rightSideClassName = "hidden"
+  } else {
+    rightSideClassName = "rightside"
+  }
 
   //  with useEffect .............................................................................................
-  // useEffect(() => {
-  //   if (window.innerWidth <= 768) {
-  //     setRightSideClassName("hidden");
-  //   } else {
-  //     setRightSideClassName("rightside");
-  //   }
-  // }, [window.innerWidth]);
+  useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setRightSideClassName("hidden");
+    } else {
+      setRightSideClassName("rightside");
+    }
+  }, [window.innerWidth]);
 
   return (
     <div className="chatui">
