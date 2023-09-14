@@ -7,8 +7,8 @@ import PostCards from "./postCard/PostCards";
 const Feed = () => {
   return (
     <>
-      {/* <Stories /> */}
-      {/* <CreatePost /> */}
+      <Stories />
+      <CreatePost />
       <PostCards />
     </>
   );
