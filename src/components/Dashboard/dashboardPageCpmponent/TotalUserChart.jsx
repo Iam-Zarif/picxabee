@@ -55,7 +55,7 @@ export default function TotalUserChart() {
     ];
 
     return (
-        <ResponsiveContainer width="100%" maxHeight={300} height={200} className="ml-8 lg:ml-0">
+        <ResponsiveContainer width="100%" maxHeight={300} height={250} className="ml-8 lg:ml-0">
             <BarChart
             width={700}
             height={300}
