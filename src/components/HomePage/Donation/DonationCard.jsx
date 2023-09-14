@@ -7,7 +7,7 @@ const DonationCard = ({ title, imageUrl, price }) => {
     return (
 
         <div className='mb-2'>
-            <div className="card w-80 glass rounded-md">
+            <div className="card w-full glass rounded-md">
                 <img src={imageUrl}  alt="donate" />
                 <div className="card-body">
                     <h2 className="card-title">Total donated {price}$</h2>

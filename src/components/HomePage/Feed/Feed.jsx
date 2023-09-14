@@ -9,7 +9,7 @@ const Feed = () => {
     <>
       <Stories />
       <CreatePost />
-      <PostCards />
+      {/* <PostCards /> */}
     </>
   );
 };

@@ -14,13 +14,13 @@ const TotalPost = () => {
 	if (isLoading) return <div>Loading...</div>;
 
   return (
-		<div className='flex-1 px-4 py-6 bg-blue bg-opacity-30 rounded-md flex items-center justify-start'>
+		<div className=' flex-1 lg:px-4 lg:py-6 py-5  bg-blue bg-opacity-30 rounded-md flex items-center justify-center lg:justify-start'>
 			<div className="text-white font-semibold text-start space-y-4 pl-6">
-				<p className="text-sm">Total Posts</p>
+				<p className="text-sm"><span className=''>Total Posts</span></p>
 				<div className="flex items-center justify-between gap-x-3">
 				
 				<HiOutlineCreditCard className="text-3xl"/>
-				<p className="text-3xl">{posts?.length}</p>
+				<div className="text-3xl  "><p>{posts?.length}</p> </div>
 				</div>
 			</div> 
 		</div>
