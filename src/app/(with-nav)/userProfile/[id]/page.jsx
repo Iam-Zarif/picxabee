@@ -7,7 +7,7 @@ import { BsFacebook, BsGithub } from 'react-icons/bs';
 
 const UserProfile = ({ params }) => {
 
-    const { data } = useFetchData(`http://localhost:3000/api/userProfile/${params.id}`)
+    const { data } = useFetchData(`/api/userProfile/${params.id}`)
     console.log('8', data);
 
     // const {bio, bookmarks, email, followers, following, name, profile_picture, role, _id} = data?.singleUser
