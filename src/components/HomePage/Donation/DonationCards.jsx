@@ -8,8 +8,7 @@ import useFetchData from '@/hooks/useFetchData';
 
 const DonationCards = () => {
   const router = useRouter();
-  // const{ data } =useFetchData(`/api/donation`)
-  // console.log(data)
+ 
 
   const { data } = useFetchData("/api/donation?currentStatus=approved");
   console.log(data);
