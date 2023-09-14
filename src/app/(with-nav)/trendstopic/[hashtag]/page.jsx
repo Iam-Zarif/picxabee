@@ -1,6 +1,7 @@
 "use client"
 
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
+import Navbar from '@/components/Navbar/Navbar';
 import PostCardLoader from '@/components/loader/PostCardLoader';
 import useFetchData from '@/hooks/useFetchData';
 
@@ -9,7 +10,8 @@ const HashTagTopicPage = ({ params }) => {
     const { data, isLoading } = useFetchData(`/api/trendstopic/${params.hashtag}}`)
 
     return (
-
+<>
+<Navbar/>
         <div className="my-container grid lg:grid-cols-4 lg:gap-3">
 
             <span>
@@ -23,6 +25,7 @@ const HashTagTopicPage = ({ params }) => {
             </div>
 
         </div>
+        </>
 
     );
 };
