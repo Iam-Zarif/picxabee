@@ -2,7 +2,7 @@
 
 import useFetchData from '@/hooks/useFetchData';
 import React from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 const colors = ['#D9E8F5', '#7CC494', '#F23838', '#A7C5C5', '#D9A0A0', '#A7C5C5'];
 
@@ -55,7 +55,8 @@ export default function TotalUserChart() {
     ];
 
     return (
-        <BarChart
+        <ResponsiveContainer width="100%" maxHeight={300} height={200} className="ml-8 lg:ml-0">
+            <BarChart
             width={700}
             height={300}
             data={data}
@@ -65,7 +66,7 @@ export default function TotalUserChart() {
                 left: 0,
                 bottom: 0,
             }}
-            className='bg-black bg-opacity-5 rounded-md'
+            className='bg-black bg-opacity-5 rounded-md barChart'
         >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
@@ -76,5 +77,6 @@ export default function TotalUserChart() {
                 ))}
             </Bar>
         </BarChart>
+        </ResponsiveContainer>
     );
 }
