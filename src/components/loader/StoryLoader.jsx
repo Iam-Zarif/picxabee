@@ -1,23 +1,23 @@
 import ContentLoader from 'react-content-loader'
 
 const StoryLoader = props => (
+  
     <ContentLoader
         speed={1}
         width='fit'
-        height={100}
+        height={160}
+        // viewBox="0 0 340 160"
         backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
+        foregroundColor="#8d8686"
         {...props}
-        className='space-x-2'
     >
-        <circle cx="46" cy="44" r="44" />
-        <circle cx="157" cy="44" r="44" />
-        <circle cx="267" cy="44" r="44" />
-        <circle cx="377" cy="44" r="44" />
-        <circle cx="487" cy="44" r="44" />
-        <circle cx="597" cy="44" r="44" />
-        <circle cx="707" cy="44" r="44" />
-        <circle cx="817" cy="44" r="44" />
+        <rect x="0" y="0" rx="5" ry="5" width="112" height="144" />
+        <rect x="119" y="0" rx="5" ry="5" width="112" height="144" />
+        <rect x="238" y="0" rx="5" ry="5" width="112" height="144" />
+        <rect x="357" y="0" rx="5" ry="5" width="112" height="144" />
+        <rect x="476" y="0" rx="5" ry="5" width="112" height="144" />
+        <rect x="595" y="0" rx="5" ry="5" width="112" height="144" />
+        <rect x="714" y="0" rx="5" ry="5" width="112" height="144" />
     </ContentLoader>
 )
 

@@ -6,7 +6,6 @@ import { NextResponse } from 'next/server';
 
 // Get post data
 
-
 export const GET = async () => {
 	try {
 		await connect();
@@ -32,9 +31,6 @@ export const PUT = async (request)=> {
 		return NextResponse.json({ error: error.message });
 	}
 }
-
-
-
 
 
 // tuhin vai
@@ -70,13 +66,9 @@ export const PATCH = async (request) => {
 		console.log(newReaction)
 		const { id: postId, author } = newReaction;
 		const { email: userEmail} = author;
-	console.log(userEmail)
-
-
+	// console.log(userEmail)
 		await connect();
-
 		let updatedPost;
-
 		if (postId && userEmail) {
 			// Check if the user has already liked the post
 			const post = await Post.findById(postId);

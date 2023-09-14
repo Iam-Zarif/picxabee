@@ -79,7 +79,7 @@ const ChatSearch = () => {
           <input
             placeholder="Search Here.."
             type="text"
-            className="bg-transparent border-none text-white outline-none md:text-sm text-xs p-2"
+            className="bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black"
             onKeyDown={handleKey}
             onChange={(e) => setUsername(e.target.value)}
             value={username}
@@ -91,10 +91,10 @@ const ChatSearch = () => {
             className="userChat border-gray-400 rounded-lg border-2 text-white cursor-pointer md:text-base text-sm m-2"
             onClick={handleSelect}
           >
-            <div className="hover:bg-gray-400 rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
+            <div className="hover:bg-primary-color rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
               <img className="w-14 h-14 object-cover rounded-full" src={user?.photoURL} alt="" />
               <div className="userChatInfo  flex-1">
-                <span className="font-bold">{user?.displayName}</span>
+                <span className="font-bold text-black">{user?.displayName}</span>
               </div>
             </div>
           </div>

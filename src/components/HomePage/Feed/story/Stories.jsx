@@ -26,7 +26,9 @@ const Stories = () => {
     const { user } = useAuth()
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-    const { data, error, isLoading } = useSWR('/api/stories', fetcher)
+    const { data, error, isLoading } = useSWR('/api/stories', fetcher, {
+        refreshInterval: 1000
+    })
 
     const [isopen, setIsopen] = useState(false);
     const [index, setIndex] = useState(-1);
@@ -55,78 +57,91 @@ const Stories = () => {
             <ViewStoryModal isopen={isopen} toggleModal={toggleModal} index={index} data={data} setIndex={setIndex} />
             <AddStoryModal modal={modal} setModal={setModal} addStoryToggleModal={addStoryToggleModal} imgUrl={imgUrl} setImgUrl={setImgUrl} />
 
-            <div className='m-3 lg:m-0 grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-7 gap-5 xl:gap-7'>
-                <div onClick={addStoryToggleModal} className="cursor-pointer w-fit">
-                    <div className='relative'>
-                        <Image
-                            src={user?.photoURL || 'https://i.ibb.co/G5MNXHQ/jahid.png' }
-                            width={80}
-                            height={80}
-                            className='w-16 xl:w-20 h-16 xl:h-20 rounded-full'
-                            alt='story'
-                            // layout='responsive'
-                        />
-                        <label >
-                            <HiPlusSmall className="absolute right-0 bottom-0 rounded-b-md w-full  text-white text-4xl font-bold cursor-pointer" />
-                        </label>
-                    </div>
-                    <h5 className='text-center'>ADD</h5>
-                </div>
-
-                <div className='col-span-3 sm:col-span-4 lg:col-span-5  2xl:col-span-6'>
-                    {isLoading ? <StoryLoader /> :
-                        (<Swiper
-                            cssMode={true}
-                            breakpoints={{
-                                340: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20
-                                },
-                                500: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20
-                                },
-                                1024: {
-                                    slidesPerView: 5,
-                                    spaceBetween: 20
-                                },
-                                1280: {
-                                    slidesPerView: 5,
-                                    spaceBetween: 20
-                                },
-                                1536: {
-                                    slidesPerView: 6,
-                                    spaceBetween: 20
-                                }
-                            }}
-                            slidesPerView={6}
-                            spaceBetween={30}
-                            navigation={true}
-                            slidesPerGroupSkip={4}
-                            // coverflowEffect={}
-                            modules={[Navigation]}
-                            className="mySwiper text-center main-slider "
-                        >
-                            {
-                                data && data.map((story, i) => <SwiperSlide
-                                    key={i}
-                                    onClick={() => toggleModal(i)}
-                                    className='cursor-pointer'
-                                >
+            {/*  */}
+            {
+                isLoading ?
+                    <StoryLoader /> :
+                    <>
+                        <div className='lg:m-0 grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-7 gap-[5px] xl:gap-2 2xl:gap-[5px]'>
+                            <div onClick={addStoryToggleModal} className="cursor-pointer w-fit">
+                                <div className='relative'>
                                     <Image
-                                        src={story.image}
-                                        width={80}
-                                        height={80}
-                                        className='w-16 xl:w-20 h-16 xl:h-20 rounded-full border-2 border-black mx-auto'
+                                        src={user?.photoURL}
+                                        width={112}
+                                        height={154}
+                                        objectFit='cover'
+                                        className='w-full 2xl:w-28 h-36 rounded-md'
                                         alt='story'
+                                    // layout='responsive'
                                     />
-                                    <h3>{story.username}</h3>
-                                </SwiperSlide>)
-                            }
-                        </Swiper>)
-                    }
-                </div>
-            </div>
+                                    <label >
+                                        <HiPlusSmall className="absolute right-0 bottom-0 rounded-b-md w-full bg-black text-white text-4xl font-bold cursor-pointer" />
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div className='col-span-3 sm:col-span-4 lg:col-span-5  2xl:col-span-6'>
+
+                                <Swiper
+                                    cssMode={true}
+                                    breakpoints={{
+                                        340: {
+                                            slidesPerView: 3,
+                                            spaceBetween: 5
+                                        },
+                                        500: {
+                                            slidesPerView: 4,
+                                            spaceBetween: 20
+                                        },
+                                        1024: {
+                                            slidesPerView: 5,
+                                            spaceBetween: 20
+                                        },
+                                        1280: {
+                                            slidesPerView: 5,
+                                            spaceBetween: 10
+                                        },
+                                        1536: {
+                                            slidesPerView: 6,
+                                            spaceBetween: 5
+                                        }
+                                    }}
+                                    slidesPerView={6}
+                                    spaceBetween={30}
+                                    navigation={true}
+                                    slidesPerGroupSkip={4}
+                                    // coverflowEffect={}
+                                    modules={[Navigation]}
+                                    className="mySwiper main-slider "
+                                >
+                                    {
+                                        data && data.map((story, i) => <SwiperSlide
+                                            key={i}
+                                            onClick={() => toggleModal(i)}
+                                            className='cursor-pointer relative'
+                                        >
+                                            <Image
+                                                src={story.image}
+                                                width={112}
+                                                height={154}
+                                                objectFit='cover'
+                                                className='w-28 h-36 rounded-md mx-auto'
+                                                alt='story'
+                                            />
+                                            <div className='absolute top-0 w-full h-full bg-black z-20 rounded-md bg-opacity-20'>
+
+                                            </div>
+                                            <h3 className='absolute left-2 bottom-2 right-2 z-50 text-white text-xs'>{story?.author?.name}</h3>
+                                        </SwiperSlide>)
+                                    }
+                                </Swiper>
+                            </div>
+                        </div>
+                    </>
+
+            }
+            {/*  */}
         </>
     );
 };

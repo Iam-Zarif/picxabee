@@ -1,7 +1,7 @@
 'use client';
 import useSWR from 'swr';
 import SinglePost from './SinglePost';
-import FeedCardLoader from '@/components/loader/FeedCardLoader';
+// import FeedCardLoader from '@/components/loader/FeedCardLoader';qqq
 
 const PostCards = () => {
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -17,12 +17,14 @@ const PostCards = () => {
 	if (isLoading)
 		return (
 			<div>
-				<FeedCardLoader />
+			{/* <FeedCardLoader /> */}
+				Loading...
 			</div>
 		);
 
 	return (
 		<>
+		{/* w -full */}
 			<div className="pb-28 pt-12 mx-auto w-full">
 				{posts &&
 					posts

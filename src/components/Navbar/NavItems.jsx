@@ -11,13 +11,14 @@ import {
 } from "react-icons/ai";
 import { BsArrowLeftCircle, BsBookmarkCheck } from "react-icons/bs";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
-import { useRouter,usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Link from "next/link";
 import ThemeButton from "./ThemeButton";
 import { TbLayoutDashboard } from "react-icons/tb";
+import { BiDonateBlood } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
 import useAuth from "@/hooks/useAuth";
@@ -26,7 +27,7 @@ import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThe
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { MdOutlineLockReset } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+
 
 
 const NavItems = () => {
@@ -58,31 +59,31 @@ const NavItems = () => {
   };
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpen1, setIsOpen1] = React.useState(false);
-const pathname = usePathname()
+  const pathname = usePathname()
   const router = useRouter();
   return (
     <>
-    
+
       {user ? (
         <>
-       <ul>
- 
-</ul>
-         
+          <ul>
+
+          </ul>
+
 
 
           <li>
-           <div className={pathname === '/' ? 'active' : ''}>
-           <Link
-          
-              href="/"
-              className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
-            >
-              <p data-tip="Home">
-                <GoHome className="text-2xl lg:text-2xl " />
-              </p>
-            </Link>
-           </div>
+            <div className={pathname === '/' ? 'active' : ''}>
+              <Link
+
+                href="/"
+                className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
+              >
+                <p data-tip="Home">
+                  <GoHome className="text-2xl lg:text-2xl " />
+                </p>
+              </Link>
+            </div>
           </li>
 
           <li>
@@ -112,15 +113,15 @@ const pathname = usePathname()
             </a>
           </li> */}
           <div className={pathname === '/recycle' ? 'active' : ''}>
-          <li>
-            <Link
-              href={"/recycle"}
-              data-tip="Recycle bin"
-              className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
-            >
-              <RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
-            </Link>
-          </li>
+            <li>
+              <Link
+                href={"/recycle"}
+                data-tip="Recycle bin"
+                className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
+              >
+                <RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
+              </Link>
+            </li>
           </div>
           <li>
             <a className=" hover:bg-transparent ">
@@ -141,32 +142,36 @@ const pathname = usePathname()
                 className="bla bla bla dark:bg-black"
               >
                 <div className="dark:bg-black-bg-primary  min-h-screen">
-                  <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
+                  <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
                     <p className=" ">
                       <AiOutlineUser className="inline" />{" "}
                       <span>{user.displayName}</span>
                     </p>
                     <hr className="text-primary-color" />
 
-                    <Link href="/Profile">
-                      <p className="  flex items-center group   hover:ml-2 transition-all">
-                        <AiOutlineProfile
-                          size={28}
-                          className="inline mr-2 rounded-full "
-                        />
-                        Profile
-                        {/* profile er vitore change password */}
-                        <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
+                    <div className={pathname === '/Profile' ? 'sideActive' : ''}>
+                      <Link href="/Profile" className="">
+                        <p className="  flex items-center group   hover:ml-2 transition-all">
+                          <AiOutlineProfile
+                            size={28}
+                            className="inline mr-2 rounded-full "
+                          />
+                          Profile
+                          {/* profile er vitore change password */}
+                          <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
+                        </p>
+                      </Link>
+                    </div>
+                    <div className={pathname === '/settings' ? 'sideActive' : ''}>
+                      <p
+                        onClick={toggleDrawer1}
+                        className=" flex items-center group cursor-pointer  hover:ml-2 transition-all"
+                      >
+                        <IoSettingsOutline size={28} className="inline mr-2" />
+                        Settings
+                        <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                       </p>
-                    </Link>
-                    <p
-                      onClick={toggleDrawer1}
-                      className=" flex items-center group  hover:ml-2 transition-all"
-                    >
-                      <IoSettingsOutline size={28} className="inline mr-2" />
-                      Settings
-                      <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                    </p>
+                    </div>
                     {/*  */}
                     <Drawer
                       open={isOpen1}
@@ -174,7 +179,7 @@ const pathname = usePathname()
                       direction="right"
                       className="bla bla bla dark:bg-black  "
                     >
-                      <div className="dark:bg-black-bg-primary lg:pl-2  min-h-screen ">
+                      <div className="dark:bg-black-bg-primary lg:pl-2 pt-16 lg:pt-0  min-h-screen ">
                         <p onClick={toggleDrawer1} className="pt-8 ">
                           <BsArrowLeftCircle
                             size={26}
@@ -192,34 +197,40 @@ const pathname = usePathname()
                               size={28}
                               className="inline mr-2"
                             />
-                            Reset Password
+                            <Link href='/auth/resetPassword'>
+                              Reset Password
+                            </Link>
                             <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
                           </p>
                         </div>
                       </div>
                     </Drawer>
                     {/*  */}
-                    <Link href="/bookmark">
-                      {" "}
-                      <p className=" flex items-center group  hover:ml-2 transition-all">
-                        <BsBookmarkCheck size={28} className="inline mr-2" />
-                        Bookmarks
-                        <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                      </p>
-                    </Link>
+                    <div className={pathname === '/bookmark' ? 'sideActive' : ''}>
+                      <Link href="/bookmark">
+                        {" "}
+                        <p className=" flex items-center group  hover:ml-2 transition-all">
+                          <BsBookmarkCheck size={28} className="inline mr-2" />
+                          Bookmarks
+                          <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                        </p>
+                      </Link>
+                    </div>
                     <div>
                       {loggedInUser?.role === "admin" ? (
                         <>
-                          <Link href="/dashboard">
-                            <p className=" flex items-center group  hover:ml-2 transition-all">
-                              <TbLayoutDashboard
-                                size={28}
-                                className="inline mr-2"
-                              />
-                              Dashboard
-                              <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                            </p>
-                          </Link>
+                          <div className={pathname === '/dashboard' ? 'sideActive' : ''}>
+                            <Link href="/dashboard">
+                              <p className=" flex items-center group  hover:ml-2 transition-all">
+                                <TbLayoutDashboard
+                                  size={28}
+                                  className="inline mr-2"
+                                />
+                                Dashboard
+                                <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                              </p>
+                            </Link>
+                          </div>
                         </>
                       ) : (
                         <>
@@ -227,6 +238,21 @@ const pathname = usePathname()
                         </>
                       )}
                     </div>
+                    {/* Hridoy Haque */}
+                    <div className="lg:hidden block"><div className={pathname === '/donate' ? 'sideActive' : ''}>
+                            <Link href="/donate">
+                              <p className=" flex items-center group  hover:ml-2 transition-all">
+                                <BiDonateBlood
+                                  size={28}
+                                  className="inline mr-2"
+                                />
+                                Donate
+                                <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                              </p>
+                            </Link>
+                          </div></div>
+                    {/* Hridoy Haque */}
+                    
 
                     <p
                       onClick={handleLogOut}
