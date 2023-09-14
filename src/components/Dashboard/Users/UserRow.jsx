@@ -49,7 +49,7 @@ const UserRow = ({ user, index }) => {
 	return (
 		<>
 			<tr className="text-base text-left">
-				<th> {index + 1}</th>
+				<th>{index + 1}</th>
 				<td>{user.name}</td>
 				<td>{user?.email}</td>
 				<td>{formattedDateTime}</td>
