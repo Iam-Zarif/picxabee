@@ -31,17 +31,18 @@ const Messages = () => {
 //   }, [window.innerWidth]);
 
   return (
-    <div className="chatui">
-      <div className="message-container">
-        <Sidebar />
-        {
-          <div className={rightSideClassName}>
-            <MessagesSideSectionRightNavbar />
-            <Chat />
-          </div>
-        }
-      </div>
-    </div>
+    // <div className="chatui">
+    //   <div className="message-container">
+    //     <Sidebar />
+    //     {
+    //       <div className={rightSideClassName}>
+    //         <MessagesSideSectionRightNavbar />
+    //         <Chat />
+    //       </div>
+    //     }
+    //   </div>
+    // </div>
+    <></>
   );
 };
 
