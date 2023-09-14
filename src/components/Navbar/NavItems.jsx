@@ -141,7 +141,7 @@ const NavItems = () => {
                 className="bla bla bla dark:bg-black"
               >
                 <div className="dark:bg-black-bg-primary  min-h-screen">
-                  <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-12   rounded-xl ">
+                  <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
                     <p className=" ">
                       <AiOutlineUser className="inline" />{" "}
                       <span>{user.displayName}</span>
@@ -164,7 +164,7 @@ const NavItems = () => {
                     <div className={pathname === '/settings' ? 'sideActive' : ''}>
                       <p
                         onClick={toggleDrawer1}
-                        className=" flex items-center group  hover:ml-2 transition-all"
+                        className=" flex items-center group cursor-pointer  hover:ml-2 transition-all"
                       >
                         <IoSettingsOutline size={28} className="inline mr-2" />
                         Settings
@@ -178,7 +178,7 @@ const NavItems = () => {
                       direction="right"
                       className="bla bla bla dark:bg-black  "
                     >
-                      <div className="dark:bg-black-bg-primary lg:pl-2  min-h-screen ">
+                      <div className="dark:bg-black-bg-primary lg:pl-2 pt-16 lg:pt-0  min-h-screen ">
                         <p onClick={toggleDrawer1} className="pt-8 ">
                           <BsArrowLeftCircle
                             size={26}
