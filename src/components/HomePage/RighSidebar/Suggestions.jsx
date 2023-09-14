@@ -5,6 +5,7 @@ import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
+import Link from 'next/link'
 
 const Suggestions = () => {
   const { user } = useAuth();
@@ -23,10 +24,14 @@ const Suggestions = () => {
     refreshInterval: 1000,
   });
 
-  const filteredUsers = data && data?.filter((obj) => obj.email !== user?.email);
+  console.log('27', data);
+
+  const filteredUsers = data && data?.filter(obj => obj.email !== user?.email);
   const SuggestedUsers = filteredUsers && filteredUsers?.slice(0, 6);
 
+
   const handleFollow = async (id, followingEmail, followingName) => {
+
     const newFollowers = {
       email: user?.email,
       name: user?.displayName,
@@ -34,12 +39,8 @@ const Suggestions = () => {
 
     const newFollowing = {
       name: followingName,
-      email: followingEmail,
-    };
-
-    const email   = user?.email
-
-    console.log(newFollowing);
+      email: followingEmail
+    }
 
     setLoading(true);
 
@@ -65,7 +66,7 @@ const Suggestions = () => {
     }
 
     try {
-      const res = await fetch(`/api/users`, {
+      const res = await fetch(`/api/users/${user?.email}`, {
         cache: "no-cache",
         method: "POST",
         headers: {
@@ -74,7 +75,6 @@ const Suggestions = () => {
         body: JSON.stringify({ newFollowing },email),
       });
       if (res.ok) {
-        console.log("Success");
       }
     } catch (error) {
       console.log(error.message);
@@ -121,7 +121,9 @@ const Suggestions = () => {
                 src={users?.profile_picture || ""}
                 alt=""
               />
-              <h2 className="font-semibold text-sm">{users?.name}</h2>
+              <h2 className="font-semibold text-sm">
+                <Link href={`/userProfile/${users?._id}`}>{users?.name}</Link>
+              </h2>
             </div>
             <div className=" ml-4 ">
               {loadingData ? (
@@ -140,7 +142,7 @@ const Suggestions = () => {
                     </button>
                   ) : (
                     <button
-                      className="text-sm font-bold text-blue"
+                      className="text-sm font-bold text-blue dark:text-teal-200"
                       onClick={() => handleFollow(users?._id, users?.email, users?.name)}
                     >
                       Follow

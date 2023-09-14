@@ -1,9 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import useFetchData from "@/hooks/useFetchData";
+import { useRouter } from "next/navigation";
 import DonationCard from "./DonationCard";
 
-const DonationCards = () => {
+const DonationCards = () => {  
+	const router = useRouter();
+  // const{ data } =useFetchData(`/api/donation`)
+  // console.log(data)
+
+  const { data } = useFetchData("/api/donation?currentStatus=approved");
+  console.log(data);
+
   const donations = [
     {
       title: "Project A",
@@ -18,15 +26,24 @@ const DonationCards = () => {
     // Add more donation items as needed
   ];
   return (
-    <div className="p-4">
-      {donations.map((donation, index) => (
-        <DonationCard
-          key={index}
-          title={donation.title}
-          imageUrl={donation.imageUrl}
-          price={donation.price}
-        />
-      ))}
+    <div className="flex flex-col items-center justify-between">
+      <div className="p-4">
+        {donations.map((donation, index) => (
+          <DonationCard
+            key={index}
+            title={donation.title}
+            imageUrl={donation.imageUrl}
+            price={donation.price}
+          />
+        ))}
+      </div>
+      <button
+        className="btn
+                    rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
+					onClick={()=> router.push("/AllDonations")}
+      >
+        See more
+      </button>
     </div>
   );
 };
