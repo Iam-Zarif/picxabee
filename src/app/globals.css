@@ -177,12 +177,9 @@
   padding: 6px 0px;
 }
 .loaderContainer {
-  background: rgb(238, 243, 245);
-  background: linear-gradient(
-    90deg,
-    rgba(238, 243, 245, 0.23853291316526615) 18%,
-    rgba(7, 130, 241, 0.47) 83%
-  );
+  
+  background: rgb(238,243,245);
+background: linear-gradient(90deg, rgba(238,243,245,0.23853291316526615) 18%, rgba(2, 90, 51, 0.245) 83%);
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
