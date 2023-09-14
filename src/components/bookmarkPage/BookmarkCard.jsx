@@ -4,15 +4,12 @@ import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
 import { BsBookmarkCheck, BsThreeDots } from 'react-icons/bs';
-import { MdOutlinePublic } from 'react-icons/md';
-import { BiDonateHeart } from 'react-icons/bi';
-import { RiGitRepositoryPrivateLine } from 'react-icons/ri';
-import CommentSection from './CommentSection';
-import EditOption from './EditOption';
-import SingleComment from './SingleComment';
+import CommentSection from '../HomePage/Feed/postCard/CommentSection';
+import EditOption from '../HomePage/Feed/postCard/EditOption';
+import SingleComment from '../HomePage/Feed/postCard/SingleComment';
 import useAuth from '@/hooks/useAuth';
 
-const SinglePost = ({ post }) => {
+const BookmarkCard = ({ post }) => {
 	const [expanded, setExpanded] = useState(false);
 
 	const [open, setOpen] = useState(false);
@@ -72,13 +69,9 @@ const SinglePost = ({ post }) => {
 			});
 	};
 
-	const handleBookmark = () => {
+	const handleRemoveBookmark = () => {
 		fetch(`/api/users/bookmarks?userEmail=${user?.email}&postId=${id}`, {
-			method: 'PATCH',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(),
+			method: 'DELETE',
 		})
 			.then((res) => {
 				if (!res.ok) {
@@ -87,16 +80,11 @@ const SinglePost = ({ post }) => {
 				return res.json();
 			})
 			.then((data) => {
-				if (data.message == 'Post bookmarked successfully') {
-					toast.success(data.message);
-				} else {
-					toast.error(data.message);
-				}
-
-				console.log('Received data:', data);
+				toast.success(data.message);
+                // console.log(data)
 			})
 			.catch((error) => {
-				console.warning('Fetch error:', error);
+				console.log('Error:', error);
 			});
 	};
 
@@ -114,7 +102,7 @@ const SinglePost = ({ post }) => {
 					<h1 className="py-3">
 						{post?.content}
 						{words.length > wordLimit && (
-							<button className="text-xs text-gray" onClick={toggleExpand}>
+							<button className="text-sm text-gray" onClick={toggleExpand}>
 								...Show Less
 							</button>
 						)}
@@ -127,7 +115,7 @@ const SinglePost = ({ post }) => {
 				<div>
 					<h1 className="py-3">
 						{shortenedContent}
-						<button className="text-xs text-gray" onClick={toggleExpand}>
+						<button className="text-sm text-gray" onClick={toggleExpand}>
 							...Show More
 						</button>
 					</h1>
@@ -139,8 +127,7 @@ const SinglePost = ({ post }) => {
 	return (
 		<div
 			data-aos="fade-up"
-			// border-2  border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black
-			className="w-96 lg:w-full border-2 mx-auto border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black"
+			className="border-2  border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black"
 		>
 			<div className="w-full flex items-center justify-between">
 				<div className="flex items-center">
@@ -152,18 +139,7 @@ const SinglePost = ({ post }) => {
 						className="rounded-full h-12 w-12 object-cover border p-1 mr-3"
 					/>
 					<div>
-						<div className="flex gap-2">
-							<p className="font-bold capitalize">{post?.author?.name}</p>
-							<div className="text-gray mb-[2px]">
-								{post?.privacy === 'public' ? (
-									<MdOutlinePublic />
-								) : post?.privacy === 'private' ? (
-									<RiGitRepositoryPrivateLine />
-								) : (
-									<BiDonateHeart />
-								)}
-							</div>
-						</div>
+						<p className="font-bold capitalize">{post?.author?.name}</p>
 						<p className="font-normal text-sm ">{formattedDateTime}</p>
 					</div>
 				</div>
@@ -204,9 +180,8 @@ const SinglePost = ({ post }) => {
 					className="object-contain border-none w-full h-[500px] py-3 rounded-md" //object-contain
 				/>
 			)}
-			<div className="bg-gray bg-opacity-10 mt-7 py-2 mx-auto rounded-md">
-				<div className="flex justify-around">
-					<div className="flex gap-1">
+			<div className="bg-gray bg-opacity-10 py-2 mx-auto rounded-md">
+				<div className="flex justify-around">	<div className="flex gap-1">
 						{isReacted ? (
 							<AiFillHeart
 								onClick={handleReaction}
@@ -234,12 +209,13 @@ const SinglePost = ({ post }) => {
 							{post?.comments && post?.comments.length}
 						</p>
 					</div>
-
 					<BsBookmarkCheck
-						onClick={handleBookmark}
+						onClick={handleRemoveBookmark}
 						size={26}
-						className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
+						className="text-primary-color hover:scale-110 duration-300 hover:text-red hover:cursor-pointer tooltip"
+						data-tip="Remove from Bookmark"
 					/>
+				
 				</div>
 			</div>
 
@@ -260,4 +236,4 @@ const SinglePost = ({ post }) => {
 	);
 };
 
-export default SinglePost;
+export default BookmarkCard;

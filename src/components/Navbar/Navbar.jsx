@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-// Do not touch my Navbar. declared by the author - Zarif
 
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../../../public/swarm.png";
@@ -18,23 +17,12 @@ import NavItems from "./NavItems";
 import useAuth from "@/hooks/useAuth";
 import FeedbackForm from "./FeedbackForm";
 import useFetchData from "@/hooks/useFetchData";
-import useSWR from "swr";
-import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThemeButton";
-import SearchSuggest from "./SearchSuggest";
+import { useRouter } from "next/navigation";
+import Container from "./Container";
 
 const Navbar = () => {
   const { user } = useAuth();
-  // console.log(user?.email);
   const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
-
-  // const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  // const { data, error, isLoading } = useSWR(
-  //   `
-	// 	/api/loggedInUser?userEmail=${user?.email}`,
-  //   fetcher,
-  //   { refreshInterval: 1000 }
-  // );
-  // console.log(loggedInUser);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -67,28 +55,52 @@ const Navbar = () => {
     setSearchResults(filteredResults);
   }, [searchQuery]);
 
-  const handleSearch = () => {
-    if (searchQuery.trim() === "") {
-      setSearchResults([]);
+ 
+  const router = useRouter();
+  const [searchText, setSearchText] = useState("");
+  const [results, setResults] = useState([]);
+  const noSpaceText = searchText.replace(/\s+/g, "");
+  // console.log(noSpaceText);
+  const fetchData = (value) => {
+    fetch("/api/users")
+      .then((res) => res.json())
+      .then((data) => {
+        //  console.log(data);
+        const results = data.filter((user) => {
+          return (
+            value &&
+            user &&
+            user.name &&
+            user.name.toLowerCase().includes(value)
+          );
+        });
+        // console.log(results);
+        setResults(results);
+      });
+  };
+
+  const handleChange = (value) => {
+    setSearchText(value);
+    fetchData(value);
+  };
+
+  const handleSearch = (text) => {
+    if (searchText === "") {
+      router.push("/");
       return;
     }
-    const filteredUsers = users.filter((user) =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    setSearchResults(filteredUsers);
+    router.push(`/search?userSearch=${text}`);
   };
-
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      // Enter key was pressed, trigger the search button click event
-      handleSearch();
+      handleSearch(searchText);
     }
   };
+ 
 
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
-      {/* <Container> */}
+      <Container>
       <div className="my-container fixed  lg:glass bg-white z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start group flex items-center">
@@ -115,7 +127,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      {/* </Container> */}
+      
       <ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
         <div className="fixed  bg-slate-200 bottom-0 bg-white  dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
           <NavItems />
@@ -124,6 +136,7 @@ const Navbar = () => {
       </ul>
 
       <div
+      
         className="fixed py-4 top-0 w-full left-0 z-50 dark:bg-black bg-white pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
         ref={navbarRef}
       >
@@ -170,6 +183,8 @@ const Navbar = () => {
           <div className="flex py-2">
             <input
               onKeyPress={handleKeyPress}
+              value={searchText}
+              onChange={(e) => handleChange(e.target.value)}
               type="text"
               placeholder="Search..."
               className=" pl-3 w-full rounded-2xl py-1 shadow-sm shadow-slate-300 m border focus:border-transparent focus:outline-none"
@@ -179,6 +194,7 @@ const Navbar = () => {
       </div>
       <FeedbackForm />
       <ToastContainer />
+      </Container>
     </div>
   );
 };
