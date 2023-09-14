@@ -12,10 +12,10 @@ const SearchSuggest = ({ results }) => {
       })} */}
 
 <div className=" overflow-scroll overflow-x-hidden">
-        {results.map((result) => (
+        {results.slice(0, 6).map((result) => (
          <ul  key={result._id} className=""> <li className="hover:bg-white list-none bg-light-gray  lg:w-72  flex flex-col gap-y-2  p-1">
          <div className="flex  justify-between">
-        <Link href={"/profile"}>
+        <Link href={`/userProfile/${result?._id}`}>
         <div className="flex flex-row-reverse">
          <p className="pl-2 dark:text-black"> {result.name}</p>
          <Image src={result.profile_picture} height={10} width={10}  className="w-6 h-6 rounded-full" alt="profile picture" />

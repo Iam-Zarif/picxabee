@@ -2,8 +2,8 @@
 import useSWR from 'swr';
 import useAuth from '@/hooks/useAuth';
 import React from 'react';
-import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 import PostCardLoader from '@/components/loader/PostCardLoader';
+import BookmarkCard from '@/components/bookmarkPage/BookmarkCard';
 import Navbar from '@/components/Navbar/Navbar';
 
 const Bookmark = () => {
@@ -27,17 +27,16 @@ const Bookmark = () => {
 	return (
 		<>
 		<Navbar/>
-		<div className="lg:w-1/2 mx-auto mt-8">
-			<div className="w-fit mx-auto">
+		<div className="lg:w-1/2 mx-auto mt-28">
+			<div className="w-fit mx-auto mb-10">
 				<p className="text-primary-color font-bold text-4xl text-center  border-b-2 px-3">
 					Bookmarked by {user?.displayName}
 				</p>
-				{/* <hr className="w-fit text-primary-color h-1" /> */}
 			</div>
 			<div>
-				{Array.isArray(posts) && posts.length < 0 ? (
+				{Array.isArray(posts) && posts.length > 0 ? (
 					posts.map((post) => (
-						<SinglePost key={post._id} post={post}></SinglePost>
+						<BookmarkCard key={post._id} post={post} />
 					))
 				) : (
 					<div

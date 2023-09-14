@@ -44,25 +44,32 @@ const SingleComment = ({ comment, id }) => {
 
 	return (
 		<div className="flex py-2 last:pb-4 justify-between">
-			<div className="flex  gap-2 last:pb-4 items-center">
+			<div className="flex gap-2 last:pb-2">
 				<Image
 					src={comment?.author?.profile_picture}
 					width={40}
 					height={40}
 					alt="Picture of the author"
-					className="rounded-full h-10 w-10 object-cover border p-1"
+					className="rounded-full h-10 w-10 object-cover border p-1 mr-2"
 				/>
-				<p className="text-sm font-bold break-keep">{comment?.author?.name}</p>
-				<h1 className="text-normal break-all text-black-bg-secondary dark:text-white">
-					{comment?.comment}
-				</h1>
+				<p className="pt-2">
+					<span className="text-base font-bold break-keep mr-2">
+						{comment?.author?.name}
+					</span>
+					<span className="text-sm  text-black-bg-secondary dark:text-white">
+						{comment?.comment}
+					</span>
+				</p>
 			</div>
 
 			<button
 				disabled={DeleteActive}
 				onClick={() => handleDeleteComment(postId, commentId)}
 			>
-				<RiDeleteBin2Line className={`text-gray hover:text-red ml-3`} size={18} />
+				<RiDeleteBin2Line
+					className={`text-gray hover:text-red ml-3`}
+					size={18}
+				/>
 			</button>
 		</div>
 	);
