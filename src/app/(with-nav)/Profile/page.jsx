@@ -18,26 +18,27 @@ import React, { useContext } from 'react';
 // import AuthContext from "@/context/AuthContext";
 import useAuth from "@/hooks/useAuth";
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
+import Navbar from "@/components/Navbar/Navbar";
 
 const ProfilePage = () => {
 
     const { user } = useAuth();
-    
+
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const {
-			data: ownPosts,
-			error,
-			isLoading,
-		} = useSWR(
-			`/api/profile?userEmail=${user?.email}`,
-			fetcher
-		);
+        data: ownPosts,
+        error,
+        isLoading,
+    } = useSWR(
+        `/api/profile?userEmail=${user?.email}`,
+        fetcher
+    );
 
     // const ownPosts = data && data?.filter(post => post?.author?.email === user?.email)
     console.log(ownPosts);
     return (
         <>
-
+            <Navbar />
             <div className='profile-container my-container '>
                 <Image src={cover} alt='Profile Cover' className=' cover-img mx-auto rounded-[14px] mb-4 w-[1550px] ' />
                 <div className="profile-details rounded-[4px] flex justify-between">
@@ -111,8 +112,8 @@ const ProfilePage = () => {
                         <div className='col-span-7 mr-12 mt-12'>
                             {/* <PostCards /> */}
                             {
-                               ownPosts && ownPosts.map(post => <SinglePost key={post._id} post={post}></SinglePost> )
-                               
+                                ownPosts && ownPosts.map(post => <SinglePost key={post._id} post={post}></SinglePost>)
+
                             }
                         </div>
                     </div>

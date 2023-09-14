@@ -22,6 +22,7 @@
 /* ... your existing styles ... */
 
 /* Position Navbar at the bottom on small screens */
+
 @media (max-width: 767px) {
   .myNav {
     position: fixed;
@@ -29,6 +30,11 @@
     width: 100%;
     /* Adjust the z-index as needed */
   }
+  /* .barChart{
+    height: 100px !important;
+    width: 200px !important;
+  display: block;
+  } */
 
   .lg\:navbar {
     justify-content: space-between;
@@ -177,4 +183,12 @@ background-color:#2E4F6B;
   background-color: #eaedf1 !important;
   border-radius: 8px;
  padding: 6px 0px;
+}
+.loaderContainer {
+  background: rgb(238,243,245);
+background: linear-gradient(90deg, rgba(238,243,245,0.23853291316526615) 18%, rgba(7,130,241,0.47) 83%);
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Minimum height to cover the entire viewport */
 }

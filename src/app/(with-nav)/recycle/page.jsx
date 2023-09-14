@@ -1,5 +1,6 @@
 "use client"
 
+import Navbar from "@/components/Navbar/Navbar";
 import RecycleSinglePost from "@/components/recyclePage/RecycleSinglePost";
 import useAuth from "@/hooks/useAuth";
 import useFetchData from "@/hooks/useFetchData";
@@ -11,6 +12,8 @@ const RecyclePage = () => {
     const { data: posts } = useFetchData(`api/recycle?email=${user?.email}`)
 
     return (
+        <>
+        <Navbar/>
         <div className='my-container'>
 
             <h3 className='text-2xl font-semibold rounded-md mb-5'>Recycle Post</h3> <hr className='my-5' />
@@ -23,7 +26,7 @@ const RecyclePage = () => {
                 }
 
             </div>
-        </div>
+        </div></>
     );
 };
 
