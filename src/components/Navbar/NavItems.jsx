@@ -18,6 +18,7 @@ import "react-modern-drawer/dist/index.css";
 import Link from "next/link";
 import ThemeButton from "./ThemeButton";
 import { TbLayoutDashboard } from "react-icons/tb";
+import { BiDonateBlood } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
 import useAuth from "@/hooks/useAuth";
@@ -237,6 +238,21 @@ const NavItems = () => {
                         </>
                       )}
                     </div>
+                    {/* Hridoy Haque */}
+                    <div className="lg:hidden block"><div className={pathname === '/donate' ? 'sideActive' : ''}>
+                            <Link href="/donate">
+                              <p className=" flex items-center group  hover:ml-2 transition-all">
+                                <BiDonateBlood
+                                  size={28}
+                                  className="inline mr-2"
+                                />
+                                Donate
+                                <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                              </p>
+                            </Link>
+                          </div></div>
+                    {/* Hridoy Haque */}
+                    
 
                     <p
                       onClick={handleLogOut}
