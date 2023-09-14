@@ -13,8 +13,9 @@ const DashboardThemeButton = () => {
           border 
           ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}
           rounded-full
-          py-2 px-4
-          h-11
+          lg:py-2 lg:px-4
+          lg:h-11
+          h-8 px-2
           hover:bg-opacity-80
           transition-all
         `}
