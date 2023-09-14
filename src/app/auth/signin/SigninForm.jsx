@@ -12,9 +12,9 @@ const SigninForm = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
+        setLoading(true)
 
         const { email, password } = data
-        setLoading(true)
 
         try {
 
@@ -32,6 +32,7 @@ const SigninForm = () => {
         } catch (err) {
             console.log('Signin Failed', err);
         }
+        setLoading(false)
     }
 
     return (
