@@ -3,9 +3,11 @@
 import React from 'react';
 import DonationCard from './DonationCard';
 import useSWR from 'swr';
+import { useRouter } from 'next/navigation';
+import useFetchData from '@/hooks/useFetchData';
 
-const DonationCards = () => {  
-	const router = useRouter();
+const DonationCards = () => {
+  const router = useRouter();
   // const{ data } =useFetchData(`/api/donation`)
   // console.log(data)
 
@@ -40,7 +42,7 @@ const DonationCards = () => {
       <button
         className="btn
                     rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
-					onClick={()=> router.push("/AllDonations")}
+        onClick={() => router.push("/AllDonations")}
       >
         See more
       </button>

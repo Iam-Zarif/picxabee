@@ -24,8 +24,6 @@ const Suggestions = () => {
     refreshInterval: 1000,
   });
 
-  console.log('27', data);
-
   const filteredUsers = data && data?.filter(obj => obj.email !== user?.email);
   const SuggestedUsers = filteredUsers && filteredUsers?.slice(0, 6);
 
