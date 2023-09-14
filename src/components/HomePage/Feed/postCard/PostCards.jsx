@@ -25,7 +25,7 @@ const PostCards = () => {
 	return (
 		<>
 		{/* w -full */}
-			<div className="pb-28 pt-12 mx-auto w-full">
+			<div className="pb-28 pt-3 mx-auto w-full">
 				{posts &&
 					posts
 						?.reverse()
