@@ -1,48 +1,41 @@
-//hridoy vaiya/////
+"use client"
 
 import React from 'react';
 import PendingDonationCard from './PendingDonationCard';
+import useSWR from 'swr';
 
-const pendingDonationPage = () => {
-    const pendingDonations = [
-        {
-          title: 'Donation 1',
-          imageUrl: 'https://i.ibb.co/NZY39DY/donations1.png', 
-        },
-        {
-          title: 'Donation 2',
-          imageUrl: 'https://i.ibb.co/bdR7z6Q/donations2.png',
-        },
-        {
-          title: 'Donation 3',
-          imageUrl: 'https://i.ibb.co/HPCZ68K/donations5.png',
-        },
-        {
-          title: 'Donation 4',
-          imageUrl: 'https://i.ibb.co/s5dgjpL/conationss4.png',
-        },
-        {
-          title: 'Donation 5',
-          imageUrl: 'https://i.ibb.co/jZvy2tb/donations6.png',
-        },
-        {
-          title: 'Donation 6',
-          imageUrl: 'https://i.ibb.co/Ptw34Gy/dontss6.png',
-        },
-      ];
+const PendingDonationPage = () => {
 
-    return (
-        <div className="flex flex-wrap">
-        {pendingDonations.map((donation, index) => (
-          <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
-            <PendingDonationCard
-              title={donation.title}
-              imageUrl={donation.imageUrl}
-            />
-          </div>
-        ))}
-      </div>
-    );
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const { data: donationPosts, error, isLoading } = useSWR('/api/donation', fetcher, {
+    refreshInterval: 1000,
+  });
+
+  // Checking if there's an error or if the data is still loading
+  if (error) return <div>Failed to load</div>;
+  if (isLoading) return <div>Loading...</div>;
+
+  // Filter the donation posts based on criteria
+  // const pendingDonationPosts = donationPosts.filter((post) => post?.privacy === 'Donation');
+
+  console.log(donationPosts)
+
+  return (
+    <div className="flex flex-wrap">
+      {donationPosts.map((donationPost, index) => (
+        <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2 mt-5">
+          <PendingDonationCard
+            donationPost={donationPost}
+            title={donationPost?.content}
+            imageUrl={donationPost?.image}
+            userProfileImage={donationPost?.author?.profile_picture}
+            username={donationPost?.author?.name}
+
+          />
+        </div>
+      ))}
+    </div>
+  );
 };
 
-export default pendingDonationPage;
+export default PendingDonationPage;
