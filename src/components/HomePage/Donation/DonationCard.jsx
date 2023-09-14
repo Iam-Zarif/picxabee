@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { checkout } from '@/hooks/checkout';
 import Image from 'next/image';

@@ -24,7 +24,7 @@ export default function Home() {
 			{/* </div> */}
 
 			<div className="hidden lg:block">
-				{/* <DonationCards /> */}
+				<DonationCards />
 			</div>
 			<div className="col-span-2">
 				<Feed />
