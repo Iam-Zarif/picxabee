@@ -29,12 +29,12 @@ const ChatChats = () => {
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u })
 
-    if (window.innerWidth <= 768) {
-      // Screen width less than or equal to 768px (adjust as needed)
-      setDrawerOn(false);
-    } else {
-      setDrawerOn(true);
-    }
+    // if (window.innerWidth <= 768) {
+    //   // Screen width less than or equal to 768px (adjust as needed)
+    //   setDrawerOn(false);
+    // } else {
+    //   setDrawerOn(true);
+    // }
   }
 
   return (

@@ -16,7 +16,7 @@ const NavFeedback = () => {
     <>
      
           <p
-            onClick={() => window.my_modal_1.showModal()}
+            // onClick={() => window.my_modal_1.showModal()}
             className=" flex items-center group  hover:ml-2 transition-all"
           >
             <AiOutlineQuestionCircle size={28} className="inline mr-2" />
