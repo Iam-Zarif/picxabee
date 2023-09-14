@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 
 const Messages = () => {
   const { drawerOn, setDrawerOn } = useContext(MessageContext);
-//   const [rightSideClassName, setRightSideClassName] = useState("rightside");
+  //   const [rightSideClassName, setRightSideClassName] = useState("rightside");
   const [showRightSide, setShowRightSide] = useState(true);
 
 
@@ -15,34 +15,33 @@ const Messages = () => {
 
   let rightSideClassName;
 
-  if(drawerOn && window.innerWidth <= 768){
-  	rightSideClassName = "hidden"
-  }else{
-  	rightSideClassName = "rightside"
+  if (drawerOn && window.innerWidth <= 768) {
+    rightSideClassName = "hidden"
+  } else {
+    rightSideClassName = "rightside"
   }
 
   //  with useEffect .............................................................................................
-//   useEffect(() => {
-//     if (window.innerWidth <= 768) {
-//       setRightSideClassName("hidden");
-//     } else {
-//       setRightSideClassName("rightside");
-//     }
-//   }, [window.innerWidth]);
+  useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setRightSideClassName("hidden");
+    } else {
+      setRightSideClassName("rightside");
+    }
+  }, [window.innerWidth]);
 
   return (
-    // <div className="chatui">
-    //   <div className="message-container">
-    //     <Sidebar />
-    //     {
-    //       <div className={rightSideClassName}>
-    //         <MessagesSideSectionRightNavbar />
-    //         <Chat />
-    //       </div>
-    //     }
-    //   </div>
-    // </div>
-    <></>
+    <div className="chatui">
+      <div className="message-container">
+        <Sidebar />
+        {
+          <div className={rightSideClassName}>
+            <MessagesSideSectionRightNavbar />
+            <Chat />
+          </div>
+        }
+      </div>
+    </div>
   );
 };
 
