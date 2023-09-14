@@ -7,14 +7,9 @@ import TotalPostChart from './TotalPostChart';
 import TotalFeedback from './TotalFeedback';
 
 const DashboardPageComponent = () => {
-<<<<<<< HEAD
   return (
-    <>
-      {/*<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 m-10 text-center my-container"> */}
-      <div className="flex items-center   justify-between  mx-6 py-10 gap-x-5">
-        <TotalUser />
-=======
-	return (
+    
+	
 		<>
 			<div className="flex items-center md:items-center md:flex-row flex-col justify-between md:space-y-0 space-y-8 mx-6 py-10 gap-x-5 cards-container">
 				<div className="card-box">
@@ -23,15 +18,13 @@ const DashboardPageComponent = () => {
 				<div className="card-box">
 					<TotalPost />
 				</div>
->>>>>>> c019c163f828b72f845cad7fb10bd6035223d2d5
 
 				<div className="card-box">
 					<TotalFeedback />
 				</div>
 			</div>
 
-<<<<<<< HEAD
-        </div>
+        
         {/* <TotalUser /> */}
 
         {/* <div className="bg-red bg-opacity-10 h-[150px] rounded-md flex items-center justify-center">
@@ -51,9 +44,7 @@ const DashboardPageComponent = () => {
                 </div>
             </div>*/}
 			{/* <div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
-=======
 			<div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
->>>>>>> c019c163f828b72f845cad7fb10bd6035223d2d5
 				<div className="basis-full xl:basis-1/2">
 					<TotalUserChart />
 				</div>
