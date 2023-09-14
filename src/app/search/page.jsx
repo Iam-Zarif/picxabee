@@ -29,10 +29,12 @@ const SearchPage =  ({ searchParams }) => {
       {filteredResults?.length === 0 ? (
         "No User Found"
       ) : (
-        <div className="flex lg:flex-row flex-col-reverse lg:items-start  lg:gap-40 justify-between items-center  content-center">
-         <div className=''> 
+        <div className="flex lg:flex-row flex-col-reverse lg:items-start  lg:gap-20 md:px-10 items-center  content-center">
+         <div className=' mx-auto'> 
          <p className='lg:hidden text-center mt-10'>Donate for The poors</p>
+         <div className='lg:w-[400px]'>
          <DonationCards/></div>
+         </div>
           <div className='flex flex-col gap-2 lg:px-0 px-8'><p className="mb-2 text-3xl font-semibold">People</p>
           
          
