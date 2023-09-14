@@ -18,6 +18,7 @@ import useAuth from "@/hooks/useAuth";
 import FeedbackForm from "./FeedbackForm";
 import useFetchData from "@/hooks/useFetchData";
 import { useRouter } from "next/navigation";
+import Container from "./Container";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -99,7 +100,7 @@ const Navbar = () => {
 
   return (
     <div className=" shadow-md shadow-slate-200 mt-3 lg:mt-0 z-50">
-      {/* <Container> */}
+      <Container>
       <div className="my-container fixed  lg:glass bg-white z-50 mr-auto left-0 shadow-md shadow-slate-300 w-full lg:navbar myNav  lg:pb-0  items-center ">
         <div className="flex lg:flex lg:gap-64 items-center content-center z-50 w-[100px] mx-auto">
           <div className="navbar-start group flex items-center">
@@ -126,7 +127,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      {/* </Container> */}
+      
       <ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
         <div className="fixed  bg-slate-200 bottom-0 bg-white  dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
           <NavItems />
@@ -193,6 +194,7 @@ const Navbar = () => {
       </div>
       <FeedbackForm />
       <ToastContainer />
+      </Container>
     </div>
   );
 };
