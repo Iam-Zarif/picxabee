@@ -29,7 +29,7 @@ const DonationCards = () => {
   ];
   return (
     <div className="flex flex-col items-center justify-between">
-      <div className="p-4">
+      <div className="">
         {donations.map((donation, index) => (
           <DonationCard
             key={index}
