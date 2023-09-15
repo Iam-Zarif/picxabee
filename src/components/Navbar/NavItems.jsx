@@ -86,15 +86,9 @@ const NavItems = () => {
               </Link>
             </div>
           </li>
+{/* Rezon msg */}
 
           <li>
-            {/* <li>
-            <a className="hover:bg-transparent hover:scale-125 transform transition-transform ">
-              <HiOutlineUserGroup className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
-            </a>
-          </li>
-
-          <li> */}
             <a
               data-tip="Message"
               className="hover:bg-transparent tooltip-bottom tooltip hover:scale-125 transform transition-transform"
@@ -105,6 +99,7 @@ const NavItems = () => {
               />
             </a>
           </li>
+          {/* Rezon msg */}
           {/* <li className="hidden lg:relative lg:block">
             <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform ">
               <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">

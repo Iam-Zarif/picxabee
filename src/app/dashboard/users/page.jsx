@@ -65,7 +65,7 @@ const UserPage = () => {
 								<th className="w-3/12">User</th>
 								<th className="w-3/12 ">email</th>
 								<th>Joined</th>
-								<th>Status</th>
+								{/* <th>Status</th> */}
 								<th>Role</th>
 								<th>Edit</th>
 							</tr>

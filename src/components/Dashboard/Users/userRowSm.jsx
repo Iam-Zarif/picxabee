@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 const UserRowSm = ({ user, index }) => {
 	const router = useRouter();
 
-	let [isOpen, setIsOpen] = useState(true);
+	let [isOpen, setIsOpen] = useState(false);
 
 	function closeModal() {
 		setIsOpen(false);
@@ -61,8 +61,13 @@ const UserRowSm = ({ user, index }) => {
 			<tr className="text-sm text-left ">
 				<th>{index + 1}</th>
 				<td className="text-sm w-6/12">{user.name}</td>
-				<td className="text-sm btn w-6/12" onClick={openModal}>
-					details
+				<td className="text-sm w-6/12">
+					<button
+						onClick={openModal}
+						className="px-5 py-3 bg-primary-color rounded-md"
+					>
+						details
+					</button>
 					<Transition appear show={false} as={Fragment}>
 						<Dialog
 							as="div"

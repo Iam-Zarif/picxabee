@@ -15,13 +15,13 @@ module.exports = {
 			red: '#F20519',
 			blue: '#304269',
 			gray: '#9ca3af',
-// msg - #35393B
-// msg - 2nd = #3D4244
+			// msg - #35393B
+			// msg - 2nd = #3D4244
 			'gray-400': '#94a3b8',
 			'light-gray': '#f5f5f5',
 			'black-bg-primary': '#5A5A5A',
 			'black-bg-secondary': '#333333 ',
-			'teal-900': '#134e4a',
+			'teal-900': '#042f2e',
 
 			'teal-700': '#0f766e',
 

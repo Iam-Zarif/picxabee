@@ -166,15 +166,17 @@
 
 .active {
   border: 1px solid #feffff;
-  background-color: #eaedf1 !important;
+  background-color: #eaf0f1 !important;
 
   border-radius: 10px;
 }
+
 .sideActive {
-  border: 1px solid #feffff;
+  border: 1px solid #eaf3f3;
   background-color: #eaedf1 !important;
   border-radius: 8px;
   padding: 6px 0px;
+  
 }
 .loaderContainer {
   
