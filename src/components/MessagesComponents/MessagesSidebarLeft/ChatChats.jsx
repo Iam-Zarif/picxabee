@@ -7,11 +7,13 @@ import { useContext, useEffect, useState } from "react";
 import { MessageContext } from './../../../provider/MessageProvider';
 
 const ChatChats = () => {
-  const { drawerOn, setDrawerOn } = useContext(MessageContext);
+  const { setDrawerOn } = useContext(MessageContext);
   const { user: currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
 
   const [chats, setChats] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser?.uid), (doc) => {
@@ -20,22 +22,40 @@ const ChatChats = () => {
 
       return () => {
         unsub();
-      }
+      };
     };
 
     currentUser?.uid && getChats();
   }, [currentUser?.uid]);
 
-  const handleSelect = (u) => {
-    dispatch({ type: "CHANGE_USER", payload: u })
+  useEffect(() => {
+    // Function to update windowWidth state
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
-    // if (window.innerWidth <= 768) {
-    //   // Screen width less than or equal to 768px (adjust as needed)
-    //   setDrawerOn(false);
-    // } else {
-    //   setDrawerOn(true);
-    // }
-  }
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Initial setup on component mount
+    handleResize();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleSelect = (u) => {
+    dispatch({ type: "CHANGE_USER", payload: u });
+
+    if (windowWidth <= 768) {
+      // Screen width less than or equal to 768px (adjust as needed)
+      setDrawerOn(false);
+    } else {
+      setDrawerOn(true);
+    }
+  };
 
   return (
     <div>
