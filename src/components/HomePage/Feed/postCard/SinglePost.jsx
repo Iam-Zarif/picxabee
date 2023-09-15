@@ -154,7 +154,7 @@ const SinglePost = ({ post }) => {
 					<div>
 						<div className="flex gap-2">
 							<p className="font-bold capitalize">{post?.author?.name}</p>
-							<div className="text-gray mb-[2px]">
+							<div className="text-gray mt-1">
 								{post?.privacy === 'public' ? (
 									<MdOutlinePublic />
 								) : post?.privacy === 'private' ? (

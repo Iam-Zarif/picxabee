@@ -49,18 +49,18 @@ const UserRow = ({ user, index }) => {
 	return (
 		<>
 			<tr className="text-base text-left">
-				<th> {index + 1}</th>
+				<th>{index + 1}</th>
 				<td>{user.name}</td>
 				<td>{user?.email}</td>
 				<td>{formattedDateTime}</td>
-				<td>Active</td>
+				{/* <td>Active</td> */}
 				<td className="capitalize">{user?.role}</td>
 				<td>
 					<details className="dropdown">
 						<summary className="cursor-pointer capitalize">
 							{user?.role}
 						</summary>
-						<ul className="p-2 shadow menu dropdown-content z-[1] bg-gray-400 bg-opacity-80 rounded-md cursor-pointer">
+						<ul className="p-2 shadow menu dropdown-content z-[1] bg-gray-400 rounded-md cursor-pointer">
 							<li onClick={() => handlerUserStatusAdmin(user)}>Admin</li>
 							<li onClick={() => handlerUserStatusUser(user)}>User</li>
 						</ul>
