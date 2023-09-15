@@ -54,10 +54,10 @@ const FeedbackPage = () => {
 													className="rounded-full h-12 w-12 object-cover border p-1 mr-3"
 												/>
 												<div>
-													<p className="font-semibold capitalize">
+													<p className="font-semibold text-lg capitalize">
 														{feedback?.author?.name}
 													</p>
-													<p className="font-light text-sm">
+													<p className="font-light text-base">
 														{formatDate(feedback?.createdAt)}
 													</p>
 												</div>
