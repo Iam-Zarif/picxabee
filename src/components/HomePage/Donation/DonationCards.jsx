@@ -23,7 +23,7 @@ const DonationCards = () => {
   console.log(displayDonation)
   return (
 
-    <div className="p-4">
+    <div className="">
       {
 
         displayDonation.map((donation, index) => (
