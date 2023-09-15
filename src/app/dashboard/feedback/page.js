@@ -68,7 +68,7 @@ const FeedbackPage = () => {
 												} h-5 w-5 text-teal-500`}
 											/>
 										</Disclosure.Button>
-										<Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 bg-teal-200 rounded-md">
+										<Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 bg-teal-200 bg-opacity-25 rounded-md border-gray">
 											<h1 className="px-5 py-3">{feedback?.feedback}</h1>{' '}
 										</Disclosure.Panel>
 									</>
