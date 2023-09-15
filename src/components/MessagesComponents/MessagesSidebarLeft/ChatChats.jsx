@@ -4,15 +4,13 @@ import { ChatContext } from "@/context/ChatContext";
 import { db } from "@/firebase/firebase.config";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { MessageContext } from './../../../provider/MessageProvider';
 
 const ChatChats = () => {
-  const { setDrawerOn } = useContext(MessageContext);
+
   const { user: currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
 
   const [chats, setChats] = useState([]);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const getChats = () => {
@@ -28,33 +26,9 @@ const ChatChats = () => {
     currentUser?.uid && getChats();
   }, [currentUser?.uid]);
 
-  useEffect(() => {
-    // Function to update windowWidth state
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Initial setup on component mount
-    handleResize();
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
-
-    if (windowWidth <= 768) {
-      // Screen width less than or equal to 768px (adjust as needed)
-      setDrawerOn(false);
-    } else {
-      setDrawerOn(true);
-    }
   };
 
   return (
