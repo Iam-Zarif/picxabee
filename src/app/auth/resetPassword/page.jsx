@@ -31,10 +31,10 @@ const ResetPassword = () => {
 
     return (
         <>
-        <div className='lg:fixed lg:top-5 lg:left-5'>
-        <Link href={"/"} className=''><BsArrowLeftCircle className='text-primary-color hover:scale-110' size={30}/></Link>
+        <div className='fixed top-5 left-5'>
+        <Link href={"/"} className=''><BsArrowLeftCircle className=' text-primary-color hover:scale-110' size={30}/></Link>
         </div>
-        <div className='flex lg:gap-28 justify-center items-center h-[100vh]'>
+        <div className='flex lg:flex-row flex-col gap-8  lg:gap-28 justify-center items-center h-[100vh]'>
             <div>
                 <Image src={photo} height={500} width={500} alt='image' className=' w-full'></Image>
             </div>
