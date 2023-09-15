@@ -1,4 +1,5 @@
 "use client";
+import useSWR from 'swr';
 import Form from "react-bootstrap/Form";
 import UserRow from "@/components/Dashboard/Users/UserRow";
 import UserRowSm from '@/components/Dashboard/Users/UserRowSm';
@@ -12,7 +13,18 @@ import { TbUserSearch } from "react-icons/tb";
 const UserPage = () => {
   // Sorry to interrupt - from Zarifff
   const [Search, setSearch] = useState("");
-  const { data: users, error, isLoading } = useFetchData("/api/users");
+//   const { data: users, error, isLoading } = useFetchData("/api/users");
+
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const {
+	data: users,
+	error,
+	isLoading,
+} = useSWR('/api/users', fetcher, {
+	refreshInterval: 1000,
+});
+
   if (error) return <div>failed to load</div>;
   if (isLoading)
     return (
@@ -23,7 +35,7 @@ const UserPage = () => {
 
   return (
 		<div className="w-10/12 ml-auto lg:mr-24 pt-8">
-			<div className="flex justify-between">
+			<div className="lg:flex lg:justify-between ">
 				<div className="relative">
 					<form>
 						<InputGroup className="mb-3">
@@ -37,7 +49,7 @@ const UserPage = () => {
 					<TbUserSearch size={26} className="absolute top-2 left-2" />
 				</div>
 				<div>
-					<h1 className="border rounded-md px-4 py-2 text-xl">
+					<h1 className="w-48 border rounded-md px-4 py-2 text-xl">
 						<span className="font-bold">Total Users </span> : {users?.length}
 					</h1>
 				</div>

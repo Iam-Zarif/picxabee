@@ -43,7 +43,7 @@ const SingleComment = ({ comment, id }) => {
 	};
 
 	return (
-		<div className="grid grid-cols-12 lg:mb-3">
+		<div className="grid grid-cols-12 lg:mb-3 mb-2">
 			<div className="col-span-1">
 				<Image
 					src={comment?.author?.profile_picture}
@@ -54,8 +54,8 @@ const SingleComment = ({ comment, id }) => {
 				/>
 			</div>
 			<div className="col-span-10">
-				<p className="pt-2">
-					<span className="text-base font-bold break-keep">
+				<p className="pt-2 px-3 lg:px-0">
+					<span className="text-base font-bold break-keep mr-2">
 						{comment?.author?.name}
 					</span>
 					<span className="text-sm  text-black-bg-secondary dark:text-white">
@@ -69,7 +69,7 @@ const SingleComment = ({ comment, id }) => {
 					onClick={() => handleDeleteComment(postId, commentId)}
 				>
 					<RiDeleteBin2Line
-						className={`text-gray hover:text-red ml-3 lg:mb-2`}
+						className={`text-gray hover:text-red ml-3  mt-4`}
 						size={18}
 					/>
 				</button>
