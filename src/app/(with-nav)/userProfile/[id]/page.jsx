@@ -23,19 +23,27 @@ const UserProfile = ({ params }) => {
 
             <div className='my-container mt-20'>
                 <div className='border rounded-md h-[40vh]'>
-                    cover
+                    <Image
+                        src='https://i.ibb.co/Cv2mg8T.jpg'
+                        // fill={true}
+                        width={1450}
+                        height={384}
+                        objectFit='cover'
+                        className='h-[384px]'
+                        alt='cover photo'
+                    />
                 </div>
 
                 <div >
                     <div className='flex '>
-                        <div className=" mx-10 overflow-hidden -mt-16">
+                        <div className=" mx-10 overflow-hidden -mt-16 bg-white">
                             <Image
                                 src={data?.singleUser?.profile_picture}
                                 width={160}
                                 height={160}
                                 objectFit='cover'
                                 alt='Profile Pic'
-                                className='h-40 w-40 rounded-md'
+                                className='h-40 w-40 rounded-md bg-cover'
                             />
                         </div>
 
