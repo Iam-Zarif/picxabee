@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -8,7 +8,6 @@ import toast from 'react-hot-toast';
 
 const PendingDonationCard = ({ title, imageUrl, userProfileImage, username, donationPost }) => {
   const router = useRouter()
-  const [status, setStatus] = useState('pending');
 
   const handleApproveClick = (donationPost) => {
     fetch(`/api/donation?id=${donationPost._id}`, {
