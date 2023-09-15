@@ -5,7 +5,7 @@ import { Fragment, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-const UserRowSm = ({ user, index }) => {
+const UserRowForSm = ({ user, index }) => {
 	const router = useRouter();
 
 	let [isOpen, setIsOpen] = useState(true);
@@ -143,4 +143,4 @@ const UserRowSm = ({ user, index }) => {
 	);
 };
 
-export default UserRowSm;
+export default UserRowForSm;
