@@ -4,24 +4,105 @@ import useSWR from 'swr';
 import React, { useState } from "react";
 import photo from "../../../public/fatin.PNG"
 import Image from 'next/image';
-import { AiOutlinePlusCircle } from "react-icons/ai";
-import { HiOutlineChatAlt2 } from "react-icons/hi";
 import Suggestions from "@/components/HomePage/RighSidebar/Suggestions";
 import Navbar from '@/components/Navbar/Navbar';
 import DonationCards from '@/components/HomePage/Donation/DonationCards';
 import Link from 'next/link';
 const SearchPage =  ({ searchParams }) => {
+
   const[seeMore, setSeeMore] = useState(false)
   const SeeMoreData =()=>{
     setSeeMore(true);
   }
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data } = useSWR('/api/users', fetcher)
+  const { data } = useSWR("/api/users", fetcher, {
+    refreshInterval: 1000,
+  });
   const searchText = searchParams.userSearch;
 
   const filteredResults = data?.filter((user) =>
     user.name.replace(/\s+/g, "").toLowerCase().includes(searchText)
   );
+  // 
+  // const [loadingData, setLoading] = useState(false);
+  // const handleFollow = async (id, followingEmail, followingName) => {
+
+  //   const newFollowers = {
+  //     email: user?.email,
+  //     name: user?.displayName,
+  //   };
+
+  //   const newFollowing = {
+  //     name: followingName,
+  //     email: followingEmail
+  //   }
+
+  //   setLoading(true);
+
+  //   try {
+  //     const res = await fetch(`/api/users/${id}`, {
+  //       cache: "no-cache",
+  //       method: "PUT",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({ newFollowers }),
+  //     });
+
+  //     if (!res.ok) {
+  //       throw new Error("Failed to Fetch");
+  //     }
+
+  //     router.refresh();
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+
+  //   try {
+  //     const res = await fetch(`/api/users/${user?.email}`, {
+  //       cache: "no-cache",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({ newFollowing }),
+  //     })
+  //     if (res.ok) {
+
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+
+  // };
+
+  // const handleUnFollow = async (id) => {
+  //   setLoading(true);
+
+  //   try {
+  //     const res = await fetch(`/api/users/${id}`, {
+  //       cache: "no-cache",
+  //       method: "DELETE",
+  //       body: JSON.stringify({ email: user?.email }),
+  //     });
+
+  //     if (!res.ok) {
+  //       throw new Error("Failed to Fetch");
+  //     }
+
+  //     router.refresh();
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  // const loadingButton = (
+  //   <div>
+  //     <ClipLoader color="#36d7b7" size={15} />
+  //   </div>
+  // );
   return (
     <>
     <Navbar/>
@@ -46,12 +127,39 @@ const SearchPage =  ({ searchParams }) => {
              <h2 className='lg:font-bold font-normal text-sm lg:text-base'> {user?.name}</h2>
               </div></Link>
              
-             <div className="flex gap-5">
+             {/* <div className="flex gap-5">
               <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='text-sm lg:block hidden'>Follow</span> <AiOutlinePlusCircle size={22}/></button>
-              <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='lg:block hidden'>Message</span> <HiOutlineChatAlt2 size={22}/></button>
-             </div>
+             </div> */}
+              {/* <button className=" flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='lg:block hidden'>Message</span> <HiOutlineChatAlt2 size={22}/></button> */}
             
+            {/*  */}
+            {/* {loadingData ? (
+                <>{loadingButton}</>
+              ) : (
+                <>
+                 
+                  {filteredResults?.followers?.some((f) => {
+                    return f?.email === user?.email;
+                  }) ? (
+                    <button
+                      className="text-sm font-bold text-red"
+                      onClick={() => handleUnFollow(user?._id)}
+                    >
+                      UnFollow
+                    </button>
+                  ) : (
+                    <button
+                      className="text-sm font-bold text-blue dark:text-teal-200"
+                      onClick={() => handleFollow(user?._id, filteredResults?.email, filteredResults?.name)}
+                    >
+                      Follow
+                    </button>
+                  )}
+                </>
+              )} */}
             </div>
+            
+            
           ))}
 {!seeMore && (
           <div className='mx-auto mt-5 items-center gap-5 flex'>
@@ -61,7 +169,7 @@ const SearchPage =  ({ searchParams }) => {
            className="  text-primary-color dark:hover:text-primary-color hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl">See more</button>
 <hr className='w-20'/>
           </div>
-)}
+)} 
           </div>
         </div>
       )}
