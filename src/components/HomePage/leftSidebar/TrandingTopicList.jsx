@@ -20,7 +20,7 @@ const TrandingTopicList = () => {
                 {
                     isLoading ? <HashtagLoader /> : data && data.map((hastag, idx) => <h5
                         key={idx}
-                        className='bg-primary-color rounded-md px-2 bg-opacity-10 cursor-pointer'
+                        className='bg-primary-color rounded-md px-2 bg-opacity-10 cursor-pointer text-sm'
                     >
                         <Link href={`/trendstopic/${hastag?.hashtag?.slice(1)}`}>{hastag?.hashtag}</Link>
                     </h5>)
