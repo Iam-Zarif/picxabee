@@ -27,6 +27,7 @@ import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThe
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { MdOutlineLockReset } from "react-icons/md";
+import NavFeedback from "./NavFeedback";
 
 
 
@@ -234,7 +235,7 @@ const NavItems = () => {
                         </>
                       ) : (
                         <>
-                          <p>I am User</p>
+                         <NavFeedback/>
                         </>
                       )}
                     </div>
