@@ -8,12 +8,11 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-   GoogleAuthProvider, 
+  GoogleAuthProvider,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 
-const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   
   const [user, setUser] = useState(null);
@@ -38,7 +37,8 @@ const AuthProvider = ({ children }) => {
       photoURL: photo
     })
   }
-
+  
+  const googleProvider = new GoogleAuthProvider();
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);

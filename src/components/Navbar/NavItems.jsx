@@ -239,8 +239,8 @@ const NavItems = () => {
                       )}
                     </div>
                     {/* Hridoy Haque */}
-                    <div className="lg:hidden block"><div className={pathname === '/donate' ? 'sideActive' : ''}>
-                            <Link href="/donate">
+                    <div className="lg:hidden block"><div className={pathname === '/allApprovedDonation' ? 'sideActive' : ''}>
+                            <Link href="/allApprovedDonation">
                               <p className=" flex items-center group  hover:ml-2 transition-all">
                                 <BiDonateBlood
                                   size={28}
