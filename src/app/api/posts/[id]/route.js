@@ -2,7 +2,7 @@ import Post from '@/models/Post';
 import connect from '@/utils/db';
 import { NextResponse } from 'next/server';
 
-export const GET = async (request,{ params} ) => {
+export const GET = async (request, { params }) => {
 	try {
 		const { id } = params;
 
