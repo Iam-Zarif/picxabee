@@ -24,8 +24,6 @@ const Suggestions = () => {
     refreshInterval: 1000,
   });
 
-  console.log('27', data);
-
   const filteredUsers = data && data?.filter(obj => obj.email !== user?.email);
   const SuggestedUsers = filteredUsers && filteredUsers?.slice(0, 6);
 
@@ -105,7 +103,7 @@ const Suggestions = () => {
   };
 
   return (
-    <div className="mt-4 ml-10">
+    <div className="mt-4">
       <div className="flex justify-between text-sm mb-5">
         <h3 className="text-sm font-bold text-gray-400">Suggestions for you</h3>
         <button className="text-gray-700 font-bold">See All</button>
@@ -118,13 +116,14 @@ const Suggestions = () => {
               <Image
                 height={40}
                 width={40}
-                className="w-10 h-10 rounded-full border p-[2px]"
+                className="w-10 h-10 rounded-md border p-[2px]"
                 src={users?.profile_picture || ""}
                 alt=""
               />
-              <h2 className="font-semibold text-sm">
-                <Link href={`/userProfile/${users?._id}`}>{users?.name}</Link>
-              </h2>
+              <div className="flex flex-col">
+                <Link href={`/userProfile/${users?._id}`} className="font-semibold">{users?.name}</Link>
+                <Link href={``} className="text-xs">Followers: {users?.followers.length}</Link>
+              </div>
             </div>
             <div className=" ml-4 ">
               {loadingData ? (
