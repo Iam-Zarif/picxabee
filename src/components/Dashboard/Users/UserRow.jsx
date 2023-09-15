@@ -53,7 +53,7 @@ const UserRow = ({ user, index }) => {
 				<td>{user.name}</td>
 				<td>{user?.email}</td>
 				<td>{formattedDateTime}</td>
-				<td>Active</td>
+				{/* <td>Active</td> */}
 				<td className="capitalize">{user?.role}</td>
 				<td>
 					<details className="dropdown">
