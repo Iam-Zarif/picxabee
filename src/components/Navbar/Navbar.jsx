@@ -153,7 +153,9 @@ const Navbar = () => {
         </div>
 
         {/* Search and Send Icons */}
-        <div
+      {
+        user && <>
+          <div
           data-aos="fade-left"
           className="indicator relative flex gap-6 lg:gap-8"
         >
@@ -175,7 +177,8 @@ const Navbar = () => {
               5
             </span>
           </span>
-        </div>
+        </div></>
+      }
 
         {/* Search Input */}
         {searchActive && (
