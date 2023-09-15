@@ -1,9 +1,6 @@
 "use client"
 import cover from "/public/catCover.PNG";
 
-// import fb from "/public/fb.PNG";
-// import linkDin from "/public/linkDin.PNG";
-// import github from "/public/github.PNG";
 import useSWR from 'swr';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { FaGraduationCap, FaSchool, FaReact } from 'react-icons/fa';
@@ -13,8 +10,7 @@ import Image from 'next/image';
 import { TbSend } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { LuEdit } from 'react-icons/lu';
-import PostCards from '@/components/HomePage/Feed/postCard/PostCards';
-import React, { useContext } from 'react';
+import React from 'react';
 // import AuthContext from "@/context/AuthContext";
 import useAuth from "@/hooks/useAuth";
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
@@ -58,9 +54,7 @@ const ProfilePage = () => {
                                     <BsFacebook size={24} />
                                     <AiFillLinkedin size={24} />
                                     <BsGithub size={24} />
-                                    {/* <Image src={fb} alt='facebook' />
-                                    <Image src={linkDin} alt='facebook' />
-                                    <Image src={github} alt='facebook' /> */}
+                                 
                                 </div>
                             </div>
                         </div>
