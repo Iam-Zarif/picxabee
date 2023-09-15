@@ -57,7 +57,7 @@ const UserPage = () => {
 			<div className="w-full mb-60 ml-auto mr-24 glass mt-16 rounded-md z-0">
 				<div>
 					{/* className="overflow-x-auto" */}
-					<table className="table hidden lg:block">
+					<table className="table hidden lg:block mx-8 lg:mx-0">
 						{/* head */}
 						<thead className="rounded-md text-base font-semibold bg-gray-400 bg-opacity-30 text-gray-950 text-left">
 							<tr>
