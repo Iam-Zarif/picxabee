@@ -33,7 +33,7 @@ const {
       </div>
     );
 
-  return (
+	return (
 		<div className="w-10/12 ml-auto lg:mr-24 pt-8">
 			<div className="lg:flex lg:justify-between ">
 				<div className="relative">
@@ -109,7 +109,11 @@ const {
 											: user.name.toLowerCase().includes(Search);
 									})
 									.map((user, index) => (
-										<UserRowSm key={user._id} user={user} index={index}></UserRowSm>
+										<UserRowSm
+											key={user._id}
+											user={user}
+											index={index}
+										></UserRowSm>
 									))}
 						</tbody>
 					</table>

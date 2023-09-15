@@ -1,13 +1,14 @@
-"use client";
+"use client"
 
-import useFetchData from "@/hooks/useFetchData";
-import { useRouter } from "next/navigation";
-import DonationCard from "./DonationCard";
+import React from 'react';
+import DonationCard from './DonationCard';
+import useSWR from 'swr';
+import { useRouter } from 'next/navigation';
+import useFetchData from '@/hooks/useFetchData';
 
-const DonationCards = () => {  
-	const router = useRouter();
-  // const{ data } =useFetchData(`/api/donation`)
-  // console.log(data)
+const DonationCards = () => {
+  const router = useRouter();
+ 
 
   const { data } = useFetchData("/api/donation?currentStatus=approved");
   console.log(data);
@@ -27,7 +28,7 @@ const DonationCards = () => {
   ];
   return (
     <div className="flex flex-col items-center justify-between">
-      <div className="p-4">
+      <div className="">
         {donations.map((donation, index) => (
           <DonationCard
             key={index}
@@ -40,7 +41,7 @@ const DonationCards = () => {
       <button
         className="btn
                     rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
-					onClick={()=> router.push("/AllDonations")}
+        onClick={() => router.push("/AllDonations")}
       >
         See more
       </button>
