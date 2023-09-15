@@ -60,7 +60,7 @@ const UserRow = ({ user, index }) => {
 						<summary className="cursor-pointer capitalize">
 							{user?.role}
 						</summary>
-						<ul className="p-2 shadow menu dropdown-content z-[1] bg-gray-400 bg-opacity-80 rounded-md cursor-pointer">
+						<ul className="p-2 shadow menu dropdown-content z-[1] bg-gray-400 rounded-md cursor-pointer">
 							<li onClick={() => handlerUserStatusAdmin(user)}>Admin</li>
 							<li onClick={() => handlerUserStatusUser(user)}>User</li>
 						</ul>
