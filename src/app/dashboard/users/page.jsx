@@ -1,37 +1,36 @@
-"use client";
+'use client';
 import useSWR from 'swr';
-import Form from "react-bootstrap/Form";
-import UserRow from "@/components/Dashboard/Users/UserRow";
-import UserRowSm from '@/components/Dashboard/Users/UserRowSm';
-import Loading from "../activities/loading";
-import useFetchData from "@/hooks/useFetchData";
-import { useState } from "react";
-import { InputGroup } from "react-bootstrap";
-import { FaSearchengin } from "react-icons/fa";
-import { TbUserSearch } from "react-icons/tb";
+import Form from 'react-bootstrap/Form';
+import UserRow from '@/components/Dashboard/Users/UserRow';
+import Loading from '../activities/loading';
+import useFetchData from '@/hooks/useFetchData';
+import { useState } from 'react';
+import { InputGroup } from 'react-bootstrap';
+import { FaSearchengin } from 'react-icons/fa';
+import { TbUserSearch } from 'react-icons/tb';
+import UserRowForSm from '@/components/Dashboard/Users/UserRowForSm';
 
 const UserPage = () => {
-  // Sorry to interrupt - from Zarifff
-  const [Search, setSearch] = useState("");
-//   const { data: users, error, isLoading } = useFetchData("/api/users");
+	// Sorry to interrupt - from Zarifff
+	const [Search, setSearch] = useState('');
+	//   const { data: users, error, isLoading } = useFetchData("/api/users");
 
+	const fetcher = (...args) => fetch(...args).then((res) => res.json());
+	const {
+		data: users,
+		error,
+		isLoading,
+	} = useSWR('/api/users', fetcher, {
+		refreshInterval: 1000,
+	});
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-const {
-	data: users,
-	error,
-	isLoading,
-} = useSWR('/api/users', fetcher, {
-	refreshInterval: 1000,
-});
-
-  if (error) return <div>failed to load</div>;
-  if (isLoading)
-    return (
-      <div className="mx-auto  flex justify-center items-center pt-40">
-        <Loading />
-      </div>
-    );
+	if (error) return <div>failed to load</div>;
+	if (isLoading)
+		return (
+			<div className="mx-auto  flex justify-center items-center pt-40">
+				<Loading />
+			</div>
+		);
 
 	return (
 		<div className="w-10/12 ml-auto lg:mr-24 pt-8">
@@ -109,11 +108,11 @@ const {
 											: user.name.toLowerCase().includes(Search);
 									})
 									.map((user, index) => (
-										<UserRowSm
+										<UserRowForSm
 											key={user._id}
 											user={user}
 											index={index}
-										></UserRowSm>
+										></UserRowForSm>
 									))}
 						</tbody>
 					</table>

@@ -55,7 +55,7 @@ const SingleComment = ({ comment, id }) => {
 			</div>
 			<div className="col-span-10">
 				<p className="pt-2 px-3 lg:px-0">
-					<span className="text-base font-bold break-keep mr-2">
+					<span className="text-base font-bold break-keep pr-2">
 						{comment?.author?.name}
 					</span>
 					<span className="text-sm  text-black-bg-secondary dark:text-white">
