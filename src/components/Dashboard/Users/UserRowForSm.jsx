@@ -1,14 +1,15 @@
-import React from 'react';
+"use client"
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import UserRowSmModal from './userRowSmModal';
 
 const UserRowForSm = ({ user, index }) => {
 	const router = useRouter();
 
-	let [isOpen, setIsOpen] = useState(true);
+	let [isOpen, setIsOpen] = useState(false);
 
 	function closeModal() {
 		setIsOpen(false);
@@ -141,6 +142,8 @@ const UserRowForSm = ({ user, index }) => {
 					</Transition>
 				</td>
 			</tr>
+
+	
 		</>
 	);
 };
