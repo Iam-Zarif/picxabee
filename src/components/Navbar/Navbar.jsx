@@ -127,19 +127,17 @@ const Navbar = () => {
         </div>
       </div>
       
-      <ul className=" py-5 z-20 px-1 lg:hidden flex justify-center items-end absolute bottom-8 w-full ">
-        <div className="fixed  bg-slate-200 bottom-0 bg-white  dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
+      <ul className="bg-primary-color ">
+        <div className="fixed  bg-slate-200 bottom-0  bg-white dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
           <NavItems />
         </div>
-        {/* <AiOutlineUser className='text-xl lg:text-2xl' /> */}
       </ul>
 
       <div
       
-        className="fixed py-4 top-0 w-full left-0 z-50 dark:bg-black bg-white pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
+        className="fixed py-4 top-0 w-full left-0 z-50 dark:bg-black bg-primary-color pb-4 shadow-md shadow-slate-300 flex justify-between px-10 items-center lg:hidden"
         ref={navbarRef}
       >
-        {/* Logo */}
         <div>
           <Image src={logo} alt="logo" className="w-12" />
         </div>
@@ -152,7 +150,6 @@ const Navbar = () => {
           <span className="">bee</span>
         </div>
 
-        {/* Search and Send Icons */}
       {
         user && <>
           <div
@@ -180,7 +177,6 @@ const Navbar = () => {
         </div></>
       }
 
-        {/* Search Input */}
         {searchActive && (
           <div className="flex py-2">
             <input
@@ -196,7 +192,6 @@ const Navbar = () => {
       </div>
       <FeedbackForm />
       <ToastContainer />
-      {/* </Container> */}
     </div>
   );
 };
