@@ -163,6 +163,8 @@
               
               
             ))}
+            
+            {/* See more btn */}
   {!seeMore && (
             <div className='mx-auto mt-5 items-center gap-5 flex'>
   <hr className='w-20' />

@@ -12,7 +12,7 @@ const HashTagTopicPage = ({ params }) => {
     return (
 <>
 <Navbar/>
-        <div className="my-container grid lg:grid-cols-4 lg:gap-3">
+        <div className="my-container grid lg:grid-cols-4 lg:gap-3 mt-28">
 
             <span>
             </span>
