@@ -22,7 +22,8 @@ const Messages = () => {
   
   }, [data.chatId]);
   return (
-    <div className='p-3 bg-neutral-200 h-full text-gray-800 overflow-y-scroll scrollbar-thin scrollbar-thumb-black'>
+    // dark: - Zarif
+    <div className='p-3 dark:bg-black-bg-secondary bg-neutral-200 h-full text-gray-800 overflow-y-scroll scrollbar-thin scrollbar-thumb-black'>
        
             {messages.map(m=>(
               <Message key={m.id} message={m} />
