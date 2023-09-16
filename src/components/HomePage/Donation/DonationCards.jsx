@@ -24,8 +24,8 @@ const DonationCards = () => {
   console.log(displayDonation)
   return (
 
-    <>
-      <div className="p-4">
+   
+      <div>
         {
 
           displayDonation.map((donation, index) => (
@@ -42,12 +42,7 @@ const DonationCards = () => {
 
         }
       </div>
-      <Link href="/allApprovedDonation">   <button
-        className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
-      >
-        See more
-      </button></Link>
-    </>
+ 
 
   );
 };
