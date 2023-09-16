@@ -5,8 +5,9 @@ import ChatSearch from "./ChatSearch";
 
 const Sidebar = () => {
   return (
+    // dark : Zarif
     <>
-      <div className="massage-sidebar">
+      <div className="massage-sidebar dark:bg-black-bg-primary">
         <ChatNavbar />
         <ChatSearch />
         <ChatChats />

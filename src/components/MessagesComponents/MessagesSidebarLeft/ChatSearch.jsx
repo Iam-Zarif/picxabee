@@ -73,13 +73,14 @@ const ChatSearch = () => {
     // 2. Create user[0] chats
   };
   return (
+    // used dark: for dark theme - Zarif
     <div>
-      <div className="search">
+      <div className="search dark:bg-black-bg-primary">
         <div className="searchForm p-3 border-b-2 border-t-2">
           <input
             placeholder="Search Here.."
             type="text"
-            className="bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black"
+            className="dark:text-white bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black"
             onKeyDown={handleKey}
             onChange={(e) => setUsername(e.target.value)}
             value={username}
