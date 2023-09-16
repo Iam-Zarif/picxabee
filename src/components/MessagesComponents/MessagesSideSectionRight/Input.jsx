@@ -89,8 +89,9 @@ const formattedDate = moment(dateToFormat).format('MMMM D, YYYY [at] h:mm A [UTC
   }
 
   return (
-    <div className="sticky z-50">
-        <div className='h-[70px] bg-white p-3 text-gray-800 flex items-center justify-between  border-t-2 border-gray-400'>
+    // dark: - zarif
+    <div className="sticky z-50 ">
+        <div className='h-[70px] dark:bg-black-bg-secondary bg-white  p-3 text-gray-800 flex items-center justify-between  border-t-2 border-gray-400'>
             <input type="text" value={text} placeholder="Type Message.."  className="bg-transparent border-2 border-gray-400  text-black outline-none font-medium md:text-sm text-xs p-2 flex-1 mr-5 rounded-lg placeholder-gray-500 placeholder-opacity-70" onChange={e=> setText(e.target.value)}/>
             <div className="flex items-center gap-4 pr-3">
                 <input type="file" style={{display: "none"}} id="file" onChange={e=> setImg(e.target.files[0])}/>
