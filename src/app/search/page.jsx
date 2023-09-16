@@ -8,8 +8,10 @@ import Suggestions from "@/components/HomePage/RighSidebar/Suggestions";
 import Navbar from '@/components/Navbar/Navbar';
 import DonationCards from '@/components/HomePage/Donation/DonationCards';
 import Link from 'next/link';
+import { ClipLoader } from 'react-spinners';
+import useAuth from '@/hooks/useAuth';
 const SearchPage =  ({ searchParams }) => {
-
+const {user} = useAuth();
   const[seeMore, setSeeMore] = useState(false)
   const SeeMoreData =()=>{
     setSeeMore(true);
@@ -24,85 +26,85 @@ const SearchPage =  ({ searchParams }) => {
     user.name.replace(/\s+/g, "").toLowerCase().includes(searchText)
   );
   // 
-  // const [loadingData, setLoading] = useState(false);
-  // const handleFollow = async (id, followingEmail, followingName) => {
+  const [loadingData, setLoading] = useState(false);
+  const handleFollow = async (id, followingEmail, followingName) => {
 
-  //   const newFollowers = {
-  //     email: user?.email,
-  //     name: user?.displayName,
-  //   };
+    const newFollowers = {
+      email: user?.email,
+      name: user?.displayName,
+    };
 
-  //   const newFollowing = {
-  //     name: followingName,
-  //     email: followingEmail
-  //   }
+    const newFollowing = {
+      name: followingName,
+      email: followingEmail
+    }
 
-  //   setLoading(true);
+    setLoading(true);
 
-  //   try {
-  //     const res = await fetch(`/api/users/${id}`, {
-  //       cache: "no-cache",
-  //       method: "PUT",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({ newFollowers }),
-  //     });
+    try {
+      const res = await fetch(`/api/users/${id}`, {
+        cache: "no-cache",
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ newFollowers }),
+      });
 
-  //     if (!res.ok) {
-  //       throw new Error("Failed to Fetch");
-  //     }
+      if (!res.ok) {
+        throw new Error("Failed to Fetch");
+      }
 
-  //     router.refresh();
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
+      router.refresh();
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
 
-  //   try {
-  //     const res = await fetch(`/api/users/${user?.email}`, {
-  //       cache: "no-cache",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({ newFollowing }),
-  //     })
-  //     if (res.ok) {
+    try {
+      const res = await fetch(`/api/users/${user?.email}`, {
+        cache: "no-cache",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ newFollowing }),
+      })
+      if (res.ok) {
 
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
 
-  // };
+  };
 
-  // const handleUnFollow = async (id) => {
-  //   setLoading(true);
+  const handleUnFollow = async (id) => {
+    setLoading(true);
 
-  //   try {
-  //     const res = await fetch(`/api/users/${id}`, {
-  //       cache: "no-cache",
-  //       method: "DELETE",
-  //       body: JSON.stringify({ email: user?.email }),
-  //     });
+    try {
+      const res = await fetch(`/api/users/${id}`, {
+        cache: "no-cache",
+        method: "DELETE",
+        body: JSON.stringify({ email: user?.email }),
+      });
 
-  //     if (!res.ok) {
-  //       throw new Error("Failed to Fetch");
-  //     }
+      if (!res.ok) {
+        throw new Error("Failed to Fetch");
+      }
 
-  //     router.refresh();
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  // const loadingButton = (
-  //   <div>
-  //     <ClipLoader color="#36d7b7" size={15} />
-  //   </div>
-  // );
+      router.refresh();
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const loadingButton = (
+    <div>
+      <ClipLoader color="#36d7b7" size={15} />
+    </div>
+  );
   return (
     <>
     <Navbar/>
@@ -133,7 +135,7 @@ const SearchPage =  ({ searchParams }) => {
               {/* <button className=" flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='lg:block hidden'>Message</span> <HiOutlineChatAlt2 size={22}/></button> */}
             
             {/*  */}
-            {/* {loadingData ? (
+            {loadingData ? (
                 <>{loadingButton}</>
               ) : (
                 <>
@@ -156,7 +158,7 @@ const SearchPage =  ({ searchParams }) => {
                     </button>
                   )}
                 </>
-              )} */}
+              )}
             </div>
             
             
