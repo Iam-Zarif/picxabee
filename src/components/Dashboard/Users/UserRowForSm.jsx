@@ -61,9 +61,11 @@ const UserRowForSm = ({ user, index }) => {
 			<tr className="text-sm text-left ">
 				<th>{index + 1}</th>
 				<td className="text-sm w-6/12">{user.name}</td>
-				<td className="text-sm w-6/12" onClick={openModal}>
-					<button className="btn btn-xs">details</button>
-				
+				<td className="text-sm w-6/12">
+					<button className="btn btn-xs" onClick={openModal}>
+						details
+					</button>
+
 					<Transition appear show={isOpen} as={Fragment}>
 						<Dialog
 							as="div"
