@@ -15,7 +15,8 @@ const Message = ({ message }) => {
   }, [message])
 
   return (
-    <div ref={ref}>
+    // dark: - Zarif
+    <div ref={ref} className="">
       {message.senderId === user?.uid ? (
         <div className="chat chat-end">
           <div className="chat-image avatar">
@@ -24,7 +25,7 @@ const Message = ({ message }) => {
             </div>
           </div>
           <div className="chat-header space-x-1">
-            <span className="text-black">{user?.displayName}</span>
+            <span className="text-black dark:text-white">{user?.displayName}</span>
             {/* <time className="text-xs opacity-90">12:45</time> */}
           </div>
           <div className="flex flex-col items-end justify-center rounded-md mt-2">
@@ -42,7 +43,7 @@ const Message = ({ message }) => {
             </div>
           </div>
           <div className="chat-header space-x-1">
-            <span className="text-black">{data?.user?.displayName}</span>
+            <span className="text-black ">{data?.user?.displayName}</span>
             {/* <time className="text-xs ml-1 opacity-90">12:46</time> */}
           </div>
           <div className="flex flex-col items-start justify-center rounded-md mt-2">
