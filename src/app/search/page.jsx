@@ -111,6 +111,10 @@ const SearchPage = ({ searchParams }) => {
 	return (
 		<>
 			<Navbar />
+
+			<Link href="https://www.facebook.com/profile.php?id=100008273834246">
+				facebook
+			</Link>
 			<div className="flex lg:flex-row flex-col pb-20  items-center lg:items-start content-center justify-center gap-10 mt-28">
 				{filteredResults?.length === 0 ? (
 					'No User Found'
@@ -177,11 +181,7 @@ const SearchPage = ({ searchParams }) => {
 													<button
 														className="text-sm font-bold text-blue dark:text-teal-200"
 														onClick={() =>
-															handleFollow(
-																u?._id,
-																u?.email,
-																u?.name
-															)
+															handleFollow(u?._id, u?.email, u?.name)
 														}
 													>
 														Follow
