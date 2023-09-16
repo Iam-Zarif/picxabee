@@ -11,6 +11,7 @@ const ChatNavbar = () => {
   
   const handleLogOut = () => {
     logout();
+    router.push("/")
   };
   const handleSignIn = () => {
     router.push("/auth/signin");
@@ -20,7 +21,8 @@ const ChatNavbar = () => {
   }
 
   return (
-    <div className="navbar flex items-center bg-primary-color h-12 p-3 justify-between text-teal-50">
+    // I used dark: for dark theme - Zarif
+    <div className="navbar flex items-center dark:bg-black-bg-primary  bg-primary-color h-12 p-3 justify-between text-teal-50">
      <button onClick={handleGoToHomePage} class="rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
     <FaArrowLeft />
 </button>
@@ -28,7 +30,7 @@ const ChatNavbar = () => {
         {user && (
           <div className="flex items-center gap-x-3">
             <img className="h-6 w-6 rounded-full object-cover text-black" src={user?.photoURL} alt="" />
-            <span className="md:text-base text-gray-800 text-sm text-black truncate">{user?.displayName}</span>
+            <span className="dark:text-white md:text-base text-gray-800 text-sm text-black truncate">{user?.displayName}</span>
           </div>
         )}
         <div>
