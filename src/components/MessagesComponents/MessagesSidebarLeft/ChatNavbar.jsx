@@ -11,6 +11,7 @@ const ChatNavbar = () => {
   
   const handleLogOut = () => {
     logout();
+    router.push("/")
   };
   const handleSignIn = () => {
     router.push("/auth/signin");
