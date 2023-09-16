@@ -8,10 +8,13 @@ import Suggestions from '@/components/HomePage/RighSidebar/Suggestions';
 import Navbar from '@/components/Navbar/Navbar';
 import DonationCards from '@/components/HomePage/Donation/DonationCards';
 import Link from 'next/link';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
+import { HiOutlineChatAlt2 } from 'react-icons/hi';
+import { ClipLoader } from 'react-spinners';
 import useAuth from '@/hooks/useAuth';
 const SearchPage = ({ searchParams }) => {
-	const { user } = useAuth();
 	const [seeMore, setSeeMore] = useState(false);
+	const { user } = useAuth();
 	const SeeMoreData = () => {
 		setSeeMore(true);
 	};
@@ -20,10 +23,12 @@ const SearchPage = ({ searchParams }) => {
 		refreshInterval: 1000,
 	});
 	const searchText = searchParams.userSearch;
-
+	// console.log(data?.length);
 	const filteredResults = data?.filter((user) =>
 		user.name.replace(/\s+/g, '').toLowerCase().includes(searchText)
 	);
+
+	// console.log(filteredResults);
 
 	const [loadingData, setLoading] = useState(false);
 	const handleFollow = async (id, followingEmail, followingName) => {
@@ -75,8 +80,35 @@ const SearchPage = ({ searchParams }) => {
 		}
 	};
 
-  
-  return (
+	const handleUnFollow = async (id) => {
+		setLoading(true);
+
+		try {
+			const res = await fetch(`/api/users/${id}`, {
+				cache: 'no-cache',
+				method: 'DELETE',
+				body: JSON.stringify({ email: user?.email }),
+			});
+
+			if (!res.ok) {
+				throw new Error('Failed to Fetch');
+			}
+
+			router.refresh();
+		} catch (error) {
+			console.log(error.message);
+		} finally {
+			setLoading(false);
+		}
+	};
+	const loadingButton = (
+		<div>
+			<ClipLoader color="#36d7b7" size={15} />
+		</div>
+	);
+
+
+	return (
 		<>
 			<Navbar />
 			<div className="flex lg:flex-row flex-col pb-20  items-center lg:items-start content-center justify-center gap-10 mt-28">
@@ -97,22 +129,22 @@ const SearchPage = ({ searchParams }) => {
 
 							{filteredResults
 								?.slice(0, seeMore ? filteredResults.length : 8)
-								.map((user, index) => (
+								.map((u, index) => (
 									<div
 										key={index}
 										className="border lg:gap-10 hover:bg-light-gray dark:hover:bg-black border-gray justify-between rounded-xl flex items-center px-5 py-2 "
 									>
-										<Link href={`/userProfile/${user?._id}`}>
+										<Link href={`/userProfile/${u?._id}`}>
 											<div className="flex gap-2 items-center">
 												<Image
-													src={user?.profile_picture}
+													src={u?.profile_picture}
 													height={50}
 													width={50}
 													className="rounded-full lg:w-10 lg:h-10 h-8 w-8"
 												></Image>
 												<h2 className="lg:font-bold font-normal text-sm lg:text-base">
 													{' '}
-													{user?.name}
+													{u?.name}
 												</h2>
 											</div>
 										</Link>
@@ -120,33 +152,43 @@ const SearchPage = ({ searchParams }) => {
 										{/* <div className="flex gap-5">
               <button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='text-sm lg:block hidden'>Follow</span> <AiOutlinePlusCircle size={22}/></button>
              </div> */}
-										{/* <button className=" flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='lg:block hidden'>Message</span> <HiOutlineChatAlt2 size={22}/></button> */}
+										<Link href={'/messages'}>
+											<button className=" flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white">
+												<span className="lg:block hidden">Message</span>{' '}
+												<HiOutlineChatAlt2 size={22} />
+											</button>
+										</Link>
 
 										{/*  */}
-										{/* {loadingData ? (
-                <>{loadingButton}</>
-              ) : (
-                <>
-                 
-                  {filteredResults?.followers?.some((f) => {
-                    return f?.email === user?.email;
-                  }) ? (
-                    <button
-                      className="text-sm font-bold text-red"
-                      onClick={() => handleUnFollow(user?._id)}
-                    >
-                      UnFollow
-                    </button>
-                  ) : (
-                    <button
-                      className="text-sm font-bold text-blue dark:text-teal-200"
-                      onClick={() => handleFollow(user?._id, filteredResults?.email, filteredResults?.name)}
-                    >
-                      Follow
-                    </button>
-                  )}
-                </>
-              )} */}
+										{loadingData ? (
+											<>{loadingButton}</>
+										) : (
+											<>
+												{u?.followers?.some(
+													(follower) => follower?.email === user?.email
+												) ? (
+													<button
+														className="text-sm font-bold text-red"
+														onClick={() => handleUnFollow(u?._id)}
+													>
+														UnFollow
+													</button>
+												) : (
+													<button
+														className="text-sm font-bold text-blue dark:text-teal-200"
+														onClick={() =>
+															handleFollow(
+																u?._id,
+																u?.email,
+																u?.name
+															)
+														}
+													>
+														Follow
+													</button>
+												)}
+											</>
+										)}
 									</div>
 								))}
 							{!seeMore && (
