@@ -2,7 +2,6 @@
 'use client';
 import useSWR from 'swr';
 import React, { useState } from 'react';
-import photo from '../../../public/fatin.PNG';
 import Image from 'next/image';
 import Suggestions from '@/components/HomePage/RighSidebar/Suggestions';
 import Navbar from '@/components/Navbar/Navbar';
