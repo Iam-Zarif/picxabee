@@ -1,5 +1,4 @@
 'use client';
-
 import './CreatePost.css';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
@@ -13,7 +12,6 @@ import HomeButton from '@/components/button/HomeButton';
 const CreatePost = () => {
   const router = useRouter();
   const { user } = useAuth();
-  
   const [imageURL, setImageURL] = useState("");
   const [privacy, setPrivacy] = useState("public");
   const [loading, setLoading] = useState(false);
@@ -161,7 +159,7 @@ const CreatePost = () => {
 				<section className="relative bg-[#D2D2D2] p-4 bg-opacity-30 shadow-sm  mx-auto mt-3 rounded-md">
 					<div className="">
 						<h1 className="text-center font-semibold text-lg py-2">
-							Create a Post
+							Share your thoughts
 						</h1>
 					</div>
 					<form onSubmit={handleSubmit(onSubmit)}>
@@ -175,7 +173,7 @@ const CreatePost = () => {
 								onClick={handleClick}
 								defaultValue=""
 								className="w-full resize-none p-3 text-md rounded-md focus:outline-none focus:shadow-lg"
-								placeholder="What's Your Mind"
+								placeholder="What's in Your Mind"
 								{...register('text')}
 							></textarea>
 

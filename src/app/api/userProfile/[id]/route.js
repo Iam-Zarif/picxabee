@@ -13,3 +13,4 @@ export const GET = async (request, { params }) => {
         return new NextResponse('User Fetch Problems', { status: 500 });
     }
 };
+
