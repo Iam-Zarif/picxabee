@@ -130,14 +130,14 @@ const NavItems = () => {
                 onClick={toggleDrawer}
               ></Image>
               <></>
-
+{/*  */}
               <Drawer
                 open={isOpen}
                 onClose={toggleDrawer}
                 direction="right"
-                className="bla bla bla dark:bg-black"
+                className="bla bla bla  dark:bg-black"
               >
-                <div className="dark:bg-black-bg-primary  min-h-screen">
+                <div className="dark:bg-black-bg-primary  min-h-screen z-50">
                   <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
                     <p className=" ">
                       <AiOutlineUser className="inline" />{" "}
