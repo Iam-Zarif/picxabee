@@ -41,7 +41,8 @@ const handleDenyClick = (donationPost) => {
 }
   return (
     // dark:
-    <div className="bg-white dark:bg-black dark:bg-gray-800 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 ease-in-out">
+    // responsiveness
+    <div className="lg:w-full md:w-full xl:w-full 2xl:w-full  mx-auto bg-white dark:bg-black dark:bg-gray-800 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 ease-in-out">
       <div className="relative h-40">
         <Image
           src={imageUrl}
