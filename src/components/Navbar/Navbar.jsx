@@ -128,7 +128,7 @@ const Navbar = () => {
       </div>
       
       <ul className="bg-primary-color lg:hidden">
-        <div className="fixed  bg-slate-200 bottom-0  bg-white dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
+        <div className="fixed z-50 bg-slate-200 bottom-0  bg-white dark:bg-black py-4 px-5  w-11/12 flex gap-14 items-center justify-center content-center">
           <NavItems />
         </div>
       </ul>
