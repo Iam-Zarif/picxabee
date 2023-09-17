@@ -5,10 +5,13 @@ import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
-import Link from 'next/link'
+import Link from "next/link";
 
-const Suggestions = () => {
+const Suggestions =() => {
   const { user } = useAuth();
+  const [followings , setFollowings] = useState([]);
+
+  
 
   const router = useRouter();
   const [loadingData, setLoading] = useState(false);
@@ -24,23 +27,21 @@ const Suggestions = () => {
     refreshInterval: 1000,
   });
 
-  console.log('27', data);
+  // console.log('27', data);
 
-  const filteredUsers = data && data?.filter(obj => obj.email !== user?.email);
+  const filteredUsers = data && data?.filter((obj) => obj.email !== user?.email);
   const SuggestedUsers = filteredUsers && filteredUsers?.slice(0, 6);
 
+  // const myUserData = data?.find((u) => u.email === user?.email);
+  // console.log(myUserData);
+  // const myId = myUserData?._id;
+  // console.log(myId);
 
-  const handleFollow = async (id, followingEmail, followingName) => {
-
+  const handleFollow = async (id) => {
     const newFollowers = {
       email: user?.email,
       name: user?.displayName,
     };
-
-    const newFollowing = {
-      name: followingName,
-      email: followingEmail
-    }
 
     setLoading(true);
 
@@ -64,21 +65,6 @@ const Suggestions = () => {
     } finally {
       setLoading(false);
     }
-
-    try {
-      const res = await fetch(`/api/users/${user?.email}`, {
-        cache: "no-cache",
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ newFollowing },email),
-      });
-      if (res.ok) {
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
   };
 
   const handleUnFollow = async (id) => {
@@ -97,7 +83,7 @@ const Suggestions = () => {
 
       router.refresh();
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message, error.name);
     } finally {
       setLoading(false);
     }
@@ -125,34 +111,34 @@ const Suggestions = () => {
                 <Link href={`/userProfile/${users?._id}`}>{users?.name}</Link>
               </h2>
             </div>
-            <div className=" ml-4 ">
-              {loadingData ? (
-                <>{loadingButton}</>
-              ) : (
-                <>
-                  {" "}
-                  {users?.followers?.some((f) => {
-                    return f?.email === user?.email;
-                  }) ? (
-                    <button
-                      className="text-sm font-bold text-red"
-                      onClick={() => handleUnFollow(users?._id)}
-                    >
-                      UnFollow
-                    </button>
-                  ) : (
-                    <button
-                      className="text-sm font-bold text-blue dark:text-teal-200"
-                      onClick={() => handleFollow(users?._id, users?.email, users?.name)}
-                    >
-                      Follow
-                    </button>
-                  )}
-                </>
-              )}
-
-              {/* <h3 className="text-xs text-gray-400">{user?.role}</h3> */}
-            </div>
+            {user &&
+              <div className=" ml-4 ">
+                {loadingData ? (
+                  <>{loadingButton}</>
+                ) : (
+                  <>
+                    {" "}
+                    {users?.followers?.some((f) => {
+                      return f?.email === user?.email;
+                    }) ? (
+                      <button
+                        className="text-sm font-bold text-red"
+                        onClick={() => handleUnFollow(users?._id)}
+                      >
+                        UnFollow
+                      </button>
+                    ) : (
+                      <button
+                        className="text-sm font-bold text-blue dark:text-teal-200"
+                        onClick={() => handleFollow(users?._id, users?.email, users?.name)}
+                      >
+                        Follow
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+            }
           </div>
         ))}
     </div>
