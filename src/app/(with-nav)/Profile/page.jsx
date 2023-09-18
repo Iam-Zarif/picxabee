@@ -11,17 +11,22 @@ import Image from 'next/image';
 // import { LuEdit } from 'react-icons/lu';
 import React, { useState } from 'react';
 // import AuthContext from "@/context/AuthContext";
-import useAuth from "@/hooks/useAuth";
+// import useAuth from "@/hooks/useAuth";
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 import Navbar from "@/components/Navbar/Navbar";
 // import EditProfileModal from "@/components/OwnProfile/editProfileModal";
 import { HiMiniNoSymbol, HiMiniPencilSquare } from 'react-icons/hi2';
 import styles from './ownprofile.module.css'
 import EditProfileModal from "@/components/OwnProfile/EditProfileModal";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 const ProfilePage = () => {
 const [showModal, setShowModal] = useState(false)
-    const { user } = useAuth();
+    // const { user } = useAuth();
+    const {loggedInUser} = useCurrentUser();
+
+    // console.log(loggedInUser)
+
     const [formData, setFormData] = useState({
         username: '',
         bio: '',
@@ -41,7 +46,7 @@ const [showModal, setShowModal] = useState(false)
         error,
         isLoading,
     } = useSWR(
-        `/api/profile?userEmail=${user?.email}`,
+        `/api/profile?userEmail=${loggedInUser?.email}`,
         fetcher
     );
 
@@ -71,7 +76,7 @@ const [showModal, setShowModal] = useState(false)
                             <div className=" mx-10 overflow-hidden -mt-16 z-40">
                                 <div className={`${styles.profilePic} bg-white rounded-md`}>
                                     <Image
-                                        src={user?.photoURL}
+                                        src={loggedInUser?.profile_picture}
                                         // width={160}
                                         // height={160}
                                         // objectFit='contain'
@@ -88,7 +93,7 @@ const [showModal, setShowModal] = useState(false)
                             </div>
 
                             <div className='text-left mt-3 w-2/4 opacity-80'>
-                                <h3 className='text-2xl font-semibold'>{user?.displayName}</h3>
+                                <h3 className='text-2xl font-semibold'>{loggedInUser?.name}</h3>
                                 <h6 className='text-sm '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, error!</h6>
                             </div>
                         </div>
