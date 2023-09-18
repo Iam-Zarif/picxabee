@@ -3,6 +3,18 @@ import { checkout } from '@/hooks/checkout';
 import Image from 'next/image';
 
 const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, username }) => {
+
+    const handlePaymentSuccess = async () => {
+        try {
+            const paymentResponse = await checkout({
+                lineItems: [{ price: "price_1Nn2TMIfrNNr5g42vzeaIzwf", quantity: 1 }],
+            });
+      
+        } catch (error) {
+            console.error('Payment error:', error);
+        }
+    };
+
     return (
         <div className='mb-2 '>
             <div className="card  glass rounded-md">
@@ -15,7 +27,7 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                     className="card-image"
                 />
                 <div className="card-body">
-                    <h2 className="card-title ">{title}</h2>
+                    <h2 className="card-title">{title}</h2>
                     
                     {/* Display user profile picture and username */}
                     <div className="flex items-center mt-3">
@@ -30,24 +42,21 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                         </div>
                         <span className="text-sm font-semibold">{username}</span>
                     </div>
-                    
+
                     <div className="card-actions flex mt-3">
-                        <div className='flex'>
+                        <div>
                             <div className="card-action">
-                                <button
+                                {/* <button
                                     className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
                                 >
                                     Total Donated {totalDonated}$
-                                </button>
+                                </button> */}
                             </div>
                             <div className="card-action">
                                 <button
-                                    onClick={() => {
-                                        checkout({
-                                            lineItems: [{ price: "price_1Nn2TMIfrNNr5g42vzeaIzwf", quantity: 1 }]
-                                        });
-                                    }}
-                                    className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
+
+                                    onClick={handlePaymentSuccess}
+                                    className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black mx-auto"
                                 >
                                     Donate now
                                 </button>
