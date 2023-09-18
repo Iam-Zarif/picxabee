@@ -18,6 +18,9 @@ export const POST = async (request) => {
 	const body = await request.json();
 	const newUser = new User(body);
 
+	console.log(body);
+	console.log(newUser);
+
 	try {
 		await connect();
 		await newUser.save();
