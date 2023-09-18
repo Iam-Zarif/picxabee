@@ -9,11 +9,11 @@
 	import DonationCards from '@/components/HomePage/Donation/DonationCards';
 	import Link from 'next/link';
 	import { HiOutlineChatAlt2 } from 'react-icons/hi';
+	import { RxCross2 } from 'react-icons/rx';
 	import { ClipLoader } from 'react-spinners';
 	import useAuth from '@/hooks/useAuth';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 	const SearchPage = ({ searchParams }) => {
-		
-		const [value, onChange] = useState(new Date());
 		const [seeMore, setSeeMore] = useState(false);
 		const { user } = useAuth();
 		const SeeMoreData = () => {
@@ -118,11 +118,11 @@
 						'No User Found'
 					) : (
 						<div className="flex lg:flex-row flex-col-reverse lg:items-start  lg:gap-20 md:px-10 items-center  content-center">
-							<div className=" mx-auto">
+							<div className=" mx-auto lg:block hidden">
 								<p className="lg:hidden text-center mt-10">
 									Donate for The poors
 								</p>
-								<div className="lg:w-[400px]">
+								<div className="lg:w-[400px] ">
 									<DonationCards />
 								</div>
 							</div>
@@ -145,16 +145,14 @@
 														className="rounded-full lg:w-10 lg:h-10 h-8 w-8"
 													></Image>
 													<h2 className="lg:font-bold font-normal text-sm lg:text-base">
-														{' '}
+													
 														{u?.name}
 													</h2>
 												</div>
 											</Link>
 
-											{/* <div className="flex gap-5">
-				<button className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"><span className='text-sm lg:block hidden'>Follow</span> <AiOutlinePlusCircle size={22}/></button>
-				</div> */}
-											<Link href={'/messages'}>
+										
+											<div className='flex gap-4'><Link href={'/messages'}>
 												<button className=" flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white">
 													<span className="lg:block hidden">Message</span>{' '}
 													<HiOutlineChatAlt2 size={22} />
@@ -170,23 +168,23 @@
 														(follower) => follower?.email === user?.email
 													) ? (
 														<button
-															className="text-sm font-bold text-red"
+															className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-red  border-red hover:bg-red lg:hover:text-white"
 															onClick={() => handleUnFollow(u?._id)}
 														>
-															UnFollow
+															<span className='text-sm lg:block hidden  '>UnFollow</span><RxCross2 className=' ' size={22}/>
 														</button>
 													) : (
 														<button
-															className="text-sm font-bold text-blue dark:text-teal-200"
+															className="flex items-center border-1 gap-2 border-1 border  px-2 py-1 rounded-md text-primary-color  border-primary-color hover:bg-primary-color hover:text-white"
 															onClick={() =>
 																handleFollow(u?._id, u?.email, u?.name)
 															}
 														>
-															Follow
+															<span className='text-sm lg:block hidden'>Follow</span><AiOutlinePlusCircle size={22}/>
 														</button>
 													)}
 												</>
-											)}
+											)}</div>
 										</div>
 									))}
 								{!seeMore && (
@@ -208,7 +206,7 @@
 						</div>
 					)}
 
-					<div className="mt-2 lg:block hidden">
+					<div className="mt-2 lg:block">
 						<Suggestions />
 					</div>
 				</div>
