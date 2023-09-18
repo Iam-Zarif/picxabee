@@ -11,23 +11,6 @@
 	import { HiOutlineChatAlt2 } from 'react-icons/hi';
 	import { ClipLoader } from 'react-spinners';
 	import useAuth from '@/hooks/useAuth';
-	import Calendar from 'react-calendar';
-	const calendarStyles = {
-		border: '1px solid #e2e8f0',
-		
-		borderRadius: '8px',
-		padding: '20px',
-		boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-		backgroundColor: 'white',
-		
-	};
-	
-	// Custom CSS for the current date
-	const currentDateStyles = {
-		backgroundColor: '#36d7b7',
-		color: 'white',
-		borderRadius: '50%',
-	};
 	const SearchPage = ({ searchParams }) => {
 		
 		const [value, onChange] = useState(new Date());
@@ -129,35 +112,6 @@
 		return (
 			<>
 				<Navbar />
-				{/* Open the modal using document.getElementById('ID').showModal() method */}
-
-
-				{/* <Link href="https://www.facebook.com/profile.php?id=100008273834246">
-					facebook
-				</Link> */}
-				{/* You can open the modal using document.getElementById('ID').showModal() method */}
-	<dialog id="my_modal_3" className="modal">
-	<div className="modal-box">
-		<form method="dialog">
-		{/* if there is a button in form, it will close the modal */}
-		<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-		</form>
-		<div style={calendarStyles} className=' '>
-		<Calendar
-  onChange={onChange}
-  value={value}
-  tileClassName={({ date, view }) =>
-    view === 'month' && date.toDateString() === new Date().toDateString()
-      ? 'currentDate' // Apply the CSS class to the current date
-      : null
-  }
-/>
-		</div>
-	</div>
-	</dialog>
-				{/*  */}
-		
-
 
 				<div className="flex lg:flex-row flex-col pb-20  items-center lg:items-start content-center justify-center gap-10 mt-28">
 					{filteredResults?.length === 0 ? (
