@@ -6,17 +6,10 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
 
     const handlePaymentSuccess = async () => {
         try {
-            console.log('Button clicked');
             const paymentResponse = await checkout({
                 lineItems: [{ price: "price_1Nn2TMIfrNNr5g42vzeaIzwf", quantity: 1 }],
             });
-            console.log('success brooo');
-            // Check if payment was successful based on Stripe's response
-            if (paymentResponse) {
-                console.log('Payment successful!');
-            } else {
-                console.log('Payment successful!');
-            }
+      
         } catch (error) {
             console.error('Payment error:', error);
         }
@@ -51,19 +44,19 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                     </div>
 
                     <div className="card-actions flex mt-3">
-                        <div className='flex'>
+                        <div>
                             <div className="card-action">
-                                <button
+                                {/* <button
                                     className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
                                 >
                                     Total Donated {totalDonated}$
-                                </button>
+                                </button> */}
                             </div>
                             <div className="card-action">
                                 <button
 
                                     onClick={handlePaymentSuccess}
-                                    className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
+                                    className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black mx-auto"
                                 >
                                     Donate now
                                 </button>
