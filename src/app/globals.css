@@ -186,3 +186,9 @@ background: linear-gradient(90deg, rgba(238,243,245,0.23853291316526615) 18%, rg
   align-items: center; /* Center vertically */
   min-height: 100vh; /* Minimum height to cover the entire viewport */
 }
+/* calendar.css */
+.currentDate {
+  background-color: #36d7b7;
+  color: white;
+  border-radius: 50%;
+}
