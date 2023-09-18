@@ -25,8 +25,6 @@ const [showModal, setShowModal] = useState(false)
     // const { user } = useAuth();
     const {loggedInUser} = useCurrentUser();
 
-    // console.log(loggedInUser)
-
     const [formData, setFormData] = useState({
         username: '',
         bio: '',
