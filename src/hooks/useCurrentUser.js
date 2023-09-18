@@ -14,7 +14,7 @@ const useCurrentUser = () => {
 		isLoading,
 	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher);
 
-	// console.log(loggedInUser);
+	console.log(loggedInUser);
   
 
 	return { loggedInUser, error, isLoading };

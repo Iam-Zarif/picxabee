@@ -20,7 +20,7 @@ const DonationCards = () => {
   const approvedDonations = donationPosts && donationPosts?.filter(donationPost => donationPost.status === 'approved');
   const displayDonation = approvedDonations.slice(0, 2);
 
-  console.log(displayDonation)
+  // console.log(displayDonation)
   return (
     <>
       <div className="">

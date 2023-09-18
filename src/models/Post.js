@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const commentSchema = new Schema(
 	{
 		author: {
+			Id: String,
 			email: String,
 			name: String,
 			profile_picture: String,
@@ -17,16 +18,18 @@ const commentSchema = new Schema(
 const reactionSchema = new Schema(
 	{
 		author: {
+			Id: String,
 			email: String,
 			name: String,
 			profile_picture: String,
-		}
+		},
 	},
 	{ timestamps: true }
 );
 const postSchema = new Schema(
 	{
 		author: {
+			Id: String,
 			email: String,
 			name: String,
 			profile_picture: String,
@@ -35,7 +38,7 @@ const postSchema = new Schema(
 		image: String,
 		reactions: [reactionSchema], // Array of user IDs who liked the post
 		comments: [commentSchema],
-		privacy: String
+		privacy: String,
 	},
 	{ timestamps: true }
 );

@@ -7,11 +7,9 @@ import { NextResponse } from 'next/server';
 export const GET = async (request) => {
 	try {
 		const userEmail = request.nextUrl.searchParams.get('userEmail');
-		console.log(userEmail);
 
 		await connect();
 		const posts = await Post.find({ 'author.email': userEmail });
-		// console.log(posts);
 
 		return new NextResponse(JSON.stringify(posts), { status: 200 });
 	} catch (error) {
