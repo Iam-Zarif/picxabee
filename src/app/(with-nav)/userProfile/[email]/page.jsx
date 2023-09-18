@@ -4,9 +4,10 @@ import Navbar from '@/components/Navbar/Navbar';
 import useFetchData from '@/hooks/useFetchData';
 import Image from 'next/image';
 import React from 'react';
-import { FaGraduationCap, FaSchool } from 'react-icons/fa';
+import { FaFacebookSquare, FaGraduationCap, FaInstagramSquare, FaLinkedin, FaSchool } from 'react-icons/fa';
 import { HiMiniNoSymbol, HiMiniPencilSquare } from 'react-icons/hi2';
 import useSWR from 'swr'
+import styles from '../userprofile.module.css'
 
 const UserProfile = ({ params }) => {
 
@@ -22,36 +23,54 @@ const UserProfile = ({ params }) => {
             <Navbar />
 
             <div className='my-container mt-20'>
-                <div className='border rounded-md h-[40vh]'>
+                <div className={`${styles.imageContainer} relative `}>
                     <Image
-                        src='https://i.ibb.co/Cv2mg8T.jpg'
-                        // fill={true}
-                        width={1450}
-                        height={384}
+                        src='https://i.ibb.co/BKfFLsv/cost-bg.jpg'
+                        layout='fill'
                         objectFit='cover'
-                        className='h-[384px]'
+                        className={`rounded-md `}
                         alt='cover photo'
                     />
+
+                    <div className='absolute right-5 bottom-5'>
+                        <HiMiniPencilSquare size={30} className='text-white' />
+                    </div>
                 </div>
 
                 <div >
-                    <div className='flex'>
-                        <div className=" mx-10 overflow-hidden -mt-16 bg-white">
-                            <Image
-                                src={data?.singleUser?.profile_picture}
-                                width={160}
-                                height={160}
-                                objectFit='contain'
-                                alt='Profile Pic'
-                                className='h-40 w-40 rounded-md'
-                            />
+                    <div className='flex justify-between'>
+                        <div className='flex'>
+                            <div className=" mx-10 overflow-hidden -mt-16 z-40">
+                                <div className={`${styles.profilePic} bg-white rounded-md`}>
+                                    <Image
+                                        src={data?.singleUser?.profile_picture}
+                                        // width={160}
+                                        // height={160}
+                                        // objectFit='contain'
+                                        layout='fill'
+                                        objectFit='cover'
+                                        alt='Profile Pic'
+                                        className='h-40 w-40 rounded'
+                                    />
+
+                                    <div className='absolute bottom-1 right-1'>
+                                        <HiMiniPencilSquare size={20} className='text-white' />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='text-left mt-3 w-2/4 opacity-80'>
+                                <h3 className='text-2xl font-semibold'>{data?.singleUser?.name}</h3>
+                                <h6 className='text-sm '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, error!</h6>
+                            </div>
                         </div>
 
-                        <div className='text-left mt-3 w-1/4 opacity-80'>
-                            <h3 className='text-2xl font-semibold'>{data?.singleUser?.name}</h3>
-                            <h6 className='text-sm '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, error!</h6>
+                        <div className='flex items-center gap-3 mx-10'>
+                            {/* <fafac */}
+                            <FaFacebookSquare size={30} className='text-[#0e8cf1]' />
+                            <FaInstagramSquare size={30} className='text-red opacity-50' />
+                            <FaLinkedin size={30} className='text-[#0a66c2] ' />
                         </div>
-
                     </div>
                 </div>
 
@@ -70,8 +89,8 @@ const UserProfile = ({ params }) => {
 
                         <div>
                             <p><span className='font-semibold'>Email:</span> {data?.singleUser?.email}</p>
-                            <p><span className='font-semibold'>Following:</span> 20</p>
-                            <p><span className='font-semibold'>Followers:</span> 74</p>
+                            <p><span className='font-semibold'>Followers:</span> {data?.singleUser?.followers.length}</p>
+                            <p><span className='font-semibold'>Following:</span> {data?.singleUser?.following.length}</p>
                         </div>
 
                         <div className='mt-6'>
@@ -93,7 +112,6 @@ const UserProfile = ({ params }) => {
                                 <h1 className='text-3xl opacity-80 flex justify-center items-center'><HiMiniNoSymbol />  Post is not Avaiable   </h1>
                                 :
                                 ownPosts && ownPosts.map(post => <SinglePost key={post._id} post={post}></SinglePost>)
-
                         }
                     </div>
                 </div>
