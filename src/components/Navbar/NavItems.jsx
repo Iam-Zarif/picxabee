@@ -318,13 +318,13 @@ const NavItems = () => {
         </>
       )}
        <dialog id="my_modal_3" className="modal ">
-	<div className="modal-box bg-primary-color">
+	<div className="modal-box bg-primary-color dark:bg-black-bg-primary">
 		<form method="dialog">
 		{/* if there is a button in form, it will close the modal */}
 		<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 		</form>
-		<div style={calendarStyles} className=' '>
-		<Calendar
+		<div style={calendarStyles} className=' bg-black'>
+		<Calendar className="dark:text-black"
   onChange={onChange}
   value={value}
   tileClassName={({ date, view }) =>
