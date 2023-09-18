@@ -11,7 +11,6 @@ const SocialLogin = () => {
     const handlerGoogleSignin = () => {
         googleLogin()
             .then(() => {
-                
                 router.push("/");
 
                 fetch('/api/users', {
@@ -21,6 +20,14 @@ const SocialLogin = () => {
                         email: user?.email,
                         bio: '',
                         profile_picture: user?.photoURL,
+                        cover_photo: '',
+                        information: {
+                            school: '',
+                            college: '',
+                            university: '',
+                            location: '',
+                            gender: ''
+                        },
                         role: 'user',
                     }),
                 });
