@@ -29,6 +29,7 @@ const DonationCards = () => {
           displayDonation.map((donation, index) => (
             <DonationCard
               key={index}
+              donation={donation}
               title={donation?.content}
               imageUrl={donation?.image}
               totalDonated={donation?.amount}
@@ -46,7 +47,7 @@ const DonationCards = () => {
         See more
       </button></Link>
     </>
-    
+
 
   );
 };

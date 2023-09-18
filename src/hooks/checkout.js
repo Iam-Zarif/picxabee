@@ -8,10 +8,18 @@ let getstripe = () => {
     return stripepromise
 }
     const stripe = await getstripe()
-    await stripe.redirectToCheckout({
+
+   
+  await stripe.redirectToCheckout({
         mode: "payment",
         lineItems, 
-        successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}`,
-        cancelUrl : window.location.origin
+        successUrl: window.location.origin,
+        cancelUrl : window.location.origin,
     })
+  console.log(lineItems)
+
 }
+
+
+
+
