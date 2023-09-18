@@ -42,3 +42,4 @@ export const PATCH = async (request) => {
 		return NextResponse.json({ message: 'failed to update' }, { status: 500 });
 	}
 };
+

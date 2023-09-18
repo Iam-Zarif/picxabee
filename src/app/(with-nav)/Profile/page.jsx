@@ -1,6 +1,5 @@
 "use client"
 import cover from "/public/catCover.PNG";
-
 import useSWR from 'swr';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { FaGraduationCap, FaSchool, FaReact } from 'react-icons/fa';
@@ -10,14 +9,16 @@ import Image from 'next/image';
 import { TbSend } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { LuEdit } from 'react-icons/lu';
-import React from 'react';
+import React, { useState } from 'react';
 // import AuthContext from "@/context/AuthContext";
 import useAuth from "@/hooks/useAuth";
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 import Navbar from "@/components/Navbar/Navbar";
+import EditProfileModal from "@/components/OwnProfile/editProfileModal";
+
 
 const ProfilePage = () => {
-
+const [showModal, setShowModal] = useState(false)
     const { user } = useAuth();
 
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -54,7 +55,7 @@ const ProfilePage = () => {
                                     <BsFacebook size={24} />
                                     <AiFillLinkedin size={24} />
                                     <BsGithub size={24} />
-                                 
+
                                 </div>
                             </div>
                         </div>
@@ -63,7 +64,9 @@ const ProfilePage = () => {
 
                         <button className='btn btn-success inline-flex border-spacing-0 outline-0 pt-1 items-center ml-3 mb-2' type='button'>Contact <TbSend /></button>
                         <button className='btn btn-success inline-flex border-spacing-0 outline-0 pt-1 items-center ml-3 mb-2' type='button'>Follow <AiOutlinePlus /></button>
-                        <a className='btn btn-success inline-flex border-spacing-0 outline-0 pt-1 items-center ml-3' ><LuEdit /></a>
+                       <button 
+                       onClick={() => setShowModal(true)}
+                       className="btn btn-success inline-flex border-spacing-0 outline-0 pt-1 items-center ml-3"><LuEdit /></button>
 
                     </div>
                 </div>
@@ -113,7 +116,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
             </div>
-
+            {/* <EditProfileModal isVisible={showModal} onClose={() => setShowModal(false)}/> */}
         </>
     );
 };
