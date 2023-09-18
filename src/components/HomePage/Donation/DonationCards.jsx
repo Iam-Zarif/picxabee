@@ -22,6 +22,7 @@ const DonationCards = () => {
 
   // console.log(displayDonation)
   return (
+    // responsiveness
 <>
     <div className="">
       {

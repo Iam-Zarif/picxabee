@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, username }) => {
     return (
-        <div className='mb-2'>
-            <div className="card w-80 glass rounded-md">
+        <div className='mb-2 '>
+            <div className="card  glass rounded-md">
                 <Image
                     src={imageUrl}
                     alt="donate"
@@ -15,7 +15,7 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                     className="card-image"
                 />
                 <div className="card-body">
-                    <h2 className="card-title">{title}</h2>
+                    <h2 className="card-title ">{title}</h2>
                     
                     {/* Display user profile picture and username */}
                     <div className="flex items-center mt-3">
