@@ -22,9 +22,10 @@ const DonationCards = () => {
 
   // console.log(displayDonation)
   return (
-    <>
-      <div className="">
-        {
+    // responsiveness
+<>
+    <div className="">
+      {
 
           displayDonation.map((donation, index) => (
             <DonationCard
