@@ -14,9 +14,10 @@ import React, { useState } from 'react';
 import useAuth from "@/hooks/useAuth";
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 import Navbar from "@/components/Navbar/Navbar";
-import EditProfileModal from "@/components/OwnProfile/editProfileModal";
+// import EditProfileModal from "@/components/OwnProfile/editProfileModal";
 import { HiMiniNoSymbol, HiMiniPencilSquare } from 'react-icons/hi2';
 import styles from './ownprofile.module.css'
+import EditProfileModal from "@/components/OwnProfile/EditProfileModal";
 
 const ProfilePage = () => {
 const [showModal, setShowModal] = useState(false)
