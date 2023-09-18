@@ -1,4 +1,4 @@
-import React from 'react';
+"use client"
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 const UserRowForSm = ({ user, index }) => {
 	const router = useRouter();
 
-	let [isOpen, setIsOpen] = useState(true);
+	let [isOpen, setIsOpen] = useState(false);
 
 	function closeModal() {
 		setIsOpen(false);
@@ -61,11 +61,12 @@ const UserRowForSm = ({ user, index }) => {
 			<tr className="text-sm text-left ">
 				<th>{index + 1}</th>
 				<td className="text-sm w-6/12">{user.name}</td>
-				<td className="text-sm btn w-6/12" onClick={openModal}>
-					details
-					<Transition appear show={isOpen} as={Fragment}>
+				<td className="text-sm w-6/12">
+					<button className="btn btn-xs" onClick={openModal}>
+						details
+					</button>
 
-                        
+					<Transition appear show={isOpen} as={Fragment}>
 						<Dialog
 							as="div"
 							className="relative z-10"
@@ -127,7 +128,7 @@ const UserRowForSm = ({ user, index }) => {
 											<div className="mt-4">
 												<button
 													type="button"
-													className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+													className="btn btn-sm inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
 													onClick={closeModal}
 												>
 													Close

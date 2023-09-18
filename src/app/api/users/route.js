@@ -3,6 +3,7 @@ import connect from '@/utils/db';
 import { NextResponse } from 'next/server';
 
 export const GET = async () => {
+	
 	try {
 		await connect();
 		const users = await User.find();
@@ -13,8 +14,12 @@ export const GET = async () => {
 };
 
 export const POST = async (request) => {
+
 	const body = await request.json();
 	const newUser = new User(body);
+
+	console.log(body);
+	console.log(newUser);
 
 	try {
 		await connect();
