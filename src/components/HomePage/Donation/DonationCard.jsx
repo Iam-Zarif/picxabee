@@ -16,8 +16,8 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
     };
 
     return (
-        <div className='mb-2'>
-            <div className="card w-80 glass rounded-md">
+        <div className='mb-2 '>
+            <div className="card  glass rounded-md">
                 <Image
                     src={imageUrl}
                     alt="donate"
@@ -28,7 +28,7 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                 />
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
-
+                    
                     {/* Display user profile picture and username */}
                     <div className="flex items-center mt-3">
                         <div className="w-8 h-8 rounded-full mr-2 overflow-hidden">

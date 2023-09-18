@@ -23,7 +23,7 @@ export default function Home() {
 			{/* <LeftSideBar /> */}
 			{/* </div> */}
 
-			<div className="hidden lg:block md:w-1/2">
+			<div className="hidden lg:block ">
 				<DonationCards />
 			</div>
 			<div className="col-span-2">
