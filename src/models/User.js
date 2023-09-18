@@ -34,6 +34,26 @@ try {
       profile_picture: {
         type: String,
       },
+      cover_photo: {
+        type: String
+      },
+      information: {
+        school: {
+          type: String
+        },
+        college: {
+          type: String
+        },
+        university: {
+          type: String
+        },
+        location: {
+          type: 'string'
+        },
+        gender: {
+          type: String
+        }
+      },
       role: {
         type: String,
       },
