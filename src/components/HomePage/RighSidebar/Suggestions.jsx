@@ -121,7 +121,7 @@ const Suggestions = () => {
                 alt=""
               />
               <div className="flex flex-col">
-                <Link href={`/userProfile/${users?._id}`} className="font-semibold">{users?.name}</Link>
+                <Link href={`/userProfile/${users?.email}`} className="font-semibold">{users?.name}</Link>
                 <Link href={``} className="text-xs">Followers: {users?.followers.length}</Link>
               </div>
             </div>
