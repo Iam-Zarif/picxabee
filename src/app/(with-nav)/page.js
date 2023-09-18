@@ -18,7 +18,7 @@ export default function Home() {
 		<>
 		{isLoading ? <section className=" text-center"><Loading className=""/></section> : <>
 		<Navbar/>
-		<div className="my-container xl:py-24 py-20 grid lg:grid-cols-4 lg:gap-5">
+		<div className="my-container xl:py-24 py-20 grid lg:grid-cols-4 grid-cols-1 lg:gap-5">
 			{/* <div className="hidden lg:block"> */}
 			{/* <LeftSideBar /> */}
 			{/* </div> */}
