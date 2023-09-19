@@ -22,32 +22,35 @@ const DonationCards = () => {
 
   // console.log(displayDonation)
   return (
+    // responsiveness
 <>
     <div className="">
       {
 
-        displayDonation.map((donation, index) => (
-          <DonationCard
-            key={index}
-            title={donation?.content}
-            imageUrl={donation?.image}
-            totalDonated={donation?.amount}
-            userProfileImage={donation?.author?.profile_picture}
-            username={donation?.author?.name}
+          displayDonation.map((donation, index) => (
+            <DonationCard
+              key={index}
+              donation={donation}
+              title={donation?.content}
+              imageUrl={donation?.image}
+              totalDonated={donation?.amount}
+              userProfileImage={donation?.author?.profile_picture}
+              username={donation?.author?.name}
 
-          />
-        ))
+            />
+          ))
 
-      }
-    </div>
-    <Link href="/allApprovedDonation">   <button
+        }
+      </div>
+      <Link href="/allApprovedDonation">   <button
         className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
       >
         See more
       </button></Link>
     </>
 
+
   );
 };
 
-export default DonationCards;
+export default DonationCards;    
