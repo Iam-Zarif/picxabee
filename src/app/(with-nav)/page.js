@@ -18,12 +18,12 @@ export default function Home() {
 		<>
 		{isLoading ? <section className=" text-center"><Loading className=""/></section> : <>
 		<Navbar/>
-		<div className="my-container xl:py-24 py-20 grid lg:grid-cols-4 lg:gap-5">
+		<div className="my-container xl:py-24 py-20 grid lg:grid-cols-4  grid-cols-1 lg:gap-5 lg:mt-10 xl:mt-0">
 			{/* <div className="hidden lg:block"> */}
 			{/* <LeftSideBar /> */}
 			{/* </div> */}
 
-			<div className="hidden lg:block">
+			<div className="hidden lg:block ">
 				<DonationCards />
 			</div>
 			<div className="col-span-2">
