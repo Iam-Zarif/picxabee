@@ -18,14 +18,33 @@ import Navbar from "@/components/Navbar/Navbar";
 import { HiMiniNoSymbol, HiMiniPencilSquare } from 'react-icons/hi2';
 import styles from './ownprofile.module.css'
 import EditProfileModal from "@/components/OwnProfile/EditProfileModal";
-import useCurrentUser from "@/hooks/useCurrentUser";
+// import useCurrentUser from "@/hooks/useCurrentUser";
 import { useForm } from 'react-hook-form';
+import useAuth from "@/hooks/useAuth";
 
 const ProfilePage = () => {
+    // const { loggedInUser } = useCurrentUser();
+
+    const { user } = useAuth();
+	const email = user?.email || '';
+	
+
+	const userFetcher = (...args) => fetch(...args).then((res) => res.json());
+	const {
+		data: loggedInUser
+	} = useSWR(`/api/loggedInUser?userEmail=${email}`, userFetcher, {
+
+        refreshInterval:1000
+    });
+
+	console.log(loggedInUser);
+
+
+
     const [showModal, setShowModal] = useState(false)
     // const { user } = useAuth();
     const { register, handleSubmit } = useForm();
-    const { loggedInUser } = useCurrentUser();
+    
     console.log("login korsee", loggedInUser)
     const [formData, setFormData] = useState({
         username: '',
@@ -56,6 +75,7 @@ const ProfilePage = () => {
     return (
         <>
             <Navbar />
+
             <div className='my-container mt-20'>
                 <div className={`${styles.imageContainer} relative `}>
                     <Image
