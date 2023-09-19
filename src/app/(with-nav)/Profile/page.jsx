@@ -123,7 +123,6 @@ const ProfilePage = () => {
                             <p><span className='font-semibold'>Followers:</span> {loggedInUser?.followers?.length}</p>
                             <p><span className='font-semibold'>Following:</span> {loggedInUser?.following?.length}</p> */}
 
-                            
                             <p><span className='font-semibold'>Email:</span> hhridoy155@gmail.com</p>
                             <p><span className='font-semibold'>Followers:</span> 12</p>
                             <p><span className='font-semibold'>Following:</span> 13</p>
