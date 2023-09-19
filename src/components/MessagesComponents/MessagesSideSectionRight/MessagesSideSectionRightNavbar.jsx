@@ -1,4 +1,5 @@
 "use client";
+import DashboardThemeButton from "@/components/Dashboard/DashboardThemeButton/DashboardThemeButton";
 import ThemeButton from "@/components/Navbar/ThemeButton";
 import { ChatContext } from "@/context/ChatContext";
 import { useContext } from "react";
@@ -13,7 +14,7 @@ const MessagesSideSectionRightNavbar = () => {
           {data.user?.displayName}
         </p>
         <div className="absolute right-5 ">
-          <ThemeButton/>
+          <DashboardThemeButton/>
         </div>
       </div>
     </>

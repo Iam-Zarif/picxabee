@@ -3,6 +3,7 @@ import AuthContext from "@/context/AuthContext";
 import { db } from "@/firebase/firebase.config";
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { useContext, useState } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const ChatSearch = () => {
   const { user: currentUser } = useContext(AuthContext);
@@ -76,15 +77,16 @@ const ChatSearch = () => {
     // used dark: for dark theme - Zarif
     <div>
       <div className="search dark:bg-black-bg-primary">
-        <div className="searchForm p-3 border-b-2 border-t-2">
+        <div className="searchForm p-3 border-b-2 border-t-2 relative">
           <input
             placeholder="Search Here.."
             type="text"
-            className="dark:text-white bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black"
+            className="dark:text-white bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black pl-6"
             onKeyDown={handleKey}
             onChange={(e) => setUsername(e.target.value)}
             value={username}
           />
+          <AiOutlineSearch className="absolute text-black top-5" size={22}/>
         </div>
         {error && <span>User not found</span>}
         {user && (
@@ -93,9 +95,9 @@ const ChatSearch = () => {
             onClick={handleSelect}
           >
             <div className="hover:bg-primary-color rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
-              <img className="w-14 h-14 object-cover rounded-full" src={user?.photoURL} alt="" />
+              <img className="lg:w-14 lg:h-14 h-8 w-8  object-cover rounded-full" src={user?.photoURL} alt="" />
               <div className="userChatInfo  flex-1">
-                <span className="font-bold text-black">{user?.displayName}</span>
+                <span className="font-bold text-black"><p className="">{user?.displayName}</p></span>
               </div>
             </div>
           </div>
