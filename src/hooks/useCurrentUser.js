@@ -12,7 +12,7 @@ const useCurrentUser = () => {
 		data: loggedInUser,
 		error,
 		isLoading,
-	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher);
+	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher, {refreshInterval: 1000});
 
 	console.log(loggedInUser);
   
