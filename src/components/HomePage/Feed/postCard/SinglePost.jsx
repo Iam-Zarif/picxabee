@@ -11,6 +11,7 @@ import CommentSection from './CommentSection';
 import EditOption from './EditOption';
 import SingleComment from './SingleComment';
 import useAuth from '@/hooks/useAuth';
+import  Link  from 'next/link';
 
 const SinglePost = ({ post }) => {
 	const [expanded, setExpanded] = useState(false);
@@ -153,7 +154,13 @@ const SinglePost = ({ post }) => {
 					/>
 					<div>
 						<div className="flex gap-2">
-							<p className="font-bold capitalize">{post?.author?.name}</p>
+							<Link
+								href={`/userProfile/${post?.author?.email}`}
+								className="font-bold capitalize"
+							>
+								{post?.author?.name}
+							</Link>
+
 							<div className="text-gray mt-1">
 								{post?.privacy === 'public' ? (
 									<MdOutlinePublic />
