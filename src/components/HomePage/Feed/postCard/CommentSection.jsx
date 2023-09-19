@@ -5,12 +5,19 @@ import { AiOutlineSend } from 'react-icons/ai';
 const CommentSection = ({ id, open }) => {
 	const { user } = useAuth();
 
-
 	const { register, handleSubmit, setValue, watch, reset } = useForm();
 	const watchComment = watch('comment', '');
 
+	const handleKeyPress = (event) => {
+		if (event.key === 'Enter') {
+			console.log("key pressed")
+			// onSubmit()
+			handleSubmit(onSubmit);
+		}
+	};
+
 	const onSubmit = (data) => {
-		if (data.comment.trim() !== '') {
+		if (data?.comment?.trim() !== '') {
 			reset();
 		}
 		// console.log(data);
@@ -22,7 +29,7 @@ const CommentSection = ({ id, open }) => {
 				profile_picture: user?.photoURL,
 			},
 
-			comment: data.comment,
+			comment: data?.comment,
 		};
 		// console.log(newComment);
 
@@ -57,6 +64,8 @@ const CommentSection = ({ id, open }) => {
 					onSubmit={handleSubmit(onSubmit)}
 				>
 					<textarea
+						onKeyPress={handleKeyPress}
+
 						{...register('comment')}
 						value={watchComment}
 						onChange={(e) => setValue('comment', e.target.value)}
