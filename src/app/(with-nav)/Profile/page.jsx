@@ -19,10 +19,12 @@ import { HiMiniNoSymbol, HiMiniPencilSquare } from 'react-icons/hi2';
 import styles from './ownprofile.module.css'
 import EditProfileModal from "@/components/OwnProfile/EditProfileModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { useForm } from 'react-hook-form';
 
 const ProfilePage = () => {
     const [showModal, setShowModal] = useState(false)
     // const { user } = useAuth();
+    const { register, handleSubmit } = useForm();
     const { loggedInUser } = useCurrentUser();
     console.log("login korsee", loggedInUser)
     const [formData, setFormData] = useState({
@@ -31,13 +33,7 @@ const ProfilePage = () => {
         collegeName: '',
         schoolName: '',
     });
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const {
         data: ownPosts,
@@ -50,6 +46,13 @@ const ProfilePage = () => {
 
     // const ownPosts = data && data?.filter(post => post?.author?.email === user?.email)
     console.log(ownPosts);
+
+    const onSubmit = (data) => {
+        console.log(data.username)
+        console.log(data.bio)
+        console.log(data.college)
+        console.log(data.school)
+    }
     return (
         <>
             <Navbar />
@@ -119,9 +122,15 @@ const ProfilePage = () => {
                         </div>
 
                         <div>
+
+                            {/* dynamic followers */}
+
                             <p><span className='font-semibold'>Email:</span> {loggedInUser?.email}</p>
-                            <p><span className='font-semibold'>Followers:</span> {loggedInUser?.followers?.length}</p>
-                            <p><span className='font-semibold'>Following:</span> {loggedInUser?.following?.length}</p>
+                            {/* <p><span className='font-semibold'>Followers:</span> {loggedInUser?.followers?.length}</p>
+                            <p><span className='font-semibold'>Following:</span> {loggedInUser?.following?.length}</p> */}
+
+                            {/* Static Followers */}
+
                             {/* <p><span className='font-semibold'>Email:</span> hhridoy155@gmail.com</p>
                             <p><span className='font-semibold'>Followers:</span> 12</p>
                             <p><span className='font-semibold'>Following:</span> 13</p> */}
@@ -151,24 +160,26 @@ const ProfilePage = () => {
                 </div>
             </div>
             <EditProfileModal isVisible={showModal} onClose={() => setShowModal(false)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='bg-white p-2 rounded'>
                     {/* Input fields for changing user data */}
                     <div className='mb-4'>
                         <label className='block text-sm font-medium text-gray-700'>Username</label>
                         <input
+                        {...register('username')}
                             type='text'
                             name='username'
-                            value={formData.username}
-                            onChange={handleChange}
+                            defaultValue={loggedInUser?.name}
+                            
                             className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
                         />
                     </div>
                     <div className='mb-4'>
                         <label className='block text-sm font-medium text-gray-700'>Bio</label>
                         <textarea
+                        {...register('bio')}
                             name='bio'
-                            value={formData.bio}
-                            onChange={handleChange}
+                            defaultValue={loggedInUser?.bio}
                             rows={3}
                             className='w-full px-3 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-primary-color'
                         />
@@ -176,30 +187,33 @@ const ProfilePage = () => {
                     <div className='mb-4'>
                         <label className='block text-sm font-medium text-gray-700'>College Name</label>
                         <input
+                        {...register('college')}
                             type='text'
-                            name='collegeName'
-                            value={formData.collegeName}
-                            onChange={handleChange}
+                            name='college'
+                            defaultValue={loggedInUser?.information?.college}
+                            
                             className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
                         />
                     </div>
                     <div className='mb-4'>
                         <label className='block text-sm font-medium text-gray-700'>School Name</label>
                         <input
+                        {...register('school')}
                             type='text'
-                            name='schoolName'
-                            value={formData.schoolName}
-                            onChange={handleChange}
+                            name='school'
+                            defaultValue={loggedInUser?.information?.school}
+                            
                             className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
                         />
                     </div>
                     <button
-                        type='button'
+                        type='submit'
                         className='px-4 py-2 text-white bg-primary-color rounded-md hover:bg-primary-color-dark focus:outline-none focus:ring'
                     >
                         Save Changes
                     </button>
                 </div>
+                </form>
             </EditProfileModal>
         </>
     );
