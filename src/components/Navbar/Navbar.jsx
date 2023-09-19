@@ -35,7 +35,6 @@ const Navbar = () => {
     };
   }, []);
 
-  const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const navbarRef = useRef(null);
