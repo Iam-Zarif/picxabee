@@ -23,9 +23,8 @@ const AllApprovedDonationPage = () => {
 
                 <h3 className='text-2xl font-semibold rounded-md mb-5'>All Approved Donation</h3> <hr className='my-5' />
 
-                <div className="grid grid-cols-3 gap-5">
-
-                    <div className="p-4">
+            
+                    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2 mt-5 ">
                         {
 
                             approvedDonations?.map((donation, index) => (
@@ -42,7 +41,7 @@ const AllApprovedDonationPage = () => {
                         }
                     </div>
 
-                </div>
+             
             </div>
         </>
     );
