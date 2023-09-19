@@ -43,15 +43,15 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                         <span className="text-sm font-semibold">{username}</span>
                     </div>
 
-                    <div className="card-actions flex mt-3">
+                    <div className="card-actions mt-3">
                         <div>
-                            <div className="card-action">
-                                {/* <button
+                            {/* <div className="card-action">
+                                <button
                                     className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
                                 >
                                     Total Donated {totalDonated}$
-                                </button> */}
-                            </div>
+                                </button>
+                            </div> */}
                             <div className="card-action">
                                 <button
 
