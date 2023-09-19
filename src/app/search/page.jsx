@@ -136,7 +136,7 @@ import { AiOutlinePlusCircle } from 'react-icons/ai';
 											key={index}
 											className="border lg:gap-10 hover:bg-light-gray dark:hover:bg-black border-gray justify-between rounded-xl flex items-center px-5 py-2 "
 										>
-											<Link href={`/userProfile/${u?._id}`}>
+											<Link href={`/userProfile/${u?.email}`}>
 												<div className="flex gap-2 items-center">
 													<Image
 														src={u?.profile_picture}

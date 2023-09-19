@@ -11,6 +11,10 @@ const DashboardPageComponent = () => {
     
 	
 		<>
+		<div className='mt-5'>
+			<p className='text-center text-4xl font-semibold'>Dashboard</p>
+			<hr className='w-1/2 mx-auto'/>
+		</div>
 			<div className="flex  flex-col gap-5 lg:flex-row px-20 mt-5 lg:mt-10 lg:px-0 ">
 				<div className="w-2/3 mx-auto lg:w-full">
 					<TotalUser />
