@@ -20,7 +20,7 @@ const Sidebar = () => {
       > {/*  responsive */}
       
         <ChatNavbar />
-        <BiMenu className="text-black ml-2 cursor-pointer " size={22} onClick={toggleSidebar}/>
+        <BiMenu className="text-black ml-2 cursor-pointer lg:hidden" size={22} onClick={toggleSidebar}/>
         <ChatSearch />
         <ChatChats />
       </div>
