@@ -15,7 +15,7 @@ const UserProfile = ({ params }) => {
 
     const { data } = useFetchData(`/api/userProfile/${email}`)
 
-    
+    console.log(data)
 
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const { data: ownPosts, error, isLoading, } = useSWR(`/api/profile?userEmail=${data?.singleUser?.email}`, fetcher);
