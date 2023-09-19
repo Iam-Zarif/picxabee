@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { BsBellFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
-import {  ImShare2 } from 'react-icons/im';
+import { ImShare2 } from 'react-icons/im';
 import Link from 'next/link';
 import useAuth from '@/hooks/useAuth';
 
 
 const TopBar = () => {
-	const {user} = useAuth()
+	const { user } = useAuth()
 	// console.log(user)
 	return (
 		<>
@@ -52,7 +52,9 @@ const TopBar = () => {
 						size={26}
 						className="hover:scale-125 duration-300 hover:text-gray-400 hover:cursor-pointer"
 					/> */}
-					<Link href="/Profile">
+
+					{/* Changed By Hridoy Hoque */}
+					<Link href={`/userProfile/${user?.email}`}>
 						<Image
 							src={user?.photoURL}
 							width={40}

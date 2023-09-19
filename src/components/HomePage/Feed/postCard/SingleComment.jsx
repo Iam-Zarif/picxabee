@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import useAuth from '@/hooks/useAuth';
+import Link from 'next/link';
 const SingleComment = ({ comment, id }) => {
 	const { user } = useAuth();
 	const postId = id;
@@ -56,8 +57,11 @@ const SingleComment = ({ comment, id }) => {
 			<div className="col-span-10">
 				<p className="pt-2 px-3 lg:px-0">
 					<span className="text-base font-bold break-keep pr-2">
-						{comment?.author?.name}
+						<Link href={`/userProfile/${comment?.author?.email}`}>
+							{comment?.author?.name}
+						</Link>
 					</span>
+
 					<span className="text-sm  text-black-bg-secondary dark:text-white">
 						{comment?.comment}
 					</span>
