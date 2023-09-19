@@ -15,7 +15,7 @@ const Sidebar = () => {
     <>
       <div
         className={`massage-sidebar dark:bg-black-bg-primary ${
-          sideBar ? "lg:w-full" : "w-1/12"
+          sideBar ? "lg:w-full" : "w-2/12"
         }`}
       > {/*  responsive */}
       
