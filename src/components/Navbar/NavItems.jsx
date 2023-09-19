@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { GoHome } from "react-icons/go";
 import { LuLogOut } from "react-icons/lu";
 
 import "react-toastify/dist/ReactToastify.css";
 import {
   AiOutlineArrowRight,
+  AiOutlineCalendar,
   AiOutlineProfile,
   AiOutlineUser,
 } from "react-icons/ai";
@@ -28,12 +29,22 @@ import DashboardThemeButton from "../Dashboard/DashboardThemeButton/DashboardThe
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { MdOutlineLockReset } from "react-icons/md";
 import NavFeedback from "./NavFeedback";
-
+import Calendar from "react-calendar";
+const calendarStyles = {
+  border: '1px solid #e2e8f0',
+  
+  borderRadius: '8px',
+  padding: '20px',
+  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'white',
+  
+};
 
 
 const NavItems = () => {
   const { user, logout } = useAuth();
 
+  const [value, onChange] = useState(new Date());
   const { loggedInUser } = useCurrentUser();
 
   const handleLogOut = () => {
@@ -130,14 +141,14 @@ const NavItems = () => {
                 onClick={toggleDrawer}
               ></Image>
               <></>
-
+{/*  */}
               <Drawer
                 open={isOpen}
                 onClose={toggleDrawer}
                 direction="right"
-                className="bla bla bla dark:bg-black"
+                className="bla bla bla  dark:bg-black"
               >
-                <div className="dark:bg-black-bg-primary  min-h-screen">
+                <div className="dark:bg-black-bg-primary  min-h-screen z-50">
                   <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
                     <p className=" ">
                       <AiOutlineUser className="inline" />{" "}
@@ -187,7 +198,16 @@ const NavItems = () => {
                             {" "}
                             <ThemeButton />
                           </div>
+                         
 
+                          <p className=" flex items-center group  hover:ml-2 transition-all">
+                            <AiOutlineCalendar
+                              size={28}
+                              className="inline mr-2"
+                            />
+                            <p className="" onClick={()=>document.getElementById('my_modal_3').showModal()}>Calender</p>
+                            <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+                          </p>
                           <p className=" flex items-center group  hover:ml-2 transition-all">
                             <MdOutlineLockReset
                               size={28}
@@ -297,6 +317,25 @@ const NavItems = () => {
           </div>
         </>
       )}
+       <dialog id="my_modal_3" className="modal ">
+	<div className="modal-box bg-primary-color dark:bg-black-bg-primary">
+		<form method="dialog">
+		{/* if there is a button in form, it will close the modal */}
+		<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+		</form>
+		<div style={calendarStyles} className=' bg-black'>
+		<Calendar className="dark:text-black"
+  onChange={onChange}
+  value={value}
+  tileClassName={({ date, view }) =>
+    view === 'month' && date.toDateString() === new Date().toDateString()
+      ? 'currentDate' // Apply the CSS class to the current date
+      : null
+  }
+/>
+		</div>
+	</div>
+	</dialog>
     </>
   );
 };

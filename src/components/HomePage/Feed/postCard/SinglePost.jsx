@@ -137,10 +137,10 @@ const SinglePost = ({ post }) => {
 	};
 
 	return (
+		// responsiveness
 		<div
 			data-aos="fade-up"
-			// border-2  border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black
-			className="w-96 lg:w-full border-2 mx-auto border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black"
+			className="w-full border-2 mx-auto border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black"
 		>
 			<div className="w-full flex items-center justify-between">
 				<div className="flex items-center">

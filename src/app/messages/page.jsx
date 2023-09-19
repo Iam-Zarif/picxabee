@@ -5,7 +5,7 @@ import Sidebar from "@/components/MessagesComponents/MessagesSidebarLeft/Sidebar
 
 const Messages = () => {
   return (
-    <div className="chatui">
+    <div className="chatui ">
       <div className="message-container">
         <Sidebar />
         <div className="rightside">
