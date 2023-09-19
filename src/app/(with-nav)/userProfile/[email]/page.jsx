@@ -17,8 +17,12 @@ const UserProfile = ({ params }) => {
 
     const { data } = useFetchData(`/api/userProfile/${email}`)
 
+    console.log(data)
+
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const { data: ownPosts, error, isLoading, } = useSWR(`/api/profile?userEmail=${data?.singleUser?.email}`, fetcher);
+
+    console.log(ownPosts);
 
     return (
         <>
@@ -100,8 +104,8 @@ const UserProfile = ({ params }) => {
 
                         <div>
                             <p><span className='font-semibold'>Email:</span> {data?.singleUser?.email}</p>
-                            <p><span className='font-semibold'>Followers:</span> {data?.singleUser?.followers.length}</p>
-                            <p><span className='font-semibold'>Following:</span> {data?.singleUser?.following.length}</p>
+                            <p><span className='font-semibold'>Followers:</span> {data?.singleUser?.followers?.length}</p>
+                            <p><span className='font-semibold'>Following:</span> {data?.singleUser?.following?.length}</p>
                         </div>
 
                         <div className='mt-6'>
