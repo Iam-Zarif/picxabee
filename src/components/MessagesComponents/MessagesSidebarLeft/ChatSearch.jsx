@@ -41,7 +41,6 @@ const ChatSearch = () => {
   const handleSelect = async () => {
     // 1. First check the group is exists. If not, then create one.
     const combinedId = currentUser?.uid > user?.uid ? currentUser?.uid + user?.uid : user?.uid + currentUser?.uid;
-    console.log(combinedId);
     try {
       let res = await getDoc(doc(db, "chats", combinedId));
       if (!res.exists()) {
