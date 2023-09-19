@@ -8,9 +8,11 @@ import { FaFacebookSquare, FaGraduationCap, FaInstagramSquare, FaLinkedin, FaSch
 import { HiMiniNoSymbol, HiMiniPencilSquare } from 'react-icons/hi2';
 import useSWR from 'swr'
 import styles from '../userprofile.module.css'
+import useAuth from '@/hooks/useAuth';
 
 const UserProfile = ({ params }) => {
 
+    const { user } = useAuth()
     const email = params.email.replace('%40', '@')
 
     const { data } = useFetchData(`/api/userProfile/${email}`)
@@ -32,9 +34,13 @@ const UserProfile = ({ params }) => {
                         alt='cover photo'
                     />
 
-                    <div className='absolute right-5 bottom-5'>
-                        <HiMiniPencilSquare size={30} className='text-white' />
-                    </div>
+                    {
+                        user?.email !== email ?
+                            <></> :
+                            <div className='absolute right-5 bottom-5'>
+                                <HiMiniPencilSquare size={30} className='text-white' />
+                            </div>
+                    }
                 </div>
 
                 <div >
@@ -44,18 +50,19 @@ const UserProfile = ({ params }) => {
                                 <div className={`${styles.profilePic} bg-white rounded-md`}>
                                     <Image
                                         src={data?.singleUser?.profile_picture}
-                                        // width={160}
-                                        // height={160}
-                                        // objectFit='contain'
                                         layout='fill'
                                         objectFit='cover'
                                         alt='Profile Pic'
                                         className='h-40 w-40 rounded'
                                     />
 
-                                    <div className='absolute bottom-1 right-1'>
-                                        <HiMiniPencilSquare size={20} className='text-white' />
-                                    </div>
+                                    {
+                                        user?.email !== email ?
+                                            <></> :
+                                            <div className='absolute bottom-1 right-1'>
+                                                <HiMiniPencilSquare size={20} className='text-white' />
+                                            </div>
+                                    }
                                 </div>
                             </div>
 
@@ -82,9 +89,13 @@ const UserProfile = ({ params }) => {
                         <div className='flex justify-between'>
                             <h5 className='text-xl uppercase font-semibold mb-5'>information</h5>
 
-                            <div className='mt-3'>
-                                <HiMiniPencilSquare size={20} />
-                            </div>
+                            {
+                                user?.email !== email ?
+                                    <></> :
+                                    <div className='mt-3'>
+                                        <HiMiniPencilSquare size={20} />
+                                    </div>
+                            }
                         </div>
 
                         <div>
