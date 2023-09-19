@@ -14,3 +14,17 @@ export const GET = async (request) => {
 		return NextResponse.json({ error: error.message });
 	}
 };
+
+
+// Update LoggedIn UserInformation
+export const PUT = async (request)=> {
+	try {
+		const  { id,  newProfileInfo } = await request.json();
+		await connect();
+		await User.findByIdAndUpdate(id, {newProfileInfo} );
+		return NextResponse.json({ message: 'user information updated' }, { status: 200 });
+	} catch (error) {
+		console.log(error.name, error.message);
+		return NextResponse.json({ error: error.message });
+	}
+}
