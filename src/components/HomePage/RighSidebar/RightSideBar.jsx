@@ -7,7 +7,7 @@ import Ad from '@/components/ad/Ad';
 const RightSideBar = () => {
     return (
         <>
-            <div className=' ml-10 '>
+            <div className=''>
 
                 <Ad />
             </div>
@@ -18,7 +18,7 @@ const RightSideBar = () => {
                 <Suggestions />
             </div>
 
-            <div className='ml-10'>
+            <div className=''>
                 <TrandingTopicList />
             </div>
         </>

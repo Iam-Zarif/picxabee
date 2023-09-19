@@ -89,8 +89,15 @@ const RegisterForm = () => {
 								email,
 								bio: '',
 								profile_picture: photoURL || '',
+								cover_photo: '',
+								information: {
+									school: '',
+									college: '',
+									university: '',
+									location: '',
+									gender: ''
+								},
 								role: 'user',
-
 							}),
 						});
 						router.push('/')

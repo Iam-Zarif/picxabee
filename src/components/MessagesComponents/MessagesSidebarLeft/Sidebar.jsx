@@ -1,22 +1,20 @@
-"use client"
-import { useContext } from "react";
+"use client";
 import ChatChats from "./ChatChats";
 import ChatNavbar from "./ChatNavbar";
 import ChatSearch from "./ChatSearch";
-import { MessageContext } from "@/provider/MessageProvider";
 
 const Sidebar = () => {
-  const {drawerOn, setDrawerOn} = useContext(MessageContext);
-
   return (
+    // dark : Zarif
     <>
-     {drawerOn && <div className="massage-sidebar">
-          <ChatNavbar/>
-          <ChatSearch />
-          <ChatChats />
-      </div>}
-      </>
-  )
-}
+      <div className="massage-sidebar dark:bg-black-bg-primary lg:w-full w-1/12"> {/*  responsive */}
+      
+        <ChatNavbar />
+        <ChatSearch />
+        <ChatChats />
+      </div>
+    </>
+  );
+};
 
 export default Sidebar;
