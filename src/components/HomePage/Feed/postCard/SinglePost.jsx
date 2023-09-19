@@ -137,9 +137,10 @@ const SinglePost = ({ post }) => {
 	};
 
 	return (
+		// responsiveness
 		<div
 			data-aos="fade-up"
-			className="border-2  border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black"
+			className="w-full border-2 mx-auto border-gray border-opacity-20 rounded-md mb-3 p-5 dark:bg-black"
 		>
 			<div className="w-full flex items-center justify-between">
 				<div className="flex items-center">
@@ -153,7 +154,7 @@ const SinglePost = ({ post }) => {
 					<div>
 						<div className="flex gap-2">
 							<p className="font-bold capitalize">{post?.author?.name}</p>
-							<div className="text-gray mb-[2px]">
+							<div className="text-gray mt-1">
 								{post?.privacy === 'public' ? (
 									<MdOutlinePublic />
 								) : post?.privacy === 'private' ? (
@@ -203,7 +204,7 @@ const SinglePost = ({ post }) => {
 					className="object-contain border-none w-full h-[500px] py-3 rounded-md" //object-contain
 				/>
 			)}
-			<div className="bg-gray bg-opacity-10 mt-7 py-2 mx-auto rounded-md">
+			<div className="bg-gray bg-opacity-10 mt-7 py-2 mb-5 mx-auto rounded-md">
 				<div className="flex justify-around">
 					<div className="flex gap-1">
 						{isReacted ? (

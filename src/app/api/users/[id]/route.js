@@ -31,11 +31,14 @@ export const DELETE = async (request, { params }) => {
 
     specificUser.followers = specificUser.followers.filter((follower) => follower.email !== email);
 
-    await specificUser.save();
-    return NextResponse.json({ message: "UnFollower Successfully" }, { status: 404 });
-  } catch (error) {
-    console.log(error.message);
-  }
+		await specificUser.save();
+		return NextResponse.json(
+			{ message: 'UnFollow Successfully' },
+			{ status: 404 }
+		);
+	} catch (error) {
+		console.log(error.message);
+	}
 };
 
 // export const GET = async () => {

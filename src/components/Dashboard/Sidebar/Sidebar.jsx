@@ -10,6 +10,7 @@ import { MdSpaceDashboard } from 'react-icons/md';
 import { TiThMenu } from 'react-icons/ti';
 import { MdFeedback } from 'react-icons/md';
 import DashboardThemeButton from '../DashboardThemeButton/DashboardThemeButton';
+import { BiDonateHeart } from 'react-icons/bi';
 
 
 const Sidebar = () => {
@@ -98,6 +99,16 @@ const toggleLinks = () => {
 							</div>
 						</Link>
 					</li>
+					{/* hridoy vai */}
+					<li className={`link-item ${showLinks ? 'show' : ''}`}>
+						<Link href="/dashboard/pendingDonation">
+							<div className="flex gap-4 tooltip" data-tip="Feedback">
+								<BiDonateHeart size={26} />
+								{showLinks && <span>Donate</span>}
+							</div>
+						</Link>
+					</li>
+					{/* hridoy vai */}
 					{/* <ThemeButton/> */}
 					
 				</ul>

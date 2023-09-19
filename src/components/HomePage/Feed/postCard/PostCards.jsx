@@ -17,14 +17,15 @@ const PostCards = () => {
 	if (isLoading)
 		return (
 			<div>
-				{/* <FeedCardLoader /> */}
+			{/* <FeedCardLoader /> */}
 				Loading...
 			</div>
 		);
 
 	return (
 		<>
-			<div className="pb-28 pt-12 mx-auto w-full">
+		{/* w -full */}
+			<div className="pb-28 pt-3 mx-auto w-full">
 				{posts &&
 					posts
 						?.reverse()
