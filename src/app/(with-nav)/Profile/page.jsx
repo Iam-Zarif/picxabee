@@ -11,37 +11,40 @@ import Image from 'next/image';
 // import { LuEdit } from 'react-icons/lu';
 import React, { useState } from 'react';
 // import AuthContext from "@/context/AuthContext";
-import useAuth from "@/hooks/useAuth";
+// import useAuth from "@/hooks/useAuth";
 import SinglePost from '@/components/HomePage/Feed/postCard/SinglePost';
 import Navbar from "@/components/Navbar/Navbar";
 // import EditProfileModal from "@/components/OwnProfile/editProfileModal";
 import { HiMiniNoSymbol, HiMiniPencilSquare } from 'react-icons/hi2';
 import styles from './ownprofile.module.css'
 import EditProfileModal from "@/components/OwnProfile/EditProfileModal";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 const ProfilePage = () => {
-const [showModal, setShowModal] = useState(false)
-    const { user } = useAuth();
+    const [showModal, setShowModal] = useState(false)
+    // const { user } = useAuth();
+    const { loggedInUser } = useCurrentUser();
+    console.log("login korsee", loggedInUser)
     const [formData, setFormData] = useState({
         username: '',
         bio: '',
         collegeName: '',
         schoolName: '',
-      });
-      const handleChange = (e) => {
+    });
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
-          ...formData,
-          [name]: value,
+            ...formData,
+            [name]: value,
         });
-      };
+    };
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const {
         data: ownPosts,
         error,
         isLoading,
     } = useSWR(
-        `/api/profile?userEmail=${user?.email}`,
+        `/api/profile?userEmail=${loggedInUser?.email}`,
         fetcher
     );
 
@@ -71,7 +74,7 @@ const [showModal, setShowModal] = useState(false)
                             <div className=" mx-10 overflow-hidden -mt-16 z-40">
                                 <div className={`${styles.profilePic} bg-white rounded-md`}>
                                     <Image
-                                        src={user?.photoURL}
+                                        src={loggedInUser?.profile_picture}
                                         // width={160}
                                         // height={160}
                                         // objectFit='contain'
@@ -88,7 +91,7 @@ const [showModal, setShowModal] = useState(false)
                             </div>
 
                             <div className='text-left mt-3 w-2/4 opacity-80'>
-                                <h3 className='text-2xl font-semibold'>{user?.displayName}</h3>
+                                <h3 className='text-2xl font-semibold'>{loggedInUser?.name}</h3>
                                 <h6 className='text-sm '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, error!</h6>
                             </div>
                         </div>
@@ -111,17 +114,17 @@ const [showModal, setShowModal] = useState(false)
                             <h5 className='text-xl uppercase font-semibold mb-5'>information</h5>
 
                             <div className='mt-3'>
-                                <HiMiniPencilSquare size={20} />
+                              <button onClick={() => setShowModal(true)}>  <HiMiniPencilSquare size={20} /></button>
                             </div>
                         </div>
 
                         <div>
-                            {/* <p><span className='font-semibold'>Email:</span> {data?.singleUser?.email}</p>
-                            <p><span className='font-semibold'>Followers:</span> {data?.singleUser?.followers.length}</p>
-                            <p><span className='font-semibold'>Following:</span> {data?.singleUser?.following.length}</p> */}
-                            <p><span className='font-semibold'>Email:</span> hhridoy155@gmail.com</p>
+                            <p><span className='font-semibold'>Email:</span> {loggedInUser?.email}</p>
+                            <p><span className='font-semibold'>Followers:</span> {loggedInUser?.followers.length}</p>
+                            <p><span className='font-semibold'>Following:</span> {loggedInUser?.following.length}</p>
+                            {/* <p><span className='font-semibold'>Email:</span> hhridoy155@gmail.com</p>
                             <p><span className='font-semibold'>Followers:</span> 12</p>
-                            <p><span className='font-semibold'>Following:</span> 13</p>
+                            <p><span className='font-semibold'>Following:</span> 13</p> */}
                         </div>
 
                         <div className='mt-6'>
@@ -148,55 +151,55 @@ const [showModal, setShowModal] = useState(false)
                 </div>
             </div>
             <EditProfileModal isVisible={showModal} onClose={() => setShowModal(false)}>
-            <div className='bg-white p-2 rounded'>
-          {/* Input fields for changing user data */}
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>Username</label>
-            <input
-              type='text'
-              name='username'
-              value={formData.username}
-              onChange={handleChange}
-              className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
-            />
-          </div>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>Bio</label>
-            <textarea
-              name='bio'
-              value={formData.bio}
-              onChange={handleChange}
-              rows={3}
-              className='w-full px-3 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-primary-color'
-            />
-          </div>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>College Name</label>
-            <input
-              type='text'
-              name='collegeName'
-              value={formData.collegeName}
-              onChange={handleChange}
-              className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
-            />
-          </div>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>School Name</label>
-            <input
-              type='text'
-              name='schoolName'
-              value={formData.schoolName}
-              onChange={handleChange}
-              className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
-            />
-          </div>
-          <button
-            type='button'
-            className='px-4 py-2 text-white bg-primary-color rounded-md hover:bg-primary-color-dark focus:outline-none focus:ring'
-          >
-            Save Changes
-          </button>
-        </div>
+                <div className='bg-white p-2 rounded'>
+                    {/* Input fields for changing user data */}
+                    <div className='mb-4'>
+                        <label className='block text-sm font-medium text-gray-700'>Username</label>
+                        <input
+                            type='text'
+                            name='username'
+                            value={formData.username}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
+                        />
+                    </div>
+                    <div className='mb-4'>
+                        <label className='block text-sm font-medium text-gray-700'>Bio</label>
+                        <textarea
+                            name='bio'
+                            value={formData.bio}
+                            onChange={handleChange}
+                            rows={3}
+                            className='w-full px-3 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-primary-color'
+                        />
+                    </div>
+                    <div className='mb-4'>
+                        <label className='block text-sm font-medium text-gray-700'>College Name</label>
+                        <input
+                            type='text'
+                            name='collegeName'
+                            value={formData.collegeName}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
+                        />
+                    </div>
+                    <div className='mb-4'>
+                        <label className='block text-sm font-medium text-gray-700'>School Name</label>
+                        <input
+                            type='text'
+                            name='schoolName'
+                            value={formData.schoolName}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
+                        />
+                    </div>
+                    <button
+                        type='button'
+                        className='px-4 py-2 text-white bg-primary-color rounded-md hover:bg-primary-color-dark focus:outline-none focus:ring'
+                    >
+                        Save Changes
+                    </button>
+                </div>
             </EditProfileModal>
         </>
     );
