@@ -156,8 +156,8 @@ const NavItems = () => {
                     </p>
                     <hr className="text-primary-color" />
 
-                    <div className={pathname === '/Profile' ? 'sideActive' : ''}>
-                      <Link href="/Profile" className="">
+                    <div className={pathname === '/userProfile' ? 'sideActive' : ''}>
+                    <Link href={`/userProfile/${user?.email}`}>
                         <p className="  flex items-center group   hover:ml-2 transition-all">
                           <AiOutlineProfile
                             size={28}
