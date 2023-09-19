@@ -24,15 +24,41 @@ const UserProfile = ({ params }) => {
     const fetcher = (...args) => fetch(...args).then((res) => res.json());
     const { data: ownPosts, error, isLoading, } = useSWR(`/api/profile?userEmail=${data?.singleUser?.email}`, fetcher);
 
-    console.log(ownPosts);
+    console.log("amar profile", data?.singleUser);
+
+    const id = data?.singleUser?._id;
+
+    console.log("Own id", id);
 
     const [showModal, setShowModal] = useState(false);
 
-      const onSubmit = (data) => {
-        console.log(data.username)
-        console.log(data.bio)
-        console.log(data.college)
-        console.log(data.school)
+      const onSubmit = (userData) => {
+        console.log("user data", userData)
+        const newProfileInfo = {
+            id,
+            name: userData?.name,  
+            bio: userData?.bio,  
+            // information: {
+            //     school: userData?.school,
+            //     college: userData?.college
+            // }
+        }
+        console.log("new data", newProfileInfo);
+
+        fetch(`/api/loggedInUser`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify({newProfileInfo}),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error('Network response was not ok');
+				}
+                console.log(res)
+				return res.json();
+			})
     }
 
     return (
@@ -149,9 +175,9 @@ const UserProfile = ({ params }) => {
                         <div className='mb-4'>
                             <label className='block text-sm font-medium text-gray-700'>Username</label>
                             <input
-                                {...register('username')}
+                                {...register('name')}
                                 type='text'
-                                name='username'
+                                name='name'
                                 // defaultValue={loggedInUser?.name}
 
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
