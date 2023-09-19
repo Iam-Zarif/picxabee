@@ -46,7 +46,7 @@ const NavItems = () => {
 
   const [value, onChange] = useState(new Date());
   const { loggedInUser } = useCurrentUser();
-
+console.log(loggedInUser?.role)
   const handleLogOut = () => {
     logout()
       .then((data) => {
@@ -146,7 +146,7 @@ const NavItems = () => {
                 open={isOpen}
                 onClose={toggleDrawer}
                 direction="right"
-                className="bla bla bla  dark:bg-black"
+                className="  dark:bg-black"
               >
                 <div className="dark:bg-black-bg-primary  min-h-screen z-50">
                   <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
