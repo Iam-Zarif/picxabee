@@ -1,11 +1,13 @@
 "use client";
 import AuthContext from "@/context/AuthContext";
+import { MyContext } from "@/context/ChatContext2";
 import { db } from "@/firebase/firebase.config";
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const ChatSearch = () => {
+  const {sideBar , setSidebar} = useContext(MyContext);
   const { user: currentUser } = useContext(AuthContext);
 
   // console.log(user);
@@ -76,16 +78,17 @@ const ChatSearch = () => {
     // used dark: for dark theme - Zarif
     <div>
       <div className="search dark:bg-black-bg-primary">
-        <div className="searchForm p-3 border-b-2 border-t-2 relative">
-          <input
-            placeholder="Search Here.."
+        <div className="p-3 border-b-2 border-t-2 flex items-center justify-between">
+          {!sideBar ? (<AiOutlineSearch className="text-black top-5 mx-auto" size={22} onClick={()=> setSidebar(true)}/>)
+          : 
+           (<input
+            placeholder={sideBar ? "Search Here.." : ""}
             type="text"
             className="dark:text-white bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black pl-6"
             onKeyDown={handleKey}
             onChange={(e) => setUsername(e.target.value)}
             value={username}
-          />
-          <AiOutlineSearch className="absolute text-black top-5" size={22}/>
+          />)}
         </div>
         {error && <span>User not found</span>}
         {user && (
