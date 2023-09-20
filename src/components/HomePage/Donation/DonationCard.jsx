@@ -24,7 +24,7 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                     layout="responsive"
                     width={400}
                     height={300}
-                    className="card-image"
+                    className="card-image rounded-md"
                 />
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
