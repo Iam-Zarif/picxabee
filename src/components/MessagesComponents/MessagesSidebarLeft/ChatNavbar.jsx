@@ -33,7 +33,7 @@ const ChatNavbar = () => {
             <span className="dark:text-white md:text-base text-gray-800 text-sm text-black truncate">{user?.displayName}</span>
           </div>
         )}
-        <div>
+        <div className="md:inline-block sm:hidden">
           {user ? (
             <button className="text-red-500 font-semibold md:text-base text-sm cursor-pointer" onClick={handleLogOut}>
               logout
