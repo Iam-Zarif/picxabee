@@ -1,13 +1,13 @@
-'use client';
-import './CreatePost.css';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
-import { BsImageFill } from 'react-icons/bs';
-import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { BeatLoader } from 'react-spinners';
-import useAuth from '@/hooks/useAuth';
-import HomeButton from '@/components/button/HomeButton';
+"use client";
+import "./CreatePost.css";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { BsImageFill } from "react-icons/bs";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { BeatLoader } from "react-spinners";
+import useAuth from "@/hooks/useAuth";
+import HomeButton from "@/components/button/HomeButton";
 
 const CreatePost = () => {
 	const router = useRouter();
