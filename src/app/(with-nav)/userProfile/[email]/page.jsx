@@ -135,7 +135,7 @@ const UserProfile = ({ params }) => {
                         <div className='flex items-center gap-3 mx-10'>
                             {
 
-                                data?.singleUser?.information.facebook ? <>
+                                data?.singleUser?.information?.facebook ? <>
                                     <a href={data?.singleUser?.information?.facebook} target='_blank'><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></a>
                                 </> :
                                     <button onClick={handleFacebookClick}><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></button>
