@@ -11,7 +11,7 @@ const EditProfileModal = ({ isVisible, onClose, children }) => {
     };
     }
   return (
-    <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center' id='wrapper' onClick={handleClose}>
+    <div className='z-20 fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center' id='wrapper' onClick={handleClose}>
       <div className='w-[600px] flex flex-col'>
         <button
           onClick={() => onClose()}
