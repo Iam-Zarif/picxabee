@@ -31,7 +31,7 @@ const Message = ({ message }) => {
           <div className="flex flex-col items-end justify-center rounded-md mt-2">
             {/* {message.img && <img src={message.img} className="w-1/3 py-2 pb-3 rounded-3xl" alt="" />} */}
            {message.img && <img  className="w-1/3 py-2 pb-3 rounded-3xl" src={message.img} alt="" />}
-            <p className="inline-block p-4 rounded-xl text-white font-medium md:text-sm text-xs bg-primary-color">{message.text}</p>
+            <p className="inline-block p-4 rounded-xl text-white font-medium md:text-sm text-xs bg-primary-color bg-opacity-90">{message.text}</p>
           </div>
           {/* <div className="chat-footer opacity-90">Delivered</div> */}
         </div>
@@ -43,13 +43,13 @@ const Message = ({ message }) => {
             </div>
           </div>
           <div className="chat-header space-x-1">
-            <span className="text-black ">{data?.user?.displayName}</span>
+            <span className="text-black  dark:text-white">{data?.user?.displayName}</span>
             {/* <time className="text-xs ml-1 opacity-90">12:46</time> */}
           </div>
           <div className="flex flex-col items-start justify-center rounded-md mt-2">
           {/* {message.img && <img src={message.img} className="w-1/3 py-2 pb-3 rounded-3xl" alt="" />} */}
          {message.img  && <img  className="w-1/3 py-2 pb-3 rounded-3xl" src={message.img} alt="" />}
-            <p className="inline-block p-4 rounded-xl ml-1 text-black font-medium md:text-sm text-xs bg-primary-color">{message.text}</p>
+            <p className="inline-block p-4 rounded-xl ml-1 text-black dark:text-white font-medium md:text-sm text-xs bg-primary-color bg-opacity-90">{message.text}</p>
           </div>
           {/* <div className="chat-footer opacity-90">Seen at 12:46</div> */}
         </div>
