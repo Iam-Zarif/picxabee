@@ -3,7 +3,7 @@ import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const PUT = async (request, { params }) => {
-  const {id} = params;
+  const { id } = params;
   const { newFollowers } = await request.json();
 
   await connect();
@@ -13,7 +13,7 @@ export const PUT = async (request, { params }) => {
       followers: newFollowers,
     },
   });
-  
+
   return NextResponse.json({ message: "Follower Successfully" }, { status: 200 });
 };
 
@@ -31,14 +31,11 @@ export const DELETE = async (request, { params }) => {
 
     specificUser.followers = specificUser.followers.filter((follower) => follower.email !== email);
 
-		await specificUser.save();
-		return NextResponse.json(
-			{ message: 'UnFollow Successfully' },
-			{ status: 404 }
-		);
-	} catch (error) {
-		console.log(error.message);
-	}
+    await specificUser.save();
+    return NextResponse.json({ message: "UnFollow Successfully" }, { status: 404 });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 // export const GET = async () => {
@@ -50,9 +47,6 @@ export const DELETE = async (request, { params }) => {
 // 		return new NextResponse('User Fetch Problems', { status: 500 });
 // 	}
 // };
-
-
-
 
 // export const AddFollowing = async (request, { params }) => {
 //   const { id } = params;
@@ -70,3 +64,22 @@ export const DELETE = async (request, { params }) => {
 //   });
 //   return NextResponse.json({ message: "Following Successfully" }, { status: 200 });
 // };
+
+// Update LoggedIn UserInformation
+export const PATCH = async (request) => {
+  try {
+    // const { newProfileInfo } = await request.json();
+
+    await connect();
+    const user = await User.findById("64f8ca0651aadee0d69309f2");
+    console.log(user);
+    user.information = "Ace";
+    await user.save();
+
+    // await User.findByIdAndUpdate(id, {newProfileInfo} );
+    // return NextResponse.json({ message: "user information updated" }, { status: 200 });
+  } catch (error) {
+    console.log(error.name, error.message);
+    return NextResponse.json({ error: error.message });
+  }
+};
