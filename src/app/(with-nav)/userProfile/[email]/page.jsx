@@ -13,6 +13,7 @@ import EditProfileModal from '@/components/OwnProfile/EditProfileModal';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { LuSchool } from 'react-icons/lu';
 
 const UserProfile = ({ params }) => {
     const { register, handleSubmit } = useForm();
@@ -36,11 +37,11 @@ const UserProfile = ({ params }) => {
 			name: userData?.name,
 			bio: userData?.bio,
 			information: {
-				school: '',
-				college: '',
-				university: '',
-				location: '',
-				gender: '',
+				school: userData?.school,
+				college: userData?.college,
+				university: userData?.university,
+				location: userData?.location,
+				gender: userData?.gender,
 			},
 		};
 
@@ -99,7 +100,7 @@ const UserProfile = ({ params }) => {
                                         layout='fill'
                                         objectFit='cover'
                                         alt='Profile Pic'
-                                        className='h-40 w-40 rounded'
+                                        className='h-40 w-40 rounded-md'
                                     />
 
                                     {
@@ -151,14 +152,31 @@ const UserProfile = ({ params }) => {
 
                         <div className='mt-6'>
                         <p className='font-bold mb-1'>Personal Information</p>
-                            <div className='flex gap-2 items-center'>
-                                <FaGraduationCap size={20} />
-                                <p >Studies at <span className='font-semibold opacity-80'>Govt. Bangabandhu College</span></p>
-                            </div>
-                            <div className='flex gap-2 item-center'>
-                                <FaSchool size={20} />
-                                <p>Went to <span className='font-semibold opacity-80'>Alim Uddin High School</span></p>
-                            </div>
+                          {
+                            data?.singleUser?.information?.university &&
+                              <div className='flex gap-2 items-center'>
+                              <FaGraduationCap size={20} />
+                              <p >Studies at <span className='font-semibold opacity-80'>{data?.singleUser?.information?.university}</span></p>
+                          </div>
+                          }
+                         {
+                            data?.singleUser?.information?.college && 
+                               <div className='flex gap-2 item-center'>
+                               <FaSchool size={20} />
+                               <p>Went to <span className='font-semibold opacity-80'>{
+                                   data?.singleUser?.information?.college
+                               }</span></p>
+                           </div>
+                         }
+                         {
+                            data?.singleUser?.information?.school && 
+                               <div className='flex gap-2 item-center'>
+                               <LuSchool size={20} />
+                               <p>Went to <span className='font-semibold opacity-80'>{
+                                   data?.singleUser?.information?.school
+                               }</span></p>
+                           </div>
+                         }
                         </div>
                     </div>
 
@@ -207,6 +225,26 @@ const UserProfile = ({ params }) => {
                             />
                         </div>
                         <div className='mb-4'>
+                            <label className='block text-sm font-medium text-gray-700'>College</label>
+                            <input
+                                {...register('college')}
+                                type='text'
+                                defaultValue={data?.singleUser?.information?.college}
+                                name='college'
+                                className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
+                            />
+                        </div>
+                        <div className='mb-4'>
+                            <label className='block text-sm font-medium text-gray-700'>School</label>
+                            <input
+                                {...register('school')}
+                                type='text'
+                                defaultValue={data?.singleUser?.information?.school}
+                                name='school'
+                                className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
+                            />
+                        </div>
+                        <div className='mb-4'>
                             <label className='block text-sm font-medium text-gray-700'>Location</label>
                             <input
                                 {...register('location')}
@@ -231,7 +269,7 @@ const UserProfile = ({ params }) => {
                             <label className='block text-sm font-medium text-gray-700'>Facebook</label>
                             <input
                                 {...register('facebook')}
-                                defaultValue={data?.singleUser?.information?.location}
+                                defaultValue={data?.singleUser?.information?.facebook}
                                 type='text'
                                 name='facebook'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
@@ -241,6 +279,7 @@ const UserProfile = ({ params }) => {
                             <label className='block text-sm font-medium text-gray-700'>Instagram</label>
                             <input
                                 {...register('instagram')}
+                                defaultValue={data?.singleUser?.information?.instagram}
                                 type='text'
                                 name='instagram'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
@@ -250,6 +289,7 @@ const UserProfile = ({ params }) => {
                             <label className='block text-sm font-medium text-gray-700'>LinkedIn</label>
                             <input
                                 {...register('linkedin')}
+                                defaultValue={data?.singleUser?.information?.linkDin}
                                 type='text'
                                 name='linkedin'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
