@@ -136,21 +136,21 @@ const UserProfile = ({ params }) => {
                             {
 
                                 data?.singleUser?.information.facebook ? <>
-                                    <a href={data?.singleUser?.information.facebook} target='_blank'><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></a>
+                                    <a href={data?.singleUser?.information?.facebook} target='_blank'><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></a>
                                 </> :
                                     <button onClick={handleFacebookClick}><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></button>
                             }
                             {
 
                                 data?.singleUser?.information.instagram ? <>
-                                    <a href={data?.singleUser?.information.instagram} target='_blank'><FaInstagramSquare size={30} className='text-red opacity-50' /></a>
+                                    <a href={data?.singleUser?.information?.instagram} target='_blank'><FaInstagramSquare size={30} className='text-red opacity-50' /></a>
                                 </> :
                                     <button onClick={handleInstagramClick}> <FaInstagramSquare size={30} className='text-red opacity-50' /></button>
                             }
                             {
 
                                 data?.singleUser?.information.linkDin ? <>
-                                    <a href={data?.singleUser?.information.linkDin} target='_blank'> <FaLinkedin size={30} className='text-[#0a66c2] ' /></a>
+                                    <a href={data?.singleUser?.information?.linkDin} target='_blank'> <FaLinkedin size={30} className='text-[#0a66c2] ' /></a>
                                 </> :
                                     <button onClick={handleLinkDinClick}>  <FaLinkedin size={30} className='text-[#0a66c2] ' /></button>
                             }
