@@ -149,7 +149,7 @@ const UserProfile = ({ params }) => {
                             }
                             {
 
-                                data?.singleUser?.information.linkDin ? <>
+                                data?.singleUser?.information?.linkDin ? <>
                                     <a href={data?.singleUser?.information?.linkDin} target='_blank'> <FaLinkedin size={30} className='text-[#0a66c2] ' /></a>
                                 </> :
                                     <button onClick={handleLinkDinClick}>  <FaLinkedin size={30} className='text-[#0a66c2] ' /></button>
