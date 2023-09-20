@@ -1,11 +1,23 @@
 "use client";
 import AuthContext from "@/context/AuthContext";
+import { MyContext } from "@/context/ChatContext2";
 import { db } from "@/firebase/firebase.config";
-import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const ChatSearch = () => {
+  const { sideBar, setSidebar } = useContext(MyContext);
   const { user: currentUser } = useContext(AuthContext);
 
   // console.log(user);
@@ -28,7 +40,10 @@ const ChatSearch = () => {
       //     id: doc.id, // Include the document ID
       //     ...doc.data(), // Include the document data // SNAPSHOT IS DIFFERENT FROM FIREBASE V9
       //   }));
-      const q = query(collection(db, "users"), where("displayName", "==", username));
+      const q = query(
+        collection(db, "users"),
+        where("displayName", "==", username)
+      );
 
       const querySnapshot = await getDocs(q);
       querySnapshot?.forEach((doc) => {
@@ -41,8 +56,10 @@ const ChatSearch = () => {
 
   const handleSelect = async () => {
     // 1. First check the group is exists. If not, then create one.
-    const combinedId = currentUser?.uid > user?.uid ? currentUser?.uid + user?.uid : user?.uid + currentUser?.uid;
-    console.log(combinedId);
+    const combinedId =
+      currentUser?.uid > user?.uid
+        ? currentUser?.uid + user?.uid
+        : user?.uid + currentUser?.uid;
     try {
       let res = await getDoc(doc(db, "chats", combinedId));
       if (!res.exists()) {
@@ -77,16 +94,24 @@ const ChatSearch = () => {
     // used dark: for dark theme - Zarif
     <div>
       <div className="search dark:bg-black-bg-primary">
-        <div className="searchForm p-3 border-b-2 border-t-2 relative">
-          <input
-            placeholder="Search Here.."
-            type="text"
-            className="dark:text-white bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black pl-6"
-            onKeyDown={handleKey}
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-          <AiOutlineSearch className="absolute text-black top-5" size={22}/>
+        <div className="searchForm p-3 border-b-2 border-t-2 bg-primary-color bg-opacity-25 flex items-center flex-col gap-y-3">
+          <div className="bg-primary-color bg-opacity-40 rounded-full p-3 inline-block cursor-pointer">
+            <AiOutlineSearch
+              className="mx-auto text-black top-5"
+              size={22}
+              onClick={() => setSidebar(!sideBar)}
+            />
+          </div>
+          {sideBar && (
+            <input
+              placeholder={"Search Here.."}
+              type="text"
+              className="dark:text-white hide-placeholder bg-transparent border-none outline-none md:text-sm text-xs p-2 text-black pl-6"
+              onKeyDown={handleKey}
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+            />
+          )}
         </div>
         {error && <span>User not found</span>}
         {user && (
@@ -94,10 +119,16 @@ const ChatSearch = () => {
             className="userChat border-gray-400 rounded-lg border-2 text-white cursor-pointer md:text-base text-sm m-2"
             onClick={handleSelect}
           >
-            <div className="hover:bg-primary-color rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
-              <img className="lg:w-14 lg:h-14 h-8 w-8  object-cover rounded-full" src={user?.photoURL} alt="" />
+            <div className=" bg-primary-color bg-opacity-25 rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
+              <img
+                className="lg:w-14 lg:h-14 h-8 w-8  object-cover rounded-full"
+                src={user?.photoURL}
+                alt=""
+              />
               <div className="userChatInfo  flex-1">
-                <span className="font-bold text-black"><p className="">{user?.displayName}</p></span>
+                <span className="font-bold text-black">
+                  <p className="dark:text-white">{user?.displayName}</p>
+                </span>
               </div>
             </div>
           </div>

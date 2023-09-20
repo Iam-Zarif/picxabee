@@ -36,6 +36,7 @@ const SigninForm = () => {
     }
 
     return (
+      <>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-8 ">
             {/* Email Input */}
             <input type="email"
@@ -65,6 +66,8 @@ const SigninForm = () => {
 
             <input type="submit" className="bg-primary-color bg-opacity-90 hover:bg-opacity-100 w-full text-white rounded-md p-3 cursor-pointer" />
         </form>
+       
+        </>
     );
 };
 
