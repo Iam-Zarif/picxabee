@@ -14,7 +14,7 @@ const useCurrentUser = () => {
 		isLoading,
 	} = useSWR(`/api/loggedInUser?userEmail=${email}`, fetcher, {refreshInterval: 1000});
 
-	console.log(loggedInUser);
+	// console.log(loggedInUser);
   
 
 	return { loggedInUser, error, isLoading };
