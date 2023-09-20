@@ -65,6 +65,7 @@ const UserProfile = ({ params }) => {
             })
             .then((data) => {
                 console.log('Received data:', data);
+                setShowModal(false);
             })
             .catch((error) => {
                 console.error('Fetch error:', error);
@@ -107,7 +108,7 @@ const UserProfile = ({ params }) => {
                     <div className='flex justify-between'>
                         <div className='flex'>
                             <div className=" mx-10 overflow-hidden -mt-16 z-40">
-                                <div className={`${styles.profilePic} bg-white rounded-md`}>
+                                <div className={`${styles.profilePic} bg-white rounded-md h-40 w-40`}>
                                     <Image
                                         src={data?.singleUser?.profile_picture}
                                         layout='fill'
