@@ -114,7 +114,7 @@ const UserProfile = ({ params }) => {
 
                             <div className='text-left mt-3 w-2/4 opacity-80'>
                                 <h3 className='text-2xl font-semibold'>{data?.singleUser?.name}</h3>
-                                <h6 className='text-sm '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, error!</h6>
+                                <h6 className='text-sm '>{data?.singleUser?.bio}</h6>
                             </div>
                         </div>
 
@@ -181,6 +181,7 @@ const UserProfile = ({ params }) => {
                             <input
                                 {...register('name')}
                                 type='text'
+                                defaultValue={data?.singleUser?.name}
                                 name='name'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
                             />
@@ -190,6 +191,7 @@ const UserProfile = ({ params }) => {
                             <textarea
                                 {...register('bio')}
                                 name='bio'
+                                defaultValue={data?.singleUser?.bio}
                                 rows={3}
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-primary-color'
                             />
@@ -199,6 +201,7 @@ const UserProfile = ({ params }) => {
                             <input
                                 {...register('university')}
                                 type='text'
+                                defaultValue={data?.singleUser?.information?.university}
                                 name='university'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
                             />
@@ -208,6 +211,7 @@ const UserProfile = ({ params }) => {
                             <input
                                 {...register('location')}
                                 type='text'
+                                defaultValue={data?.singleUser?.information?.location}
                                 name='location'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
                             />
@@ -227,6 +231,7 @@ const UserProfile = ({ params }) => {
                             <label className='block text-sm font-medium text-gray-700'>Facebook</label>
                             <input
                                 {...register('facebook')}
+                                defaultValue={data?.singleUser?.information?.location}
                                 type='text'
                                 name='facebook'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
