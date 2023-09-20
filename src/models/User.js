@@ -52,6 +52,15 @@ try {
         },
         gender: {
           type: String
+        },
+        facebook: {
+          type: String
+        },
+        instagram: {
+          type: String
+        },
+        linkDin: {
+          type: String
         }
       },
       role: {

@@ -14,6 +14,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { LuSchool } from 'react-icons/lu';
+import { GrLocation } from 'react-icons/gr';
 
 const UserProfile = ({ params }) => {
     const { register, handleSubmit } = useForm();
@@ -30,43 +31,55 @@ const UserProfile = ({ params }) => {
     const { data: ownPosts, error, isLoading, } = useSWR(`/api/profile?userEmail=${data?.singleUser?.email}`, fetcher);
 
     const id = data?.singleUser?._id;
-	console.log('Own id', id);
+    console.log('Own id', id);
 
     const onSubmit = (userData) => {
-		const newProfileInfo = {
-			name: userData?.name,
-			bio: userData?.bio,
-			information: {
-				school: userData?.school,
-				college: userData?.college,
-				university: userData?.university,
-				location: userData?.location,
-				gender: userData?.gender,
-			},
-		};
+        const newProfileInfo = {
+            name: userData?.name,
+            bio: userData?.bio,
+            information: {
+                school: userData?.school,
+                college: userData?.college,
+                university: userData?.university,
+                location: userData?.location,
+                gender: userData?.gender,
+                facebook: userData?.facebook,
+                instagram: userData?.instagram,
+                linkDin: userData?.linkDin,
+            },
+        };
 
-		fetch(`/api/loggedInUser?id=${id}`, {
-			method: 'PUT',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(newProfileInfo),
-		})
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error('Network response was not ok');
-				}
-				// Parse and return the JSON response
-				return res.json();
-			})
-			.then((data) => {
-				console.log('Received data:', data);
-			})
-			.catch((error) => {
-				console.error('Fetch error:', error);
-			});
-	};
+        fetch(`/api/loggedInUser?id=${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(newProfileInfo),
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Parse and return the JSON response
+                return res.json();
+            })
+            .then((data) => {
+                console.log('Received data:', data);
+            })
+            .catch((error) => {
+                console.error('Fetch error:', error);
+            });
+    };
 
+    const handleFacebookClick = () => {
+        toast.error("Please Add your Facebook Link")
+    }
+    const handleInstagramClick = () => {
+        toast.error("Please Add your Instagram Link")
+    }
+    const handleLinkDinClick = () => {
+        toast.error("Please Add your LinkDIn Link")
+    }
     return (
         <>
             <Navbar />
@@ -120,9 +133,31 @@ const UserProfile = ({ params }) => {
                         </div>
 
                         <div className='flex items-center gap-3 mx-10'>
-                            <FaFacebookSquare size={30} className='text-[#0e8cf1]' />
-                            <FaInstagramSquare size={30} className='text-red opacity-50' />
-                            <FaLinkedin size={30} className='text-[#0a66c2] ' />
+                            {
+
+                                data?.singleUser?.information.facebook ? <>
+                                    <a href={data?.singleUser?.information.facebook} target='_blank'><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></a>
+                                </> :
+                                    <button onClick={handleFacebookClick}><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></button>
+                            }
+                            {
+
+                                data?.singleUser?.information.instagram ? <>
+                                    <a href={data?.singleUser?.information.instagram} target='_blank'><FaInstagramSquare size={30} className='text-red opacity-50' /></a>
+                                </> :
+                                    <button onClick={handleInstagramClick}> <FaInstagramSquare size={30} className='text-red opacity-50' /></button>
+                            }
+                            {
+
+                                data?.singleUser?.information.linkDin ? <>
+                                    <a href={data?.singleUser?.information.linkDin} target='_blank'> <FaLinkedin size={30} className='text-[#0a66c2] ' /></a>
+                                </> :
+                                    <button onClick={handleLinkDinClick}>  <FaLinkedin size={30} className='text-[#0a66c2] ' /></button>
+                            }
+
+
+                           
+                           
                         </div>
                     </div>
                 </div>
@@ -139,44 +174,53 @@ const UserProfile = ({ params }) => {
                                 user?.email !== email ?
                                     <></> :
                                     <div className='mt-3'>
-                                       <button onClick={() => setShowModal(true)}> <HiMiniPencilSquare size={20} /></button>
+                                        <button onClick={() => setShowModal(true)}> <HiMiniPencilSquare size={20} /></button>
                                     </div>
                             }
                         </div>
 
                         <div>
-                        <p><span className='font-semibold'>Email:</span> {data?.singleUser?.email}</p>
+                            <p><span className='font-semibold'>Email:</span> {data?.singleUser?.email}</p>
                             <p><span className='font-semibold'>Followers:</span> {data?.singleUser?.followers?.length}</p>
                             <p><span className='font-semibold'>Following:</span> {data?.singleUser?.following?.length}</p>
                         </div>
 
                         <div className='mt-6'>
-                        <p className='font-bold mb-1'>Personal Information</p>
-                          {
-                            data?.singleUser?.information?.university &&
-                              <div className='flex gap-2 items-center'>
-                              <FaGraduationCap size={20} />
-                              <p >Studies at <span className='font-semibold opacity-80'>{data?.singleUser?.information?.university}</span></p>
-                          </div>
-                          }
-                         {
-                            data?.singleUser?.information?.college && 
-                               <div className='flex gap-2 item-center'>
-                               <FaSchool size={20} />
-                               <p>Went to <span className='font-semibold opacity-80'>{
-                                   data?.singleUser?.information?.college
-                               }</span></p>
-                           </div>
-                         }
-                         {
-                            data?.singleUser?.information?.school && 
-                               <div className='flex gap-2 item-center'>
-                               <LuSchool size={20} />
-                               <p>Went to <span className='font-semibold opacity-80'>{
-                                   data?.singleUser?.information?.school
-                               }</span></p>
-                           </div>
-                         }
+                            <p className='font-bold mb-1'>Personal Information</p>
+                            {
+                                data?.singleUser?.information?.university &&
+                                <div className='flex gap-2 items-center'>
+                                    <FaGraduationCap size={20} />
+                                    <p >Studies at <span className='font-semibold opacity-80'>{data?.singleUser?.information?.university}</span></p>
+                                </div>
+                            }
+                            {
+                                data?.singleUser?.information?.college &&
+                                <div className='flex gap-2 item-center'>
+                                    <FaSchool size={20} />
+                                    <p>Went to <span className='font-semibold opacity-80'>{
+                                        data?.singleUser?.information?.college
+                                    }</span></p>
+                                </div>
+                            }
+                            {
+                                data?.singleUser?.information?.school &&
+                                <div className='flex gap-2 item-center'>
+                                    <LuSchool size={20} />
+                                    <p>Went to <span className='font-semibold opacity-80'>{
+                                        data?.singleUser?.information?.school
+                                    }</span></p>
+                                </div>
+                            }
+                            {
+                                data?.singleUser?.information?.location &&
+                                <div className='flex gap-2 item-center'>
+                                    <GrLocation size={20} />
+                                    <p>Lives in <span className='font-semibold opacity-80'>{
+                                        data?.singleUser?.information?.location
+                                    }</span></p>
+                                </div>
+                            }
                         </div>
                     </div>
 
@@ -286,12 +330,12 @@ const UserProfile = ({ params }) => {
                             />
                         </div>
                         <div className='mb-4'>
-                            <label className='block text-sm font-medium text-gray-700'>LinkedIn</label>
+                            <label className='block text-sm font-medium text-gray-700'>linkDin</label>
                             <input
-                                {...register('linkedin')}
+                                {...register('linkDin')}
                                 defaultValue={data?.singleUser?.information?.linkDin}
                                 type='text'
-                                name='linkedin'
+                                name='linkDin'
                                 className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-color'
                             />
                         </div>
