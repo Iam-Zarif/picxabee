@@ -213,13 +213,6 @@ const UserProfile = ({ params }) => {
               alt="cover photo"
             />
           )}
-          {/* <Image
-            src="https://i.ibb.co/BKfFLsv/cost-bg.jpg"
-            layout="fill"
-            objectFit="cover"
-            className={`rounded-md `}
-            alt="cover photo"
-          /> */}
 
           {user?.email !== email ? (
             <></>
@@ -256,16 +249,73 @@ const UserProfile = ({ params }) => {
                     />
                   )}
 
-                  {user?.email !== email ? (
-                    <></>
-                  ) : (
-                    <div className="absolute bottom-1 right-1">
-                      <input type="file" id="actual-btn" onChange={handleProfilePicture} hidden />
-                      <label for="actual-btn">
-                        <HiMiniPencilSquare size={30} className="text-white cursor-pointer" />
-                      </label>
+                    {
+                        user?.email !== email ?
+                            <></> :
+                            <div className='absolute right-5 bottom-5'>
+                                <HiMiniPencilSquare size={30} className='text-white' />
+                            </div>
+                    }
+                </div>
+
+                <div >
+                    <div className='flex justify-between'>
+                        <div className='flex'>
+                            <div className=" mx-10 overflow-hidden -mt-16 z-40">
+                                <div className={`${styles.profilePic} bg-white rounded-md h-40 w-40`}>
+                                    <Image
+                                        src={data?.singleUser?.profile_picture}
+                                        layout='fill'
+                                        objectFit='cover'
+                                        alt='Profile Pic'
+                                        className='h-40 w-40 rounded-md'
+                                    />
+
+                                    {
+                                        user?.email !== email ?
+                                            <></> :
+                                            <div className='absolute bottom-1 right-1'>
+                                                <HiMiniPencilSquare size={20} className='text-white' />
+                                            </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div className='text-left mt-3 w-2/4 opacity-80'>
+                                <h3 className='text-2xl font-semibold'>{data?.singleUser?.name}</h3>
+                                <h6 className='text-sm '>{data?.singleUser?.bio}</h6>
+                            </div>
+                        </div>
+
+                        <div className='flex items-center gap-3 mx-10'>
+                            {
+
+                                data?.singleUser?.information?.facebook ? <>
+                                    <a href={data?.singleUser?.information?.facebook} target='_blank'><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></a>
+                                </> :
+                                    <button onClick={handleFacebookClick}><FaFacebookSquare size={30} className='text-[#0e8cf1]' /></button>
+                            }
+                            {
+
+                                data?.singleUser?.information?.instagram ? <>
+                                    <a href={data?.singleUser?.information?.instagram} target='_blank'><FaInstagramSquare size={30} className='text-red opacity-50' /></a>
+                                </> :
+                                    <button onClick={handleInstagramClick}> <FaInstagramSquare size={30} className='text-red opacity-50' /></button>
+                            }
+                            {
+
+                                data?.singleUser?.information?.linkDin ? <>
+                                    <a href={data?.singleUser?.information?.linkDin} target='_blank'> <FaLinkedin size={30} className='text-[#0a66c2] ' /></a>
+                                </> :
+                                    <button onClick={handleLinkDinClick}>  <FaLinkedin size={30} className='text-[#0a66c2] ' /></button>
+                            }
+
+
+                           
+                           
+                        </div>
                     </div>
-                  )}
+                  
                 </div>
               </div>
 
