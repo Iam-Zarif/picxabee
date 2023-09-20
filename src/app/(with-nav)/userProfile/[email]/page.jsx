@@ -14,7 +14,8 @@ import { useForm } from 'react-hook-form';
 
 const UserProfile = ({ params }) => {
     const { register, handleSubmit } = useForm();
-    const { user } = useAuth()
+    const { user } = useAuth();
+    
     const email = params.email.replace('%40', '@')
 
     const { data } = useFetchData(`/api/userProfile/${email}`)
@@ -32,7 +33,7 @@ const UserProfile = ({ params }) => {
 
     const [showModal, setShowModal] = useState(false);
 
-      const onSubmit = (userData) => {
+      const onSubmit = async(userData) => {
         console.log("user data", userData)
         const newProfileInfo = {
             id,
@@ -44,21 +45,37 @@ const UserProfile = ({ params }) => {
             // }
         }
         console.log("new data", newProfileInfo);
+        
+        try {
+            const res = await fetch(`http://localhost:3000/api/users/123`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({newProfileInfo}),
+            })
 
-        fetch(`/api/loggedInUser`, {
-			method: 'PUT',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify({newProfileInfo}),
-		})
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error('Network response was not ok');
-				}
-                console.log(res)
-				return res.json();
-			})
+            if (!res.ok) {
+                console.log("Error");
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+
+        // fetch(`api/loggedInUser?userEmail=${user?.email}`, {
+		// 	method: 'PUT',
+		// 	headers: {
+		// 		'content-type': 'application/json',
+		// 	},
+		// 	body: JSON.stringify({newProfileInfo}),
+		// })
+		// 	.then((res) => {
+		// 		if (!res.ok) {
+		// 			throw new Error('Network response was not ok');
+		// 		}
+        //         console.log(res)
+		// 		return res.json();
+		// 	})
     }
 
     return (
