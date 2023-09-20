@@ -7,10 +7,14 @@ import { useState } from "react";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
 import PostCardLoader from "@/components/loader/PostCardLoader";
+import useFetchData from "@/hooks/useFetchData";
 
 const AddStoryModal = ({ ...props }) => {
 
     const { user } = useAuth()
+    const { data: mongoUser } = useFetchData('/api/users')
+    const loggedUser = mongoUser && mongoUser.find(singleUser => user?.email === singleUser.email)
+
     const { modal, setModal, addStoryToggleModal, imgUrl, setImgUrl } = props
     const {
         handleSubmit,
@@ -58,9 +62,9 @@ const AddStoryModal = ({ ...props }) => {
             },
             body: JSON.stringify({
                 author: {
-                    email: user?.email,
-                    name: user?.displayName,
-                    profile_pic: user?.photoURL
+                    email: loggedUser?.email,
+                    name: loggedUser?.name,
+                    profile_pic: loggedUser?.profile_picture
                 },
                 image: data.photo
             })

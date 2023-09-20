@@ -20,10 +20,15 @@ import AddStoryModal from './addStoryModal/AddStoryModal';
 import ViewStoryModal from './viewStoryModal/ViewStoryModal';
 import StoryLoader from '@/components/loader/StoryLoader';
 import useAuth from '@/hooks/useAuth';
+import useFetchData from '@/hooks/useFetchData';
 
 const Stories = () => {
 
     const { user } = useAuth()
+
+    const { data: mongoUser } = useFetchData('/api/users')
+    const loggedUser = mongoUser && mongoUser.find(singleUser => user?.email === singleUser.email)
+    console.log('30', loggedUser);
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
     const { data, error, isLoading } = useSWR('/api/stories', fetcher, {
@@ -66,7 +71,7 @@ const Stories = () => {
                             <div onClick={addStoryToggleModal} className="cursor-pointer w-fit">
                                 <div className='relative'>
                                     <Image
-                                        src={user?.photoURL}
+                                        src={loggedUser?.profile_picture}
                                         width={112}
                                         height={154}
                                         objectFit='cover'
@@ -132,7 +137,12 @@ const Stories = () => {
                                             <div className='absolute top-0 w-full h-full bg-black z-20 rounded-md bg-opacity-20'>
 
                                             </div>
-                                            <h3 className='absolute left-2 bottom-2 right-2 z-50 text-white text-xs'>{story?.author?.name}</h3>
+                                            {
+                                                mongoUser && mongoUser.map(singleUser => singleUser.email === story?.author?.email ? <>
+                                                 <h3 key={singleUser._id} className='absolute left-2 bottom-2 right-2 z-50 text-white text-xs'>{singleUser.name}</h3>
+                                                </> : '')
+                                            }
+                                           
                                         </SwiperSlide>)
                                     }
                                 </Swiper>
