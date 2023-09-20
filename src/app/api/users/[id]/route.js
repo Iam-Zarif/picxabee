@@ -1,85 +1,63 @@
-import User from "@/models/User";
-import connect from "@/utils/db";
-import { NextResponse } from "next/server";
+import User from '@/models/User';
+import connect from '@/utils/db';
+import { NextResponse } from 'next/server';
 
 export const PUT = async (request, { params }) => {
-  const { id } = params;
-  const { newFollowers } = await request.json();
+	const { id } = params;
+	const { newFollowers } = await request.json();
 
-  await connect();
+	await connect();
 
-  await User.findByIdAndUpdate(id, {
-    $push: {
-      followers: newFollowers,
-    },
-  });
-
-  return NextResponse.json({ message: "Follower Successfully" }, { status: 200 });
+	await User.findByIdAndUpdate(id, {
+		$push: {
+			followers: newFollowers,
+		},
+	});
+	return NextResponse.json(
+		{ message: 'Follower Successfully' },
+		{ status: 200 }
+	);
 };
 
 export const DELETE = async (request, { params }) => {
-  try {
-    const { id } = params;
-    const { email } = await request.json();
+	try {
+		const { id } = params;
+		const { email } = await request.json();
 
-    await connect();
-    const specificUser = await User.findById(id);
+		await connect();
+		const specificUser = await User.findById(id);
 
-    if (!specificUser) {
-      return NextResponse.json({ message: "USER NOT Found" }, { status: 404 });
-    }
+		if (!specificUser) {
+			return NextResponse.json({ message: 'USER NOT Found' }, { status: 404 });
+		}
 
-    specificUser.followers = specificUser.followers.filter((follower) => follower.email !== email);
+		specificUser.followers = specificUser.followers.filter(
+			(follower) => follower.email !== email
+		);
 
-    await specificUser.save();
-    return NextResponse.json({ message: "UnFollow Successfully" }, { status: 404 });
-  } catch (error) {
-    console.log(error.message);
-  }
+		await specificUser.save();
+		return NextResponse.json(
+			{ message: 'UnFollow Successfully' },
+			{ status: 404 }
+		);
+	} catch (error) {
+		console.log(error.message);
+	}
 };
 
-// export const GET = async () => {
-// 	try {
-// 		await connect();
-// 		const users = await User.find({"followers.email": "tuhin@gmail.com"});
-// 		return new NextResponse(JSON.stringify(users), { status: 200 });
-// 	} catch (err) {
-// 		return new NextResponse('User Fetch Problems', { status: 500 });
-// 	}
-// };
+export const AddFollowing = async (request, { params }) => {
+	const { email } = params;
+	const { newFollowing } = await request.json();
 
-// export const AddFollowing = async (request, { params }) => {
-//   const { id } = params;
-//   console.log(id);
+	await connect();
 
-//   const { newFollowing } = await request.json();
-//   console.log(newFollowing);
-
-//   await connect();
-
-//   await User.findByIdAndUpdate(id, {
-//     $push: {
-//       following: newFollowing,
-//     },
-//   });
-//   return NextResponse.json({ message: "Following Successfully" }, { status: 200 });
-// };
-
-// Update LoggedIn UserInformation
-export const PATCH = async (request) => {
-  try {
-    // const { newProfileInfo } = await request.json();
-
-    await connect();
-    const user = await User.findById("64f8ca0651aadee0d69309f2");
-    console.log(user);
-    user.information = "Ace";
-    await user.save();
-
-    // await User.findByIdAndUpdate(id, {newProfileInfo} );
-    // return NextResponse.json({ message: "user information updated" }, { status: 200 });
-  } catch (error) {
-    console.log(error.name, error.message);
-    return NextResponse.json({ error: error.message });
-  }
+	await User.findByIdAndUpdate(email, {
+		$push: {
+			followers: newFollowers,
+		},
+	});
+	return NextResponse.json(
+		{ message: 'Follower Successfully' },
+		{ status: 200 }
+	);
 };
