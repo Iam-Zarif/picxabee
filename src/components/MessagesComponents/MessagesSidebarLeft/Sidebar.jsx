@@ -1,16 +1,15 @@
 "use client";
 import { MyContext } from "@/context/ChatContext2";
 import { useContext } from "react";
-import { BiMenu } from "react-icons/bi";
 import ChatChats from "./ChatChats";
 import ChatNavbar from "./ChatNavbar";
 import ChatSearch from "./ChatSearch";
 
 const Sidebar = () => {
   const {sideBar, setSidebar} = useContext(MyContext);
-  const toggleSidebar = () =>{
-    setSidebar(!sideBar)
-  }
+  // const toggleSidebar = () =>{
+  //   setSidebar(!sideBar)
+  // }
   return (
     // dark : Zarif
     <>
@@ -21,7 +20,7 @@ const Sidebar = () => {
       > {/*  responsive */}
       
         <ChatNavbar />
-        <BiMenu className="text-black ml-2 cursor-pointer lg:hidden" size={22} onClick={toggleSidebar}/>
+        {/* <BiMenu className="text-black ml-2 cursor-pointer lg:hidden" size={22} onClick={toggleSidebar}/> */}
         <ChatSearch />
         <ChatChats />
       </div>
