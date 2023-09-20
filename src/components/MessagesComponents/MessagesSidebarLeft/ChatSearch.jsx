@@ -94,12 +94,14 @@ const ChatSearch = () => {
     // used dark: for dark theme - Zarif
     <div>
       <div className="search dark:bg-black-bg-primary">
-        <div className="searchForm p-3 border-b-2 border-t-2 bg-primary-color bg-opacity-25">
-          <AiOutlineSearch
-            className="mx-auto text-black top-5"
-            size={22}
-            onClick={() => setSidebar(!sideBar)}
-          />
+        <div className="searchForm p-3 border-b-2 border-t-2 bg-primary-color bg-opacity-25 flex items-center flex-col gap-y-3">
+          <div className="bg-primary-color bg-opacity-40 rounded-full p-3 inline-block cursor-pointer">
+            <AiOutlineSearch
+              className="mx-auto text-black top-5"
+              size={22}
+              onClick={() => setSidebar(!sideBar)}
+            />
+          </div>
           {sideBar && (
             <input
               placeholder={"Search Here.."}
@@ -117,7 +119,7 @@ const ChatSearch = () => {
             className="userChat border-gray-400 rounded-lg border-2 text-white cursor-pointer md:text-base text-sm m-2"
             onClick={handleSelect}
           >
-            <div className="hover:bg-primary-color rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
+            <div className=" bg-primary-color bg-opacity-25 rounded-md px-2 h-20 w-full flex items-center gap-3 transition-all ease-in-out">
               <img
                 className="lg:w-14 lg:h-14 h-8 w-8  object-cover rounded-full"
                 src={user?.photoURL}
@@ -125,7 +127,7 @@ const ChatSearch = () => {
               />
               <div className="userChatInfo  flex-1">
                 <span className="font-bold text-black">
-                  <p className="">{user?.displayName}</p>
+                  <p className="dark:text-white">{user?.displayName}</p>
                 </span>
               </div>
             </div>
