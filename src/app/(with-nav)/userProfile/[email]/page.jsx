@@ -142,7 +142,7 @@ const UserProfile = ({ params }) => {
                             }
                             {
 
-                                data?.singleUser?.information.instagram ? <>
+                                data?.singleUser?.information?.instagram ? <>
                                     <a href={data?.singleUser?.information?.instagram} target='_blank'><FaInstagramSquare size={30} className='text-red opacity-50' /></a>
                                 </> :
                                     <button onClick={handleInstagramClick}> <FaInstagramSquare size={30} className='text-red opacity-50' /></button>
