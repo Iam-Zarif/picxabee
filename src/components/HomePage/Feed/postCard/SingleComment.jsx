@@ -3,14 +3,27 @@ import Image from 'next/image';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
+import useSWR from 'swr';
+
+
 const SingleComment = ({ comment, id }) => {
 	const { user } = useAuth();
 	const postId = id;
 	const commentId = comment?._id;
 	// console.log(comment?._id)
 	// console.log(id)
-	const DeleteActive = comment?.author?.email !== user?.email;
+	const DeleteActive = comment?.author?.email !== user?.email;//!==
 	// console.log(DeleteActive);
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const {
+	data: commentAuthor,
+	error,
+	isLoading,
+} = useSWR(`/api/loggedInUser?userEmail=${comment?.author?.email}`, fetcher, {
+	refreshInterval: 1000,
+});
+
+// console.log(commentAuthor);
 
 	const handleDeleteComment = async (postId, commentId) => {
 		// console.log(id);
@@ -47,7 +60,7 @@ const SingleComment = ({ comment, id }) => {
 		<div className="grid grid-cols-12 lg:mb-3 mb-2">
 			<div className="col-span-1">
 				<Image
-					src={comment?.author?.profile_picture}
+					src={commentAuthor?.profile_picture}
 					width={40}
 					height={40}
 					alt="Picture of the author"
@@ -58,7 +71,7 @@ const SingleComment = ({ comment, id }) => {
 				<p className="pt-2 px-3 lg:px-0">
 					<span className="text-base font-bold break-keep pr-2">
 						<Link href={`/userProfile/${comment?.author?.email}`}>
-							{comment?.author?.name}
+							{commentAuthor?.name}
 						</Link>
 					</span>
 

@@ -6,7 +6,6 @@ const Ad = () => {
     return (
         <div>
             <div>
-                
                 <Lottie animationData={socialmedia}></Lottie>
             </div>
         </div>
