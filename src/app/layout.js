@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 
 import { ChatContextProvider } from "@/context/ChatContext";
+import ChatContext2 from "@/context/ChatContext2";
 import Providers from "@/provider";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
@@ -24,15 +25,17 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} dark:bg-black-bg-secondary `}>
         <Providers>
           <ChatContextProvider>
-            <ThemeProviders>
-              <div className="">
-                {/* <Navbar /> */}
-                <Toaster />
-                <div className="dark:text-white dark:bg-zinc-800">
-                  {children}
+            <ChatContext2>
+              <ThemeProviders>
+                <div className="">
+                  {/* <Navbar /> */}
+                  <Toaster />
+                  <div className="dark:text-white dark:bg-zinc-800">
+                    {children}
+                  </div>
                 </div>
-              </div>
-            </ThemeProviders>
+              </ThemeProviders>
+            </ChatContext2>
           </ChatContextProvider>
         </Providers>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

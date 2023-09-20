@@ -1,12 +1,13 @@
 "use client";
+import { MyContext } from "@/context/ChatContext2";
+import { useContext } from "react";
 import { BiMenu } from "react-icons/bi";
 import ChatChats from "./ChatChats";
 import ChatNavbar from "./ChatNavbar";
 import ChatSearch from "./ChatSearch";
-import { useState } from "react";
 
 const Sidebar = () => {
-  const [sideBar, setSidebar] = useState(false);
+  const {sideBar, setSidebar} = useContext(MyContext);
   const toggleSidebar = () =>{
     setSidebar(!sideBar)
   }
@@ -15,7 +16,7 @@ const Sidebar = () => {
     <>
       <div
         className={`massage-sidebar dark:bg-black-bg-primary ${
-          sideBar ? "lg:w-full" : "w-2/12"
+          sideBar ? "lg:w-4/5" : "w-1/5"
         }`}
       > {/*  responsive */}
       
