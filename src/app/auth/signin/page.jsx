@@ -25,9 +25,11 @@ const SigninPage = () => {
 						</p>
 
 						<SocialLogin />
+						<p className='mt-4'>having trouble ? <Link href={"/support"}>Support</Link></p>
 					</div>
 				</div>
 			</div>
+			
 		</>
 	);
 };
