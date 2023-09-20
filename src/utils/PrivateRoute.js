@@ -1,27 +1,20 @@
-'use client'
+"use client"
 import useAuth from "@/hooks/useAuth";
-import useFetchData from "@/hooks/useFetchData";
 import { useRouter } from "next/navigation";
 
 const PrivateRoute = ({ children }) => {
-
-    const { user } = useAuth();
-
-    const { data: loggedInUser } = useFetchData(`/api/loggedInUser?userEmail=${user?.email}`);
-
+    const { user, loading } = useAuth()
     const router = useRouter()
 
-    if (!user) {
-        return router.push('/')
+    if (loading) {
+        return <p>Loading...</p>
     }
 
-    if (loggedInUser?.role === 'user') {
-        return router.push('/')
-
+    if (user?.email) {
+        return children
     }
 
+    return router.push('/auth/signin')
+};
 
-    return children
-}
-
-export default PrivateRoute
+export default PrivateRoute;

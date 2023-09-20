@@ -8,33 +8,39 @@ import { useEffect, useState } from "react";
 import Loading from "./loading";
 
 export default function Home() {
-	const [isLoading, setIsLoading] = useState(true);
-	useEffect(() => {
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 1000);
-	}, []);
+
+	// const [isLoading, setIsLoading] = useState(true);
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		setIsLoading(false);
+	// 	}, 1000);
+	// }, []);
+
 	return (
 		<>
-		{isLoading ? <section className=" text-center"><Loading className=""/></section> : <>
-		<Navbar/>
-		<div className="my-container xl:py-24 py-20 grid lg:grid-cols-4  grid-cols-1 lg:gap-5 lg:mt-10 xl:mt-0">
-			{/* <div className="hidden lg:block"> */}
-			{/* <LeftSideBar /> */}
-			{/* </div> */}
+			{/* {
+			isLoading ? 
+			<section className=" text-center"><Loading className="" /></section> : 
+			<> */}
+				<Navbar />
+				<div className="my-container xl:py-24 py-20 grid lg:grid-cols-4  grid-cols-1 lg:gap-5 lg:mt-10 xl:mt-0">
+					{/* <div className="hidden lg:block"> */}
+					{/* <LeftSideBar /> */}
+					{/* </div> */}
 
-			<div className="hidden lg:block ">
-				<DonationCards />
-			</div>
-			<div className="col-span-2">
-				<Feed />
-			</div>
+					<div className="hidden lg:block ">
+						<DonationCards />
+					</div>
+					<div className="col-span-2">
+						<Feed />
+					</div>
 
-			<div className="hidden lg:block">
-				<RightSideBar />
-			</div>
-		</div>
-		</>}
+					<div className="hidden lg:block">
+						<RightSideBar />
+					</div>
+				</div>
+			{/* </>
+			} */}
 		</>
 	);
 }
