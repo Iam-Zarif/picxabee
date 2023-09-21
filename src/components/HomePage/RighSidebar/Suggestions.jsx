@@ -91,7 +91,7 @@ const Suggestions =() => {
     <div className="mt-4">
       <div className="flex justify-between text-sm mb-5">
         <h3 className="text-sm font-bold text-gray-400">Suggestions for you</h3>
-        <button className="text-gray-700 font-bold">See All</button>
+        {/* <button className="text-gray-700 font-bold">See All</button> */}
       </div>
 
       {SuggestedUsers &&

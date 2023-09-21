@@ -201,18 +201,20 @@ const UserProfile = ({ params }) => {
         <div className={`${styles.imageContainer} relative `}>
           {coverImage ? (
             <Image
+            
               src={coverImage}
               layout="fill"
               objectFit="cover"
-              className={`rounded-md `}
+              className={`rounded-md h-40 w-40`}
               alt="cover photo"
             />
           ) : (
             <Image
+            
               src={data?.singleUser?.cover_photo}
               layout="fill"
               objectFit="cover"
-              className={`rounded-md `}
+              className={`rounded-md h-40 w-40`}
               alt="cover photo"
             />
           )}
@@ -243,7 +245,7 @@ const UserProfile = ({ params }) => {
                               layout="fill"
                               objectFit="cover"
                               alt="Profile Pic"
-                              className="h-40 w-40 rounded-md"
+                              className="h-30 w-30 lg:h-40 lg:w-40 rounded-md"
                             />
                           ) : (
                             <Image
@@ -251,7 +253,7 @@ const UserProfile = ({ params }) => {
                               layout="fill"
                               objectFit="cover"
                               alt="Profile Pic"
-                              className="h-40 w-40 rounded-md"
+                              className="h-20 w-20 lg:h-40 lg:w-40 rounded-md"
                             />
                           )}
                           {/* <Image
@@ -275,7 +277,7 @@ const UserProfile = ({ params }) => {
                               <label for="btn">
                                 <HiMiniPencilSquare
                                   size={30}
-                                  className="text-white cursor-pointer"
+                                  className="text-white cursor-pointer absolute bottom-0 right-0"
                                 />
                               </label>
                             </div>
@@ -305,7 +307,7 @@ const UserProfile = ({ params }) => {
               )}
 
               <div className="text-left mt-3 w-2/4 opacity-80">
-                <h3 className="text-2xl font-semibold">{data?.singleUser?.name}</h3>
+                <h3 className="text-2xl  font-semibold">{data?.singleUser?.name}</h3>
                 <h6 className="text-sm ">{data?.singleUser?.bio}</h6>
               </div>
             </div>
@@ -368,9 +370,9 @@ const UserProfile = ({ params }) => {
 
         <hr className="border my-10 opacity-20" />
 
-        <div className="grid grid-cols-9 gap-5 mx-20">
-          <div className="col-span-4 bg-primary-color bg-opacity-10 h-[300px] rounded-md p-5">
-            <div className="flex justify-between">
+        <div className="grid grid-cols-1 lg:grid-cols-9 gap-5 lg:mx-20">
+          <div className="col-span-4 w-full bg-primary-color bg-opacity-10 h-[300px] rounded-md p-5">
+            <div className="flex justify-between ">
               <h5 className="text-xl uppercase font-semibold mb-5">information</h5>
 
               {user?.email !== email ? (
@@ -385,7 +387,7 @@ const UserProfile = ({ params }) => {
               )}
             </div>
 
-            <div>
+            <div className="w-full">
               <p>
                 <span className="font-semibold">Email:</span> {data?.singleUser?.email}
               </p>
