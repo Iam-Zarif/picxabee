@@ -249,6 +249,13 @@ const UserProfile = ({ params }) => {
                       className="h-40 w-40 rounded-md"
                     />
                   )}
+                     <Image
+                      src={data?.singleUser?.profile_picture}
+                      layout="fill"
+                      objectFit="cover"
+                      alt="Profile Pic"
+                      className="h-40 w-40 rounded-md"
+                    />
 
                     {
                         user?.email !== email ?
