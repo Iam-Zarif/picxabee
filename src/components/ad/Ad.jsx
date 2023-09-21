@@ -14,7 +14,7 @@ const Ad = () => {
 		refreshInterval: 1000, // Adjust the refresh interval as needed
 	});
 
-	const [randomAdIndex,  setRandomAdIndex] = useState(0);
+	const [randomAdIndex, setRandomAdIndex] = useState(0);
 
 	// Function to change the random ad index
 	const changeRandomAd = () => {
@@ -51,16 +51,3 @@ const Ad = () => {
 
 export default Ad;
 
-{
-	/* <Image
-				src={adPosts?.[randomAdIndex]?.image}
-				alt=""
-				layout="fill"
-				objectFit="cover"
-			/> */
-}
-{
-	/* <div>
-        <Lottie animationData={socialmedia}></Lottie>
-      </div> */
-}
