@@ -28,7 +28,6 @@ const Stories = () => {
 
     const { data: mongoUser } = useFetchData('/api/users')
     const loggedUser = mongoUser && mongoUser.find(singleUser => user?.email === singleUser.email)
-    console.log('30', loggedUser);
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
     const { data, error, isLoading } = useSWR('/api/stories', fetcher, {

@@ -66,7 +66,7 @@ const RecycleSinglePost = ({ post }) => {
                     className="object-contain border-none w-full h-[500px]" //object-contain
                 />
             )}
-            <div className="flex justify-end px-5 py-3 ">
+            <div className="flex justify-end px-5 p-3 ">
                 <div className="flex gap-3">
                     <div className='flex items-center gap-0.5'>
                         {
@@ -112,7 +112,7 @@ const RecycleSinglePost = ({ post }) => {
                 </div>
             </div>
 
-            <div>
+            <div className='p-3'>
                 {
                     post?.comments?.reverse().map((comment, i) => (
                         <SingleComment
