@@ -8,13 +8,20 @@ import TotalFeedback from './TotalFeedback';
 
 const DashboardPageComponent = () => {
   return (
-    
-	
 		<>
-		<div className='mt-5'>
-			<p className='text-center text-4xl font-semibold'>Dashboard</p>
-			<hr className='w-1/2 mx-auto'/>
-		</div>
+			{/* <div className="mt-5">
+				<h1 className="text-center text-4xl font-semibold ">
+					Dashboard
+				</h1>
+				<hr className="w-1/2 mx-auto" />
+			</div> */}
+
+			<div className="w-fit mx-auto mt-5 mb-10">
+				{/* <p className="text-primary-color font-bold lg:text-4xl text-xl text-center  border-b-2 px-3">
+					Dashboard
+				</p> */}
+			</div>
+
 			<div className="flex  flex-col gap-5 lg:flex-row px-20 mt-5 lg:mt-10 lg:px-0 ">
 				<div className="w-2/3 mx-auto lg:w-full">
 					<TotalUser />
@@ -28,10 +35,9 @@ const DashboardPageComponent = () => {
 				</div>
 			</div>
 
-        
-        {/* <TotalUser /> */}
+			{/* <TotalUser /> */}
 
-        {/* <div className="bg-red bg-opacity-10 h-[150px] rounded-md flex items-center justify-center">
+			{/* <div className="bg-red bg-opacity-10 h-[150px] rounded-md flex items-center justify-center">
                     <h3 className="text-2xl font-semibold">Total User: 55</h3>
                 </div>
 
@@ -39,14 +45,14 @@ const DashboardPageComponent = () => {
                     <h3 className="text-2xl font-semibold">Total User: 28</h3>
                 </div>*/}
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-x-10 m-10">
-                <div className="col-span-1 md:col-span-3   lg:w-full">
-                    <TotalUserChart />
-                </div>
-                <div className="col-span-1 md:col-span-3">
-                    <TotalPostChart />
-                </div>
-            </div>
+			<div className="grid grid-cols-1 md:grid-cols-6 gap-x-10 m-10">
+				<div className="col-span-1 md:col-span-3   lg:w-full">
+					<TotalUserChart />
+				</div>
+				<div className="col-span-1 md:col-span-3">
+					<TotalPostChart />
+				</div>
+			</div>
 			{/* <div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
 			<div className="flex flex-col xl:flex-row gap-5 items-center justify-center mx-6">
 				<div className="basis-full xl:basis-1/2">

@@ -8,7 +8,6 @@ const RightSideBar = () => {
     return (
         <>
             <div className=''>
-
                 <Ad />
             </div>
 

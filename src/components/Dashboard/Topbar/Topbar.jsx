@@ -6,13 +6,21 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { ImShare2 } from 'react-icons/im';
 import Link from 'next/link';
 import useAuth from '@/hooks/useAuth';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 const TopBar = () => {
 	const { user } = useAuth();
-	// console.log(user)
+	const { loggedInUser } = useCurrentUser();
+	console.log(loggedInUser)
 	return (
 		<>
-			<div className="h-20  glass  px-28 flex justify-end lg:gap-96  items-center">
+			<div className="h-20  glass px-28 flex justify-end lg:gap-72  items-center">
+				<div>
+					<p className="text-primary-color text-center font-bold lg:text-4xl text-xl  px-3">
+						PicxaBee Dashboard
+					</p>
+				</div>
+
 				{/* <div>
 					<div className="group relative hidden h-full w-full items-center md:flex lg:w-64">
 						<div className="absolute flex cursor-pointer items-center justify-center p-3 pr-2 text-sm uppercase text-gray-500 sm:hidden">
@@ -63,11 +71,11 @@ const TopBar = () => {
 
 					<Link href={`/userProfile/${user?.email}`}>
 						<Image
-							src={user?.photoURL}
+							src={loggedInUser?.profile_picture}
 							width={40}
 							height={40}
 							alt="User Image"
-							className="h-10 w-10 object-cover border rounded-full"
+							className="h-10 w-10 object-cover border border-primary-color p-[2px] rounded-full "
 						/>
 					</Link>
 				</div>
