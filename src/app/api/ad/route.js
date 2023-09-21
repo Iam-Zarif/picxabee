@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 export const GET = async (request) => {
 	try {
 		await connect();
-		const ads = await Ad.find();
+		const ads = await Ad.find({status: "pending"});
 		return new NextResponse(JSON.stringify(ads), { status: 200 });
 	} catch (error) {
 		return NextResponse.json({ error: error.message });
@@ -34,15 +34,16 @@ export const POST = async (request) => {
 
 // Update Donation Status
 export const PATCH = async (request) => {
-	const id = request.nextUrl.searchParams.get('id');
-	const status = await request.json();
-
+	
 	try {
+		const id = request.nextUrl.searchParams.get('id');
+		console.log(id);
+		const status = await request.json();
 		await connect();
-		await Donation.findByIdAndUpdate(id, status);
+		await Ad.findByIdAndUpdate(id, status);
 
 		return NextResponse.json(
-			{ message: 'post status updated' },
+			{ message: 'AdPost status updated' },
 			{ status: 200 }
 		);
 	} catch (err) {
