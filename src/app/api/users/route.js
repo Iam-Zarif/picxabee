@@ -3,7 +3,6 @@ import connect from '@/utils/db';
 import { NextResponse } from 'next/server';
 
 export const GET = async () => {
-	
 	try {
 		await connect();
 		const users = await User.find();
@@ -14,26 +13,27 @@ export const GET = async () => {
 };
 
 export const POST = async (request) => {
-
-	const body = await request.json();
-	const newUser = new User(body);
-
-	console.log(body);
-	console.log(newUser);
-
 	try {
+		const body = await request.json();
+		const newUser = new User(body);
+
+		// console.log(body);
+		// console.log(newUser);
 		await connect();
 		await newUser.save();
-		return new NextResponse('User has been created', { status: 201 });
-	} catch (err) {
-		return new NextResponse('Database Error', { status: 500 });
+		return new NextResponse(
+			{ message: 'User saved in database' },
+			{ status: 201 }
+		);
+	} catch (error) {
+		console.log(error.name, error.message);
+		return NextResponse.json({ error: error.message });
 	}
 };
 
 export const PATCH = async (request) => {
-
 	const id = request.nextUrl.searchParams.get('id');
-	const role = await request.json()
+	const role = await request.json();
 
 	try {
 		await connect();

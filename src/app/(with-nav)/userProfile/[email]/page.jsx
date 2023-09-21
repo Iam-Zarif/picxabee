@@ -22,11 +22,13 @@ import { useRouter } from "next/navigation";
 import { LuSchool } from "react-icons/lu";
 import { GrLocation } from "react-icons/gr";
 
+
+
 const UserProfile = ({ params }) => {
   const [coverImage, setCoverImage] = useState("");
-  console.log(coverImage);
+  // console.log(coverImage);
   const [profilePicture, setProfilePicture] = useState("");
-  console.log(profilePicture);
+  // console.log(profilePicture);
   const { register, handleSubmit } = useForm();
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
