@@ -14,7 +14,7 @@ let getstripe = () => {
   await stripe.redirectToCheckout({
         mode: "payment",
         lineItems, 
-        successUrl:`${window.location.origin}recycle`,
+        successUrl:`${window.location.origin}/recycle`,
         cancelUrl : window.location.origin,
     })
   console.log(lineItems)
