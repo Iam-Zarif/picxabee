@@ -6,6 +6,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const ConfirmationPage = () => {
    
@@ -13,6 +14,7 @@ const ConfirmationPage = () => {
     const { user } = useAuth()
     const { register, handleSubmit } = useForm();
     const [showModal, setShowModal] = useState(false);
+    const router = useRouter();
     const onSubmit = async (data) => {
         
         const payments = {
@@ -44,6 +46,8 @@ const ConfirmationPage = () => {
             }
             setShowModal(false)
             toast.success("Payment Success");
+            router.push('/paymentHistory');
+
           } catch (error) {
             console.error("An error occurred:", error);
             
