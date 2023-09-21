@@ -51,16 +51,3 @@ const Ad = () => {
 
 export default Ad;
 
-{
-	/* <Image
-				src={adPosts?.[randomAdIndex]?.image}
-				alt=""
-				layout="fill"
-				objectFit="cover"
-			/> */
-}
-{
-	/* <div>
-        <Lottie animationData={socialmedia}></Lottie>
-      </div> */
-}

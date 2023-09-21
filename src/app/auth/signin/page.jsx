@@ -16,20 +16,30 @@ const SigninPage = () => {
 
 						<SigninForm />
 
-						<p className="my-5">
-							New to Picxabee? Please <Link
+						<p className="my-5 mx-auto text-center">
+							New to Picxabee? Please{' '}
+							<Link
 								href="/auth/register"
 								className="font-semibold text-primary-color"
-							> Register
-							</Link>.
+							>
+								{' '}
+								Register
+							</Link>
+							.
 						</p>
-
+						<p className=" text-center pb-2">
+							Having Trouble ?{' '}
+							<Link
+								className="font-semibold text-primary-color"
+								href={'/support'}
+							>
+								Support
+							</Link>
+						</p>
 						<SocialLogin />
-						<p className='mt-4'>having trouble ? <Link href={"/support"}>Support</Link></p>
 					</div>
 				</div>
 			</div>
-			
 		</>
 	);
 };
