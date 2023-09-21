@@ -46,7 +46,7 @@ const NavItems = () => {
 
   const [value, onChange] = useState(new Date());
   const { loggedInUser } = useCurrentUser();
-console.log(loggedInUser?.role)
+console.log(loggedInUser)
   const handleLogOut = () => {
     logout()
       .then((data) => {
@@ -74,44 +74,38 @@ console.log(loggedInUser?.role)
   const pathname = usePathname()
   const router = useRouter();
   return (
-    <>
+		<>
+			{user ? (
+				<>
+					<ul></ul>
 
-      {user ? (
-        <>
-          <ul>
+					<li>
+						<div className={pathname === '/' ? 'active' : ''}>
+							<Link
+								href="/"
+								className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
+							>
+								<p data-tip="Home">
+									<GoHome className="text-2xl lg:text-2xl " />
+								</p>
+							</Link>
+						</div>
+					</li>
+					{/* Rezon msg */}
 
-          </ul>
-
-
-
-          <li>
-            <div className={pathname === '/' ? 'active' : ''}>
-              <Link
-
-                href="/"
-                className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
-              >
-                <p data-tip="Home">
-                  <GoHome className="text-2xl lg:text-2xl " />
-                </p>
-              </Link>
-            </div>
-          </li>
-          {/* Rezon msg */}
-
-          <li>
-            <a
-              data-tip="Message"
-              className="hover:bg-transparent tooltip-bottom tooltip hover:scale-125 transform transition-transform"
-            >
-              <HiOutlineChatAlt2
-                onClick={() => router.push("/messages")}
-                className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform "
-              />
-            </a>
-          </li>
-          {/* Rezon msg */}
-          {/* <li className="hidden lg:relative lg:block">
+					<li>
+						<a
+							data-tip="Message"
+							className="hover:bg-transparent tooltip-bottom tooltip hover:scale-125 transform transition-transform"
+						>
+							<HiOutlineChatAlt2
+								onClick={() => router.push('/messages')}
+								className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform "
+							/>
+						</a>
+					</li>
+					{/* Rezon msg */}
+					{/* <li className="hidden lg:relative lg:block">
             <a className="indicator hover:bg-transparent  hover:scale-125 transform transition-transform ">
               <span className="lg:absolute left-3 top-2 indicator-item badge text-white bg-primary-color  font-bold px-2">
                 5
@@ -119,227 +113,255 @@ console.log(loggedInUser?.role)
               <IoNotificationsOutline className="rotate-45 text-xl lg:text-2xl hover:scale-125 transform transition-transform" />
             </a>
           </li> */}
-          <div className={pathname === '/recycle' ? 'active' : ''}>
-            <li>
-              <Link
-                href={"/recycle"}
-                data-tip="Recycle bin"
-                className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
-              >
-                <RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
-              </Link>
-            </li>
-          </div>
-          <li>
-            <a className=" hover:bg-transparent ">
-              <Image
-                alt="User image"
-                src={user?.photoURL}
-                width={35}
-                height={35}
-                className="h-8 w-8 rounded-full  hover:scale-125 border-2 dark:border-gray border-primary-color transform transition-transform"
-                onClick={toggleDrawer}
-              ></Image>
-              <></>
-              {/*  */}
-              <Drawer
-                open={isOpen}
-                onClose={toggleDrawer}
-                direction="right"
-                className="  dark:bg-black"
-              >
-                <div className="dark:bg-black-bg-primary  min-h-screen z-50">
-                  <div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
-                    <p className=" ">
-                      <AiOutlineUser className="inline" />{" "}
-                      <span>{user.displayName}</span>
-                    </p>
-                    <hr className="text-primary-color" />
+					<div className={pathname === '/recycle' ? 'active' : ''}>
+						<li>
+							<Link
+								href={'/recycle'}
+								data-tip="Recycle bin"
+								className=" flex items-center tooltip-bottom tooltip  hover:scale-125 hover:translate-x-1 transform transition-transform"
+							>
+								<RiDeleteBin5Line className="text-2xl lg:text-2xl hover:scale-125 transform transition-transform  " />
+							</Link>
+						</li>
+					</div>
+					<li>
+						<a className=" hover:bg-transparent ">
+							<Image
+								alt="User image"
+								src={loggedInUser?.profile_picture}
+								width={35}
+								height={35}
+								className="h-8 w-8 rounded-full  hover:scale-125 border-2 dark:border-gray border-primary-color transform transition-transform"
+								onClick={toggleDrawer}
+							></Image>
+							<></>
+							{/*  */}
+							<Drawer
+								open={isOpen}
+								onClose={toggleDrawer}
+								direction="right"
+								className="  dark:bg-black"
+							>
+								<div className="dark:bg-black-bg-primary  min-h-screen z-50">
+									<div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
+										<p className=" ">
+											<AiOutlineUser className="inline" />{' '}
+											<span>{user.displayName}</span>
+										</p>
+										<hr className="text-primary-color" />
 
-                    {/* Changed by Hridoy Hoque */}
-                    
-                    <div className={pathname === '/userProfile' ? 'sideActive' : ''}>
-                      <Link href={`/userProfile/${user?.email}`}>
-                        <p className="  flex items-center group   hover:ml-2 transition-all">
-                          <AiOutlineProfile
-                            size={28}
-                            className="inline mr-2 rounded-full "
-                          />
-                          Profile
-                          {/* profile er vitore change password */}
-                          <AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
-                        </p>
-                      </Link>
-                    </div>
-                    <div className={pathname === '/settings' ? 'sideActive' : ''}>
-                      <p
-                        onClick={toggleDrawer1}
-                        className=" flex items-center group cursor-pointer  hover:ml-2 transition-all"
-                      >
-                        <IoSettingsOutline size={28} className="inline mr-2" />
-                        Settings
-                        <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                      </p>
-                    </div>
-                    {/*  */}
-                    <Drawer
-                      open={isOpen1}
-                      onClose={toggleDrawer1}
-                      direction="right"
-                      className="bla bla bla dark:bg-black  "
-                    >
-                      <div className="dark:bg-black-bg-primary lg:pl-2 pt-16 lg:pt-0  min-h-screen ">
-                        <p onClick={toggleDrawer1} className="pt-8 ">
-                          <BsArrowLeftCircle
-                            size={26}
-                            className="hover:scale-110 ml-4"
-                          />
-                        </p>
-                        <div className="lg:text-lg lg:pl-2 flex flex-col  gap-5 w-11/12 mx-auto">
-                          <div className="">
-                            {" "}
-                            <ThemeButton />
-                          </div>
+										{/* Changed by Hridoy Hoque */}
 
+										<div
+											className={
+												pathname === '/userProfile' ? 'sideActive' : ''
+											}
+										>
+											<Link href={`/userProfile/${user?.email}`}>
+												<p className="  flex items-center group   hover:ml-2 transition-all">
+													<AiOutlineProfile
+														size={28}
+														className="inline mr-2 rounded-full "
+													/>
+													Profile
+													{/* profile er vitore change password */}
+													<AiOutlineArrowRight className="  ml-2 opacity-0 group-hover:opacity-100 inline" />
+												</p>
+											</Link>
+										</div>
+										<div
+											className={pathname === '/settings' ? 'sideActive' : ''}
+										>
+											<p
+												onClick={toggleDrawer1}
+												className=" flex items-center group cursor-pointer  hover:ml-2 transition-all"
+											>
+												<IoSettingsOutline size={28} className="inline mr-2" />
+												Settings
+												<AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+											</p>
+										</div>
+										{/*  */}
+										<Drawer
+											open={isOpen1}
+											onClose={toggleDrawer1}
+											direction="right"
+											className="bla bla bla dark:bg-black  "
+										>
+											<div className="dark:bg-black-bg-primary lg:pl-2 pt-16 lg:pt-0  min-h-screen ">
+												<p onClick={toggleDrawer1} className="pt-8 ">
+													<BsArrowLeftCircle
+														size={26}
+														className="hover:scale-110 ml-4"
+													/>
+												</p>
+												<div className="lg:text-lg lg:pl-2 flex flex-col  gap-5 w-11/12 mx-auto">
+													<div className="">
+														{' '}
+														<ThemeButton />
+													</div>
 
-                          <p className=" flex items-center group  hover:ml-2 transition-all">
-                            <AiOutlineCalendar
-                              size={28}
-                              className="inline mr-2"
-                            />
-                            <p className="" onClick={() => document.getElementById('my_modal_3').showModal()}>Calender</p>
-                            <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                          </p>
-                          <p className=" flex items-center group  hover:ml-2 transition-all">
-                            <MdOutlineLockReset
-                              size={28}
-                              className="inline mr-2"
-                            />
-                            <Link href='/auth/resetPassword'>
-                              Reset Password
-                            </Link>
-                            <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                          </p>
-                        </div>
-                      </div>
-                    </Drawer>
-                    {/*  */}
-                    <div className={pathname === '/bookmark' ? 'sideActive' : ''}>
-                      <Link href="/bookmark">
-                        {" "}
-                        <p className=" flex items-center group  hover:ml-2 transition-all">
-                          <BsBookmarkCheck size={28} className="inline mr-2" />
-                          Bookmarks
-                          <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                        </p>
-                      </Link>
-                    </div>
-                    <div>
-                      {loggedInUser?.role === "admin" ? (
-                        <>
-                          <div className={pathname === '/dashboard' ? 'sideActive' : ''}>
-                            <Link href="/dashboard">
-                              <p className=" flex items-center group  hover:ml-2 transition-all">
-                                <TbLayoutDashboard
-                                  size={28}
-                                  className="inline mr-2"
-                                />
-                                Dashboard
-                                <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                              </p>
-                            </Link>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <NavFeedback />
-                        </>
-                      )}
-                    </div>
-                    {/* Hridoy Haque */}
-                    <div className="lg:hidden block"><div className={pathname === '/allApprovedDonation' ? 'sideActive' : ''}>
-                      <Link href="/allApprovedDonation">
-                        <p className=" flex items-center group  hover:ml-2 transition-all">
-                          <BiDonateBlood
-                            size={28}
-                            className="inline mr-2"
-                          />
-                          Donate
-                          <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                        </p>
-                      </Link>
-                    </div></div>
-                    {/* Hridoy Haque */}
+													<p className=" flex items-center group  hover:ml-2 transition-all">
+														<AiOutlineCalendar
+															size={28}
+															className="inline mr-2"
+														/>
+														<p
+															className=""
+															onClick={() =>
+																document
+																	.getElementById('my_modal_3')
+																	.showModal()
+															}
+														>
+															Calender
+														</p>
+														<AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+													</p>
+													<p className=" flex items-center group  hover:ml-2 transition-all">
+														<MdOutlineLockReset
+															size={28}
+															className="inline mr-2"
+														/>
+														<Link href="/auth/resetPassword">
+															Reset Password
+														</Link>
+														<AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+													</p>
+												</div>
+											</div>
+										</Drawer>
+										{/*  */}
+										<div
+											className={pathname === '/bookmark' ? 'sideActive' : ''}
+										>
+											<Link href="/bookmark">
+												{' '}
+												<p className=" flex items-center group  hover:ml-2 transition-all">
+													<BsBookmarkCheck size={28} className="inline mr-2" />
+													Bookmarks
+													<AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+												</p>
+											</Link>
+										</div>
+										<div>
+											{loggedInUser?.role === 'admin' ? (
+												<>
+													<div
+														className={
+															pathname === '/dashboard' ? 'sideActive' : ''
+														}
+													>
+														<Link href="/dashboard">
+															<p className=" flex items-center group  hover:ml-2 transition-all">
+																<TbLayoutDashboard
+																	size={28}
+																	className="inline mr-2"
+																/>
+																Dashboard
+																<AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+															</p>
+														</Link>
+													</div>
+												</>
+											) : (
+												<>
+													<NavFeedback />
+												</>
+											)}
+										</div>
+										{/* Hridoy Haque */}
+										<div className="lg:hidden block">
+											<div
+												className={
+													pathname === '/allApprovedDonation'
+														? 'sideActive'
+														: ''
+												}
+											>
+												<Link href="/allApprovedDonation">
+													<p className=" flex items-center group  hover:ml-2 transition-all">
+														<BiDonateBlood size={28} className="inline mr-2" />
+														Donate
+														<AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+													</p>
+												</Link>
+											</div>
+										</div>
+										{/* Hridoy Haque */}
 
+										<p
+											onClick={handleLogOut}
+											className=" flex items-center group  hover:ml-2 transition-all"
+										>
+											<LuLogOut size={28} className="inline mr-2" />
+											Log Out
+											<AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
+										</p>
 
-                    <p
-                      onClick={handleLogOut}
-                      className=" flex items-center group  hover:ml-2 transition-all"
-                    >
-                      <LuLogOut size={28} className="inline mr-2" />
-                      Log Out
-                      <AiOutlineArrowRight className=" ml-2 opacity-0 group-hover:opacity-100 inline" />
-                    </p>
-
-                    <div className="divider"></div>
-                  </div>
-                </div>
-              </Drawer>
-            </a>
-          </li>
-        </>
-      ) : (
-        <>
-          <div className="flex items-center gap-8">
-            <div className="hover:scale-110  transform transition-transform">
-              {" "}
-              <Link
-                className="  text-primary-color dark:hover:text-primary-color hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
-                href="/auth/signin"
-              >
-                Sign In
-              </Link>
-              {/* <Link
+										<div className="divider"></div>
+									</div>
+								</div>
+							</Drawer>
+						</a>
+					</li>
+				</>
+			) : (
+				<>
+					<div className="flex items-center gap-8">
+						<div className="hover:scale-110  transform transition-transform">
+							{' '}
+							<Link
+								className="  text-primary-color dark:hover:text-primary-color hover:text-white hover:bg-primary-color dark:hover:bg-black bg-white  py-3 border-primary-color border dark:bg-primary-color dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
+								href="/auth/signin"
+							>
+								Sign In
+							</Link>
+							{/* <Link
               className="  text-red dark:hover:text-red hover:text-white hover:bg-red dark:hover:bg-black bg-white  py-3 border-red  border dark:bg-red dark:text-white shadow-primary-color font-semibold px-3 rounded-xl"
               href="/auth/signin"
             >
               Sign In
             </Link> */}
-            </div>
-            <div>
-              {" "}
-              {user ? (
-                <></>
-              ) : (
-                <div className=" hover:scale-125  transform transition-transform">
-                  <DashboardThemeButton />
-                </div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-      <dialog id="my_modal_3" className="modal ">
-        <div className="modal-box bg-primary-color dark:bg-black-bg-primary">
-          <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-          </form>
-          <div style={calendarStyles} className=' bg-black'>
-            <Calendar className="dark:text-black"
-              onChange={onChange}
-              value={value}
-              tileClassName={({ date, view }) =>
-                view === 'month' && date.toDateString() === new Date().toDateString()
-                  ? 'currentDate' // Apply the CSS class to the current date
-                  : null
-              }
-            />
-          </div>
-        </div>
-      </dialog>
-    </>
-  );
+						</div>
+						<div>
+							{' '}
+							{user ? (
+								<></>
+							) : (
+								<div className=" hover:scale-125  transform transition-transform">
+									<DashboardThemeButton />
+								</div>
+							)}
+						</div>
+					</div>
+				</>
+			)}
+			<dialog id="my_modal_3" className="modal ">
+				<div className="modal-box bg-primary-color dark:bg-black-bg-primary">
+					<form method="dialog">
+						{/* if there is a button in form, it will close the modal */}
+						<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+							✕
+						</button>
+					</form>
+					<div style={calendarStyles} className=" bg-black">
+						<Calendar
+							className="dark:text-black"
+							onChange={onChange}
+							value={value}
+							tileClassName={({ date, view }) =>
+								view === 'month' &&
+								date.toDateString() === new Date().toDateString()
+									? 'currentDate' // Apply the CSS class to the current date
+									: null
+							}
+						/>
+					</div>
+				</div>
+			</dialog>
+		</>
+	);
 };
 
 export default NavItems;
