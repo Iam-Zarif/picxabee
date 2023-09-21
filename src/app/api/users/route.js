@@ -13,13 +13,7 @@ export const GET = async () => {
 };
 
 export const POST = async (request) => {
-<<<<<<< HEAD
 
-	const body = await request.json();
-	const newUser = new User(body);
-
-=======
->>>>>>> e639324702f8e58dbc1f76e4a0d226e168245f10
 	try {
 		const body = await request.json();
 		const newUser = new User(body);
