@@ -199,10 +199,10 @@ const UserProfile = ({ params }) => {
 
       <div className="my-container mt-20">
         <div className={`${styles.imageContainer} relative `}>
-          {coverImage ? (
+          {/* {coverImage ? (
             <Image
             
-              src={coverImage}
+              src='https://i.ibb.co/BKfFLsv/cost-bg.jpg'
               layout="fill"
               objectFit="cover"
               className={`rounded-md h-40 w-40`}
@@ -217,7 +217,15 @@ const UserProfile = ({ params }) => {
               className={`rounded-md h-40 w-40`}
               alt="cover photo"
             />
-          )}
+          )} */}
+
+          <Image
+            src='https://i.ibb.co/BKfFLsv/cost-bg.jpg'
+            layout="fill"
+            objectFit="cover"
+            className={`rounded-md h-40 w-40`}
+            alt="cover photo"
+          />
 
           {user?.email !== email ? (
             <></>
@@ -232,31 +240,31 @@ const UserProfile = ({ params }) => {
         </div>
 
         <div>
-          
 
-                <div>
-                  <div className="flex justify-between">
-                    <div className="flex">
-                      <div className=" mx-10 overflow-hidden -mt-16 z-40">
-                        <div className={`${styles.profilePic} bg-white rounded-md h-40 w-40`}>
-                          {profilePicture ? (
-                            <Image
-                              src={profilePicture}
-                              layout="fill"
-                              objectFit="cover"
-                              alt="Profile Pic"
-                              className="h-30 w-30 lg:h-40 lg:w-40 rounded-md"
-                            />
-                          ) : (
-                            <Image
-                              src={data?.singleUser?.profile_picture}
-                              layout="fill"
-                              objectFit="cover"
-                              alt="Profile Pic"
-                              className="h-20 w-20 lg:h-40 lg:w-40 rounded-md"
-                            />
-                          )}
-                          {/* <Image
+
+          <div>
+            <div className="flex justify-between">
+              <div className="flex">
+                <div className=" mx-10 overflow-hidden -mt-16 z-40">
+                  <div className={`${styles.profilePic} bg-white rounded-md h-40 w-40`}>
+                    {profilePicture ? (
+                      <Image
+                        src={profilePicture}
+                        layout="fill"
+                        objectFit="cover"
+                        alt="Profile Pic"
+                        className="h-30 w-30 lg:h-40 lg:w-40 rounded-md"
+                      />
+                    ) : (
+                      <Image
+                        src={data?.singleUser?.profile_picture}
+                        layout="fill"
+                        objectFit="cover"
+                        alt="Profile Pic"
+                        className="h-20 w-20 lg:h-40 lg:w-40 rounded-md"
+                      />
+                    )}
+                    {/* <Image
                             src={data?.singleUser?.profile_picture}
                             layout="fill"
                             objectFit="cover"
@@ -264,204 +272,204 @@ const UserProfile = ({ params }) => {
                             className="h-40 w-40 rounded-md"
                           /> */}
 
-                          {user?.email !== email ? (
-                            <></>
-                          ) : (
-                            <div className="absolute right-5 bottom-5">
-                              <input
-                                type="file"
-                                id="btn"
-                                onChange={handleProfilePicture}
-                                hidden
-                              />
-                              <label for="btn">
-                                <HiMiniPencilSquare
-                                  size={30}
-                                  className="text-white cursor-pointer absolute bottom-0 right-0"
-                                />
-                              </label>
-                            </div>
-                          )}
-                        </div>
+                    {user?.email !== email ? (
+                      <></>
+                    ) : (
+                      <div className="absolute right-5 bottom-5">
+                        <input
+                          type="file"
+                          id="btn"
+                          onChange={handleProfilePicture}
+                          hidden
+                        />
+                        <label for="btn">
+                          <HiMiniPencilSquare
+                            size={30}
+                            className="text-white cursor-pointer absolute bottom-0 right-0"
+                          />
+                        </label>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
-
-              {profilePicture && (
-                <div className="mt-5">
-                  <button
-                    onClick={handleProfilePictureChange}
-                    className="btn btn-outline btn-success mr-4"
-                  >
-                    Save
-                  </button>
-                  <button
-                    onClick={handleCancelProfilePicture}
-                    className="btn btn-outline btn-success"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              )}
-
-              <div className="text-left mt-3 w-2/4 opacity-80">
-                <h3 className="text-2xl  font-semibold">{data?.singleUser?.name}</h3>
-                <h6 className="text-sm ">{data?.singleUser?.bio}</h6>
-              </div>
             </div>
+          </div>
+        </div>
 
-            {/* Cover Image Save Button */}
-            {coverImage && (
-              <div className="mt-5">
-                <button
-                  onClick={handleCoverPhotoChange}
-                  className="btn btn-outline btn-success mr-4"
-                >
-                  Save
-                </button>
-                <button onClick={handleCancel} className="btn btn-outline btn-success">
-                  Cancel
+        {profilePicture && (
+          <div className="mt-5">
+            <button
+              onClick={handleProfilePictureChange}
+              className="btn btn-outline btn-success mr-4"
+            >
+              Save
+            </button>
+            <button
+              onClick={handleCancelProfilePicture}
+              className="btn btn-outline btn-success"
+            >
+              Cancel
+            </button>
+          </div>
+        )}
+
+        <div className="text-left mt-3 w-2/4 opacity-80">
+          <h3 className="text-2xl  font-semibold">{data?.singleUser?.name}</h3>
+          <h6 className="text-sm ">{data?.singleUser?.bio}</h6>
+        </div>
+      </div>
+
+      {/* Cover Image Save Button */}
+      {coverImage && (
+        <div className="mt-5">
+          <button
+            onClick={handleCoverPhotoChange}
+            className="btn btn-outline btn-success mr-4"
+          >
+            Save
+          </button>
+          <button onClick={handleCancel} className="btn btn-outline btn-success">
+            Cancel
+          </button>
+        </div>
+      )}
+
+      <div className="flex items-center gap-3 mx-10">
+        {data?.singleUser?.information?.facebook ? (
+          <>
+            <a href={data?.singleUser?.information?.facebook} target="_blank">
+              <FaFacebookSquare size={30} className="text-[#0e8cf1]" />
+            </a>
+          </>
+        ) : (
+          <button onClick={handleFacebookClick}>
+            <FaFacebookSquare size={30} className="text-[#0e8cf1]" />
+          </button>
+        )}
+        {data?.singleUser?.information?.instagram ? (
+          <>
+            <a href={data?.singleUser?.information?.instagram} target="_blank">
+              <FaInstagramSquare size={30} className="text-red opacity-50" />
+            </a>
+          </>
+        ) : (
+          <button onClick={handleInstagramClick}>
+            {" "}
+            <FaInstagramSquare size={30} className="text-red opacity-50" />
+          </button>
+        )}
+        {data?.singleUser?.information?.linkDin ? (
+          <>
+            <a href={data?.singleUser?.information?.linkDin} target="_blank">
+              {" "}
+              <FaLinkedin size={30} className="text-[#0a66c2] " />
+            </a>
+          </>
+        ) : (
+          <button onClick={handleLinkDinClick}>
+            {" "}
+            <FaLinkedin size={30} className="text-[#0a66c2] " />
+          </button>
+        )}
+      </div>
+
+
+
+      <hr className="border my-10 opacity-20" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-9 gap-5 lg:mx-20">
+        <div className="col-span-4 w-full bg-primary-color bg-opacity-10 h-[300px] rounded-md p-5">
+          <div className="flex justify-between ">
+            <h5 className="text-xl uppercase font-semibold mb-5">information</h5>
+
+            {user?.email !== email ? (
+              <></>
+            ) : (
+              <div className="mt-3">
+                <button onClick={() => setShowModal(true)}>
+                  {" "}
+                  <HiMiniPencilSquare size={20} />
                 </button>
               </div>
             )}
-
-            <div className="flex items-center gap-3 mx-10">
-              {data?.singleUser?.information?.facebook ? (
-                <>
-                  <a href={data?.singleUser?.information?.facebook} target="_blank">
-                    <FaFacebookSquare size={30} className="text-[#0e8cf1]" />
-                  </a>
-                </>
-              ) : (
-                <button onClick={handleFacebookClick}>
-                  <FaFacebookSquare size={30} className="text-[#0e8cf1]" />
-                </button>
-              )}
-              {data?.singleUser?.information?.instagram ? (
-                <>
-                  <a href={data?.singleUser?.information?.instagram} target="_blank">
-                    <FaInstagramSquare size={30} className="text-red opacity-50" />
-                  </a>
-                </>
-              ) : (
-                <button onClick={handleInstagramClick}>
-                  {" "}
-                  <FaInstagramSquare size={30} className="text-red opacity-50" />
-                </button>
-              )}
-              {data?.singleUser?.information?.linkDin ? (
-                <>
-                  <a href={data?.singleUser?.information?.linkDin} target="_blank">
-                    {" "}
-                    <FaLinkedin size={30} className="text-[#0a66c2] " />
-                  </a>
-                </>
-              ) : (
-                <button onClick={handleLinkDinClick}>
-                  {" "}
-                  <FaLinkedin size={30} className="text-[#0a66c2] " />
-                </button>
-              )}
-            </div>
-          
-       
-
-        <hr className="border my-10 opacity-20" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-9 gap-5 lg:mx-20">
-          <div className="col-span-4 w-full bg-primary-color bg-opacity-10 h-[300px] rounded-md p-5">
-            <div className="flex justify-between ">
-              <h5 className="text-xl uppercase font-semibold mb-5">information</h5>
-
-              {user?.email !== email ? (
-                <></>
-              ) : (
-                <div className="mt-3">
-                  <button onClick={() => setShowModal(true)}>
-                    {" "}
-                    <HiMiniPencilSquare size={20} />
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <div className="w-full">
-              <p>
-                <span className="font-semibold">Email:</span> {data?.singleUser?.email}
-              </p>
-              <p>
-                <span className="font-semibold">Followers:</span>{" "}
-                {data?.singleUser?.followers?.length}
-              </p>
-              <p>
-                <span className="font-semibold">Following:</span>{" "}
-                {data?.singleUser?.following?.length}
-              </p>
-            </div>
-
-            <div className="mt-6">
-              <p className="font-bold mb-1">Personal Information</p>
-              {data?.singleUser?.information?.university && (
-                <div className="flex gap-2 items-center">
-                  <FaGraduationCap size={20} />
-                  <p>
-                    Studies at{" "}
-                    <span className="font-semibold opacity-80">
-                      {data?.singleUser?.information?.university}
-                    </span>
-                  </p>
-                </div>
-              )}
-              {data?.singleUser?.information?.college && (
-                <div className="flex gap-2 item-center">
-                  <FaSchool size={20} />
-                  <p>
-                    Went to{" "}
-                    <span className="font-semibold opacity-80">
-                      {data?.singleUser?.information?.college}
-                    </span>
-                  </p>
-                </div>
-              )}
-              {data?.singleUser?.information?.school && (
-                <div className="flex gap-2 item-center">
-                  <LuSchool size={20} />
-                  <p>
-                    Went to{" "}
-                    <span className="font-semibold opacity-80">
-                      {data?.singleUser?.information?.school}
-                    </span>
-                  </p>
-                </div>
-              )}
-              {data?.singleUser?.information?.location && (
-                <div className="flex gap-2 item-center">
-                  <GrLocation size={20} />
-                  <p>
-                    Lives in{" "}
-                    <span className="font-semibold opacity-80">
-                      {data?.singleUser?.information?.location}
-                    </span>
-                  </p>
-                </div>
-              )}
-            </div>
           </div>
 
-          <div className="col-span-5">
-            {ownPosts?.length < 1 ? (
-              <h1 className="text-3xl opacity-80 flex justify-center items-center">
-                <HiMiniNoSymbol /> Post is not Avaiable{" "}
-              </h1>
-            ) : (
-              ownPosts &&
-              ownPosts.map((post) => <SinglePost key={post._id} post={post}></SinglePost>)
+          <div className="w-full">
+            <p>
+              <span className="font-semibold">Email:</span> {data?.singleUser?.email}
+            </p>
+            <p>
+              <span className="font-semibold">Followers:</span>{" "}
+              {data?.singleUser?.followers?.length}
+            </p>
+            <p>
+              <span className="font-semibold">Following:</span>{" "}
+              {data?.singleUser?.following?.length}
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <p className="font-bold mb-1">Personal Information</p>
+            {data?.singleUser?.information?.university && (
+              <div className="flex gap-2 items-center">
+                <FaGraduationCap size={20} />
+                <p>
+                  Studies at{" "}
+                  <span className="font-semibold opacity-80">
+                    {data?.singleUser?.information?.university}
+                  </span>
+                </p>
+              </div>
+            )}
+            {data?.singleUser?.information?.college && (
+              <div className="flex gap-2 item-center">
+                <FaSchool size={20} />
+                <p>
+                  Went to{" "}
+                  <span className="font-semibold opacity-80">
+                    {data?.singleUser?.information?.college}
+                  </span>
+                </p>
+              </div>
+            )}
+            {data?.singleUser?.information?.school && (
+              <div className="flex gap-2 item-center">
+                <LuSchool size={20} />
+                <p>
+                  Went to{" "}
+                  <span className="font-semibold opacity-80">
+                    {data?.singleUser?.information?.school}
+                  </span>
+                </p>
+              </div>
+            )}
+            {data?.singleUser?.information?.location && (
+              <div className="flex gap-2 item-center">
+                <GrLocation size={20} />
+                <p>
+                  Lives in{" "}
+                  <span className="font-semibold opacity-80">
+                    {data?.singleUser?.information?.location}
+                  </span>
+                </p>
+              </div>
             )}
           </div>
         </div>
-      
+
+        <div className="col-span-5">
+          {ownPosts?.length < 1 ? (
+            <h1 className="text-3xl opacity-80 flex justify-center items-center">
+              <HiMiniNoSymbol /> Post is not Avaiable{" "}
+            </h1>
+          ) : (
+            ownPosts &&
+            ownPosts.map((post) => <SinglePost key={post._id} post={post}></SinglePost>)
+          )}
+        </div>
+      </div>
+
 
       <EditProfileModal isVisible={showModal} onClose={() => setShowModal(false)}>
         <form onSubmit={handleSubmit(onSubmit)}>
