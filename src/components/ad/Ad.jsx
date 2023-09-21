@@ -14,7 +14,7 @@ const Ad = () => {
 		refreshInterval: 1000, // Adjust the refresh interval as needed
 	});
 
-	const [randomAdIndex, setRandomAdIndex] = useState(0);
+	const [randomAdIndex,  setRandomAdIndex] = useState(0);
 
 	// Function to change the random ad index
 	const changeRandomAd = () => {
