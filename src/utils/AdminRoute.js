@@ -61,7 +61,7 @@ function AdminRoute({ children }) {
             setIsLoading(false);
             router.push('/'); // Redirect if user is not authenticated
         }
-    }, [user, router]);
+    }, [user, router, currentUser]);
 
     if (isLoading) {
         return <h1>Loading...</h1>;
