@@ -1,6 +1,7 @@
 "use client"
 
 import useAuth from "@/hooks/useAuth";
+import createJWT from "@/utils/createJWT";
 import { useRouter } from "next/navigation"
 import { FaGoogle } from "react-icons/fa";
 const SocialLogin = () => {
@@ -10,8 +11,11 @@ const SocialLogin = () => {
 
     const handlerGoogleSignin = () => {
         googleLogin()
-            .then(() => {
+            .then(async () => {
+                
                 router.push("/");
+                await createJWT({email: user?.email})
+
 
                 fetch('/api/users', {
                     method: 'POST',
