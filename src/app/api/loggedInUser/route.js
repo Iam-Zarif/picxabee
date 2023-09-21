@@ -15,7 +15,6 @@ export const GET = async (request) => {
 };
 
 // Update LoggedIn UserInformation
-// Update LoggedIn UserInformation
 export const PUT = async (request) => {
   try {
     const id = request.nextUrl.searchParams.get("id");
