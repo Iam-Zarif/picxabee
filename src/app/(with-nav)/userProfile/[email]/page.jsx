@@ -79,6 +79,7 @@ const UserProfile = ({ params }) => {
       })
       .then((data) => {
         console.log("Received data:", data);
+        setShowModal(false);
       })
       .catch((error) => {
         console.error("Fetch error:", error);
