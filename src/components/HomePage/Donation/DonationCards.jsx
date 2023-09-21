@@ -42,11 +42,15 @@ const DonationCards = () => {
 
         }
       </div>
+
+      <div className="flex justify-center">
       <Link href="/allApprovedDonation">   <button
         className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black"
       >
         See more
       </button></Link>
+      </div>
+    
     </>
 
 

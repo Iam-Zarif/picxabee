@@ -16,8 +16,8 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
     };
 
     return (
-        <div className='mb-2 '>
-            <div className="card  glass rounded-md">
+        <div className='mb-3'>
+            <div className="card glass rounded-md">
                 <Image
                     src={imageUrl}
                     alt="donate"
@@ -56,7 +56,7 @@ const DonationCard = ({ title, imageUrl, totalDonated, userProfileImage, usernam
                                 <button
 
                                     onClick={handlePaymentSuccess}
-                                    className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold lg:ml-5 capitalize dark:border-white dark:hover:bg-black mx-auto"
+                                    className="btn rounded-md hover:bg-primary-color hover:text-white border-gray font-semibold capitalize dark:border-white dark:hover:bg-black"
                                 >
                                     Donate now
                                 </button>
