@@ -11,11 +11,13 @@ import CommentSection from './CommentSection';
 import EditOption from './EditOption';
 import SingleComment from './SingleComment';
 import useAuth from '@/hooks/useAuth';
-import  Link  from 'next/link';
+import Link from 'next/link';
+import useSWR from 'swr';
+import AllReactions from './AllReactions';
 
 const SinglePost = ({ post }) => {
+	let [isReactionListOpen, setIsReactionListOpen] = useState(false);
 	const [expanded, setExpanded] = useState(false);
-
 	const [open, setOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const { user } = useAuth();
@@ -25,9 +27,16 @@ const SinglePost = ({ post }) => {
 		return reaction?.author?.email === user?.email;
 	});
 
-	const isButtonDisabled = post?.author?.email !== user?.email;
+	const isButtonDisabled = post?.author?.email !== user?.email; //!==
 
-	// console.log(isReacted);
+	const fetcher = (...args) => fetch(...args).then((res) => res.json());
+	const {
+		data: postAuthor,
+	} = useSWR(`/api/loggedInUser?userEmail=${post?.author?.email}`, fetcher, {
+		refreshInterval: 1000,
+	});
+
+	// console.log(postAuthor);
 
 	const date1 = new Date(post?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
@@ -39,7 +48,13 @@ const SinglePost = ({ post }) => {
 	function openModal() {
 		setIsOpen(true);
 	}
+	function closeAllReactionsModal() {
+		setIsReactionListOpen(false);
+	}
 
+	function openAllReactionsModal() {
+		setIsReactionListOpen(true);
+	}
 	const handleReaction = () => {
 		const NewReaction = {
 			id,
@@ -146,7 +161,7 @@ const SinglePost = ({ post }) => {
 			<div className="w-full flex items-center justify-between">
 				<div className="flex items-center">
 					<Image
-						src={post?.author?.profile_picture}
+						src={postAuthor?.profile_picture}
 						width={50}
 						height={50}
 						alt="Picture of the author"
@@ -158,7 +173,8 @@ const SinglePost = ({ post }) => {
 								href={`/userProfile/${post?.author?.email}`}
 								className="font-bold capitalize"
 							>
-								{post?.author?.name}
+								{/* {post?.author?.name} */}
+								{postAuthor?.name}
 							</Link>
 
 							<div className="text-gray mt-1">
@@ -227,9 +243,19 @@ const SinglePost = ({ post }) => {
 								className="hover:scale-110 duration-300 hover:text-gray-400 hover:cursor-pointer"
 							/>
 						)}
-						<p className="font-semibold text-lg">
+						<p
+							onClick={openAllReactionsModal}
+							className="font-semibold text-lg"
+						>
 							{post?.reactions && post?.reactions.length}
 						</p>
+						<AllReactions
+							key={post._id}
+							reactions={post?.reactions}
+							closeAllReactionsModal={closeAllReactionsModal}
+							openAllReactionsModal={openAllReactionsModal}
+							isReactionListOpen={isReactionListOpen}
+						></AllReactions>
 					</div>
 					<div className="flex gap-1">
 						<AiOutlineComment
