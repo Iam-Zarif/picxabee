@@ -79,6 +79,7 @@ const UserProfile = ({ params }) => {
       })
       .then((data) => {
         console.log("Received data:", data);
+        setShowModal(false);
       })
       .catch((error) => {
         console.error("Fetch error:", error);
@@ -323,9 +324,9 @@ const UserProfile = ({ params }) => {
             )}
 
             <div className="flex items-center gap-3 mx-10">
-              {data?.singleUser?.information.facebook ? (
+              {data?.singleUser?.information?.facebook ? (
                 <>
-                  <a href={data?.singleUser?.information.facebook} target="_blank">
+                  <a href={data?.singleUser?.information?.facebook} target="_blank">
                     <FaFacebookSquare size={30} className="text-[#0e8cf1]" />
                   </a>
                 </>
@@ -334,9 +335,9 @@ const UserProfile = ({ params }) => {
                   <FaFacebookSquare size={30} className="text-[#0e8cf1]" />
                 </button>
               )}
-              {data?.singleUser?.information.instagram ? (
+              {data?.singleUser?.information?.instagram ? (
                 <>
-                  <a href={data?.singleUser?.information.instagram} target="_blank">
+                  <a href={data?.singleUser?.information?.instagram} target="_blank">
                     <FaInstagramSquare size={30} className="text-red opacity-50" />
                   </a>
                 </>
@@ -346,9 +347,9 @@ const UserProfile = ({ params }) => {
                   <FaInstagramSquare size={30} className="text-red opacity-50" />
                 </button>
               )}
-              {data?.singleUser?.information.linkDin ? (
+              {data?.singleUser?.information?.linkDin ? (
                 <>
-                  <a href={data?.singleUser?.information.linkDin} target="_blank">
+                  <a href={data?.singleUser?.information?.linkDin} target="_blank">
                     {" "}
                     <FaLinkedin size={30} className="text-[#0a66c2] " />
                   </a>
