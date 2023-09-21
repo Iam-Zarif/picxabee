@@ -25,7 +25,7 @@ const Ad = () => {
 	};
 
 	useEffect(() => {
-		const intervalId = setInterval(changeRandomAd, 100000); 
+		const intervalId = setInterval(changeRandomAd, 10000); 
 		return () => clearInterval(intervalId);
 	}, [adPosts]);
 
