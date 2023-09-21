@@ -36,7 +36,7 @@ const PaymentHistoryPage = () => {
     const { data: paymentHistory } = useSWR("/api/payments", fetcher, {
         refreshInterval: 1000,
     });
-    const date1 = new Date(post?.createdAt);
+    const date1 = new Date(paymentHistory?.createdAt);
 	const options = { timeStyle: 'short', dateStyle: 'medium' };
 	const formattedDateTime = date1.toLocaleString(undefined, options);
 
