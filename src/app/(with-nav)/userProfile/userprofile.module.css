@@ -8,3 +8,14 @@
     width: 160px;
     height: 160px;
 }
+
+@media (max-width: 767px) {
+    .imageContainer{
+        height: 200px;
+    }
+    .profilePic{
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+}
