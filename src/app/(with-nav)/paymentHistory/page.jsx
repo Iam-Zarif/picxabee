@@ -36,6 +36,9 @@ const PaymentHistoryPage = () => {
     const { data: paymentHistory } = useSWR("/api/payments", fetcher, {
         refreshInterval: 1000,
     });
+    const date1 = new Date(post?.createdAt);
+	const options = { timeStyle: 'short', dateStyle: 'medium' };
+	const formattedDateTime = date1.toLocaleString(undefined, options);
 
     return (
         <>
@@ -72,7 +75,7 @@ const PaymentHistoryPage = () => {
                                     <td className="py-2 px-4 border">{payment?.author?.email}</td>
                                     <td className="py-2 px-4 border">{payment?.number}</td>
                                     <td className="py-2 px-4 border">{payment?.amount}$</td>
-                                    <td className="py-2 px-4 border">{payment?.updatedAt}</td>
+                                    <td className="py-2 px-4 border">{formattedDateTime}</td>
                                 </tr>
                             ))}
                         </tbody>
