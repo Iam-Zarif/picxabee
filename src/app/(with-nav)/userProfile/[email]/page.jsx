@@ -21,12 +21,13 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { LuSchool } from 'react-icons/lu';
 import { GrLocation } from 'react-icons/gr';
+import HomeButton from '@/components/button/HomeButton';
 
 const UserProfile = ({ params }) => {
 	const [coverImage, setCoverImage] = useState('');
-	console.log(coverImage);
+
 	const [profilePicture, setProfilePicture] = useState('');
-	console.log(profilePicture);
+
 	const { register, handleSubmit } = useForm();
 	const router = useRouter();
 	const [showModal, setShowModal] = useState(false);
@@ -45,7 +46,6 @@ const UserProfile = ({ params }) => {
 	});
 
 	const id = data?.singleUser?._id;
-	console.log(id);
 
 	const onSubmit = (userData) => {
 		const newProfileInfo = {
@@ -227,8 +227,8 @@ const UserProfile = ({ params }) => {
 							/>
 							<label for="profile-btn">
 								<HiMiniPencilSquare
-									size={20}
-									className="text-gray cursor-pointer"
+									size={30}
+									className="text-white cursor-pointer"
 								/>
 							</label>
 						</div>
@@ -237,9 +237,10 @@ const UserProfile = ({ params }) => {
 
 				<div>
 					<div>
-						<div className="flex justify-between">
+						<div className="flex  justify-between">
 							<div className="flex">
 								<div className=" mx-10 overflow-hidden -mt-16 z-40">
+									{' '}
 									<div
 										className={`${styles.profilePic} bg-white rounded-md h-40 w-40`}
 									>
@@ -260,13 +261,6 @@ const UserProfile = ({ params }) => {
 												className="h-40 w-40 rounded-md"
 											/>
 										)}
-										{/* <Image
-                            src={data?.singleUser?.profile_picture}
-                            layout="fill"
-                            objectFit="cover"
-                            alt="Profile Pic"
-                            className="h-40 w-40 rounded-md"
-                          /> */}
 
 										{user?.email !== email ? (
 											<></>
@@ -288,91 +282,109 @@ const UserProfile = ({ params }) => {
 										)}
 									</div>
 								</div>
+								<div className="text-left mt-3 w-2/4 opacity-80">
+									<h3 className="text-2xl font-semibold">
+										{data?.singleUser?.name}
+									</h3>
+									<h6 className="text-sm ">{data?.singleUser?.bio}</h6>
+								</div>
+							</div>
+
+							<div>
+								{profilePicture && (
+									<div className="mt-5 flex gap-x-3 items-center">
+										<button
+											className="h-12 w-28 bg-primary-color hover:bg-teal-700 border-teal-500 text-white
+             rounded-md hover:text-white dark:bg-black hover:border-white dark:hover:bg-[#2a0f17] hover:scale-105 transition duration-300 ease-in-out"
+											onClick={handleProfilePictureChange}
+										>
+											Save
+										</button>
+										<button
+											onClick={handleCancelProfilePicture}
+											className="btn btn-outline btn-success"
+										>
+											Cancel
+										</button>
+									</div>
+								)}
+								{coverImage && (
+									<div className="mt-5 flex gap-x-3 items-center">
+										<button
+											className="h-12 w-28 bg-primary-color hover:bg-teal-700 border-teal-500 text-white
+             rounded-md hover:text-white dark:bg-black hover:border-white dark:hover:bg-[#2a0f17] hover:scale-105 transition duration-300 ease-in-out"
+											onClick={handleCoverPhotoChange}
+										>
+											Save
+										</button>
+
+										<button
+											onClick={handleCancel}
+											className="btn btn-outline btn-success"
+										>
+											Cancel
+										</button>
+									</div>
+								)}
+							</div>
+
+							<div className="flex items-center gap-3 mx-10">
+								{data?.singleUser?.information?.facebook ? (
+									<>
+										<a
+											href={data?.singleUser?.information?.facebook}
+											target="_blank"
+										>
+											<FaFacebookSquare size={30} className="text-[#0e8cf1]" />
+										</a>
+									</>
+								) : (
+									<button onClick={handleFacebookClick}>
+										<FaFacebookSquare size={30} className="text-[#0e8cf1]" />
+									</button>
+								)}
+								{data?.singleUser?.information?.instagram ? (
+									<>
+										<a
+											href={data?.singleUser?.information?.instagram}
+											target="_blank"
+										>
+											<FaInstagramSquare
+												size={30}
+												className="text-red opacity-50"
+											/>
+										</a>
+									</>
+								) : (
+									<button onClick={handleInstagramClick}>
+										{' '}
+										<FaInstagramSquare
+											size={30}
+											className="text-red opacity-50"
+										/>
+									</button>
+								)}
+								{data?.singleUser?.information?.linkDin ? (
+									<>
+										<a
+											href={data?.singleUser?.information?.linkDin}
+											target="_blank"
+										>
+											{' '}
+											<FaLinkedin size={30} className="text-[#0a66c2] " />
+										</a>
+									</>
+								) : (
+									<button onClick={handleLinkDinClick}>
+										{' '}
+										<FaLinkedin size={30} className="text-[#0a66c2] " />
+									</button>
+								)}
 							</div>
 						</div>
 					</div>
 				</div>
-
-				{profilePicture && (
-					<div className="mt-5">
-						<button
-							onClick={handleProfilePictureChange}
-							className="btn btn-outline btn-success mr-4"
-						>
-							Save
-						</button>
-						<button
-							onClick={handleCancelProfilePicture}
-							className="btn btn-outline btn-success"
-						>
-							Cancel
-						</button>
-					</div>
-				)}
-
-				<div className="text-left mt-3 w-2/4 opacity-80">
-					<h3 className="text-2xl font-semibold">{data?.singleUser?.name}</h3>
-					<h6 className="text-sm ">{data?.singleUser?.bio}</h6>
-				</div>
 			</div>
-
-			{/* Cover Image Save Button */}
-			{coverImage && (
-				<div className="mt-5">
-					<button
-						onClick={handleCoverPhotoChange}
-						className="btn btn-outline btn-success mr-4"
-					>
-						Save
-					</button>
-					<button
-						onClick={handleCancel}
-						className="btn btn-outline btn-success"
-					>
-						Cancel
-					</button>
-				</div>
-			)}
-			
-			<div className="flex items-center gap-3 mx-10">
-				{data?.singleUser?.information?.facebook ? (
-					<>
-						<a href={data?.singleUser?.information?.facebook} target="_blank">
-							<FaFacebookSquare size={30} className="text-[#0e8cf1]" />
-						</a>
-					</>
-				) : (
-					<button onClick={handleFacebookClick}>
-						<FaFacebookSquare size={30} className="text-[#0e8cf1]" />
-					</button>
-				)}
-				{data?.singleUser?.information?.instagram ? (
-					<>
-						<a href={data?.singleUser?.information?.instagram} target="_blank">
-							<FaInstagramSquare size={30} className="text-red opacity-50" />
-						</a>
-					</>
-				) : (
-					<button onClick={handleInstagramClick}>
-						{' '}
-						<FaInstagramSquare size={30} className="text-red opacity-50" />
-					</button>
-				)}
-				{data?.singleUser?.information?.linkDin ? (
-					<>
-						<a href={data?.singleUser?.information?.linkDin} target="_blank">
-							{' '}
-							<FaLinkedin size={30} className="text-[#0a66c2] " />
-						</a>
-					</>
-				) : (
-					<button onClick={handleLinkDinClick}>
-						{' '}
-						<FaLinkedin size={30} className="text-[#0a66c2] " />
-					</button>
-				)}
-			</div>
-
 			<hr className="border my-10 opacity-20" />
 
 			<div className="grid lg:grid-cols-9 grid-cols-12 gap-5 mx-20">
@@ -613,3 +625,5 @@ const UserProfile = ({ params }) => {
 };
 
 export default UserProfile;
+
+			
