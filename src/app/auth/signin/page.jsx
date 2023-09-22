@@ -28,7 +28,7 @@ const SigninPage = () => {
 							.
 						</p>
 						<p className=" text-center pb-2">
-							Having Trouble ?{' '}
+							Having Trouble? Getting{' '}
 							<Link
 								className="font-semibold text-primary-color"
 								href={'/support'}
