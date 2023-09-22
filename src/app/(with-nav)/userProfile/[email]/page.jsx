@@ -227,8 +227,8 @@ const UserProfile = ({ params }) => {
 							/>
 							<label for="profile-btn">
 								<HiMiniPencilSquare
-									size={30}
-									className="text-white cursor-pointer"
+									size={20}
+									className="text-gray cursor-pointer"
 								/>
 							</label>
 						</div>
@@ -280,8 +280,8 @@ const UserProfile = ({ params }) => {
 												/>
 												<label for="btn">
 													<HiMiniPencilSquare
-														size={30}
-														className="text-white cursor-pointer"
+														size={20}
+														className="text-gray cursor-pointer"
 													/>
 												</label>
 											</div>
@@ -333,7 +333,7 @@ const UserProfile = ({ params }) => {
 					</button>
 				</div>
 			)}
-
+			
 			<div className="flex items-center gap-3 mx-10">
 				{data?.singleUser?.information?.facebook ? (
 					<>
@@ -376,7 +376,7 @@ const UserProfile = ({ params }) => {
 			<hr className="border my-10 opacity-20" />
 
 			<div className="grid lg:grid-cols-9 grid-cols-12 gap-5 mx-20">
-				<div className="lg:col-span-4 col-span-12 bg-primary-color bg-opacity-10 h-[300px] rounded-md p-5">
+				<div className="lg:col-span-4 col-span-12 bg-primary-color bg-opacity-10 h-[400px] rounded-md p-5 lg:p-10">
 					<div className="flex justify-between">
 						<h5 className="text-xl uppercase font-semibold mb-5">
 							information
@@ -388,7 +388,7 @@ const UserProfile = ({ params }) => {
 							<div className="mt-3">
 								<button onClick={() => setShowModal(true)}>
 									{' '}
-									<HiMiniPencilSquare size={20} />
+									<HiMiniPencilSquare size={20} className="text-gray" />
 								</button>
 							</div>
 						)}
@@ -446,7 +446,7 @@ const UserProfile = ({ params }) => {
 						)}
 						{data?.singleUser?.information?.location && (
 							<div className="flex gap-2 item-center">
-								<GrLocation size={20} />
+								<GrLocation size={20} className="dark:text-white" />
 								<p>
 									Lives in{' '}
 									<span className="font-semibold opacity-80">
