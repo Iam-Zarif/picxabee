@@ -160,7 +160,7 @@ const Navbar = () => {
             className={`cursor-pointer ${searchActive ? "hidden" : "visible"}`}
             onClick={() => setSearchActive(true)}
           />
-          <HiOutlinePaperAirplane
+          {/* <HiOutlinePaperAirplane
             size={28}
             className={`cursor-pointer rotate-45 ${
               searchActive ? "hidden" : "visible"
@@ -172,7 +172,7 @@ const Navbar = () => {
             <span className="mr-2 indicator-item badge bg-lime-500 text-white font-bold px-3 py-3">
               5
             </span>
-          </span>
+          </span> */}
         </div></>
       }
 
