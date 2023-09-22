@@ -245,7 +245,7 @@ const SinglePost = ({ post }) => {
 						)}
 						<p
 							onClick={openAllReactionsModal}
-							className="font-semibold text-lg"
+							className="font-semibold text-lg cursor-pointer"
 						>
 							{post?.reactions && post?.reactions.length}
 						</p>
