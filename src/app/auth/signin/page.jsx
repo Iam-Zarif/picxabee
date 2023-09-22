@@ -34,7 +34,7 @@ const SigninPage = () => {
 								href={'/support'}
 							>
 								Support
-							</Link>
+							</Link>.
 						</p>
 						<SocialLogin />
 					</div>
