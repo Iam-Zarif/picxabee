@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-"use client"
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
@@ -11,39 +11,39 @@ import { TiThMenu } from 'react-icons/ti';
 import { MdFeedback } from 'react-icons/md';
 import DashboardThemeButton from '../DashboardThemeButton/DashboardThemeButton';
 import { BiDonateHeart } from 'react-icons/bi';
-
+import { RiAdvertisementFill } from 'react-icons/ri';
 
 const Sidebar = () => {
-  const [isRotated, setIsRotated] = useState(false);
+	const [isRotated, setIsRotated] = useState(false);
 
-const toggleLinks = () => {
-  setShowLinks(!showLinks);
-  setIsRotated(!isRotated); // Toggle the rotation state
-};
-  const [showLinks, setShowLinks] = useState(false);
-  const [menuRotation, setMenuRotation] = useState(0);
-  const menuRef = useRef(null);
+	const toggleLinks = () => {
+		setShowLinks(!showLinks);
+		setIsRotated(!isRotated); // Toggle the rotation state
+	};
+	const [showLinks, setShowLinks] = useState(false);
+	const [menuRotation, setMenuRotation] = useState(0);
+	const menuRef = useRef(null);
 
- 
+	const handleClickOutside = useCallback(
+		(event) => {
+			if (menuRef.current && !menuRef.current.contains(event.target)) {
+				setShowLinks(false);
+				setMenuRotation(menuRotation + 180); // Rotate back to the original position
+			}
+		},
+		[menuRotation]
+	);
 
-  const handleClickOutside = useCallback((event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setShowLinks(false);
-      setMenuRotation(menuRotation + 180); // Rotate back to the original position
-    }
-  }, [menuRotation]);
+	useEffect(() => {
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [handleClickOutside]);
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [handleClickOutside]);
+	// ...
 
-  // ...
-
-
-  return (
+	return (
 		<>
 			<div
 				ref={menuRef}
@@ -102,18 +102,29 @@ const toggleLinks = () => {
 					{/* hridoy vai */}
 					<li className={`link-item ${showLinks ? 'show' : ''}`}>
 						<Link href="/dashboard/pendingDonation">
-							<div className="flex gap-4 tooltip" data-tip="Feedback">
+							<div className="flex gap-4 tooltip" data-tip="Donation">
 								<BiDonateHeart size={26} />
-								{showLinks && <span>Donate</span>}
+								{showLinks && <span>Donation</span>}
 							</div>
 						</Link>
 					</li>
 					{/* hridoy vai */}
 					{/* <ThemeButton/> */}
-					
+
+					<li className={`link-item ${showLinks ? 'show' : ''}`}>
+						<Link href="/dashboard/advertisements">
+							<div className="flex gap-4 tooltip" data-tip="Advertisements">
+								<RiAdvertisementFill size={26} />
+								{showLinks && <span>Advertisements</span>}
+							</div>
+						</Link>
+					</li>
 				</ul>
-				<div className="absolute bottom-4 flex flex-col items-center gap-y-4 tooltip" >
-			<div data-tip="change theme" className="tooltip">	<DashboardThemeButton /></div>
+				<div className="absolute bottom-4 flex flex-col items-center gap-y-4 tooltip">
+					<div data-tip="change theme" className="tooltip">
+						{' '}
+						<DashboardThemeButton />
+					</div>
 					<Link href="/" className="group">
 						<div className="text-center group-hover:animate-pulse group-hover:scale-105 transform transition-transform duration-300">
 							<Image
