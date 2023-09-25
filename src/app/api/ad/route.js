@@ -17,6 +17,7 @@ export const POST = async (request) => {
 	try {
 		const adPost = await request.json();
 
+
 		await connect();
 		await Ad.create(adPost);
 		return NextResponse.json(
@@ -36,6 +37,7 @@ export const PATCH = async (request) => {
 	
 	try {
 		const id = request.nextUrl.searchParams.get('id');
+
 		const status = await request.json();
 		await connect();
 		await Ad.findByIdAndUpdate(id, status);
