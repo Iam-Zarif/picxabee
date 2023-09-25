@@ -3,6 +3,7 @@ const nextConfig = {
 	images: {
 		domains: [
 			'i.ibb.co',
+			'miro.medium.com',
 			'www.example.com',
 			'ibb.co',
 			'firebasestorage.googleapis.com',
