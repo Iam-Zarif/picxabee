@@ -27,7 +27,7 @@ yarn-error.log*
 # local env files
 .env*.local
 
-.env
+.env*
 
 # vercel
 .vercel
@@ -39,4 +39,4 @@ next-env.d.ts
 # testing compo
 postCards.test.jsx
 DashboardPageComponent.test.jsx
-sum.test.js
+sum.test.js.env

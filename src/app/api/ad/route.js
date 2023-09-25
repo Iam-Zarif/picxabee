@@ -16,7 +16,6 @@ export const GET = async (request) => {
 export const POST = async (request) => {
 	try {
 		const adPost = await request.json();
-        console.log(adPost)
 
 		await connect();
 		await Ad.create(adPost);
@@ -37,7 +36,6 @@ export const PATCH = async (request) => {
 	
 	try {
 		const id = request.nextUrl.searchParams.get('id');
-		console.log(id);
 		const status = await request.json();
 		await connect();
 		await Ad.findByIdAndUpdate(id, status);

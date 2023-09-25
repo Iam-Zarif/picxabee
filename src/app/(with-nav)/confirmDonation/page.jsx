@@ -28,7 +28,6 @@ const ConfirmationPage = () => {
             number: data?.number,
             amount: 50
         };
-        console.log(payments)
         try {
             const res = await fetch("api/payments", {
               method: "POST",

@@ -146,7 +146,7 @@ console.log(loggedInUser)
 									<div className=" lg:text-lg flex flex-col gap-5 w-4/5 mx-auto pt-24 lg:pt-12   rounded-xl ">
 										<p className=" ">
 											<AiOutlineUser className="inline" />{' '}
-											<span>{user.displayName}</span>
+											<span>{loggedInUser?.name}</span>
 										</p>
 										<hr className="text-primary-color" />
 
